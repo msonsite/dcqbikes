@@ -592,9 +592,9 @@
         }
         
         .team-member:hover .team-member-photo {
-            transform: scale(1.01) translateY(-1px);
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
-            border-color: rgba(0,0,0,0.08);
+            transform: scale(1.01);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            border-color: #ee2726;
         }
         
         .team-member-name {
@@ -602,13 +602,11 @@
             font-weight: 600;
             color: #0b0b0b;
             margin-bottom: 0.25rem;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
             letter-spacing: -0.01em;
         }
         
-        .team-member:hover .team-member-name {
-            color: #111827;
-        }
+        .team-member:hover .team-member-name { color: #0b0b0b; }
         
         .team-member-role {
             font-size: 0.875rem;
@@ -673,23 +671,20 @@
         
         /* Team Member Card Enhancements */
         .team-member {
-            background: #ffffff;
-            border: 1px solid rgba(0,0,0,0.06);
+            background: transparent;
+            border: 0;
             border-radius: 16px;
-            padding: 1.25rem 1rem 1.5rem;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-            transition: transform 300ms cubic-bezier(0.28, 0.11, 0.32, 1), box-shadow 300ms cubic-bezier(0.28, 0.11, 0.32, 1);
+            padding: 0.5rem 0.75rem 0.75rem;
+            box-shadow: none;
+            transition: none;
         }
-        .team-member:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-        }
+        .team-member:hover { transform: none; box-shadow: none; }
         .member-divider {
-            width: 28px;
+            width: 24px;
             height: 1px;
-            background: rgba(0,0,0,0.06);
+            background: rgba(0,0,0,0.08);
             border-radius: 1px;
-            margin: 0.35rem auto 0.4rem;
+            margin: 0.3rem auto 0.35rem;
             opacity: 1;
         }
         .team-member-role {
@@ -697,7 +692,10 @@
             color: #6b7280;
             padding: 0;
             border-radius: 0;
-            font-weight: 400;
+            font-weight: 500;
+            font-size: 0.75rem;
+            letter-spacing: 0.02em;
+            text-transform: none;
         }
     </style>
 </head>
@@ -951,48 +949,51 @@
                 <!-- Contact Info -->
                 <div class="space-y-6 fade-in">
                     <!-- Team Showcase -->
-                    <div class="bg-white p-6 rounded-lg shadow-md fade-in">
+                    <div class="bg-white rounded-xl p-6 ring-1 ring-gray-100 fade-in">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold tracking-tight">Team</h3>
+                                </div>
                         <div class="team-showcase">
                             <div class="team-member">
                                 <div class="team-member-photo-wrapper">
-                                    <img src="images/profilepictures/kurtdeclercq.jpg" alt="Kurt Declercq" class="team-member-photo" onerror="this.src='images/profilepictures/kurt.jpg'; this.onerror=null;">
-                                </div>
+                                    <img src="images/profilepictures/businessmanexample.webp" alt="Kurt Declercq" class="team-member-photo" onerror="this.src='images/profilepictures/kurt.jpg'; this.onerror=null;">
+                            </div>
                                 <div class="team-member-name">Kurt Declercq</div>
                                 <div class="member-divider"></div>
                                 <div class="team-member-role">Zaakvoerder</div>
-                            </div>
+                                </div>
                             <div class="team-member">
                                 <div class="team-member-photo-wrapper">
-                                    <img src="images/profilepictures/maxime-hoflack.jpg" alt="Maxime Hoflack" class="team-member-photo" onerror="this.src='images/profilepictures/maxime.jpg'; this.onerror=null;">
-                                </div>
+                                    <img src="images/profilepictures/businessmanexample.webp" alt="Maxime Hoflack" class="team-member-photo" onerror="this.src='images/profilepictures/maxime.jpg'; this.onerror=null;">
+                            </div>
                                 <div class="team-member-name">Maxime Hoflack</div>
                                 <div class="member-divider"></div>
                                 <div class="team-member-role">Fietstechnicus</div>
-                            </div>
                                 </div>
                             </div>
+                                </div>
                     <div class="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md ring-1 ring-gray-100 hover:shadow-lg transition-all">
                         <div class="flex items-center justify-between mb-5">
                             <h3 class="text-xl font-bold tracking-tight">Contactgegevens</h3>
-                                </div>
+                            </div>
 
                         <div class="divide-y divide-gray-100">
                             <div class="py-4 flex items-start gap-4">
                                 <div class="w-10 h-10 rounded-full bg-dcq-red/10 text-dcq-red flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-map-marker-alt"></i>
-                            </div>
+                                </div>
                                 <div class="min-w-0">
                                     <p class="text-sm text-gray-500">Adres</p>
                                     <a href="https://maps.google.com/?q=Gistelsteenweg+282,+8490+Jabbeke" target="_blank" rel="noopener" class="block font-medium text-gray-900 hover:text-dcq-red">
                                         Gistelsteenweg 282, 8490 Jabbeke
                                     </a>
-                                </div>
                             </div>
+                        </div>
 
                             <div class="py-4 flex items-start gap-4">
                                 <div class="w-10 h-10 rounded-full bg-dcq-red/10 text-dcq-red flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-phone"></i>
-                        </div>
+                    </div>
                                 <div class="min-w-0 w-full">
                                     <p class="text-sm text-gray-500">Telefoon</p>
                                     <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -1086,7 +1087,7 @@
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-md contact-form-container">
                         <h3 class="text-xl font-bold mb-4">Stuur Een Bericht</h3>
-                        <form id="contactForm" class="space-y-4" action="https://formspree.io/f/mvgvrjql" method="POST">
+                        <form id="contactForm" class="space-y-4" action="#" data-formspree="https://formspree.io/f/mvgvrjql" method="POST">
                             <div>
                                 <label for="name" class="block text-sm font-medium mb-2">Naam *</label>
                                 <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">

@@ -165,7 +165,7 @@ async function loadBrandImages() {
             { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' },
             { src: 'images/brands/large/descheemaeker.png', name: 'Descheemaeker', alt: 'Descheemaeker Logo' },
             { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo' },
-            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' },
+            { src: 'images/brands/large/oxfordlogo.webp', name: 'Oxford', alt: 'Oxford Logo' },
             { src: 'images/brands/large/descheemaeker.png', name: 'Descheemaeker', alt: 'Descheemaeker Logo' },
             { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' },
         ],
@@ -388,7 +388,7 @@ if (contactForm) {
 
         const submitBtn = document.getElementById('contactSubmit');
         const statusEl = document.getElementById('contactStatus');
-        const action = contactForm.getAttribute('action');
+        const action = contactForm.getAttribute('data-formspree');
 
         if (!action || !action.startsWith('https://formspree.io/')) {
             // Fallback: demo mode
