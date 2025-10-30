@@ -1,0 +1,537 @@
+// Cookie Banner Functionality
+(function() {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const acceptBtn = document.getElementById('acceptCookies');
+    const declineBtn = document.getElementById('declineCookies');
+    const cookieConsent = localStorage.getItem('cookieConsent');
+    
+    // Show banner if no consent is stored
+    if (!cookieConsent) {
+        setTimeout(() => {
+            cookieBanner.classList.add('show');
+        }, 500);
+    }
+    
+    // Accept cookies
+    acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        cookieBanner.classList.remove('show');
+        loadNonEssentialScripts();
+    });
+    
+    // Decline cookies
+    declineBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'declined');
+        cookieBanner.classList.remove('show');
+    });
+    
+    // Load non-essential scripts after consent
+    function loadNonEssentialScripts() {
+        if (localStorage.getItem('cookieConsent') === 'accepted') {
+            console.log('Loading non-essential scripts...');
+            // Here you would load analytics, marketing scripts, etc.
+            // Example: loadGoogleAnalytics();
+        }
+    }
+    
+    // Load scripts if consent was already given
+    if (cookieConsent === 'accepted') {
+        loadNonEssentialScripts();
+    }
+})();
+
+// Mobile Menu Toggle
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuBtn.querySelector('i');
+        if (mobileMenu.classList.contains('hidden')) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        } else {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        }
+    });
+}
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('#mobileMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    });
+});
+
+// Smooth Scroll for Navigation Links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#' || href === '#!') return;
+        
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+            const navHeight = document.getElementById('mainNav').offsetHeight;
+            const targetPosition = target.offsetTop - navHeight;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Intersection Observer for Fade-in Animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+// Observe all fade-in elements
+document.querySelectorAll('.fade-in').forEach(el => {
+    observer.observe(el);
+});
+
+// Hero Video Fallback
+const heroVideo = document.getElementById('heroVideo');
+if (heroVideo) {
+    // Try to load videos from videos folder
+    const videoSources = [
+        'videos/hero1.mp4',
+        'videos/hero2.mp4',
+        'videos/drone-shot.mp4',
+        'videos/insta360.mp4'
+    ];
+    
+    let currentVideoIndex = 0;
+    
+    function tryLoadVideo() {
+        if (currentVideoIndex >= videoSources.length) {
+            // All videos failed, use fallback image
+            heroVideo.style.display = 'none';
+            const heroSection = heroVideo.closest('section');
+            if (heroSection && !heroSection.querySelector('.hero-fallback')) {
+                const fallback = document.createElement('div');
+                fallback.className = 'hero-fallback absolute inset-0 bg-gradient-to-br from-dcq-black to-gray-800';
+                heroSection.appendChild(fallback);
+            }
+            return;
+        }
+        
+        const video = document.createElement('source');
+        video.src = videoSources[currentVideoIndex];
+        video.type = 'video/mp4';
+        video.addEventListener('error', () => {
+            currentVideoIndex++;
+            tryLoadVideo();
+        });
+        video.addEventListener('load', () => {
+            heroVideo.appendChild(video);
+            heroVideo.load();
+        });
+        heroVideo.appendChild(video);
+        heroVideo.load();
+        currentVideoIndex++;
+    }
+    
+    heroVideo.addEventListener('error', () => {
+        currentVideoIndex++;
+        tryLoadVideo();
+    });
+    
+    // Start loading
+    tryLoadVideo();
+}
+
+// Dynamic Brand Image Loading
+async function loadBrandImages() {
+    // Define the actual brand images that are available
+    const brandImages = {
+        'large': [
+            { src: 'images/brands/large/descheemaeker.png', name: 'Descheemaeker', alt: 'Descheemaeker Logo' },
+            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' }
+        ],
+        'medium': [
+            { src: 'images/brands/medium/Continental-Logo.png', name: 'Continental', alt: 'Continental Logo' },
+            { src: 'images/brands/medium/Schwalbe_Logo.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
+            { src: 'images/brands/medium/Shimano.svg.png', name: 'Shimano', alt: 'Shimano Logo' }
+        ],
+        'small': [] // Empty for now
+    };
+    
+    for (const [size, images] of Object.entries(brandImages)) {
+        const container = document.getElementById(`brands-${size}`);
+        if (!container || images.length === 0) continue;
+        
+        images.forEach((brand, index) => {
+            // Create brand image wrapper
+            const brandWrapper = document.createElement('div');
+            brandWrapper.className = 'brand-item';
+            brandWrapper.setAttribute('data-brand-name', brand.name);
+            brandWrapper.setAttribute('data-brand-image', brand.src);
+            
+            // Create image element
+            const img = document.createElement('img');
+            img.src = brand.src;
+            img.alt = brand.alt;
+            img.loading = 'lazy';
+            
+            brandWrapper.appendChild(img);
+            
+            // Handle image load error
+            img.addEventListener('error', () => {
+                console.warn(`Failed to load brand image: ${brand.src}`);
+                brandWrapper.style.display = 'none';
+            });
+            
+            // Add staggered animation delay
+            brandWrapper.style.animationDelay = `${index * 0.1}s`;
+            brandWrapper.style.opacity = '0';
+            brandWrapper.style.animation = 'fadeInUp 0.6s ease forwards';
+            
+            container.appendChild(brandWrapper);
+        });
+    }
+}
+
+// Helper function to get brand description (can be expanded)
+function getBrandDescription(brandName) {
+    const descriptions = {
+        'Descheemaeker': 'Descheemaeker is een premium Belgisch fietsmerk bekend om zijn hoogwaardige kwaliteit en innovatie in de fietsindustrie.',
+        'Victoria': 'Victoria staat voor betrouwbaarheid en uitstekende prijs-kwaliteitverhouding in de fietswereld.',
+        'Continental': 'Continental levert premium banden en fietsaccessoires van de hoogste kwaliteit voor alle type fietsen.',
+        'Schwalbe': 'Schwalbe is wereldwijd erkend als één van de beste fietsbandenfabrikanten met innovatieve technologieën.',
+        'Shimano': 'Shimano is de marktleider in fietscomponenten, versnellingen en remsystemen voor alle disciplines.'
+    };
+    return descriptions[brandName] || `Meer informatie over ${brandName} komt binnenkort beschikbaar.`;
+}
+
+// Brand Modal Functionality
+const brandModal = document.getElementById('brandModal');
+const brandModalTitle = document.getElementById('brandModalTitle');
+const brandModalContent = document.getElementById('brandModalContent');
+const closeBrandModal = document.getElementById('closeBrandModal');
+
+function openBrandModal(brandName, brandImage, brandInfo) {
+    if (!brandModal) return;
+    
+    brandModalTitle.textContent = brandName || 'Merk Informatie';
+    brandModalContent.innerHTML = `
+        <div class="mb-6">
+            <img src="${brandImage}" alt="${brandName}" class="w-full h-64 object-contain bg-gray-100 rounded-lg">
+        </div>
+        <div class="prose max-w-none">
+            <p class="text-gray-600 mb-4">
+                ${brandInfo || 'Meer informatie over dit merk komt binnenkort beschikbaar.'}
+            </p>
+            <button class="px-6 py-2 bg-dcq-red text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                Meer Informatie
+            </button>
+        </div>
+    `;
+    
+    brandModal.classList.add('show');
+    brandModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBrandModalFunc() {
+    if (!brandModal) return;
+    brandModal.classList.remove('show');
+    brandModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+if (closeBrandModal) {
+    closeBrandModal.addEventListener('click', closeBrandModalFunc);
+}
+
+if (brandModal) {
+    brandModal.addEventListener('click', (e) => {
+        if (e.target === brandModal) {
+            closeBrandModalFunc();
+        }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && brandModal.classList.contains('show')) {
+            closeBrandModalFunc();
+        }
+    });
+}
+
+// Gallery Lightbox Functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxVideo = document.getElementById('lightboxVideo');
+const closeLightbox = document.getElementById('closeLightbox');
+const prevLightbox = document.getElementById('prevLightbox');
+const nextLightbox = document.getElementById('nextLightbox');
+
+let galleryItems = [];
+let currentLightboxIndex = 0;
+
+async function loadGalleryImages() {
+    const galleryGrid = document.getElementById('galleryGrid');
+    if (!galleryGrid) return;
+    
+    // In production, fetch actual file list from server
+    // For now, create a system that will work when images are added
+    // This would typically be done via a server-side API
+    
+    // Example placeholder that demonstrates the structure
+    // Replace this with actual file loading logic when images are available
+}
+
+function openLightbox(index) {
+    if (!lightbox || galleryItems.length === 0) return;
+    
+    currentLightboxIndex = index;
+    const item = galleryItems[index];
+    
+    if (item.type === 'image') {
+        lightboxImage.src = item.src;
+        lightboxImage.alt = item.alt || 'Galerij afbeelding';
+        lightboxImage.classList.remove('hidden');
+        lightboxVideo.classList.add('hidden');
+    } else if (item.type === 'video') {
+        lightboxVideo.src = item.src;
+        lightboxVideo.classList.remove('hidden');
+        lightboxImage.classList.add('hidden');
+    }
+    
+    lightbox.classList.add('show');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightboxFunc() {
+    if (!lightbox) return;
+    lightbox.classList.remove('show');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lightboxVideo) {
+        lightboxVideo.pause();
+    }
+}
+
+function showPrevLightbox() {
+    if (galleryItems.length === 0) return;
+    currentLightboxIndex = (currentLightboxIndex - 1 + galleryItems.length) % galleryItems.length;
+    openLightbox(currentLightboxIndex);
+}
+
+function showNextLightbox() {
+    if (galleryItems.length === 0) return;
+    currentLightboxIndex = (currentLightboxIndex + 1) % galleryItems.length;
+    openLightbox(currentLightboxIndex);
+}
+
+if (closeLightbox) {
+    closeLightbox.addEventListener('click', closeLightboxFunc);
+}
+
+if (prevLightbox) {
+    prevLightbox.addEventListener('click', showPrevLightbox);
+}
+
+if (nextLightbox) {
+    nextLightbox.addEventListener('click', showNextLightbox);
+}
+
+if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightboxFunc();
+        }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('show')) return;
+        
+        if (e.key === 'Escape') {
+            closeLightboxFunc();
+        } else if (e.key === 'ArrowLeft') {
+            showPrevLightbox();
+        } else if (e.key === 'ArrowRight') {
+            showNextLightbox();
+        }
+    });
+}
+
+// Contact Form Handling
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(contactForm);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            message: formData.get('message')
+        };
+        
+        // In production, send to server
+        console.log('Form submitted:', data);
+        
+        // CLear form and show success message
+        contactForm.reset();
+        alert('Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.');
+    });
+}
+
+// Navbar Scroll Effect
+let lastScroll = 0;
+const mainNav = document.getElementById('mainNav');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+        mainNav.classList.add('shadow-lg');
+    } else {
+        mainNav.classList.remove('shadow-lg');
+    }
+    
+    lastScroll = currentScroll;
+});
+
+// Store Status Checker
+function updateStoreStatus() {
+    const storeStatus = document.getElementById('storeStatus');
+    const statusText = storeStatus.querySelector('.store-status-text');
+    if (!storeStatus || !statusText) return;
+    
+    const now = new Date();
+    const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const currentTime = currentHour * 60 + currentMinute; // Time in minutes
+    
+    // Remove all status classes
+    storeStatus.classList.remove('open', 'warning', 'closed');
+    
+    // Opening hours:
+    // Monday (1): Closed
+    // Tuesday-Friday (2-5): 09:00-12:00, 13:30-18:00
+    // Saturday (6): 09:00-12:00, 13:30-17:00
+    // Sunday (0): Closed
+    
+    let isOpen = false;
+    let isClosingSoon = false;
+    let statusMessage = '';
+    
+    if (currentDay === 0 || currentDay === 1) {
+        // Sunday or Monday - Closed
+        storeStatus.classList.add('closed');
+        statusMessage = currentDay === 0 ? 'Gesloten (Zondag)' : 'Gesloten (Maandag)';
+    } else if (currentDay >= 2 && currentDay <= 5) {
+        // Tuesday to Friday
+        const morningStart = 9 * 60; // 09:00
+        const morningEnd = 12 * 60; // 12:00
+        const afternoonStart = 13 * 60 + 30; // 13:30
+        const afternoonEnd = 18 * 60; // 18:00
+        
+        if ((currentTime >= morningStart && currentTime < morningEnd) || 
+            (currentTime >= afternoonStart && currentTime < afternoonEnd)) {
+            isOpen = true;
+            // Check if closing within 30 minutes
+            const timeUntilClose = (currentTime >= morningStart && currentTime < morningEnd) 
+                ? morningEnd - currentTime 
+                : afternoonEnd - currentTime;
+            
+            if (timeUntilClose <= 30) {
+                isClosingSoon = true;
+            }
+            
+            if (isClosingSoon) {
+                storeStatus.classList.add('warning');
+                statusMessage = 'Sluit binnenkort';
+            } else {
+                storeStatus.classList.add('open');
+                statusMessage = 'Open';
+            }
+        } else {
+            storeStatus.classList.add('closed');
+            statusMessage = 'Gesloten';
+        }
+    } else if (currentDay === 6) {
+        // Saturday
+        const morningStart = 9 * 60; // 09:00
+        const morningEnd = 12 * 60; // 12:00
+        const afternoonStart = 13 * 60 + 30; // 13:30
+        const afternoonEnd = 17 * 60; // 17:00
+        
+        if ((currentTime >= morningStart && currentTime < morningEnd) || 
+            (currentTime >= afternoonStart && currentTime < afternoonEnd)) {
+            isOpen = true;
+            // Check if closing within 30 minutes
+            const timeUntilClose = (currentTime >= morningStart && currentTime < morningEnd) 
+                ? morningEnd - currentTime 
+                : afternoonEnd - currentTime;
+            
+            if (timeUntilClose <= 30) {
+                isClosingSoon = true;
+            }
+            
+            if (isClosingSoon) {
+                storeStatus.classList.add('warning');
+                statusMessage = 'Sluit binnenkort';
+            } else {
+                storeStatus.classList.add('open');
+                statusMessage = 'Open';
+            }
+        } else {
+            storeStatus.classList.add('closed');
+            statusMessage = 'Gesloten';
+        }
+    }
+    
+    statusText.textContent = statusMessage;
+}
+
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', () => {
+    loadBrandImages();
+    loadGalleryImages();
+    updateStoreStatus();
+    
+    // Update store status every minute
+    setInterval(updateStoreStatus, 60000);
+});
+
+// Lazy Loading for Images
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+                observer.unobserve(img);
+            }
+        });
+    });
+    
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+

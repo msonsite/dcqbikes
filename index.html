@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DCQ Bikes - Premium fietsenwinkel voor alle soorten fietsen en accessoires">
+    <title>DCQ Bikes - Premium Fietsenwinkel</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dcq-black': '#010101',
+                        'dcq-white': '#fffefc',
+                        'dcq-red': '#ee2726'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        
+        /* Cookie Banner Styles */
+        #cookieBanner {
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        #cookieBanner.show {
+            transform: translateY(0);
+        }
+        
+        /* Smooth fade-in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Gallery masonry layout */
+        .masonry-grid {
+            column-gap: 1rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 4;
+            }
+        }
+        
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        
+        @media (min-width: 640px) and (max-width: 767px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(1, 1, 1, 0.9);
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal.show {
+            display: flex;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9998;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(1, 1, 1, 0.95);
+            animation: fadeIn 0.3s;
+        }
+        
+        .lightbox.show {
+            display: flex;
+        }
+        
+        /* Hero Video Overlay */
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(1, 1, 1, 0.3) 0%, rgba(1, 1, 1, 0.6) 100%);
+        }
+        
+        /* Opening Hours Single Line */
+        .hours-single-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 9999px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        
+        @keyframes pulse-clock {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* Mobile & Tablet Tweaks */
+        @media (max-width: 1024px) {
+            .hours-single-line {
+                max-width: 900px;
+                gap: 0.6rem;
+                padding: 0.5rem 0.9rem;
+            }
+            #brands-large.brand-row {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 160px));
+            }
+            #brands-medium.brand-row {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 130px));
+            }
+            #brands-small.brand-row {
+                grid-template-columns: repeat(auto-fit, minmax(95px, 95px));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hours-single-line {
+                max-width: 100%;
+                gap: 0.5rem;
+                padding: 0.45rem 0.8rem;
+                border-radius: 9999px;
+                font-size: 0.875rem;
+            }
+            .brand-item {
+                width: 120px;
+                height: 80px;
+                padding: 0.75rem;
+            }
+            #brands-medium .brand-item {
+                width: 100px;
+                height: 65px;
+            }
+            #brands-small .brand-item {
+                width: 80px;
+                height: 55px;
+                padding: 0.5rem;
+            }
+            .brand-row {
+                gap: 0.75rem;
+            }
+            .brand-item .brand-overlay {
+                display: none;
+            }
+            .store-status {
+                margin-left: 0.5rem;
+                padding: 0.2rem 0.6rem;
+            }
+        }
+        
+        /* Store Status Indicator */
+        .store-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-left: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            color: #010101;
+        }
+        
+        .store-status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        
+        .store-status.open .store-status-dot {
+            background-color: #10b981;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+        }
+        
+        .store-status.warning .store-status-dot {
+            background-color: #f59e0b;
+            box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+        }
+        
+        .store-status.closed .store-status-dot {
+            background-color: #ef4444;
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+        }
+        
+        @keyframes pulse-dot {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            50% {
+                transform: scale(1);
+                box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+        
+        .store-status.warning .store-status-dot {
+            animation: pulse-dot-warning 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-dot-warning {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+            }
+            50% {
+                transform: scale(1);
+                box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+            }
+        }
+        
+        .store-status.closed .store-status-dot {
+            animation: pulse-dot-closed 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-dot-closed {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            50% {
+                transform: scale(1);
+                box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+        
+        /* Brand Section Styles */
+        #brands-large,
+        #brands-medium,
+        #brands-small {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        
+        .brand-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(238, 39, 38, 0.1) 0%, rgba(1, 1, 1, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .brand-item:hover::before {
+            opacity: 1;
+        }
+        
+        .brand-item:hover {
+            box-shadow: 0 12px 24px rgba(238, 39, 38, 0.2);
+            transform: translateY(-8px) scale(1.05);
+            background: linear-gradient(135deg, #fffefc 0%, #f8f8f8 100%);
+            border: 2px solid rgba(238, 39, 38, 0.3);
+        }
+        
+        .brand-item img {
+            width: 100%;
+            height: 100%;
+            max-height: 100px;
+            object-fit: contain;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: grayscale(100%) opacity(0.7);
+            position: relative;
+            z-index: 1;
+        }
+        
+        #brands-large .brand-item img {
+            max-height: 140px;
+        }
+        
+        #brands-medium .brand-item img {
+            max-height: 100px;
+        }
+        
+        #brands-small .brand-item img {
+            max-height: 70px;
+        }
+        
+        .brand-item:hover img {
+            filter: grayscale(0%) opacity(1);
+            transform: scale(1.15);
+        }
+        
+        .brand-item .brand-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(1, 1, 1, 0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+        }
+        
+        .brand-item:hover .brand-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .brand-item .brand-overlay span {
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Brand Section Styles - Apple-like Precision */
+        .brand-row-container {
+            margin-bottom: 3rem;
+        }
+        
+        .brand-row-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #333;
+            letter-spacing: -0.01em;
+        }
+        
+        .brand-row {
+            display: grid;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+        
+        #brands-large.brand-row {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 180px));
+        }
+        
+        #brands-medium.brand-row {
+            grid-template-columns: repeat(auto-fit, minmax(140px, 140px));
+        }
+        
+        #brands-small.brand-row {
+            grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
+        }
+        
+        /* Brand Item Styles - Fixed Size Boxes */
+        .brand-item {
+            width: 180px;
+            height: 120px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+            flex-shrink: 0;
+            padding: 1rem;
+        }
+        
+        #brands-medium .brand-item {
+            width: 140px;
+            height: 95px;
+            padding: 0.75rem;
+        }
+        
+        #brands-small .brand-item {
+            width: 100px;
+            height: 70px;
+            padding: 0.5rem;
+        }
+        
+        .brand-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .brand-item .brand-overlay {
+            display: none;
+        }
+        
+        /* Mobile Horizontal Scroll */
+        @media (max-width: 768px) {
+            .brand-row {
+                display: flex;
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                gap: 1rem;
+                padding: 0.5rem 0;
+            }
+            
+            .brand-row::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .brand-item {
+                scroll-snap-align: start;
+                flex-shrink: 0;
+            }
+            
+            #brands-large.brand-row,
+            #brands-medium.brand-row,
+            #brands-small.brand-row {
+                grid-template-columns: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-dcq-white text-dcq-black antialiased">
+
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="fixed bottom-0 left-0 right-0 bg-dcq-black text-dcq-white p-4 md:p-6 z-50 shadow-lg">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div class="flex-1">
+                    <p class="text-sm md:text-base">
+                        Deze website gebruikt cookies om uw ervaring te verbeteren. Door verder te gaan, stemt u in met ons gebruik van cookies. 
+                        <a href="cookie-policy.html" class="text-dcq-red hover:underline font-medium">Meer informatie</a>
+                    </p>
+                </div>
+                <div class="flex gap-3">
+                    <button id="acceptCookies" class="px-6 py-2 bg-dcq-red text-white rounded-lg hover:bg-opacity-90 transition-colors font-medium">
+                        Accepteren
+                    </button>
+                    <button id="declineCookies" class="px-6 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium">
+                        Weigeren
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Ribbon -->
+    <div class="bg-dcq-red text-dcq-white text-sm py-2">
+        <div class="hours-single-line">
+            <i class="fas fa-clock text-dcq-white"></i>
+            <span>Di-Vr: 09:00-12:00, 13:30-18:00 | Za: 09:00-12:00, 13:30-17:00 | Ma & Zo: Gesloten</span>
+            <div id="storeStatus" class="store-status">
+                <span class="store-status-dot"></span>
+                <span class="store-status-text">Bezig met laden...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <nav id="mainNav" class="sticky top-0 bg-dcq-black shadow-md z-40 transition-all">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6">
+            <div class="flex items-center justify-between py-4">
+                <a href="#home" class="flex items-center gap-2">
+                    <img src="images/logo/dcqlogo_blackbackground.jpg" alt="DCQ Bikes logo" class="h-10 md:h-12 object-contain">
+                </a>
+                <div class="hidden md:flex items-center gap-8 text-dcq-white">
+                    <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Home</a>
+                    <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Services</a>
+                    <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Merken</a>
+                    <a href="#gallery" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Galerij</a>
+                    <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Contact</a>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-dcq-white hover:text-dcq-red transition-colors">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 bg-dcq-black">
+                <div class="flex flex-col gap-4">
+                    <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Home</a>
+                    <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Services</a>
+                    <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Merken</a>
+                    <a href="#gallery" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Galerij</a>
+                    <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen md:h-[90vh] overflow-hidden">
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" id="heroVideo">
+            <source src="" type="video/mp4">
+            <!-- Fallback image will be shown via JS if video fails -->
+        </video>
+        <div class="hero-overlay absolute inset-0 flex items-center justify-center">
+            <div class="text-center px-4 z-10 fade-in">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-dcq-white mb-6 drop-shadow-lg">
+                    Ontdek De Perfecte Fiets
+                </h1>
+                <p class="text-xl md:text-2xl text-dcq-white mb-8 drop-shadow-md max-w-2xl mx-auto">
+                    Premium fietsen en accessoires voor elke fietsliefhebber
+                </p>
+                <a href="#services" class="inline-block px-8 py-4 bg-dcq-red text-white rounded-lg font-semibold text-lg hover:bg-opacity-90 hover:scale-105 transition-all shadow-xl hover:shadow-2xl">
+                    Ontdek Ons Aanbod
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 bg-dcq-white">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Onze Services</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Wij bieden een compleet aanbod aan diensten voor al uw fietsbehoeften
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover:scale-105 fade-in border border-gray-100">
+                    <div class="text-dcq-red text-4xl mb-4">
+                        <i class="fas fa-bicycle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Fietsverkoop</h3>
+                    <p class="text-gray-600">
+                        Breed assortiment aan premium fietsen voor elke discipline en budget
+                    </p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover:scale-105 fade-in border border-gray-100">
+                    <div class="text-dcq-red text-4xl mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Onderhoud & Reparatie</h3>
+                    <p class="text-gray-600">
+                        Professioneel onderhoud en reparaties door ervaren technici
+                    </p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover:scale-105 fade-in border border-gray-100">
+                    <div class="text-dcq-red text-4xl mb-4">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Custom Fit</h3>
+                    <p class="text-gray-600">
+                        Professionele bike fitting voor optimaal comfort en prestaties
+                    </p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover:scale-105 fade-in border border-gray-100">
+                    <div class="text-dcq-red text-4xl mb-4">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Accessoires</h3>
+                    <p class="text-gray-600">
+                        Complete selectie van fietsaccessoires en kleding van topmerken
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section id="brands" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Onze Merken</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Wij werken met de beste merken in de fietsindustrie
+                </p>
+            </div>
+            
+            <!-- Large Brands (Row 1) -->
+            <div class="brand-row-container fade-in">
+                <h3 class="brand-row-title">Hoofdmerken</h3>
+                <div id="brands-large" class="brand-row">
+                    <!-- Brand logos will be loaded dynamically -->
+                </div>
+            </div>
+            
+            <!-- Medium Brands (Row 2) -->
+            <div class="brand-row-container fade-in">
+                <h3 class="brand-row-title">Accessoire Merken</h3>
+                <div id="brands-medium" class="brand-row">
+                    <!-- Brand logos will be loaded dynamically -->
+                </div>
+            </div>
+            
+            <!-- Small Brands (Row 3) -->
+            <div class="brand-row-container fade-in">
+                <h3 class="brand-row-title">Partner Merken</h3>
+                <div id="brands-small" class="brand-row">
+                    <!-- Brand logos will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Modal -->
+    <div id="brandModal" class="modal" role="dialog" aria-labelledby="brandModalTitle" aria-hidden="true">
+        <div class="m-auto bg-dcq-white rounded-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 id="brandModalTitle" class="text-2xl font-bold">Merk Informatie</h3>
+                    <button id="closeBrandModal" class="text-gray-500 hover:text-dcq-black text-2xl" aria-label="Sluiten">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="brandModalContent" class="space-y-4">
+                    <!-- Content loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 md:py-24 bg-dcq-white">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Galerij</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Ontdek onze winkel en inspirerende fietsmomenten
+                </p>
+            </div>
+            <div id="galleryGrid" class="masonry-grid fade-in">
+                <!-- Gallery items loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-label="Afbeelding viewer">
+        <button id="closeLightbox" class="absolute top-4 right-4 text-white text-3xl hover:text-dcq-red z-10" aria-label="Sluiten">
+            <i class="fas fa-times"></i>
+        </button>
+        <button id="prevLightbox" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-dcq-red z-10" aria-label="Vorige">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="nextLightbox" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-dcq-red z-10" aria-label="Volgende">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="m-auto max-w-7xl w-full h-full flex items-center justify-center p-4">
+            <img id="lightboxImage" src="" alt="" class="max-w-full max-h-full object-contain">
+            <video id="lightboxVideo" src="" controls class="max-w-full max-h-full object-contain hidden"></video>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Contact</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Neem contact met ons op of kom langs in onze winkel
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Contact Info -->
+                <div class="space-y-6 fade-in">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4">Bezoek Ons</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-map-marker-alt text-dcq-red text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-medium">Adres</p>
+                                    <p class="text-gray-600">Gistelsteenweg 282<br>8490 Jabbeke, België</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-phone text-dcq-red text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-medium">Telefoon</p>
+                                    <a href="tel:+3250814220" class="text-gray-600 hover:text-dcq-red">050 81 42 20</a><br>
+                                    <a href="tel:+32475822376" class="text-gray-600 hover:text-dcq-red text-sm">0475 82 23 76</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-envelope text-dcq-red text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-medium">E-mail</p>
+                                    <a href="mailto:info@dcqbikes.be" class="text-gray-600 hover:text-dcq-red">info@dcqbikes.be</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-clock text-dcq-red text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-medium">Openingsuren</p>
+                                    <p class="text-gray-600">
+                                        Maandag: Gesloten<br>
+                                        Dinsdag - Vrijdag: 09:00 - 12:00, 13:30 - 18:00<br>
+                                        Zaterdag: 09:00 - 12:00, 13:30 - 17:00<br>
+                                        Zondag: Gesloten
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-building text-dcq-red text-xl mt-1"></i>
+                                <div>
+                                    <p class="font-medium">BTW-nummer</p>
+                                    <p class="text-gray-600">BE 0685.615.103</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4">Volg Ons</h3>
+                        <div class="flex gap-4">
+                            <a href="#" aria-label="Linkedin" class="bg-gray-100 hover:bg-dcq-red text-gray-700 hover:text-white w-12 h-12 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" aria-label="Facebook" class="bg-gray-100 hover:bg-dcq-red text-gray-700 hover:text-white w-12 h-12 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fab fa-facebook text-xl"></i>
+                            </a>
+                            <a href="#" aria-label="YouTube" class="bg-gray-100 hover:bg-dcq-red text-gray-700 hover:text-white w-12 h-12 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Map & Form -->
+                <div class="space-y-6 fade-in">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <iframe 
+                            src="https://www.google.com/maps?q=Gistelsteenweg+282,+8490+Jabbeke,+Belgium&output=embed" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="DCQ Bikes Locatie - Jabbeke (Google Maps)"></iframe>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4">Stuur Een Bericht</h3>
+                        <form id="contactForm" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-2">Naam *</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-2">E-mail *</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium mb-2">Bericht *</label>
+                                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-dcq-red text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 hover:scale-105 transition-all">
+                                Verzenden
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dcq-black text-dcq-white py-12">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <img src="images/logo/dcqlogo_blackbackground.jpg" alt="DCQ Bikes logo" class="h-12 w-auto mb-4 object-contain">
+                    <p class="text-gray-400">
+                        Uw betrouwbare partner voor premium fietsen en accessoires.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xl mb-4">Navigatie</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-dcq-red transition-colors">Home</a></li>
+                        <li><a href="#services" class="hover:text-dcq-red transition-colors">Services</a></li>
+                        <li><a href="#brands" class="hover:text-dcq-red transition-colors">Merken</a></li>
+                        <li><a href="#gallery" class="hover:text-dcq-red transition-colors">Galerij</a></li>
+                        <li><a href="#contact" class="hover:text-dcq-red transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xl mb-4">Juridisch</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="cookie-policy.html" class="hover:text-dcq-red transition-colors">Cookiebeleid</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-dcq-red transition-colors">Privacybeleid</a></li>
+                        <li><a href="terms-and-conditions.html" class="hover:text-dcq-red transition-colors">Algemene Voorwaarden</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t-2 border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 DCQ Bikes. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
