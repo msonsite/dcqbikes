@@ -162,8 +162,9 @@ async function loadBrandImages() {
     // Define the actual brand images that are available
     const brandImages = {
         'large': [
+            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' },
             { src: 'images/brands/large/descheemaeker.png', name: 'Descheemaeker', alt: 'Descheemaeker Logo' },
-            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' }
+            { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo' }
         ],
         'medium': [
             { src: 'images/brands/medium/Continental-Logo.png', name: 'Continental', alt: 'Continental Logo' },
@@ -206,18 +207,6 @@ async function loadBrandImages() {
             container.appendChild(brandWrapper);
         });
     }
-}
-
-// Helper function to get brand description (can be expanded)
-function getBrandDescription(brandName) {
-    const descriptions = {
-        'Descheemaeker': 'Descheemaeker is een premium Belgisch fietsmerk bekend om zijn hoogwaardige kwaliteit en innovatie in de fietsindustrie.',
-        'Victoria': 'Victoria staat voor betrouwbaarheid en uitstekende prijs-kwaliteitverhouding in de fietswereld.',
-        'Continental': 'Continental levert premium banden en fietsaccessoires van de hoogste kwaliteit voor alle type fietsen.',
-        'Schwalbe': 'Schwalbe is wereldwijd erkend als één van de beste fietsbandenfabrikanten met innovatieve technologieën.',
-        'Shimano': 'Shimano is de marktleider in fietscomponenten, versnellingen en remsystemen voor alle disciplines.'
-    };
-    return descriptions[brandName] || `Meer informatie over ${brandName} komt binnenkort beschikbaar.`;
 }
 
 // Brand Modal Functionality

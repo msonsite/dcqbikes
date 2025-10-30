@@ -187,10 +187,22 @@
         @media (max-width: 768px) {
             .hours-single-line {
                 max-width: 100%;
-                gap: 0.5rem;
-                padding: 0.45rem 0.8rem;
-                border-radius: 9999px;
+                width: 100%;
+                gap: 0;
+                padding: 0.5rem 0;
+                border-radius: 0;
                 font-size: 0.875rem;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+            }
+            .opening-hours-icon,
+            .opening-hours-text {
+                display: none;
             }
             .brand-item {
                 width: 120px;
@@ -213,7 +225,7 @@
                 display: none;
             }
             .store-status {
-                margin-left: 0.5rem;
+                margin: 0;
                 padding: 0.2rem 0.6rem;
             }
         }
@@ -540,8 +552,8 @@
     <!-- Header Ribbon -->
     <div class="bg-dcq-red text-dcq-white text-sm py-2">
         <div class="hours-single-line">
-            <i class="fas fa-clock text-dcq-white"></i>
-            <span>Di-Vr: 09:00-12:00, 13:30-18:00 | Za: 09:00-12:00, 13:30-17:00 | Ma & Zo: Gesloten</span>
+            <i class="fas fa-clock text-dcq-white opening-hours-icon"></i>
+            <span class="opening-hours-text">Di-Vr: 09:00-12:00, 13:30-18:00 | Za: 09:00-12:00, 13:30-17:00 | Ma & Zo: Gesloten</span>
             <div id="storeStatus" class="store-status">
                 <span class="store-status-dot"></span>
                 <span class="store-status-text">Bezig met laden...</span>
