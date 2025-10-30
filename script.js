@@ -187,6 +187,7 @@ async function loadBrandImages() {
         ]
     };
     
+    const mobileContainer = document.getElementById('brands-mobile');
     for (const [size, images] of Object.entries(brandImages)) {
         const container = document.getElementById(`brands-${size}`);
         if (!container || images.length === 0) continue;
@@ -218,6 +219,10 @@ async function loadBrandImages() {
             brandWrapper.style.animation = 'fadeInUp 0.6s ease forwards';
             
             container.appendChild(brandWrapper);
+            if (mobileContainer) {
+                // append to mobile only if matching active filter later
+                mobileContainer.appendChild(brandWrapper.cloneNode(true));
+            }
         });
     }
 }
@@ -564,6 +569,33 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Update store status every minute
     setInterval(updateStoreStatus, 60000);
+});
+
+// Mobile brand chips filtering
+document.addEventListener('click', (e) => {
+    const chip = e.target.closest('.brand-chip');
+    if (!chip) return;
+    const filter = chip.dataset.filter;
+    document.querySelectorAll('.brand-chip').forEach(c => c.classList.remove('active', 'bg-dcq-red', 'text-white'));
+    chip.classList.add('active', 'bg-dcq-red', 'text-white');
+
+    const mobileContainer = document.getElementById('brands-mobile');
+    if (!mobileContainer) return;
+
+    // Clear and repopulate based on filter from desktop groups
+    mobileContainer.innerHTML = '';
+    const sources = filter === 'all' 
+        ? ['large','medium','small'] 
+        : [filter];
+    sources.forEach(group => {
+        const srcContainer = document.getElementById(`brands-${group}`);
+        if (!srcContainer) return;
+        srcContainer.querySelectorAll('.brand-item').forEach((item, idx) => {
+            const clone = item.cloneNode(true);
+            clone.style.animationDelay = `${idx * 0.06}s`;
+            mobileContainer.appendChild(clone);
+        });
+    });
 });
 
 // Lazy Loading for Images
