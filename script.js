@@ -378,22 +378,71 @@ if (lightbox) {
 // Contact Form Handling
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            message: formData.get('message')
-        };
-        
-        // In production, send to server
-        console.log('Form submitted:', data);
-        
-        // CLear form and show success message
-        contactForm.reset();
-        alert('Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.');
+
+        const submitBtn = document.getElementById('contactSubmit');
+        const statusEl = document.getElementById('contactStatus');
+        const action = contactForm.getAttribute('action');
+
+        if (!action || !action.startsWith('https://formspree.io/')) {
+            // Fallback: demo mode
+            const formData = new FormData(contactForm);
+            console.log('Form submitted (demo):', Object.fromEntries(formData.entries()));
+            contactForm.reset();
+            if (statusEl) {
+                statusEl.textContent = 'Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.';
+                statusEl.classList.remove('hidden', 'text-red-600');
+            }
+            return;
+        }
+
+        // Disable + loading state
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Verzenden...';
+            submitBtn.classList.add('opacity-80');
+        }
+        if (statusEl) {
+            statusEl.textContent = '';
+            statusEl.classList.add('hidden');
+        }
+
+        try {
+            const response = await fetch(action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                // Success: set green button and message
+                if (submitBtn) {
+                    submitBtn.textContent = 'Verzonden';
+                    submitBtn.classList.remove('bg-dcq-red', 'hover:bg-opacity-90', 'hover:scale-105', 'opacity-80');
+                    submitBtn.classList.add('bg-green-600');
+                }
+                if (statusEl) {
+                    statusEl.textContent = 'Bedankt! Uw bericht werd succesvol verzonden.';
+                    statusEl.classList.remove('hidden', 'text-red-600');
+                }
+                contactForm.reset();
+            } else {
+                throw new Error('Formspree error');
+            }
+        } catch (err) {
+            if (submitBtn) {
+                submitBtn.textContent = 'Probeer opnieuw';
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-80');
+                submitBtn.classList.add('bg-dcq-red');
+            }
+            if (statusEl) {
+                statusEl.textContent = 'Er ging iets mis. Gelieve later opnieuw te proberen.';
+                statusEl.classList.remove('hidden');
+                statusEl.classList.add('text-red-600');
+            }
+        }
     });
 }
 
