@@ -164,14 +164,27 @@ async function loadBrandImages() {
         'large': [
             { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' },
             { src: 'images/brands/large/descheemaeker.png', name: 'Descheemaeker', alt: 'Descheemaeker Logo' },
-            { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo' }
+            { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo' },
+            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' },
+            { src: 'images/brands/large/descheemaeker.png', name: 'Descheemaeker', alt: 'Descheemaeker Logo' },
+            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' },
         ],
         'medium': [
             { src: 'images/brands/medium/Continental-Logo.png', name: 'Continental', alt: 'Continental Logo' },
             { src: 'images/brands/medium/Schwalbe_Logo.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
+            { src: 'images/brands/medium/Shimano.svg.png', name: 'Shimano', alt: 'Shimano Logo' },
+            { src: 'images/brands/medium/Continental-Logo.png', name: 'Continental', alt: 'Continental Logo' },
+            { src: 'images/brands/medium/Schwalbe_Logo.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
             { src: 'images/brands/medium/Shimano.svg.png', name: 'Shimano', alt: 'Shimano Logo' }
         ],
-        'small': [] // Empty for now
+        'small': [
+            { src: 'images/brands/medium/Continental-Logo.png', name: 'Continental', alt: 'Continental Logo' },
+            { src: 'images/brands/medium/Schwalbe_Logo.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
+            { src: 'images/brands/medium/Shimano.svg.png', name: 'Shimano', alt: 'Shimano Logo' },
+            { src: 'images/brands/medium/Continental-Logo.png', name: 'Continental', alt: 'Continental Logo' },
+            { src: 'images/brands/medium/Schwalbe_Logo.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
+            { src: 'images/brands/medium/Shimano.svg.png', name: 'Shimano', alt: 'Shimano Logo' }
+        ]
     };
     
     for (const [size, images] of Object.entries(brandImages)) {
