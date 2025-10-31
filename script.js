@@ -162,12 +162,12 @@ async function loadBrandImages() {
     // Define the actual brand images that are available
     const brandImages = {
         'large': [
-            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' },
-            { src: 'images/brands/large/qio.png', name: 'Qio', alt: 'Qio Logo' },
-            { src: 'images/brands/large/oxfordlogo.webp', name: 'Oxford', alt: 'Oxford Logo' },
-            { src: 'images/brands/large/norta.png', name: 'Norta', alt: 'Norta Logo' },
             { src: 'images/brands/large/conway.png', name: 'Conway', alt: 'Conway Logo' },
-            { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo' }
+            { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo' },
+            { src: 'images/brands/large/norta.png', name: 'Norta', alt: 'Norta Logo' },
+            { src: 'images/brands/large/oxfordlogo.webp', name: 'Oxford', alt: 'Oxford Logo' },
+            { src: 'images/brands/large/qio.png', name: 'Qio', alt: 'Qio Logo' },
+            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' }
         ],
         'medium': [
             { src: 'images/brands/medium/abus.webp', name: 'Abus', alt: 'Abus Logo' },
