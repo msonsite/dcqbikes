@@ -474,6 +474,65 @@
             }
         }
         
+        /* Brand Quote Styling */
+        .quote-container {
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .quote-text {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        .quote-icon-left,
+        .quote-icon-right {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .quote-icon-left {
+            align-self: flex-start;
+            margin-top: -0.25rem;
+        }
+        
+        .quote-icon-right {
+            align-self: flex-end;
+            margin-bottom: -0.25rem;
+        }
+        
+        .quote-content {
+            flex: 0 1 auto;
+            max-width: calc(100% - 120px);
+        }
+        
+        @media (min-width: 769px) {
+            .quote-container {
+                padding: 0.75rem 0;
+            }
+            
+            .quote-text {
+                gap: 1rem;
+            }
+            
+            .quote-icon-left,
+            .quote-icon-right {
+                opacity: 0.8;
+            }
+            
+            .quote-icon-left {
+                margin-top: -0.5rem;
+            }
+            
+            .quote-icon-right {
+                margin-bottom: -0.5rem;
+            }
+        }
+        
         /* Brand Section Styles - Apple-like Precision */
         @media (min-width: 769px) {
         .brand-row-container {
@@ -653,15 +712,16 @@
         /* Team Showcase Styles */
         .team-showcase {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            justify-content: center;
             gap: 1.5rem;
+            flex-wrap: wrap;
         }
         
         @media (min-width: 640px) {
             .team-showcase {
-                flex-direction: row;
-                justify-content: center;
                 gap: 3rem;
+                flex-wrap: nowrap;
             }
         }
         
@@ -737,14 +797,30 @@
         }
         
         @media (max-width: 639px) {
+            .team-showcase {
+                gap: 1rem;
+            }
+            
+            .team-member {
+                flex: 0 1 auto;
+            }
+            
             .team-member-photo-wrapper {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
             }
             
             .team-member-photo {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
+            }
+            
+            .team-member-name {
+                font-size: 0.875rem;
+            }
+            
+            .team-member-role {
+                font-size: 0.75rem;
             }
         }
         
@@ -963,9 +1039,13 @@
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="text-center mb-12 fade-in">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Onze Merken</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Wij werken met de beste merken in de fietsindustrie
-                </p>
+                <div class="quote-container max-w-3xl mx-auto">
+                    <p class="quote-text text-xl md:text-2xl font-light text-gray-700 italic leading-relaxed">
+                        <i class="fas fa-quote-left text-3xl md:text-4xl text-dcq-red quote-icon-left"></i>
+                        <span class="quote-content">Geselecteerd voor kwaliteit, betrouwbaarheid en prestaties.</span>
+                        <i class="fas fa-quote-right text-3xl md:text-4xl text-dcq-red quote-icon-right"></i>
+                    </p>
+                </div>
             </div>
             
             <!-- Mobile: Infinite marquee carousel (non-interactive) -->
