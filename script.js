@@ -697,9 +697,9 @@ if ('IntersectionObserver' in window) {
 document.addEventListener('DOMContentLoaded', function() {
     const customerCounter = document.getElementById('customerCounter');
     const yearsCounter = document.getElementById('yearsCounter');
-    const customersSection = document.querySelector('.customers-section');
+    const heroSection = document.getElementById('home');
     
-    if (!customerCounter || !customersSection) return;
+    if (!customerCounter || !heroSection) return;
     
     let hasAnimated = false;
     const targetValue = 8000;
@@ -764,9 +764,9 @@ document.addEventListener('DOMContentLoaded', function() {
         yearsCounter.textContent = targetYears;
     }
     
-    // Intersection Observer to trigger animation when scrolled into view
+    // Intersection Observer to trigger animation when hero section is visible
     const observerOptions = {
-        threshold: 0.5,
+        threshold: 0.3,
         rootMargin: '0px'
     };
     
@@ -778,6 +778,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    sectionObserver.observe(customersSection);
+    sectionObserver.observe(heroSection);
 });
 

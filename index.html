@@ -166,26 +166,12 @@
             animation: none !important;
         }
         
-        /* 8000+ Customers Section */
-        .customers-section {
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        @media (max-width: 768px) {
-            .customers-section {
-                min-height: 150px;
-            }
-        }
-        
+        /* Counter Styles for Hero Section */
         #customerCounter,
         #yearsCounter {
             transition: none;
             display: inline-block;
-            width: 200px;
+            min-width: 120px;
             text-align: center;
             font-variant-numeric: tabular-nums;
             letter-spacing: 0.05em;
@@ -194,14 +180,14 @@
         @media (max-width: 768px) {
             #customerCounter,
             #yearsCounter {
-                width: 160px;
+                min-width: 100px;
             }
         }
         
         @media (min-width: 1024px) {
             #customerCounter,
             #yearsCounter {
-                width: 240px;
+                min-width: 140px;
             }
         }
         
@@ -1023,7 +1009,7 @@
             <source src="" type="video/mp4">
             <!-- Fallback image will be shown via JS if video fails -->
         </video>
-        <div class="hero-overlay absolute inset-0 flex items-center justify-center">
+        <div class="hero-overlay absolute inset-0 flex flex-col items-center justify-center">
             <div class="text-center px-4 z-10 fade-in">
                 <h1 class="hero-title-gradient text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
                     DCQ Bikes
@@ -1031,9 +1017,31 @@
             <!--    <p class="text-xl md:text-2xl lg:text-3xl text-dcq-white/95 mb-2 font-light tracking-wide drop-shadow-lg">
                     Waar passie en precisie samenkomen
                 </p> -->
-                <p class="text-sm md:text-base text-dcq-white/80 mb-10 tracking-[0.15em] uppercase">
+                <p class="text-sm md:text-base text-dcq-white/80 mb-8 tracking-[0.15em] uppercase">
                     Elektrische Fietsen • Stadsfietsen • Grasmaaiers
                 </p>
+                
+                <!-- Counters in Hero -->
+                <div class="flex flex-row items-center justify-center gap-6 md:gap-12 mb-8">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-1 text-dcq-white drop-shadow-lg" id="customerCounter">
+                            +0
+                        </h2>
+                        <p class="text-sm md:text-base text-dcq-white/90 font-medium">
+                            tevreden klanten
+                        </p>
+                    </div>
+                    <div class="w-px h-10 md:h-12 bg-dcq-white/30"></div>
+                    <div>
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-1 text-dcq-white drop-shadow-lg" id="yearsCounter">
+                            19
+                        </h2>
+                        <p class="text-sm md:text-base text-dcq-white/90 font-medium">
+                            jaar ervaring
+                        </p>
+                    </div>
+                </div>
+                
                 <a href="#services" class="inline-flex items-center gap-3 px-10 py-4 bg-dcq-red text-white rounded-lg font-semibold text-lg hover:bg-opacity-90 hover:scale-105 transition-all shadow-2xl hover:shadow-red-500/50">
                     Ontdek Meer
                     <i class="fas fa-arrow-down text-sm"></i>
@@ -1042,41 +1050,8 @@
         </div>
     </section>
 
-    <!-- 8000+ Satisfied Customers Section -->
-    <section class="py-8 md:py-12 bg-gradient-to-b from-gray-50 to-dcq-white overflow-hidden relative">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="customers-section relative">
-                <!-- Main Content -->
-                <div class="text-center relative z-10">
-                    <div class="flex flex-row items-center justify-center gap-4 md:gap-16 mb-6">
-                        <div>
-                            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 bg-gradient-to-r from-dcq-red to-dcq-red/80 bg-clip-text text-transparent" id="customerCounter">
-                                +0
-                            </h2>
-                            <p class="text-lg md:text-xl lg:text-2xl text-gray-800 font-semibold">
-                                tevreden klanten
-                            </p>
-                        </div>
-                        <div class="w-px h-12 md:h-16 bg-gray-300"></div>
-                        <div>
-                            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 bg-gradient-to-r from-dcq-red to-dcq-red/80 bg-clip-text text-transparent" id="yearsCounter">
-                                19
-                            </h2>
-                            <p class="text-lg md:text-xl lg:text-2xl text-gray-800 font-semibold">
-                                jaar ervaring
-                            </p>
-                        </div>
-                    </div>
-                    <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-                        Vertrouw op onze expertise en ervaring
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Services Section -->
-    <section id="services" class="pt-4 md:pt-8 pb-16 md:pb-24 bg-dcq-white">
+    <section id="services" class="py-16 md:py-24 bg-dcq-white">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="text-center mb-12 fade-in">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Ons Aanbod</h2>
