@@ -166,6 +166,115 @@
             animation: none !important;
         }
         
+        /* Services Grid - Full Width Colored Blocks */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 100%;
+            min-height: 300px;
+        }
+        
+        /* Desktop reordering: swap positions 1 and 2 */
+        @media (min-width: 769px) {
+            .service-order-1 {
+                order: 1;
+            }
+            
+            .service-order-2 {
+                order: 2;
+            }
+            
+            .service-order-3 {
+                order: 3;
+            }
+        }
+        
+        .service-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        
+        .service-block::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: inherit;
+            opacity: 0.95;
+            transition: opacity 0.3s ease;
+        }
+        
+        .service-block:hover {
+            transform: scale(1.02);
+            z-index: 1;
+        }
+        
+        .service-block:hover::before {
+            opacity: 1;
+        }
+        
+        .service-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 300px;
+        }
+        
+        .service-block-1 {
+            background: linear-gradient(135deg, #ee2726 0%, #d41e1d 100%);
+        }
+        
+        .service-block-2 {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+        
+        .service-block-3 {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+        }
+        
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .service-block {
+                min-height: 280px;
+                padding: 2.5rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) and (min-width: 641px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-block {
+                min-height: 250px;
+                padding: 2rem 1.5rem;
+                pointer-events: none;
+            }
+            
+            .service-content {
+                max-width: 100%;
+            }
+            
+            /* Disable hover effects on mobile */
+            .service-block:hover {
+                transform: none;
+            }
+        }
+        
         /* Counter Styles for Hero Section */
         #customerCounter,
         #yearsCounter {
@@ -1051,53 +1160,49 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 md:py-24 bg-dcq-white">
+    <section id="services" class="py-0">
+        <div class="text-center py-12 md:py-16 bg-dcq-white">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="text-center mb-12 fade-in">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Ons Aanbod</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 fade-in">Ons Aanbod</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto fade-in">
                     Wij bieden een compleet aanbod aan diensten voor al uw fietsbehoeften
                 </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <!-- Service Card 1 -->
-                <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover:scale-105 fade-in border border-gray-100">
-                    <div class="text-dcq-red text-4xl mb-4">
+                    </div>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-block service-block-1 service-order-2">
+                <div class="service-content">
+                    <div class="text-white/70 text-3xl md:text-4xl mb-5">
                         <i class="fas fa-bicycle"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Fietsverkoop</h3>
-                    <p class="text-gray-600">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-3 text-white">Fietsverkoop</h3>
+                    <p class="text-white/90 text-base md:text-lg">
                         Breed assortiment aan premium fietsen voor elke discipline en budget
                     </p>
                 </div>
-                <!-- Service Card 2 -->
-                <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover:scale-105 fade-in border border-gray-100">
-                    <div class="text-dcq-red text-4xl mb-4">
+            </div>
+            <!-- Service 2 -->
+            <div class="service-block service-block-2 service-order-1">
+                <div class="service-content">
+                    <div class="text-white/70 text-3xl md:text-4xl mb-5">
                         <i class="fas fa-tools"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Onderhoud & Reparatie</h3>
-                    <p class="text-gray-600">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-3 text-white">Onderhoud & Herstel</h3>
+                    <p class="text-white/90 text-base md:text-lg">
                         Professioneel onderhoud en reparaties door ervaren technici
                     </p>
                 </div>
-                <!-- Service Card 3 -->
-                <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover:scale-105 fade-in border border-gray-100">
-                    <div class="text-dcq-red text-4xl mb-4">
-                        <i class="fas fa-cog"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Custom Fit</h3>
-                    <p class="text-gray-600">
-                        Professionele bike fitting voor optimaal comfort en prestaties
-                    </p>
-                </div>
-                <!-- Service Card 4 -->
-                <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover:scale-105 fade-in border border-gray-100">
-                    <div class="text-dcq-red text-4xl mb-4">
-                        <i class="fas fa-shopping-bag"></i>
+            <!-- Service 3 -->
+            <div class="service-block service-block-3 service-order-3">
+                <div class="service-content">
+                    <div class="text-white/70 text-3xl md:text-4xl mb-5">
+                        <i class="fas fa-leaf"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Accessoires</h3>
-                    <p class="text-gray-600">
-                        Complete selectie van fietsaccessoires en kleding van topmerken
+                    <h3 class="text-2xl md:text-3xl font-bold mb-3 text-white">Grasmaaiers & Tuin</h3>
+                    <p class="text-white/90 text-base md:text-lg">
+                        Grasmaaiers en tuinaccessoires voor een perfect gazon
                     </p>
                 </div>
             </div>
