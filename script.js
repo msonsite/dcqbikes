@@ -302,16 +302,171 @@ const nextLightbox = document.getElementById('nextLightbox');
 let galleryItems = [];
 let currentLightboxIndex = 0;
 
+// Helper function to check if an image exists
+async function imageExists(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+    });
+}
+
+// Dynamically discover images in the gallerysection folder
+async function discoverGalleryImages() {
+    const basePath = 'gallerysection/';
+    const extensions = ['webp', 'jpg', 'jpeg', 'png', 'avif', 'gif'];
+    const maxAttempts = 100; // Check up to 100 images
+    const discoveredImages = [];
+    
+    // Try to load a gallery manifest file first (optional)
+    try {
+        const manifestResponse = await fetch('gallerysection/manifest.json');
+        if (manifestResponse.ok) {
+            const manifest = await manifestResponse.json();
+            if (manifest.images && Array.isArray(manifest.images)) {
+                return manifest.images.map((img, idx) => ({
+                    src: basePath + img,
+                    alt: `DCQ Bikes Gallery Image ${idx + 1}`,
+                    filename: img
+                }));
+            }
+        }
+    } catch (e) {
+        // No manifest file, continue with auto-discovery
+    }
+    
+    // Auto-discover images by trying different patterns
+    // Pattern 1: picture1.webp, picture2.jpg, etc.
+    for (let i = 1; i <= maxAttempts; i++) {
+        let found = false;
+        for (const ext of extensions) {
+            const testPath = `${basePath}picture${i}.${ext}`;
+            const exists = await imageExists(testPath);
+            if (exists) {
+                discoveredImages.push({
+                    src: testPath,
+                    alt: `DCQ Bikes Gallery Image ${discoveredImages.length + 1}`,
+                    filename: `picture${i}.${ext}`
+                });
+                found = true;
+                break;
+            }
+        }
+        // If no image found after trying multiple patterns, stop
+        if (!found && i > 20) {
+            break;
+        }
+    }
+    
+    // Pattern 2: Try numbered files (1.jpg, 2.webp, etc.)
+    if (discoveredImages.length === 0) {
+        for (let i = 1; i <= maxAttempts; i++) {
+            let found = false;
+            for (const ext of extensions) {
+                const testPath = `${basePath}${i}.${ext}`;
+                const exists = await imageExists(testPath);
+                if (exists) {
+                    discoveredImages.push({
+                        src: testPath,
+                        alt: `DCQ Bikes Gallery Image ${discoveredImages.length + 1}`,
+                        filename: `${i}.${ext}`
+                    });
+                    found = true;
+                    break;
+                }
+            }
+            if (!found && i > 20) {
+                break;
+            }
+        }
+    }
+    
+    return discoveredImages;
+}
+
 async function loadGalleryImages() {
     const galleryGrid = document.getElementById('galleryGrid');
     if (!galleryGrid) return;
     
-    // In production, fetch actual file list from server
-    // For now, create a system that will work when images are added
-    // This would typically be done via a server-side API
+    // Dynamically discover images from gallerysection folder
+    const galleryImages = await discoverGalleryImages();
     
-    // Example placeholder that demonstrates the structure
-    // Replace this with actual file loading logic when images are available
+    if (galleryImages.length === 0) {
+        console.warn('No gallery images found. Please add images to the gallerysection folder.');
+        return;
+    }
+    
+    // Tile size patterns for varied, interesting layout
+    // Patterns: normal, wide, tall, large
+    const tilePatterns = ['normal', 'wide', 'tall', 'normal', 'large', 'normal', 'wide', 'tall'];
+    
+    galleryItems = [];
+    galleryGrid.innerHTML = '';
+    
+    galleryImages.forEach((image, index) => {
+        const item = {
+            src: image.src,
+            alt: image.alt,
+            type: 'image',
+            index: index
+        };
+        
+        galleryItems.push(item);
+        
+        const galleryItem = document.createElement('div');
+        const pattern = tilePatterns[index % tilePatterns.length];
+        galleryItem.className = `gallery-item ${pattern} fade-in`;
+        galleryItem.setAttribute('role', 'button');
+        galleryItem.setAttribute('tabindex', '0');
+        galleryItem.setAttribute('aria-label', `Bekijk afbeelding ${index + 1}`);
+        
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.alt;
+        img.loading = 'lazy';
+        
+        // Handle image load errors
+        img.onerror = function() {
+            this.style.display = 'none';
+            galleryItem.style.backgroundColor = '#f3f4f6';
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'absolute inset-0 flex items-center justify-center text-gray-400';
+            errorDiv.innerHTML = '<i class="fas fa-image text-4xl"></i>';
+            galleryItem.appendChild(errorDiv);
+        };
+        
+        galleryItem.appendChild(img);
+        galleryItem.addEventListener('click', () => openLightbox(index));
+        galleryItem.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(index);
+            }
+        });
+        
+        galleryGrid.appendChild(galleryItem);
+    });
+    
+    // Observe gallery items for fade-in animation
+    const galleryObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 50);
+                galleryObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        galleryObserver.observe(item);
+    });
 }
 
 function openLightbox(index) {
