@@ -163,34 +163,40 @@ async function loadBrandImages() {
     const brandImages = {
         'large': [
             { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' },
-            { src: 'images/brands/large/descheemaeker.png', name: 'Descheemaeker', alt: 'Descheemaeker Logo' },
-            { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo' },
+            { src: 'images/brands/large/qio.png', name: 'Qio', alt: 'Qio Logo' },
             { src: 'images/brands/large/oxfordlogo.webp', name: 'Oxford', alt: 'Oxford Logo' },
-            { src: 'images/brands/large/descheemaeker.png', name: 'Descheemaeker', alt: 'Descheemaeker Logo' },
-            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' },
+            { src: 'images/brands/large/norta.png', name: 'Norta', alt: 'Norta Logo' },
+            { src: 'images/brands/large/conway.png', name: 'Conway', alt: 'Conway Logo' },
+            { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo' }
         ],
         'medium': [
-            { src: 'images/brands/medium/Continental-Logo.png', name: 'Continental', alt: 'Continental Logo' },
-            { src: 'images/brands/medium/Schwalbe_Logo.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
-            { src: 'images/brands/medium/Shimano.svg.png', name: 'Shimano', alt: 'Shimano Logo' },
-            { src: 'images/brands/medium/Continental-Logo.png', name: 'Continental', alt: 'Continental Logo' },
-            { src: 'images/brands/medium/Schwalbe_Logo.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
-            { src: 'images/brands/medium/Shimano.svg.png', name: 'Shimano', alt: 'Shimano Logo' }
+            { src: 'images/brands/medium/abus.webp', name: 'Abus', alt: 'Abus Logo' },
+            { src: 'images/brands/medium/basil.webp', name: 'Basil', alt: 'Basil Logo' },
+            { src: 'images/brands/medium/bollé.png', name: 'Bollé', alt: 'Bollé Logo' },
+            { src: 'images/brands/medium/contec.webp', name: 'Contec', alt: 'Contec Logo' },
+            { src: 'images/brands/medium/dandell.png', name: 'Dandell', alt: 'Dandell Logo' },
+            { src: 'images/brands/medium/polisport.png', name: 'Polisport', alt: 'Polisport Logo' },
+            { src: 'images/brands/medium/selleroyal.png', name: 'Selle Royal', alt: 'Selle Royal Logo' },
+            { src: 'images/brands/medium/sks.png', name: 'SKS', alt: 'SKS Logo' }
         ],
         'small': [
-            { src: 'images/brands/medium/Continental-Logo.png', name: 'Continental', alt: 'Continental Logo' },
-            { src: 'images/brands/medium/Schwalbe_Logo.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
-            { src: 'images/brands/medium/Shimano.svg.png', name: 'Shimano', alt: 'Shimano Logo' },
-            { src: 'images/brands/medium/Continental-Logo.png', name: 'Continental', alt: 'Continental Logo' },
-            { src: 'images/brands/medium/Schwalbe_Logo.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
-            { src: 'images/brands/medium/Shimano.svg.png', name: 'Shimano', alt: 'Shimano Logo' }
+            { src: 'images/brands/small/bosch.png', name: 'Bosch', alt: 'Bosch Logo' },
+            { src: 'images/brands/small/continental.png', name: 'Continental', alt: 'Continental Logo' },
+            { src: 'images/brands/small/cst.png', name: 'CST', alt: 'CST Logo' },
+            { src: 'images/brands/small/kmc.png', name: 'KMC', alt: 'KMC Logo' },
+            { src: 'images/brands/small/magura.svg', name: 'Magura', alt: 'Magura Logo' },
+            { src: 'images/brands/small/michelin.png', name: 'Michelin', alt: 'Michelin Logo' },
+            { src: 'images/brands/small/sapim.png', name: 'Sapim', alt: 'Sapim Logo' },
+            { src: 'images/brands/small/schwalbe.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
+            { src: 'images/brands/small/shimano.png', name: 'Shimano', alt: 'Shimano Logo' }
         ]
     };
     
-    const mobileContainer = document.getElementById('brands-mobile');
+    const mobileMarquee = document.getElementById('brandsMarqueeTrack');
+    const mobileLogos = [];
     for (const [size, images] of Object.entries(brandImages)) {
         const container = document.getElementById(`brands-${size}`);
-        if (!container || images.length === 0) continue;
+        if ((!container && !mobileMarquee) || images.length === 0) continue;
         
         images.forEach((brand, index) => {
             // Create brand image wrapper
@@ -218,12 +224,40 @@ async function loadBrandImages() {
             brandWrapper.style.opacity = '0';
             brandWrapper.style.animation = 'fadeInUp 0.6s ease forwards';
             
-            container.appendChild(brandWrapper);
-            if (mobileContainer) {
-                // append to mobile only if matching active filter later
-                mobileContainer.appendChild(brandWrapper.cloneNode(true));
+            if (container) container.appendChild(brandWrapper);
+            if (mobileMarquee) {
+                const clone = brandWrapper.cloneNode(true);
+                // Remove any fade-in inline animation styles from desktop rendering
+                clone.style.animation = 'none';
+                clone.style.opacity = '1';
+                clone.style.transform = 'none';
+                const imgEl = clone.querySelector('img');
+                if (imgEl) imgEl.loading = 'lazy';
+                mobileLogos.push(clone);
             }
         });
+    }
+
+    // Build infinite marquee: duplicate sequence to allow seamless loop
+    if (mobileMarquee && mobileLogos.length) {
+        const sequence = document.createDocumentFragment();
+        mobileLogos.forEach(node => {
+            const c = node.cloneNode(true);
+            c.style.animation = 'none';
+            c.style.opacity = '1';
+            c.style.transform = 'none';
+            sequence.appendChild(c);
+        });
+        const sequence2 = document.createDocumentFragment();
+        mobileLogos.forEach(node => {
+            const c2 = node.cloneNode(true);
+            c2.style.animation = 'none';
+            c2.style.opacity = '1';
+            c2.style.transform = 'none';
+            sequence2.appendChild(c2);
+        });
+        mobileMarquee.appendChild(sequence);
+        mobileMarquee.appendChild(sequence2);
     }
 }
 
@@ -572,31 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Mobile brand chips filtering
-document.addEventListener('click', (e) => {
-    const chip = e.target.closest('.brand-chip');
-    if (!chip) return;
-    const filter = chip.dataset.filter;
-    document.querySelectorAll('.brand-chip').forEach(c => c.classList.remove('active', 'bg-dcq-red', 'text-white'));
-    chip.classList.add('active', 'bg-dcq-red', 'text-white');
-
-    const mobileContainer = document.getElementById('brands-mobile');
-    if (!mobileContainer) return;
-
-    // Clear and repopulate based on filter from desktop groups
-    mobileContainer.innerHTML = '';
-    const sources = filter === 'all' 
-        ? ['large','medium','small'] 
-        : [filter];
-    sources.forEach(group => {
-        const srcContainer = document.getElementById(`brands-${group}`);
-        if (!srcContainer) return;
-        srcContainer.querySelectorAll('.brand-item').forEach((item, idx) => {
-            const clone = item.cloneNode(true);
-            clone.style.animationDelay = `${idx * 0.06}s`;
-            mobileContainer.appendChild(clone);
-        });
-    });
-});
+// Removed chip interactions: mobile marquee is non-interactive
 
 // Lazy Loading for Images
 if ('IntersectionObserver' in window) {
