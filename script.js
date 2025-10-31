@@ -419,14 +419,14 @@ const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-
+        
         const submitBtn = document.getElementById('contactSubmit');
         const statusEl = document.getElementById('contactStatus');
         const action = contactForm.getAttribute('data-formspree');
 
         if (!action || !action.startsWith('https://formspree.io/')) {
             // Fallback: demo mode
-            const formData = new FormData(contactForm);
+        const formData = new FormData(contactForm);
             console.log('Form submitted (demo):', Object.fromEntries(formData.entries()));
             contactForm.reset();
             if (statusEl) {
@@ -465,7 +465,7 @@ if (contactForm) {
                     statusEl.textContent = 'Bedankt! Uw bericht werd succesvol verzonden.';
                     statusEl.classList.remove('hidden', 'text-red-600');
                 }
-                contactForm.reset();
+        contactForm.reset();
             } else {
                 throw new Error('Formspree error');
             }
@@ -627,4 +627,92 @@ if ('IntersectionObserver' in window) {
         imageObserver.observe(img);
     });
 }
+
+// 8000+ Customers Counter Animation & Years of Experience
+document.addEventListener('DOMContentLoaded', function() {
+    const customerCounter = document.getElementById('customerCounter');
+    const yearsCounter = document.getElementById('yearsCounter');
+    const customersSection = document.querySelector('.customers-section');
+    
+    if (!customerCounter || !customersSection) return;
+    
+    let hasAnimated = false;
+    const targetValue = 8000;
+    const duration = 3000; // 3 seconds for smoother animation
+    
+    // Calculate years of experience dynamically (starting January 2006)
+    const startDate = new Date(2006, 0, 1); // January 2006 (month is 0-indexed)
+    const currentDate = new Date();
+    
+    // Calculate the exact difference in years
+    let years = currentDate.getFullYear() - startDate.getFullYear();
+    const months = currentDate.getMonth() - startDate.getMonth();
+    
+    // If we haven't reached the anniversary month yet, subtract 1
+    if (months < 0 || (months === 0 && currentDate.getDate() < startDate.getDate())) {
+        years--;
+    }
+    
+    const targetYears = Math.max(years, 1); // At least 1 year
+    
+    // easing function (ease-out-cubic)
+    function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+    }
+    
+    function animateCounters() {
+        if (hasAnimated) return;
+        hasAnimated = true;
+        
+        const startTime = performance.now();
+        let lastCustomerValue = 0;
+        
+        function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // easing
+            const easedProgress = easeOutCubic(progress);
+            
+            // Update customer counter only - round to nearest 50 to reduce jitter
+            const currentCustomerValue = Math.floor(easedProgress * targetValue);
+            // Only update if change is significant enough (reduces jitter)
+            if (Math.abs(currentCustomerValue - lastCustomerValue) >= 50 || currentCustomerValue === targetValue) {
+                const displayValue = Math.round(currentCustomerValue / 50) * 50;
+                customerCounter.textContent = `+${displayValue.toLocaleString('nl-BE')}`;
+                lastCustomerValue = currentCustomerValue;
+            }
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            } else {
+                // Ensure final value is exact
+                customerCounter.textContent = `+${targetValue.toLocaleString('nl-BE')}`;
+            }
+        }
+        
+        requestAnimationFrame(updateCounter);
+    }
+    
+    // Set years counter to final value immediately (static, no animation)
+    if (yearsCounter) {
+        yearsCounter.textContent = targetYears;
+    }
+    
+    // Intersection Observer to trigger animation when scrolled into view
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+    
+    const sectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasAnimated) {
+                animateCounters();
+            }
+        });
+    }, observerOptions);
+    
+    sectionObserver.observe(customersSection);
+});
 
