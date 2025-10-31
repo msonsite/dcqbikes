@@ -106,22 +106,19 @@ document.querySelectorAll('.fade-in').forEach(el => {
     observer.observe(el);
 });
 
-// Hero Video Fallback
+// Hero Video Setup
 const heroVideo = document.getElementById('heroVideo');
 if (heroVideo) {
-    // Try to load videos from videos folder
-    const videoSources = [
-        'videos/hero1.mp4',
-        'videos/hero2.mp4',
-        'videos/drone-shot.mp4',
-        'videos/insta360.mp4'
-    ];
+    // Video source is set in HTML, ensure it plays properly
+    heroVideo.addEventListener('loadeddata', () => {
+        heroVideo.play().catch(err => {
+            console.log('Video autoplay prevented:', err);
+        });
+    });
     
-    let currentVideoIndex = 0;
-    
-    function tryLoadVideo() {
-        if (currentVideoIndex >= videoSources.length) {
-            // All videos failed, use fallback image
+    // Fallback if video fails to load
+    heroVideo.addEventListener('error', () => {
+        console.log('Video failed to load, using fallback');
             heroVideo.style.display = 'none';
             const heroSection = heroVideo.closest('section');
             if (heroSection && !heroSection.querySelector('.hero-fallback')) {
@@ -129,32 +126,11 @@ if (heroVideo) {
                 fallback.className = 'hero-fallback absolute inset-0 bg-gradient-to-br from-dcq-black to-gray-800';
                 heroSection.appendChild(fallback);
             }
-            return;
-        }
-        
-        const video = document.createElement('source');
-        video.src = videoSources[currentVideoIndex];
-        video.type = 'video/mp4';
-        video.addEventListener('error', () => {
-            currentVideoIndex++;
-            tryLoadVideo();
-        });
-        video.addEventListener('load', () => {
-            heroVideo.appendChild(video);
-            heroVideo.load();
-        });
-        heroVideo.appendChild(video);
-        heroVideo.load();
-        currentVideoIndex++;
-    }
-    
-    heroVideo.addEventListener('error', () => {
-        currentVideoIndex++;
-        tryLoadVideo();
     });
     
-    // Start loading
-    tryLoadVideo();
+    // Ensure video plays on mobile
+    heroVideo.setAttribute('playsinline', '');
+    heroVideo.setAttribute('webkit-playsinline', '');
 }
 
 // Dynamic Brand Image Loading

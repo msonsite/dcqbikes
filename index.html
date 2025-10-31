@@ -153,7 +153,34 @@
         
         /* Hero Video Overlay */
         .hero-overlay {
-            background: linear-gradient(180deg, rgba(1, 1, 1, 0.3) 0%, rgba(1, 1, 1, 0.6) 100%);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 100%);
+        }
+        
+        /* Enhanced text readability */
+        #home .hero-title-gradient {
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.8)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+        }
+        
+        #home .text-dcq-white {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.6);
+        }
+        
+        /* Video optimization */
+        #heroVideo {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            #heroVideo {
+                object-fit: cover;
+            }
+            
+            .hero-overlay {
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.6) 100%);
+            }
         }
         
         /* Hero Title Gradient */
@@ -191,10 +218,11 @@
         
         .service-block {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             min-height: 300px;
-            padding: 3rem 2rem;
+            padding: 3rem 2rem 2rem 2rem;
+            padding-top: 4rem;
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, filter 0.3s ease;
@@ -244,7 +272,7 @@
             
             .service-block {
                 min-height: 280px;
-                padding: 2.5rem 1.5rem;
+                padding: 3rem 1.5rem 2rem 1.5rem;
             }
         }
         
@@ -261,7 +289,7 @@
             
             .service-block {
                 min-height: 250px;
-                padding: 2rem 1.5rem;
+                padding: 3rem 1.5rem 2rem 1.5rem;
                 pointer-events: none;
             }
             
@@ -1115,7 +1143,8 @@
     <!-- Hero Section -->
     <section id="home" class="relative h-[70vh] md:h-[75vh] lg:h-[70vh] overflow-hidden">
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" id="heroVideo">
-            <source src="" type="video/mp4">
+            <source src="videos/herovideo.mov" type="video/mp4">
+            <source src="videos/herovideo.mov" type="video/quicktime">
             <!-- Fallback image will be shown via JS if video fails -->
         </video>
         <div class="hero-overlay absolute inset-0 flex flex-col items-center justify-center">
@@ -1165,7 +1194,7 @@
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 fade-in">Ons Aanbod</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto fade-in">
-                    Wij bieden een compleet aanbod aan diensten voor al uw fietsbehoeften
+                    Wij bieden een compleet aanbod aan diensten en producten
                 </p>
             </div>
                     </div>
@@ -1173,22 +1202,22 @@
             <!-- Service 1 -->
             <div class="service-block service-block-1 service-order-2">
                 <div class="service-content">
-                    <div class="text-white/70 text-3xl md:text-4xl mb-5">
+                    <div class="text-white/70 text-2xl md:text-3xl mb-8">
                         <i class="fas fa-bicycle"></i>
                     </div>
-                    <h3 class="text-2xl md:text-3xl font-bold mb-3 text-white">Fietsverkoop</h3>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-white">Fietsverkoop</h3>
                     <p class="text-white/90 text-base md:text-lg">
-                        Breed assortiment aan premium fietsen voor elke discipline en budget
+                        Breed assortiment aan elektrische fietsen en stadsfietsen
                     </p>
                 </div>
             </div>
             <!-- Service 2 -->
             <div class="service-block service-block-2 service-order-1">
                 <div class="service-content">
-                    <div class="text-white/70 text-3xl md:text-4xl mb-5">
+                    <div class="text-white/70 text-2xl md:text-3xl mb-8">
                         <i class="fas fa-tools"></i>
                     </div>
-                    <h3 class="text-2xl md:text-3xl font-bold mb-3 text-white">Onderhoud & Herstel</h3>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-white">Onderhoud & Herstel</h3>
                     <p class="text-white/90 text-base md:text-lg">
                         Professioneel onderhoud en reparaties door ervaren technici
                     </p>
@@ -1197,10 +1226,10 @@
             <!-- Service 3 -->
             <div class="service-block service-block-3 service-order-3">
                 <div class="service-content">
-                    <div class="text-white/70 text-3xl md:text-4xl mb-5">
+                    <div class="text-white/70 text-2xl md:text-3xl mb-8">
                         <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3 class="text-2xl md:text-3xl font-bold mb-3 text-white">Grasmaaiers & Tuin</h3>
+                </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-white">Grasmaaiers & Tuin</h3>
                     <p class="text-white/90 text-base md:text-lg">
                         Grasmaaiers en tuinaccessoires voor een perfect gazon
                     </p>
