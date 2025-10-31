@@ -502,19 +502,84 @@ window.addEventListener('scroll', () => {
 });
 
 // Store Status Checker
+// Vacation Periods Configuration
+// Add your vacation periods here. Format: [year, month (1-12), day]
+const VACATION_PERIODS = [
+    {
+        start: [2025, 12, 24],  
+        end: [2026, 1, 1]       
+    },
+    {
+        start: [2026, 7, 14],   
+        end: [2026, 7, 31]
+    },
+    // Add more vacation periods as needed for each year
+];
+
+// Helper function to check if current date is within any vacation period
+function isOnVacation(currentDate) {
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+    const currentDay = currentDate.getDate();
+    const currentDateOnly = new Date(currentYear, currentMonth, currentDay);
+    
+    for (const period of VACATION_PERIODS) {
+        // Convert 1-indexed month (1-12) to 0-indexed (0-11) for JavaScript Date
+        const startDate = new Date(period.start[0], period.start[1] - 1, period.start[2]);
+        const endDate = new Date(period.end[0], period.end[1] - 1, period.end[2]);
+        
+        // Set time to beginning of day for accurate comparison
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(23, 59, 59, 999);
+        currentDateOnly.setHours(0, 0, 0, 0);
+        
+        if (currentDateOnly >= startDate && currentDateOnly <= endDate) {
+            return {
+                isOnVacation: true,
+                startDate: startDate,
+                endDate: endDate
+            };
+        }
+    }
+    
+    return { isOnVacation: false };
+}
+
+// Helper function to format date in Dutch format (DD/MM/YYYY)
+function formatDate(date) {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
 function updateStoreStatus() {
     const storeStatus = document.getElementById('storeStatus');
     const statusText = storeStatus.querySelector('.store-status-text');
     if (!storeStatus || !statusText) return;
     
     const now = new Date();
+    
+    // Check if currently on vacation
+    const vacationCheck = isOnVacation(now);
+    if (vacationCheck.isOnVacation) {
+        // Remove all status classes and add vacation styling
+        storeStatus.classList.remove('open', 'warning', 'closed');
+        storeStatus.classList.add('closed'); // Use closed styling for vacation
+        const startDateStr = formatDate(vacationCheck.startDate);
+        const endDateStr = formatDate(vacationCheck.endDate);
+        statusText.textContent = `In Verlof (${startDateStr} - ${endDateStr})`;
+        return;
+    }
+    
+    // Continue with normal opening hours logic
     const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
     const currentHour = now.getHours();
     const currentMinute = now.getMinutes();
     const currentTime = currentHour * 60 + currentMinute; // Time in minutes
     
     // Remove all status classes
-    storeStatus.classList.remove('open', 'warning', 'closed');
+    storeStatus.classList.remove('open', 'warning', 'closed', 'vacation');
     
     // Opening hours:
     // Monday (1): Closed
