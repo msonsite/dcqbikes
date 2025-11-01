@@ -702,7 +702,7 @@ function updateStoreStatus() {
     if (typeof MANUAL_CLOSED_OVERRIDE !== 'undefined' && MANUAL_CLOSED_OVERRIDE) {
         storeStatus.classList.remove('open', 'warning', 'closed');
         storeStatus.classList.add('closed');
-        statusText.textContent = 'Gesloten';
+        statusText.textContent = 'Gesloten (Feestdag)';
         return;
     }
     
