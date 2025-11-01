@@ -790,6 +790,26 @@
             max-width: calc(100% - 120px);
         }
         
+        /* Mobile-specific quote styling - smaller icons and text */
+        @media (max-width: 768px) {
+            .quote-text.text-xl {
+                font-size: 0.875rem !important; /* text-base */
+                line-height: 1.5rem;
+                gap: 0.5rem;
+            }
+            
+            .quote-icon-left.text-3xl,
+            .quote-icon-right.text-3xl {
+                font-size: 1.125rem !important; /* text-xl */
+                opacity: 0.6;
+            }
+            
+            .quote-content {
+                max-width: calc(100% - 60px);
+                font-size: 0.875rem !important;
+            }
+        }
+        
         @media (min-width: 769px) {
             .quote-container {
                 padding: 0.75rem 0;
@@ -1613,7 +1633,7 @@
                 <div class="md:col-span-2">
                     <img src="images/logo/dcqlogo_blackbackground.jpg" alt="DCQ Bikes logo" class="h-12 w-auto mb-4 object-contain">
                     <p class="text-gray-400 leading-relaxed">
-                        Uw betrouwbare partner voor premium fietsen en accessoires.
+                        Uw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers.
                     </p>
                     <div class="mt-4 flex items-center gap-3">
                         <a href="https://www.linkedin.com/company/dcqbikes/?originalSubdomain=be" aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-dcq-red text-gray-300 hover:text-white flex items-center justify-center transition-colors" target="_blank" rel="noopener">
