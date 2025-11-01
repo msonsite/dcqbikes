@@ -633,22 +633,12 @@ window.addEventListener('scroll', () => {
 });
 
 // Store Status Checker
-// Vacation Periods Configuration
-// Add your vacation periods here. Format: [year, month (1-12), day]
-const VACATION_PERIODS = [
-    {
-        start: [2025, 12, 24],  
-        end: [2026, 1, 1]       
-    },
-    {
-        start: [2026, 7, 14],   
-        end: [2026, 7, 31]
-    },
-    // Add more vacation periods as needed for each year
-];
+// Configuration is in store-config.js - modify that file to change holidays/vacations
 
 // Helper function to check if current date is within any vacation period
 function isOnVacation(currentDate) {
+    if (typeof VACATION_PERIODS === 'undefined') return { isOnVacation: false };
+    
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth();
     const currentDay = currentDate.getDate();
@@ -676,6 +666,23 @@ function isOnVacation(currentDate) {
     return { isOnVacation: false };
 }
 
+// Helper function to check if current date is a holiday from HOLIDAY_DATES
+function isHoliday(currentDate) {
+    if (typeof HOLIDAY_DATES === 'undefined' || !Array.isArray(HOLIDAY_DATES)) return false;
+    
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+    const currentDay = currentDate.getDate();
+    const currentDateOnly = new Date(currentYear, currentMonth, currentDay);
+    currentDateOnly.setHours(0, 0, 0, 0);
+    
+    return HOLIDAY_DATES.some(holiday => {
+        const holidayDate = new Date(holiday[0], holiday[1] - 1, holiday[2]);
+        holidayDate.setHours(0, 0, 0, 0);
+        return holidayDate.getTime() === currentDateOnly.getTime();
+    });
+}
+
 // Helper function to format date in Dutch format (DD/MM/YYYY)
 function formatDate(date) {
     const day = String(date.getDate()).padStart(2, '0');
@@ -691,6 +698,14 @@ function updateStoreStatus() {
     
     const now = new Date();
     
+    // Check manual override flag first (for holidays, special closures, etc.)
+    if (typeof MANUAL_CLOSED_OVERRIDE !== 'undefined' && MANUAL_CLOSED_OVERRIDE) {
+        storeStatus.classList.remove('open', 'warning', 'closed');
+        storeStatus.classList.add('closed');
+        statusText.textContent = 'Gesloten';
+        return;
+    }
+    
     // Check if currently on vacation
     const vacationCheck = isOnVacation(now);
     if (vacationCheck.isOnVacation) {
@@ -700,6 +715,14 @@ function updateStoreStatus() {
         const startDateStr = formatDate(vacationCheck.startDate);
         const endDateStr = formatDate(vacationCheck.endDate);
         statusText.textContent = `In Verlof (${startDateStr} - ${endDateStr})`;
+        return;
+    }
+    
+    // Check if today is a holiday from HOLIDAY_DATES
+    if (isHoliday(now)) {
+        storeStatus.classList.remove('open', 'warning', 'closed');
+        storeStatus.classList.add('closed');
+        statusText.textContent = 'Gesloten (Feestdag)';
         return;
     }
     
