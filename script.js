@@ -814,10 +814,53 @@ function updateStoreStatus() {
     statusText.textContent = statusMessage;
 }
 
+// Load service block background images from images/onsaanbod folder
+async function loadServiceBackgroundImages() {
+    // Map service blocks to their corresponding images
+    // Based on service-block-1, service-block-2, service-block-3 classes
+    const serviceImageMap = {
+        'service-block-1': 'images/onsaanbod/verkoop.webp',      // Fietsverkoop
+        'service-block-2': 'images/onsaanbod/herstellingen.jpg', // Onderhoud & Herstel
+        'service-block-3': 'images/onsaanbod/grasmaaiers.jpg'   // Grasmaaiers & Tuin
+    };
+    
+    // Get all service blocks
+    const serviceBlocks = document.querySelectorAll('.service-block');
+    
+    if (serviceBlocks.length === 0) return;
+    
+    serviceBlocks.forEach((block) => {
+        // Find which service block class this element has
+        let imagePath = null;
+        
+        for (const className of block.classList) {
+            if (serviceImageMap[className]) {
+                imagePath = serviceImageMap[className];
+                break;
+            }
+        }
+        
+        // If found, set the background image
+        if (imagePath) {
+            // Verify image exists first
+            const img = new Image();
+            img.onload = () => {
+                block.style.backgroundImage = `url(${imagePath})`;
+                block.setAttribute('data-bg-image', imagePath);
+            };
+            img.onerror = () => {
+                console.warn(`Failed to load service image: ${imagePath}`);
+            };
+            img.src = imagePath;
+        }
+    });
+}
+
 // Initialize on DOM load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     loadBrandImages();
-    loadGalleryImages();
+    await loadGalleryImages();
+    await loadServiceBackgroundImages();
     updateStoreStatus();
     
     // Update store status every minute

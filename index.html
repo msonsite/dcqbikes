@@ -308,15 +308,30 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, filter 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         
+        /* Dark overlay to darken the background image for better text readability */
+        .service-block::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Color overlay layer - sits on top of dark overlay */
         .service-block::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: inherit;
-            opacity: 0.95;
+            opacity: 0.3;
             transition: opacity 0.3s ease;
+            z-index: 1;
+            pointer-events: none;
         }
         
         .service-block:hover {
@@ -325,7 +340,7 @@
         }
         
         .service-block:hover::before {
-            opacity: 1;
+            opacity: 0.5;
         }
         
         .service-content {
@@ -335,15 +350,17 @@
             max-width: 300px;
         }
         
-        .service-block-1 {
+        
+        /* Color overlays - keep original colors as transparent overlays */
+        .service-block-1::before {
             background: linear-gradient(135deg, #ee2726 0%, #d41e1d 100%);
         }
         
-        .service-block-2 {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        .service-block-2::before {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
         }
         
-        .service-block-3 {
+        .service-block-3::before {
             background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
         }
         
