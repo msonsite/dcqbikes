@@ -280,7 +280,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             width: 100%;
-            min-height: 300px;
+            min-height: 400px;
         }
         
         /* Desktop reordering: swap positions 1 and 2 */
@@ -300,11 +300,10 @@
         
         .service-block {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
-            min-height: 300px;
-            padding: 3rem 2rem 2rem 2rem;
-            padding-top: 4rem;
+            min-height: 400px;
+            padding: 3rem 2rem;
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, filter 0.3s ease;
@@ -328,7 +327,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            opacity: 0.3;
+            opacity: 0;
             transition: opacity 0.3s ease;
             z-index: 1;
             pointer-events: none;
@@ -340,7 +339,7 @@
         }
         
         .service-block:hover::before {
-            opacity: 0.5;
+            opacity: 0;
         }
         
         .service-content {
@@ -348,6 +347,10 @@
             z-index: 2;
             text-align: center;
             max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         
         
@@ -370,7 +373,7 @@
             }
             
             .service-block {
-                min-height: 280px;
+                min-height: 350px;
                 padding: 3rem 1.5rem 2rem 1.5rem;
             }
         }
@@ -833,37 +836,57 @@
             }
         }
         
-        /* Brand Section Styles - Apple-like Precision */
+        /* Brand Section Styles - Desktop */
         @media (min-width: 769px) {
-        .brand-row-container {
-                margin-bottom: 2rem;
-                padding-bottom: 2rem;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            /* Fixed width container for all brand rows */
+            .brand-row-container {
+                margin-bottom: 1rem;
+                padding: 0;
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
             }
             
             .brand-row-container:last-child {
                 margin-bottom: 0;
-                padding-bottom: 0;
-                border-bottom: none;
-        }
+            }
         
-        .brand-row-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            color: #333;
-            letter-spacing: -0.01em;
+            .brand-row-title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                color: #333;
+                letter-spacing: -0.01em;
             }
             
+            /* Brand rows with equal width and evenly distributed items */
             .brand-row {
                 display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-wrap: nowrap;
+                justify-content: space-between;
                 align-items: center;
-                gap: 1.25rem;
+                gap: 1rem;
                 padding: 0.75rem 0;
-                max-width: 100%;
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            /* Ensure all brand items fill available space evenly */
+            #brands-large .brand-item {
+                flex: 1 1 0;
+                min-width: 0;
+            }
+            
+            #brands-medium .brand-item {
+                flex: 1 1 0;
+                min-width: 0;
+            }
+            
+            #brands-small .brand-item {
+                flex: 1 1 0;
+                min-width: 0;
             }
         }
         
@@ -903,36 +926,40 @@
             }
         }
         
-        /* Brand Item Styles - Fixed Size Boxes */
+        /* Brand Item Styles - Adaptive Size Boxes */
         @media (min-width: 769px) {
-        .brand-item {
-                width: 145px;
-                height: 95px;
-            background: white;
-            border-radius: 12px;
+            .brand-item {
+                width: 100%;
+                aspect-ratio: 16 / 10;
+                min-height: 95px;
+                background: white;
+                border-radius: 12px;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
                 border: 1px solid rgba(0, 0, 0, 0.04);
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: default;
-            flex-shrink: 0;
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: default;
                 padding: 0.75rem;
                 transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
-        }
-        
-        #brands-medium .brand-item {
-                width: 110px;
-                height: 75px;
+            }
+            
+            /* Adaptive heights based on available width */
+            #brands-large .brand-item {
+                min-height: 110px;
+                padding: 1rem;
+            }
+            
+            #brands-medium .brand-item {
+                min-height: 85px;
                 padding: 0.6rem;
-        }
-        
-        #brands-small .brand-item {
-                width: 80px;
-                height: 60px;
-            padding: 0.5rem;
+            }
+            
+            #brands-small .brand-item {
+                min-height: 70px;
+                padding: 0.5rem;
             }
         }
         
@@ -1410,9 +1437,9 @@
 
     <!-- Services Section -->
     <section id="services" class="py-0">
-        <div class="text-center py-12 md:py-16 bg-dcq-white">
+        <div class="text-center py-10 md:py-12 bg-dcq-white">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 fade-in">Ons Aanbod</h2>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 fade-in">Ons Aanbod</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto fade-in">
                     Wij bieden een compleet aanbod aan diensten en producten
                 </p>
@@ -1459,9 +1486,9 @@
     </section>
 
     <!-- Brands Section -->
-    <section id="brands" class="py-16 md:py-24 bg-gray-50">
+    <section id="brands" class="py-12 md:py-16 bg-gray-50">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="text-center mb-12 fade-in">
+            <div class="text-center mb-8 md:mb-10 fade-in">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Onze Merken</h2>
                 <div class="quote-container max-w-3xl mx-auto">
                     <p class="quote-text text-xl md:text-2xl font-light text-gray-700 italic leading-relaxed">
@@ -1522,8 +1549,8 @@
     </div>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="py-12 md:py-16 bg-dcq-white overflow-hidden">
-        <div class="text-center mb-8 md:mb-12 fade-in px-4">
+    <section id="gallery" class="py-10 md:py-12 bg-dcq-white overflow-hidden">
+        <div class="text-center mb-6 md:mb-8 fade-in px-4">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Galerij</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                 Een kijkje in onze winkel
@@ -1552,17 +1579,17 @@
     </div>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-gray-50">
+    <section id="contact" class="py-12 md:py-16 bg-gray-50">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="text-center mb-12 fade-in">
+            <div class="text-center mb-8 md:mb-10 fade-in">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Contact</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                     Neem contact met ons op of kom langs in onze winkel
                 </p>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                 <!-- Contact Info -->
-                <div class="space-y-6 fade-in">
+                <div class="space-y-4 md:space-y-6 fade-in">
                     <!-- Team Showcase -->
                     <div class="team-container bg-white rounded-xl p-6 ring-1 ring-gray-100 fade-in">
                         <div class="flex items-center justify-between mb-4">
@@ -1754,9 +1781,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dcq-black text-dcq-white py-12">
+    <footer class="bg-dcq-black text-dcq-white py-8 md:py-10">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 mb-8">
                 <div class="md:col-span-2">
                     <img src="images/logo/dcqlogo_blackbackground.jpg" alt="DCQ Bikes logo" class="h-12 w-auto mb-4 object-contain">
                     <p class="text-gray-400 leading-relaxed">
