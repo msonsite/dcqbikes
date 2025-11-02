@@ -820,9 +820,9 @@ async function loadServiceBackgroundImages() {
     // Map service blocks to their corresponding images
     // Based on service-block-1, service-block-2, service-block-3 classes
     const serviceImageMap = {
-        'service-block-1': 'images/onsaanbod/verkoop.webp',      // Fietsverkoop
-        'service-block-2': 'images/onsaanbod/herstellingen.jpg', // Onderhoud & Herstel
-        'service-block-3': 'images/onsaanbod/grasmaaiers.jpg'   // Grasmaaiers & Tuin
+        'service-block-1': 'images/onsaanbod/verkoop.avif',
+        'service-block-2': 'images/onsaanbod/herstellingen.jpg',
+        'service-block-3': 'images/onsaanbod/grasmaaiers.jpg'
     };
     
     // Get all service blocks
@@ -848,6 +848,8 @@ async function loadServiceBackgroundImages() {
             img.onload = () => {
                 block.style.backgroundImage = `url(${imagePath})`;
                 block.setAttribute('data-bg-image', imagePath);
+                // Set the same background image on ::before pseudo-element for blur effect
+                block.style.setProperty('--bg-image', `url(${imagePath})`);
             };
             img.onerror = () => {
                 console.warn(`Failed to load service image: ${imagePath}`);
