@@ -1024,6 +1024,95 @@
             border-top-right-radius: 0.75rem;
         }
         
+        /* Award Box Styles */
+        .award-box {
+            border-top: 3px solid #ee2726;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .award-box:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .award-box a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: stretch;
+            min-height: 100%;
+        }
+        
+        .award-box a:hover {
+            text-decoration: none;
+        }
+        
+        .award-logo-side {
+            position: absolute;
+            left: 7rem;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 0.5rem;
+        }
+        
+        .award-logo-side img {
+            height: 100%;
+            max-height: 100px;
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(20%);
+            transition: all 0.3s ease;
+            opacity: 0.9;
+        }
+        
+        .award-box:hover .award-logo-side img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        .award-content {
+            margin-left: calc(80px + 1rem);
+            padding: 1rem;
+            flex: 1;
+        }
+        
+        .award-box img:not(.award-logo-side img) {
+            filter: grayscale(20%);
+            transition: all 0.3s ease;
+        }
+        
+        .award-box:hover img:not(.award-logo-side img) {
+            filter: grayscale(0%);
+        }
+        
+        @media (max-width: 768px) {
+            .award-logo-side {
+                left: 1rem;
+                width: 60px;
+                padding: 0.75rem 0.5rem;
+            }
+            
+            .award-logo-side img {
+                max-height: 70px;
+            }
+            
+            .award-content {
+                margin-left: calc(60px + 1rem);
+                padding: 0.75rem;
+            }
+            
+            .award-content p {
+                font-size: 0.7rem;
+            }
+        }
+        
         /* Team Showcase Styles */
         .team-showcase {
             display: flex;
@@ -1632,6 +1721,32 @@
                             </button>
                             <p id="contactStatus" class="mt-2 text-sm text-gray-600 hidden" aria-live="polite"></p>
                         </form>
+                    </div>
+                    
+                    <!-- Award Box -->
+                    <div class="award-box bg-white rounded-xl shadow-sm ring-1 ring-gray-100">
+                        <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="group block">
+                            <div class="award-logo-side">
+                                <img src="images/vriendelijkstehandelaar/vriendelijkstehandelaarlogo.png" 
+                                     alt="Vriendelijkste Handelaar Logo" 
+                                     class="object-contain">
+                            </div>
+                            <div class="award-content">
+                                <div class="flex flex-col items-center text-center">
+                                    <p class="text-xs font-medium text-gray-700 mb-3">
+                                        DCQ Bikes werd uitgeroepen tot<br>
+                                        <span class="text-dcq-red font-semibold">Vriendelijkste Handelaar</span><br>
+                                        in Jabbeke
+                                    </p>
+                                    <div class="flex items-center justify-center gap-2">
+                                        <span class="text-[10px] font-medium text-gray-500 uppercase tracking-wider">Uitgereikt door</span>
+                                        <img src="images/vriendelijkstehandelaar/handelsgidslogo.png" 
+                                             alt="Handelsgids Logo" 
+                                             class="h-5 w-auto object-contain opacity-80">
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
