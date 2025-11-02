@@ -162,6 +162,7 @@ async function loadBrandImages() {
             { src: 'images/brands/small/kmc.png', name: 'KMC', alt: 'KMC Logo' },
             { src: 'images/brands/small/magura.svg', name: 'Magura', alt: 'Magura Logo' },
             { src: 'images/brands/small/michelin.png', name: 'Michelin', alt: 'Michelin Logo' },
+            { src: 'images/brands/small/morganblue.png', name: 'Morgan Blue', alt: 'Morgan Blue Logo' },
             { src: 'images/brands/small/sapim.png', name: 'Sapim', alt: 'Sapim Logo' },
             { src: 'images/brands/small/schwalbe.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
             { src: 'images/brands/small/shimano.png', name: 'Shimano', alt: 'Shimano Logo' }
