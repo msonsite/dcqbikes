@@ -6,6 +6,28 @@
     <meta name="description" content="DCQ Bikes - Fietsenwinkel in Jabbeke gespecialiseerd in elektrische fietsen, stadsfietsen en grasmaaiers.">
     <title>DCQ Bikes - Fietsenwinkel in Jabbeke</title>
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dcqbikes.be/">
+    <meta property="og:title" content="DCQ Bikes - Fietsenwinkel in Jabbeke">
+    <meta property="og:description" content="Uw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke.">
+    <meta property="og:image" content="https://dcqbikes.be/images/logo/dcqlogo_blackbackground.jpg">
+    <meta property="og:locale" content="nl_BE">
+    <meta property="og:site_name" content="DCQ Bikes">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dcqbikes.be/">
+    <meta property="twitter:title" content="DCQ Bikes - Fietsenwinkel in Jabbeke">
+    <meta property="twitter:description" content="Uw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke.">
+    <meta property="twitter:image" content="https://dcqbikes.be/images/logo/dcqlogo_blackbackground.jpg">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="keywords" content="fietsenwinkel, elektrische fietsen, stadsfietsen, grasmaaiers, fietsonderhoud, fietsherstelling, Jabbeke, DCQ Bikes">
+    <meta name="author" content="DCQ Bikes">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://dcqbikes.be/">
+    
     <!-- Favicons - Following Google's Guidelines -->
     <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
@@ -379,6 +401,65 @@
             .service-content {
                 max-width: 100%;
             }
+        }
+        
+        /* FAQ Section Styles */
+        .faq-item {
+            border-top: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item.active {
+            border-top-color: #ee2726;
+        }
+        
+        .faq-question {
+            cursor: pointer;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .faq-item.active .faq-answer.hidden {
+            display: block;
+        }
+        
+        /* FAQ Section Collapsible */
+        #faqContent {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        #faqContent.show {
+            max-height: 5000px;
+            opacity: 1;
+        }
+        
+        #faqToggleIcon {
+            transition: transform 0.3s ease;
+        }
+        
+        #faqToggleBtn.expanded #faqToggleIcon {
+            transform: rotate(180deg);
         }
         
         /* Counter Styles for Hero Section */
@@ -1346,6 +1427,7 @@
                     <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Merken</a>
                     <a href="#gallery" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Galerij</a>
                     <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Contact</a>
+                    <a href="#faq" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">FAQ</a>
                 </div>
                 <button id="mobileMenuBtn" class="md:hidden text-dcq-white hover:text-dcq-red transition-colors">
                     <i class="fas fa-bars text-2xl"></i>
@@ -1359,6 +1441,7 @@
                     <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Merken</a>
                     <a href="#gallery" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Galerij</a>
                     <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Contact</a>
+                    <a href="#faq" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">FAQ</a>
                 </div>
             </div>
         </div>
@@ -1756,6 +1839,116 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section id="faq" class="py-6 md:py-8 bg-white">
+        <div class="container mx-auto max-w-4xl px-4 md:px-6">
+            <button id="faqToggleBtn" class="w-full text-center fade-in hover:bg-gray-50 transition-colors rounded-lg p-4">
+                <div class="flex items-center justify-center gap-3">
+                    <h2 class="text-xl md:text-2xl font-bold">Veelgestelde vragen</h2>
+                    <i id="faqToggleIcon" class="fas fa-chevron-down text-dcq-red transition-transform"></i>
+                </div>
+                <p class="text-sm text-gray-600 mt-1">
+                    Klik om de veelgestelde vragen te bekijken
+                </p>
+            </button>
+
+            <div id="faqContent" class="space-y-2 fade-in hidden mt-4">
+
+                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <button class="faq-question w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 transition-colors" aria-expanded="false">
+                        <span class="font-semibold text-sm md:text-base text-gray-900">Hoe lang duurt een fietsherstelling gemiddeld?</span>
+                        <i class="fas fa-chevron-down text-dcq-red transition-transform text-sm"></i>
+                    </button>
+                    <div class="faq-answer hidden px-4 pb-3 text-gray-700 text-sm">
+                        <p class="mb-3">De duur van een herstelling hangt af van het type probleem:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-4">
+                            <li>Kleine reparaties (band plakken, remmen stellen): meestal dezelfde dag of binnen 24 uur</li>
+                            <li>Grote onderhoudsbeurt: 2-3 werkdagen</li>
+                            <li>Complexe herstellingen: 3-5 werkdagen (afhankelijk van onderdelen beschikbaarheid)</li>
+                        </ul>
+                        <p class="mt-3">Bij het binnenbrengen geven we altijd een geschatte oplevertijd. U ontvangt ook een SMS wanneer uw fiets klaar is!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <button class="faq-question w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 transition-colors" aria-expanded="false">
+                        <span class="font-semibold text-sm md:text-base text-gray-900">Welke betalingsmethoden accepteert u?</span>
+                        <i class="fas fa-chevron-down text-dcq-red transition-transform text-sm"></i>
+                    </button>
+                    <div class="faq-answer hidden px-4 pb-3 text-gray-700 text-sm">
+                        <p>Wij accepteren de volgende betalingsmethoden:</p>
+                        <ul class="list-none space-y-2 ml-4 mt-2">
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-money-bill-wave text-dcq-red text-base"></i>
+                                <span>Contant geld</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-mobile-alt text-dcq-red text-base"></i>
+                                <span>Bancontact/Bancontact Mobile</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-credit-card text-dcq-red text-base"></i>
+                                <span>Credit- en debetkaarten (Visa, Mastercard)</span>
+                            </li>
+                        </ul>
+                        <p class="mt-3">Voor grotere aankopen kunnen we ook een factuur opstellen voor achteraf betaling.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <button class="faq-question w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 transition-colors" aria-expanded="false">
+                        <span class="font-semibold text-sm md:text-base text-gray-900">Moet ik een afspraak maken?</span>
+                        <i class="fas fa-chevron-down text-dcq-red transition-transform text-sm"></i>
+                    </button>
+                    <div class="faq-answer hidden px-4 pb-3 text-gray-700 text-sm">
+                        <p>Voor kleine reparaties kunt u gewoon binnenlopen tijdens onze openingsuren. Voor grotere herstellingen of een volledige onderhoudsbeurt raden we aan om:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-4 mt-2">
+                            <li>Even te bellen op +32 50 81 42 20 of +32 475 82 23 76</li>
+                            <li>Een e-mail te sturen naar info@dcqbikes.be</li>
+                            <li>Of gewoon langs te komen tijdens openingstijden</li>
+                        </ul>
+                        <p class="mt-3">Zo kunnen we u een betere service garanderen en de wachttijd beperken.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <button class="faq-question w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 transition-colors" aria-expanded="false">
+                        <span class="font-semibold text-sm md:text-base text-gray-900">Onderhoudt u ook elektrische fietsen?</span>
+                        <i class="fas fa-chevron-down text-dcq-red transition-transform text-sm"></i>
+                    </button>
+                    <div class="faq-answer hidden px-4 pb-3 text-gray-700 text-sm">
+                        <p>Ja, wij zijn gespecialiseerd in het onderhouden en herstellen van elektrische fietsen van alle merken:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-4 mt-2">
+                            <li>Batterij controles en diagnostiek</li>
+                            <li>Motoronderhoud</li>
+                            <li>Rem- en versnelling afstelling</li>
+                            <li>Software updates voor displays</li>
+                            <li>Algemene onderhoudsbeurten</li>
+                        </ul>
+                        <p class="mt-3">Onze technici zijn gecertificeerd om te werken met verschillende e-bike systemen (Bosch, Shimano, Bafang, etc.).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <button class="faq-question w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 transition-colors" aria-expanded="false">
+                        <span class="font-semibold text-sm md:text-base text-gray-900">Hoe vaak moet ik mijn fiets laten onderhouden?</span>
+                        <i class="fas fa-chevron-down text-dcq-red transition-transform text-sm"></i>
+                    </button>
+                    <div class="faq-answer hidden px-4 pb-3 text-gray-700 text-sm">
+                        <p>De frequentie van onderhoud hangt af van gebruik en fiets type:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-4 mt-2">
+                            <li><strong>Elektrische fietsen:</strong> Minimaal 1x per jaar of elke 2000-3000 km</li>
+                            <li><strong>Stadsfietsen:</strong> 1x per jaar of elke 1500-2000 km</li>
+                            <li><strong>Racefietsen/Mountainbikes:</strong> 2-3x per jaar of elke 1000-1500 km</li>
+                        </ul>
+                        <p class="mt-3">Na een nat seizoen of zware ritten raden we ook extra onderhoud aan. Kom gerust langs voor advies op maat.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-dcq-black text-dcq-white py-8 md:py-10">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
@@ -1782,6 +1975,7 @@
                         <li><a href="#brands" class="hover:underline hover:text-white transition-colors">Merken</a></li>
                         <li><a href="#gallery" class="hover:underline hover:text-white transition-colors">Galerij</a></li>
                         <li><a href="#contact" class="hover:underline hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#faq" class="hover:underline hover:text-white transition-colors">FAQ</a></li>
                     </ul>
                 </div>
                 <div>

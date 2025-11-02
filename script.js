@@ -860,11 +860,79 @@ async function loadServiceBackgroundImages() {
 }
 
 // Initialize on DOM load
+// FAQ Accordion Functionality
+function initFAQ() {
+    // Toggle FAQ section visibility
+    const faqToggleBtn = document.getElementById('faqToggleBtn');
+    const faqContent = document.getElementById('faqContent');
+    const faqToggleIcon = document.getElementById('faqToggleIcon');
+    
+    if (faqToggleBtn && faqContent) {
+        faqToggleBtn.addEventListener('click', () => {
+            const isExpanded = faqToggleBtn.classList.contains('expanded');
+            
+            if (isExpanded) {
+                faqToggleBtn.classList.remove('expanded');
+                faqContent.classList.remove('show');
+                faqContent.classList.add('hidden');
+                faqToggleBtn.setAttribute('aria-expanded', 'false');
+            } else {
+                faqToggleBtn.classList.add('expanded');
+                faqContent.classList.remove('hidden');
+                faqContent.classList.add('show');
+                faqToggleBtn.setAttribute('aria-expanded', 'true');
+            }
+        });
+        
+        // Set initial state
+        faqToggleBtn.setAttribute('aria-expanded', 'false');
+    }
+    
+    // Individual FAQ item accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        if (!question || !answer) return;
+        
+        question.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent triggering parent toggle
+            
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    const otherQuestion = otherItem.querySelector('.faq-question');
+                    if (otherAnswer) otherAnswer.classList.add('hidden');
+                    if (otherQuestion) otherQuestion.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Toggle current item
+            if (isActive) {
+                item.classList.remove('active');
+                answer.classList.add('hidden');
+                question.setAttribute('aria-expanded', 'false');
+            } else {
+                item.classList.add('active');
+                answer.classList.remove('hidden');
+                question.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     loadBrandImages();
     await loadGalleryImages();
     await loadServiceBackgroundImages();
     updateStoreStatus();
+    initFAQ();
     
     // Update store status every minute
     setInterval(updateStoreStatus, 60000);
@@ -905,8 +973,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const targetValue = 8000;
     const duration = 3000; // 3 seconds for smoother animation
     
-    // Calculate years of experience dynamically (starting January 2006)
-    const startDate = new Date(2006, 0, 1); // January 2006 (month is 0-indexed)
+    // Calculate years of experience dynamically (starting January 2005)
+    const startDate = new Date(2005, 0, 1);
     const currentDate = new Date();
     
     // Calculate the exact difference in years
