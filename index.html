@@ -850,23 +850,26 @@
             max-width: calc(100% - 120px);
         }
         
-        /* Mobile-specific quote styling - smaller icons and text */
+        /* Mobile-specific quote styling - consistent with other subtexts */
         @media (max-width: 768px) {
-            .quote-text.text-xl {
-                font-size: 0.875rem !important; /* text-base */
-                line-height: 1.5rem;
+            .quote-container {
+                padding: 0.5rem 1rem;
+            }
+            
+            .quote-text {
                 gap: 0.5rem;
             }
             
-            .quote-icon-left.text-3xl,
-            .quote-icon-right.text-3xl {
-                font-size: 1.125rem !important; /* text-xl */
-                opacity: 0.6;
+            .quote-icon-left,
+            .quote-icon-right {
+                font-size: 1rem !important; /* text-base */
+                opacity: 0.7;
+                flex-shrink: 0;
             }
             
             .quote-content {
-                max-width: calc(100% - 60px);
-                font-size: 0.875rem !important;
+                font-size: 1.125rem !important; /* text-lg - matches other subtexts */
+                flex: 1 1 auto;
             }
         }
         
@@ -1609,10 +1612,8 @@
             <div class="text-center mb-8 md:mb-10 fade-in">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Onze Merken</h2>
                 <div class="quote-container max-w-3xl mx-auto">
-                    <p class="quote-text text-xl md:text-2xl font-light text-gray-700 italic leading-relaxed">
-                        <i class="fas fa-quote-left text-3xl md:text-4xl text-dcq-red quote-icon-left"></i>
-                        <span class="quote-content">Geselecteerd voor kwaliteit, betrouwbaarheid en prestaties.</span>
-                        <i class="fas fa-quote-right text-3xl md:text-4xl text-dcq-red quote-icon-right"></i>
+                    <p class="quote-text text-lg font-light text-gray-700 italic leading-relaxed">
+                        Zorgvuldig geselecteerd voor kwaliteit, betrouwbaarheid en prestaties
                     </p>
                 </div>
             </div>
@@ -1700,8 +1701,8 @@
     <section id="about" class="py-12 md:py-16 bg-white">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="mb-6 md:mb-8 fade-in">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-center">Over Ons</h2>
-                <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">Over Ons</h2>
+                <div class="max-w-3xl">
                     <div class="flex items-start gap-3 mb-4">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full bg-dcq-red/10 flex items-center justify-center mt-1">
                             <i class="fas fa-bicycle text-dcq-red text-xl"></i>
@@ -1778,7 +1779,7 @@
                                 </div>
                             </div>
                                 </div>
-                </div>
+                            </div>
                 
                 <!-- Media Box -->
                 <div>
@@ -1815,9 +1816,9 @@
     <!-- Contact Section -->
     <section id="contact" class="py-12 md:py-16 bg-gray-50">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="text-center mb-8 md:mb-10 fade-in">
+            <div class="mb-8 md:mb-10 fade-in">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Contact</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                <p class="text-lg text-gray-600 max-w-2xl">
                     Neem contact met ons op of kom langs in onze winkel
                 </p>
             </div>
@@ -1899,11 +1900,11 @@
                                 </div>
                             </div>
 
+                            </div>
                         </div>
+
                     </div>
                     
-                </div>
-                
                 <!-- Contact Form -->
                 <div class="fade-in">
                     <div class="contact-box bg-white p-6 rounded-lg shadow-md contact-form-container h-full flex flex-col">
@@ -1911,26 +1912,26 @@
                         <p class="text-gray-600 mb-6">Vul het formulier in en we nemen zo snel mogelijk contact met u op.</p>
                         <form id="contactForm" class="space-y-4 flex-1 flex flex-col" action="#" data-formspree="https://formspree.io/f/mvgvrjql" method="POST">
                             <div class="flex-1 space-y-4">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium mb-2">Naam *</label>
-                                    <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium mb-2">E-mail *</label>
-                                    <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">
-                                </div>
-                                <div>
-                                    <label for="message" class="block text-sm font-medium mb-2">Bericht *</label>
-                                    <textarea id="message" name="message" rows="7" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent"></textarea>
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-2">Naam *</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-2">E-mail *</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium mb-2">Bericht *</label>
+                                <textarea id="message" name="message" rows="7" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent"></textarea>
                                 </div>
                             </div>
                             <input type="hidden" name="_subject" value="Nieuw bericht via DCQ Bikes website">
                             <input type="text" name="_gotcha" style="display:none">
                             <div class="mt-auto">
-                                <button id="contactSubmit" type="submit" class="w-full bg-dcq-red text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 hover:scale-105 transition-all">
-                                    Verzenden
-                                </button>
-                                <p id="contactStatus" class="mt-2 text-sm text-gray-600 hidden" aria-live="polite"></p>
+                            <button id="contactSubmit" type="submit" class="w-full bg-dcq-red text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 hover:scale-105 transition-all">
+                                Verzenden
+                            </button>
+                            <p id="contactStatus" class="mt-2 text-sm text-gray-600 hidden" aria-live="polite"></p>
                             </div>
                         </form>
                     </div>
