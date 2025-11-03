@@ -1080,10 +1080,6 @@
         
         /* Contact Section Height Matching */
         @media (min-width: 1024px) {
-            #contact .contact-map-container iframe {
-                height: 380px !important;
-            }
-            
             #contact .contact-form-container {
                 min-height: 400px;
             }
@@ -1712,7 +1708,7 @@
                         </div>
                         <div class="flex-1">
                             <p class="text-base md:text-lg text-gray-700 leading-relaxed">
-                                Bij <span class="font-semibold text-gray-900">DCQ Bikes</span> draait alles om fietsen. Van <span class="text-dcq-red font-medium">snelle reparaties</span> tot <span class="text-dcq-red font-medium">uitgebreide onderhoudsbeurten</span>, van stadsfietsen tot elektrische modellen – wij zorgen ervoor dat u altijd soepel op weg kunt.
+                                Bij <span class="font-semibold text-gray-900">DCQ Bikes</span> draait alles om fietsen. Van <span class="text-dcq-red font-medium">snelle reparaties</span> tot <span class="text-dcq-red font-medium">uitgebreide onderhoudsbeurten</span>, van stadsfietsen tot elektrische modellen, wij zorgen ervoor dat u altijd soepel op weg kunt.
                 </p>
             </div>
                     </div>
@@ -1828,10 +1824,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                 <!-- Contact Info -->
                 <div class="space-y-4 md:space-y-6 fade-in">
-                    <div class="contact-box bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md ring-1 ring-gray-100 hover:shadow-lg transition-all">
-                        <div class="flex items-center justify-between mb-5">
-                            <h3 class="text-xl font-bold tracking-tight">Contactgegevens</h3>
-                            </div>
+                    <div class="contact-box bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md ring-1 ring-gray-100 hover:shadow-lg transition-all h-full flex flex-col">
+                        <h3 class="text-xl font-bold tracking-tight mb-5">Contactgegevens</h3>
 
                         <div class="divide-y divide-gray-100">
                             <div class="py-4 flex items-start gap-4">
@@ -1910,41 +1904,34 @@
                     
                 </div>
                 
-                <!-- Map & Form -->
-                <div class="space-y-6 fade-in">
-                    <div class="contact-box bg-white rounded-lg shadow-md overflow-hidden contact-map-container">
-                        <iframe 
-                            src="https://www.google.com/maps?q=Gistelsteenweg+282,+8490+Jabbeke,+Belgium&output=embed" 
-                            width="100%" 
-                            height="300" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="DCQ Bikes Locatie - Jabbeke (Google Maps)"></iframe>
-                    </div>
-                    <div class="contact-box bg-white p-6 rounded-lg shadow-md contact-form-container">
-                        <h3 class="text-2xl font-bold mb-2">Neem contact op</h3>
+                <!-- Contact Form -->
+                <div class="fade-in">
+                    <div class="contact-box bg-white p-6 rounded-lg shadow-md contact-form-container h-full flex flex-col">
+                        <h3 class="text-xl font-bold tracking-tight mb-5">Neem contact op</h3>
                         <p class="text-gray-600 mb-6">Vul het formulier in en we nemen zo snel mogelijk contact met u op.</p>
-                        <form id="contactForm" class="space-y-4" action="#" data-formspree="https://formspree.io/f/mvgvrjql" method="POST">
-                            <div>
-                                <label for="name" class="block text-sm font-medium mb-2">Naam *</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium mb-2">E-mail *</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium mb-2">Bericht *</label>
-                                <textarea id="message" name="message" rows="7" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent"></textarea>
+                        <form id="contactForm" class="space-y-4 flex-1 flex flex-col" action="#" data-formspree="https://formspree.io/f/mvgvrjql" method="POST">
+                            <div class="flex-1 space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium mb-2">Naam *</label>
+                                    <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium mb-2">E-mail *</label>
+                                    <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium mb-2">Bericht *</label>
+                                    <textarea id="message" name="message" rows="7" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dcq-red focus:border-transparent"></textarea>
+                                </div>
                             </div>
                             <input type="hidden" name="_subject" value="Nieuw bericht via DCQ Bikes website">
                             <input type="text" name="_gotcha" style="display:none">
-                            <button id="contactSubmit" type="submit" class="w-full bg-dcq-red text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 hover:scale-105 transition-all">
-                                Verzenden
-                            </button>
-                            <p id="contactStatus" class="mt-2 text-sm text-gray-600 hidden" aria-live="polite"></p>
+                            <div class="mt-auto">
+                                <button id="contactSubmit" type="submit" class="w-full bg-dcq-red text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 hover:scale-105 transition-all">
+                                    Verzenden
+                                </button>
+                                <p id="contactStatus" class="mt-2 text-sm text-gray-600 hidden" aria-live="polite"></p>
+                            </div>
                         </form>
                     </div>
                 </div>
