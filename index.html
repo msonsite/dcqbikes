@@ -106,6 +106,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             grid-auto-rows: 250px;
+            grid-auto-flow: row dense;
             gap: 0.5rem;
             padding: 0;
             width: 100%;
@@ -130,6 +131,27 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            pointer-events: auto;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+        }
+        
+        /* Prevent image selection and dragging globally */
+        img {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
         }
         
         .gallery-item:hover img,
@@ -909,11 +931,11 @@
             transform: translateX(-50%);
             width: 100vw;
             height: 100%;
-            background-image: url('gallerysection/picture1.webp');
+            background-image: url('gallerysection/picture7.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.04;
+            opacity: 0.1;
             z-index: 0;
             pointer-events: none;
         }
@@ -1121,7 +1143,6 @@
         
         /* Team Container Styles */
         .team-container {
-            border-top: 3px solid #ee2726;
             border-top-left-radius: 0.75rem;
             border-top-right-radius: 0.75rem;
             position: relative;
@@ -1136,7 +1157,6 @@
         
         /* Award Box Styles */
         .award-box {
-            border-top: 3px solid #ee2726;
             border-top-left-radius: 0.75rem;
             border-top-right-radius: 0.75rem;
             transition: all 0.3s ease;
@@ -1148,7 +1168,6 @@
         
         /* Media Box Styles */
         .media-box {
-            border-top: 3px solid #ee2726;
             border-top-left-radius: 0.75rem;
             border-top-right-radius: 0.75rem;
         }
@@ -1289,6 +1308,7 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
+            align-items: center;
             gap: 1.5rem;
             flex-wrap: wrap;
         }
@@ -1544,9 +1564,9 @@
         </video>
         <div class="hero-overlay absolute inset-0 flex flex-col items-center justify-center">
             <div class="text-center px-4 z-10 fade-in">
-                <h1 class="hero-title-gradient text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
-                    DCQ Bikes
-                </h1>
+                <div class="mb-6 flex justify-center">
+                    <img src="images/logo/dcqbikeslogotransparent.png" alt="DCQ Bikes" class="h-20 md:h-32 lg:h-40 w-auto object-contain drop-shadow-lg">
+                </div>
             <!--    <p class="text-xl md:text-2xl lg:text-3xl text-dcq-white/95 mb-2 font-light tracking-wide drop-shadow-lg">
                     Waar passie en precisie samenkomen
                 </p> -->
@@ -1567,7 +1587,7 @@
                     <div class="w-px h-10 md:h-12 bg-dcq-white/30"></div>
                     <div>
                         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-1 text-dcq-white drop-shadow-lg" id="yearsCounter">
-                            19
+                            +20
                         </h2>
                         <p class="text-sm md:text-base text-dcq-white/90 font-medium">
                             jaar ervaring
@@ -1789,7 +1809,7 @@
                         <div class="mb-4">
                             <h3 class="text-xl font-bold tracking-tight">Ons Team</h3>
                                 </div>
-                        <div class="team-showcase flex-1">
+                        <div class="team-showcase flex-1 flex items-center justify-center">
                             <div class="team-member">
                                 <div class="team-member-photo-wrapper">
                                     <img src="images/profilepictures/kurtdeclercq.png" alt="Kurt Declercq" class="team-member-photo" onerror="this.src='images/profilepictures/kurt.jpg'; this.onerror=null;">

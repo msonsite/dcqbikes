@@ -425,7 +425,16 @@ async function loadGalleryImages() {
         
         const galleryItem = document.createElement('div');
         const pattern = tilePatterns[index % tilePatterns.length];
-        galleryItem.className = `gallery-item ${pattern} fade-in`;
+        
+        // Special handling for picture9 (last item) - make it fill gaps better
+        const isLastItem = index === galleryImages.length - 1;
+        let finalPattern = pattern;
+        if (isLastItem && galleryImages.length > 8) {
+            // Use a pattern that fills gaps - try 'tall' or 'wide' to fill vertical/horizontal gaps
+            finalPattern = 'tall';
+        }
+        
+        galleryItem.className = `gallery-item ${finalPattern} fade-in`;
         galleryItem.setAttribute('role', 'button');
         galleryItem.setAttribute('tabindex', '0');
         galleryItem.setAttribute('aria-label', `Bekijk afbeelding ${index + 1}`);
@@ -972,7 +981,6 @@ if ('IntersectionObserver' in window) {
 // 8000+ Customers Counter Animation & Years of Experience
 document.addEventListener('DOMContentLoaded', function() {
     const customerCounter = document.getElementById('customerCounter');
-    const yearsCounter = document.getElementById('yearsCounter');
     const heroSection = document.getElementById('home');
     
     if (!customerCounter || !heroSection) return;
@@ -980,21 +988,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let hasAnimated = false;
     const targetValue = 8000;
     const duration = 3000; // 3 seconds for smoother animation
-    
-    // Calculate years of experience dynamically (starting January 2005)
-    const startDate = new Date(2005, 0, 1);
-    const currentDate = new Date();
-    
-    // Calculate the exact difference in years
-    let years = currentDate.getFullYear() - startDate.getFullYear();
-    const months = currentDate.getMonth() - startDate.getMonth();
-    
-    // If we haven't reached the anniversary month yet, subtract 1
-    if (months < 0 || (months === 0 && currentDate.getDate() < startDate.getDate())) {
-        years--;
-    }
-    
-    const targetYears = Math.max(years, 1); // At least 1 year
     
     // easing function (ease-out-cubic)
     function easeOutCubic(t) {
@@ -1035,11 +1028,6 @@ document.addEventListener('DOMContentLoaded', function() {
         requestAnimationFrame(updateCounter);
     }
     
-    // Set years counter to final value immediately (static, no animation)
-    if (yearsCounter) {
-        yearsCounter.textContent = targetYears;
-    }
-    
     // Intersection Observer to trigger animation when hero section is visible
     const observerOptions = {
         threshold: 0.3,
@@ -1055,5 +1043,110 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     sectionObserver.observe(heroSection);
+});
+
+// Image Protection - Prevent right-click and dragging
+document.addEventListener('DOMContentLoaded', function() {
+    // Prevent context menu (right-click) on images
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG' || e.target.closest('img')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // Prevent dragging images
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG' || e.target.closest('img')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // Prevent text selection on images (for additional protection)
+    document.addEventListener('selectstart', function(e) {
+        if (e.target.tagName === 'IMG' || e.target.closest('img')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // Disable keyboard shortcuts for saving images (Ctrl+S, Ctrl+Shift+S, etc.)
+    document.addEventListener('keydown', function(e) {
+        // Disable F12 (developer tools)
+        if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+I (developer tools)
+        if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+            e.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+J (developer console)
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+            e.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+U (view source)
+        if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+            return false;
+        }
+    });
+});
+
+// About Section Mobile Scrollable Boxes Animation
+document.addEventListener('DOMContentLoaded', function() {
+    const aboutBoxesContainer = document.querySelector('.about-boxes-container');
+    if (!aboutBoxesContainer) return;
+    
+    // Only apply on mobile
+    if (window.innerWidth <= 1023) {
+        const boxes = aboutBoxesContainer.querySelectorAll('> div');
+        
+        // Intersection Observer for scroll-triggered animations
+        const boxObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add delay based on index for staggered effect
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150);
+                    boxObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        boxes.forEach((box, index) => {
+            boxObserver.observe(box);
+        });
+        
+        // Smooth scroll behavior on mobile
+        let isScrolling = false;
+        aboutBoxesContainer.addEventListener('scroll', function() {
+            if (!isScrolling) {
+                window.requestAnimationFrame(function() {
+                    // Snap to nearest box
+                    const scrollLeft = aboutBoxesContainer.scrollLeft;
+                    const boxWidth = boxes[0].offsetWidth + 24; // 24px gap
+                    const nearestIndex = Math.round(scrollLeft / boxWidth);
+                    
+                    if (nearestIndex >= 0 && nearestIndex < boxes.length) {
+                        boxes[nearestIndex].scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest',
+                            inline: 'start'
+                        });
+                    }
+                    isScrolling = false;
+                });
+                isScrolling = true;
+            }
+        });
+    }
 });
 
