@@ -1120,6 +1120,13 @@
             min-height: 100%;
         }
         
+        /* Media Box Styles */
+        .media-box {
+            border-top: 3px solid #ee2726;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+        
         .award-box:hover {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             transform: translateY(-2px);
@@ -1696,12 +1703,30 @@
     <!-- About Section -->
     <section id="about" class="py-12 md:py-16 bg-white">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="text-center mb-6 md:mb-8 fade-in">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">Over Ons</h2>
-                <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    Bij DCQ Bikes draait alles om fietsen. Van snelle reparaties tot uitgebreide onderhoudsbeurten, van stadsfietsen tot elektrische modellen, wij zorgen ervoor dat u altijd soepel op weg kunt. 
-                    Met onze lokale expertise en persoonlijke service staan we klaar om u te helpen, of u nu op zoek bent naar een nieuwe fiets of uw huidige fiets weer als nieuw wilt laten lopen.
+            <div class="mb-6 md:mb-8 fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-center">Over Ons</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="flex items-start gap-3 mb-4">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-dcq-red/10 flex items-center justify-center mt-1">
+                            <i class="fas fa-bicycle text-dcq-red text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-base md:text-lg text-gray-700 leading-relaxed">
+                                Bij <span class="font-semibold text-gray-900">DCQ Bikes</span> draait alles om fietsen. Van <span class="text-dcq-red font-medium">snelle reparaties</span> tot <span class="text-dcq-red font-medium">uitgebreide onderhoudsbeurten</span>, van stadsfietsen tot elektrische modellen – wij zorgen ervoor dat u altijd soepel op weg kunt.
                 </p>
+            </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-dcq-red/10 flex items-center justify-center mt-1">
+                            <i class="fas fa-handshake text-dcq-red text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-base md:text-lg text-gray-700 leading-relaxed">
+                                Met onze <span class="font-semibold text-gray-900">lokale expertise</span> en <span class="font-semibold text-gray-900">persoonlijke service</span> staan we klaar om u te helpen, of u nu op zoek bent naar een nieuwe fiets of uw huidige fiets weer als nieuw wilt laten lopen.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 fade-in">
@@ -1880,24 +1905,6 @@
                                 </div>
                             </div>
 
-                            <div class="py-4 flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-full bg-dcq-red/10 text-dcq-red flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-building"></i>
-                                </div>
-                                <div class="min-w-0">
-                                    <p class="text-sm text-gray-500">BTW-nummer</p>
-                                    <p class="font-medium text-gray-900">BE 0685.615.103</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-5 flex items-center gap-3">
-                            <a href="https://maps.app.goo.gl/BHkicYNfbE8LPJHXA" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dcq-red text-white hover:bg-opacity-90 transition-colors">
-                                <i class="fas fa-route"></i> Route
-                            </a>
-                            <a href="tel:+3250814220" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 hover:border-dcq-red hover:text-dcq-red transition-colors">
-                                <i class="fas fa-phone"></i> Bel ons
-                            </a>
                         </div>
                     </div>
                     
@@ -2056,26 +2063,26 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dcq-black text-dcq-white py-8 md:py-10">
+    <footer class="bg-dcq-black text-dcq-white py-6 md:py-10">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 mb-8">
-                <div class="md:col-span-2">
-                    <img src="images/logo/dcqlogo_blackbackground.jpg" alt="DCQ Bikes logo" class="h-12 w-auto mb-4 object-contain">
-                    <p class="text-gray-400 leading-relaxed">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-6 md:mb-8">
+                <div class="col-span-2 md:col-span-2">
+                    <img src="images/logo/dcqlogo_blackbackground.jpg" alt="DCQ Bikes logo" class="h-10 md:h-12 w-auto mb-3 md:mb-4 object-contain">
+                    <p class="text-sm md:text-base text-gray-400 leading-relaxed mb-3 md:mb-4">
                         Uw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers.
                     </p>
-                    <div class="mt-4 flex items-center gap-3">
-                        <a href="https://www.linkedin.com/company/dcqbikes/?originalSubdomain=be" aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-dcq-red text-gray-300 hover:text-white flex items-center justify-center transition-colors" target="_blank" rel="noopener">
+                    <div class="flex items-center gap-3">
+                        <a href="https://www.linkedin.com/company/dcqbikes/?originalSubdomain=be" aria-label="LinkedIn" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gray-800 hover:bg-dcq-red text-gray-300 hover:text-white flex items-center justify-center transition-colors" target="_blank" rel="noopener">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://www.facebook.com/DCQBikes" aria-label="Facebook" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-dcq-red text-gray-300 hover:text-white flex items-center justify-center transition-colors" target="_blank" rel="noopener">
+                        <a href="https://www.facebook.com/DCQBikes" aria-label="Facebook" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gray-800 hover:bg-dcq-red text-gray-300 hover:text-white flex items-center justify-center transition-colors" target="_blank" rel="noopener">
                             <i class="fab fa-facebook"></i>
                         </a>
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-lg mb-3 tracking-tight">Navigatie</h4>
-                    <ul class="space-y-2 text-gray-400">
+                    <h4 class="font-semibold text-base md:text-lg mb-2 md:mb-3 tracking-tight">Navigatie</h4>
+                    <ul class="space-y-1 md:space-y-2 text-sm md:text-base text-gray-400">
                         <li><a href="#home" class="hover:underline hover:text-white transition-colors">Home</a></li>
                         <li><a href="#services" class="hover:underline hover:text-white transition-colors">Aanbod</a></li>
                         <li><a href="#brands" class="hover:underline hover:text-white transition-colors">Merken</a></li>
@@ -2086,18 +2093,22 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-lg mb-3 tracking-tight">Juridisch</h4>
-                    <ul class="space-y-2 text-gray-400">
+                    <h4 class="font-semibold text-base md:text-lg mb-2 md:mb-3 tracking-tight">Juridisch</h4>
+                    <ul class="space-y-1 md:space-y-2 text-sm md:text-base text-gray-400">
                         <li><a href="cookie-policy.html" class="hover:underline hover:text-white transition-colors">Cookiebeleid</a></li>
                         <li><a href="privacy-policy.html" class="hover:underline hover:text-white transition-colors">Privacybeleid</a></li>
                         <li><a href="terms-and-conditions.html" class="hover:underline hover:text-white transition-colors">Algemene Voorwaarden</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-6 text-gray-400">
-                <div class="flex flex-col sm:flex-row items-center sm:items-center justify-center sm:justify-between gap-2">
+            <div class="border-t border-gray-800 pt-4 md:pt-6 text-gray-400">
+                <div class="flex flex-col sm:flex-row items-center sm:items-center justify-center sm:justify-between gap-2 text-xs md:text-sm">
+                    <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
                     <p class="text-center sm:text-left">&copy; 2025 DCQ Bikes. Alle rechten voorbehouden.</p>
-                    <span class="designer-credit text-center sm:text-right">
+                        <span class="hidden sm:inline">•</span>
+                        <p class="text-center sm:text-left">BTW-nummer: BE 0685.615.103</p>
+                    </div>
+                    <span class="designer-credit text-center sm:text-right text-xs">
                         <i class="fas fa-sparkles" aria-hidden="true"></i>
                         Design by
                         <a href="https://www.linkedin.com/in/sanderdelobel/" target="_blank" rel="noopener">Sander de Lobel</a>
