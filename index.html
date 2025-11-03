@@ -896,7 +896,7 @@
         /* Brand Section Styles - Desktop */
         @media (min-width: 769px) {
             /* Fixed width container for all brand rows */
-            .brand-row-container {
+        .brand-row-container {
                 margin-bottom: 1rem;
                 padding: 0;
                 max-width: 1200px;
@@ -906,15 +906,15 @@
             
             .brand-row-container:last-child {
                 margin-bottom: 0;
-            }
+        }
         
-            .brand-row-title {
-                font-size: 1.25rem;
-                font-weight: 600;
-                margin-bottom: 1.5rem;
-                text-align: center;
-                color: #333;
-                letter-spacing: -0.01em;
+        .brand-row-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #333;
+            letter-spacing: -0.01em;
             }
             
             /* Brand rows with equal width and evenly distributed items */
@@ -985,38 +985,38 @@
         
         /* Brand Item Styles - Adaptive Size Boxes */
         @media (min-width: 769px) {
-            .brand-item {
+        .brand-item {
                 width: 100%;
                 aspect-ratio: 16 / 10;
                 min-height: 95px;
-                background: white;
-                border-radius: 12px;
+            background: white;
+            border-radius: 12px;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
                 border: 1px solid rgba(0, 0, 0, 0.04);
-                overflow: hidden;
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: default;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
                 padding: 0.75rem;
                 transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
-            }
+        }
             
             /* Adaptive heights based on available width */
             #brands-large .brand-item {
                 min-height: 110px;
                 padding: 1rem;
-            }
-            
-            #brands-medium .brand-item {
+        }
+        
+        #brands-medium .brand-item {
                 min-height: 85px;
                 padding: 0.6rem;
-            }
-            
-            #brands-small .brand-item {
+        }
+        
+        #brands-small .brand-item {
                 min-height: 70px;
-                padding: 0.5rem;
+            padding: 0.5rem;
             }
         }
         
@@ -1116,10 +1116,14 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            min-height: 100%;
         }
         
         .award-box:hover {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+            background-color: #f9fafb;
         }
         
         .award-box a {
@@ -1128,22 +1132,63 @@
             display: flex;
             align-items: stretch;
             min-height: 100%;
+            cursor: pointer;
         }
         
         .award-box a:hover {
             text-decoration: none;
         }
         
+        .award-box .external-link-icon {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            color: #ee2726;
+            font-size: 0.875rem;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .award-box:hover .external-link-icon {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
         .award-logo-side {
             position: absolute;
-            left: 7rem;
+            left: 1rem;
             top: 0;
             bottom: 0;
-            width: 80px;
+            width: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 1rem 0.5rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .award-logo-side {
+                left: 1rem;
+                width: 60px;
+            }
+        }
+        
+        /* Media Box Styles */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         
         .award-logo-side img {
@@ -1162,9 +1207,18 @@
         }
         
         .award-content {
-            margin-left: calc(80px + 1rem);
+            margin-left: calc(60px + 1rem);
             padding: 1rem;
-            flex: 1;
+            min-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @media (min-width: 1024px) {
+            .award-content {
+                margin-left: calc(60px + 1rem);
+            }
         }
         
         .award-box img:not(.award-logo-side img) {
@@ -1426,6 +1480,7 @@
                     <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Aanbod</a>
                     <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Merken</a>
                     <a href="#gallery" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Galerij</a>
+                    <a href="#about" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Over Ons</a>
                     <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Contact</a>
                     <a href="#faq" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">FAQ</a>
                 </div>
@@ -1434,14 +1489,15 @@
                 </button>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-4 bg-dcq-black">
-                <div class="flex flex-col gap-4">
-                    <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Home</a>
-                    <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Aanbod</a>
-                    <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Merken</a>
-                    <a href="#gallery" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Galerij</a>
-                    <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">Contact</a>
-                    <a href="#faq" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-2">FAQ</a>
+            <div id="mobileMenu" class="hidden md:hidden pb-2 bg-dcq-black">
+                <div class="flex flex-col gap-1">
+                    <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Home</a>
+                    <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Aanbod</a>
+                    <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Merken</a>
+                    <a href="#gallery" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Galerij</a>
+                    <a href="#about" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Over Ons</a>
+                    <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Contact</a>
+                    <a href="#faq" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">FAQ</a>
                 </div>
             </div>
         </div>
@@ -1637,24 +1693,54 @@
         </div>
     </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-12 md:py-16 bg-gray-50">
+    <!-- About Section -->
+    <section id="about" class="py-12 md:py-16 bg-white">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="text-center mb-8 md:mb-10 fade-in">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Contact</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Neem contact met ons op of kom langs in onze winkel
+            <div class="text-center mb-6 md:mb-8 fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">Over Ons</h2>
+                <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Bij DCQ Bikes draait alles om fietsen. Van snelle reparaties tot uitgebreide onderhoudsbeurten, van stadsfietsen tot elektrische modellen, wij zorgen ervoor dat u altijd soepel op weg kunt. 
+                    Met onze lokale expertise en persoonlijke service staan we klaar om u te helpen, of u nu op zoek bent naar een nieuwe fiets of uw huidige fiets weer als nieuw wilt laten lopen.
                 </p>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-                <!-- Contact Info -->
-                <div class="space-y-4 md:space-y-6 fade-in">
-                    <!-- Team Showcase -->
-                    <div class="team-container bg-white rounded-xl p-6 ring-1 ring-gray-100 fade-in">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold tracking-tight">Team</h3>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 fade-in">
+                <!-- Award Box -->
+                <div>
+                    <div class="award-box bg-white rounded-xl shadow-sm ring-1 ring-gray-100 h-full">
+                        <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="group block h-full">
+                            <i class="fas fa-external-link-alt external-link-icon"></i>
+                            <div class="award-logo-side">
+                                <img src="images/vriendelijkstehandelaar/vriendelijkstehandelaarlogo.png" 
+                                     alt="Vriendelijkste Handelaar Logo" 
+                                     class="object-contain">
+                            </div>
+                            <div class="award-content">
+                                <div class="flex flex-col items-center text-center">
+                                    <p class="text-xs font-medium text-gray-700 mb-3">
+                                        DCQ Bikes werd uitgeroepen tot<br>
+                                        <span class="text-dcq-red font-semibold">Vriendelijkste Handelaar</span><br>
+                                        in Jabbeke
+                                    </p>
+                                    <div class="flex items-center justify-center gap-2">
+                                        <span class="text-[10px] font-medium text-gray-500 uppercase tracking-wider">Uitgereikt door</span>
+                                        <img src="images/vriendelijkstehandelaar/handelsgidslogo.png" 
+                                             alt="Handelsgids Logo" 
+                                             class="h-5 w-auto object-contain opacity-80">
+                                    </div>
                                 </div>
-                        <div class="team-showcase">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                    <!-- Team Showcase -->
+                <div>
+                    <div class="team-container bg-white rounded-xl p-6 ring-1 ring-gray-100 h-full flex flex-col">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold tracking-tight">Ons Team</h3>
+                                </div>
+                        <div class="team-showcase flex-1">
                             <div class="team-member">
                                 <div class="team-member-photo-wrapper">
                                     <img src="images/profilepictures/kurtdeclercq.png" alt="Kurt Declercq" class="team-member-photo" onerror="this.src='images/profilepictures/kurt.jpg'; this.onerror=null;">
@@ -1671,6 +1757,52 @@
                                 </div>
                             </div>
                                 </div>
+                </div>
+                
+                <!-- Media Box -->
+                <div>
+                    <div class="media-box bg-white rounded-xl shadow-sm ring-1 ring-gray-100 h-full overflow-hidden cursor-pointer transition-all hover:shadow-md hover:-translate-y-1">
+                        <a href="https://www.hln.be/jabbeke/doe-mee-aan-de-jabbeekse-eindejaarsactie-en-win-twee-elektrische-fietsen~a0f5783d/" target="_blank" rel="noopener" class="group block h-full flex flex-col">
+                            <div class="relative bg-gradient-to-br from-red-50 to-red-100 p-4 flex items-center justify-center border-b border-gray-200">
+                                <i class="fas fa-newspaper text-4xl text-dcq-red opacity-80"></i>
+                                <i class="fas fa-external-link-alt absolute top-3 right-3 text-dcq-red text-sm opacity-60 group-hover:opacity-100 transition-opacity"></i>
+                            </div>
+                            <div class="p-5 flex-1 flex flex-col">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">HLN</span>
+                                    <span class="text-xs text-gray-400">•</span>
+                                    <span class="text-xs text-gray-500">Jabbeke</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-dcq-red transition-colors">
+                                    Doe mee aan de Jabbeekse eindejaarsactie en win twee elektrische fietsen
+                                </h4>
+                                <p class="text-xs text-gray-600 mb-4 line-clamp-3 flex-1">
+                                    Lees het volledige artikel over DCQ Bikes en de lokale eindejaarsactie in Jabbeke.
+                                </p>
+                                <div class="flex items-center gap-2 text-xs text-dcq-red font-medium mt-auto">
+                                    <span>Lees artikel</span>
+                                    <i class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 md:py-16 bg-gray-50">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6">
+            <div class="text-center mb-8 md:mb-10 fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Contact</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Neem contact met ons op of kom langs in onze winkel
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                <!-- Contact Info -->
+                <div class="space-y-4 md:space-y-6 fade-in">
                     <div class="contact-box bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-md ring-1 ring-gray-100 hover:shadow-lg transition-all">
                         <div class="flex items-center justify-between mb-5">
                             <h3 class="text-xl font-bold tracking-tight">Contactgegevens</h3>
@@ -1807,32 +1939,6 @@
                             </button>
                             <p id="contactStatus" class="mt-2 text-sm text-gray-600 hidden" aria-live="polite"></p>
                         </form>
-                    </div>
-                    
-                    <!-- Award Box -->
-                    <div class="award-box bg-white rounded-xl shadow-sm ring-1 ring-gray-100">
-                        <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="group block">
-                            <div class="award-logo-side">
-                                <img src="images/vriendelijkstehandelaar/vriendelijkstehandelaarlogo.png" 
-                                     alt="Vriendelijkste Handelaar Logo" 
-                                     class="object-contain">
-                            </div>
-                            <div class="award-content">
-                                <div class="flex flex-col items-center text-center">
-                                    <p class="text-xs font-medium text-gray-700 mb-3">
-                                        DCQ Bikes werd uitgeroepen tot<br>
-                                        <span class="text-dcq-red font-semibold">Vriendelijkste Handelaar</span><br>
-                                        in Jabbeke
-                                    </p>
-                                    <div class="flex items-center justify-center gap-2">
-                                        <span class="text-[10px] font-medium text-gray-500 uppercase tracking-wider">Uitgereikt door</span>
-                                        <img src="images/vriendelijkstehandelaar/handelsgidslogo.png" 
-                                             alt="Handelsgids Logo" 
-                                             class="h-5 w-auto object-contain opacity-80">
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -1974,6 +2080,7 @@
                         <li><a href="#services" class="hover:underline hover:text-white transition-colors">Aanbod</a></li>
                         <li><a href="#brands" class="hover:underline hover:text-white transition-colors">Merken</a></li>
                         <li><a href="#gallery" class="hover:underline hover:text-white transition-colors">Galerij</a></li>
+                        <li><a href="#about" class="hover:underline hover:text-white transition-colors">Over Ons</a></li>
                         <li><a href="#contact" class="hover:underline hover:text-white transition-colors">Contact</a></li>
                         <li><a href="#faq" class="hover:underline hover:text-white transition-colors">FAQ</a></li>
                     </ul>
