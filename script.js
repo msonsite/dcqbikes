@@ -1,3 +1,11 @@
+// Set current year dynamically
+(function() {
+    const yearElement = document.getElementById('currentYear');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+})();
+
 // Cookie Banner Functionality
 (function() {
     const cookieBanner = document.getElementById('cookieBanner');
