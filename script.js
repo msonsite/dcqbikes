@@ -1014,7 +1014,7 @@ const decisionTree = {
     
     results: {
         "elektrische-fiets": {
-            title: "Elektrische Fietsen",
+            title: "Elektrische fietsen",
             description: "Wij hebben een breed assortiment aan elektrische fietsen van gerenommeerde merken. Kom langs voor persoonlijk advies en testrit.",
             action: "#services",
             actionText: "Bekijk ons aanbod"
@@ -1026,7 +1026,7 @@ const decisionTree = {
             actionText: "Bekijk ons aanbod"
         },
         "kleine-reparatie": {
-            title: "Kleine Reparaties",
+            title: "Kleine reparaties",
             description: "Voor kleine reparaties kunt u gewoon binnenlopen tijdens onze openingsuren. Meestal de volgende dag klaar!",
             action: "#contact",
             actionText: "Bekijk openingstijden"
@@ -1038,7 +1038,7 @@ const decisionTree = {
             actionText: "Contact opnemen"
         },
         "e-bike-service": {
-            title: "Elektrische Fiets Service",
+            title: "Elektrische fiets service",
             description: "Wij zijn gespecialiseerd in het onderhouden van elektrische fietsen. Batterij controles, motoronderhoud, software updates en meer.",
             action: "#contact",
             actionText: "Contact opnemen"
@@ -1062,7 +1062,7 @@ const decisionTree = {
             actionText: "Contact opnemen"
         },
         "batterij": {
-            title: "Batterij of Oplader",
+            title: "Batterij of oplader",
             description: "Voor batterijen en opladers voor elektrische fietsen, neem contact met ons op voor beschikbaarheid en prijzen.",
             action: "#contact",
             actionText: "Contact opnemen"
@@ -1113,7 +1113,10 @@ function initDecisionTree() {
             
             optionBtn.addEventListener('click', () => {
                 if (option.result) {
+                    // Push current step to history before showing result
+                    decisionTree.history.push(stepKey);
                     showResult(option.result);
+                    nav.classList.remove('hidden');
                 } else if (option.action) {
                     // Direct action - close modal first, then navigate
                     closeModal();
@@ -1193,7 +1196,6 @@ function initDecisionTree() {
         resultDiv.appendChild(actionBtn);
         
         content.appendChild(resultDiv);
-        nav.classList.remove('hidden');
     }
     
     function goBack() {
