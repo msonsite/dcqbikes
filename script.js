@@ -146,34 +146,34 @@ async function loadBrandImages() {
     // Define the actual brand images that are available
     const brandImages = {
         'large': [
-            { src: 'images/brands/large/conway.png', name: 'Conway', alt: 'Conway Logo' },
-            { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo' },
-            { src: 'images/brands/large/norta.png', name: 'Norta', alt: 'Norta Logo' },
-            { src: 'images/brands/large/oxfordlogo.webp', name: 'Oxford', alt: 'Oxford Logo' },
-            { src: 'images/brands/large/qio.png', name: 'Qio', alt: 'Qio Logo' },
-            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo' }
+            { src: 'images/brands/large/conway.png', name: 'Conway', alt: 'Conway Logo', url: 'https://www.conway-bikes.com/nl/' },
+            { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo', url: 'https://egopowerplus.be/' },
+            { src: 'images/brands/large/norta.png', name: 'Norta', alt: 'Norta Logo', url: 'https://norta.be/nl/home' },
+            { src: 'images/brands/large/oxfordlogo.webp', name: 'Oxford', alt: 'Oxford Logo', url: 'https://www.oxfordbikes.be/' },
+            { src: 'images/brands/large/qio.png', name: 'Qio', alt: 'Qio Logo', url: 'https://www.qio-bikes.com/nl/' },
+            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo', url: 'https://www.victoria-bikes.com/nl/' }
         ],
         'medium': [
-            { src: 'images/brands/medium/abus.webp', name: 'Abus', alt: 'Abus Logo' },
-            { src: 'images/brands/medium/basil.webp', name: 'Basil', alt: 'Basil Logo' },
-            { src: 'images/brands/medium/bollé.png', name: 'Bollé', alt: 'Bollé Logo' },
-            { src: 'images/brands/medium/contec.webp', name: 'Contec', alt: 'Contec Logo' },
-            { src: 'images/brands/medium/dandell.png', name: 'Dandell', alt: 'Dandell Logo' },
-            { src: 'images/brands/medium/polisport.png', name: 'Polisport', alt: 'Polisport Logo' },
-            { src: 'images/brands/medium/selleroyal.png', name: 'Selle Royal', alt: 'Selle Royal Logo' },
-            { src: 'images/brands/medium/sks.png', name: 'SKS', alt: 'SKS Logo' }
+            { src: 'images/brands/medium/abus.webp', name: 'Abus', alt: 'Abus Logo', url: 'https://www.abus.com/be_nl/' },
+            { src: 'images/brands/medium/basil.webp', name: 'Basil', alt: 'Basil Logo', url: 'https://www.basil.com/nl/' },
+            { src: 'images/brands/medium/bollé.png', name: 'Bollé', alt: 'Bollé Logo', url: 'https://www.bolle.com/' },
+            { src: 'images/brands/medium/contec.webp', name: 'Contec', alt: 'Contec Logo', url: 'https://www.contec-parts.com/nl/' },
+            { src: 'images/brands/medium/dandell.png', name: 'Dandell', alt: 'Dandell Logo', url: 'https://www.dandell.be/' },
+            { src: 'images/brands/medium/polisport.png', name: 'Polisport', alt: 'Polisport Logo', url: 'https://www.polisport.com/en/' },
+            { src: 'images/brands/medium/selleroyal.png', name: 'Selle Royal', alt: 'Selle Royal Logo', url: 'https://www.selleroyal.com/nl_nl/' },
+            { src: 'images/brands/medium/sks.png', name: 'SKS', alt: 'SKS Logo', url: 'https://www.sks-germany.com/nl/' }
         ],
         'small': [
-            { src: 'images/brands/small/bosch.png', name: 'Bosch', alt: 'Bosch Logo' },
-            { src: 'images/brands/small/continental.png', name: 'Continental', alt: 'Continental Logo' },
-            { src: 'images/brands/small/cst.png', name: 'CST', alt: 'CST Logo' },
-            { src: 'images/brands/small/kmc.png', name: 'KMC', alt: 'KMC Logo' },
-            { src: 'images/brands/small/magura.svg', name: 'Magura', alt: 'Magura Logo' },
-            { src: 'images/brands/small/michelin.png', name: 'Michelin', alt: 'Michelin Logo' },
-            { src: 'images/brands/small/morganblue.png', name: 'Morgan Blue', alt: 'Morgan Blue Logo' },
-            { src: 'images/brands/small/sapim.png', name: 'Sapim', alt: 'Sapim Logo' },
-            { src: 'images/brands/small/schwalbe.webp', name: 'Schwalbe', alt: 'Schwalbe Logo' },
-            { src: 'images/brands/small/shimano.png', name: 'Shimano', alt: 'Shimano Logo' }
+            { src: 'images/brands/small/bosch.png', name: 'Bosch', alt: 'Bosch Logo', url: 'https://www.bosch-ebike.com/be/' },
+            { src: 'images/brands/small/continental.png', name: 'Continental', alt: 'Continental Logo', url: 'https://www.continental-tires.com/products/b2c/bicycle/' },
+            { src: 'images/brands/small/cst.png', name: 'CST', alt: 'CST Logo', url: 'https://www.csttires.com/int/' },
+            { src: 'images/brands/small/kmc.png', name: 'KMC', alt: 'KMC Logo', url: 'https://www.kmcchain.eu/' },
+            { src: 'images/brands/small/magura.svg', name: 'Magura', alt: 'Magura Logo', url: 'https://www.magura.com/' },
+            { src: 'images/brands/small/michelin.png', name: 'Michelin', alt: 'Michelin Logo', url: 'https://www.michelin.nl/bicycle/fietsbanden' },
+            { src: 'images/brands/small/morganblue.png', name: 'Morgan Blue', alt: 'Morgan Blue Logo', url: 'https://www.morganblue.net/' },
+            { src: 'images/brands/small/sapim.png', name: 'Sapim', alt: 'Sapim Logo', url: 'https://www.sapim.be/' },
+            { src: 'images/brands/small/schwalbe.webp', name: 'Schwalbe', alt: 'Schwalbe Logo', url: 'https://www.schwalbe.com/nl/' },
+            { src: 'images/brands/small/shimano.png', name: 'Shimano', alt: 'Shimano Logo', url: 'https://bike.shimano.com/nl-NL/home.html' }
         ]
     };
     
@@ -184,11 +184,19 @@ async function loadBrandImages() {
         if ((!container && !mobileMarquee) || images.length === 0) continue;
         
         images.forEach((brand, index) => {
-            // Create brand image wrapper
+            // Create anchor tag for clickable brand logo
+            const brandLink = document.createElement('a');
+            brandLink.href = brand.url || '#';
+            brandLink.target = '_blank';
+            brandLink.rel = 'noopener noreferrer';
+            brandLink.className = 'brand-item';
+            brandLink.setAttribute('data-brand-name', brand.name);
+            brandLink.setAttribute('data-brand-image', brand.src);
+            brandLink.setAttribute('aria-label', `Visit ${brand.name} website`);
+            
+            // Create brand image wrapper div
             const brandWrapper = document.createElement('div');
-            brandWrapper.className = 'brand-item';
-            brandWrapper.setAttribute('data-brand-name', brand.name);
-            brandWrapper.setAttribute('data-brand-image', brand.src);
+            brandWrapper.className = 'brand-item-inner';
             
             // Create image element
             const img = document.createElement('img');
@@ -197,21 +205,22 @@ async function loadBrandImages() {
             img.loading = 'lazy';
             
             brandWrapper.appendChild(img);
+            brandLink.appendChild(brandWrapper);
             
             // Handle image load error
             img.addEventListener('error', () => {
                 console.warn(`Failed to load brand image: ${brand.src}`);
-                brandWrapper.style.display = 'none';
+                brandLink.style.display = 'none';
             });
             
             // Add staggered animation delay
-            brandWrapper.style.animationDelay = `${index * 0.1}s`;
-            brandWrapper.style.opacity = '0';
-            brandWrapper.style.animation = 'fadeInUp 0.6s ease forwards';
+            brandLink.style.animationDelay = `${index * 0.1}s`;
+            brandLink.style.opacity = '0';
+            brandLink.style.animation = 'fadeInUp 0.6s ease forwards';
             
-            if (container) container.appendChild(brandWrapper);
+            if (container) container.appendChild(brandLink);
             if (mobileMarquee) {
-                const clone = brandWrapper.cloneNode(true);
+                const clone = brandLink.cloneNode(true);
                 // Remove any fade-in inline animation styles from desktop rendering
                 clone.style.animation = 'none';
                 clone.style.opacity = '1';
