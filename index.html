@@ -521,6 +521,85 @@
             transform: rotate(180deg);
         }
         
+        /* Decision Tree Modal Styles */
+        #decisionTreeModal {
+            display: flex;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        #decisionTreeModal.show {
+            opacity: 1;
+        }
+        
+        #decisionTreeModal.hidden {
+            display: none;
+        }
+        
+        .decision-tree-step {
+            animation: fadeInUp 0.3s ease;
+        }
+        
+        .decision-tree-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            width: 100%;
+        }
+        
+        .decision-tree-option:hover {
+            border-color: #ee2726;
+            background: #fef2f2;
+            transform: translateX(4px);
+        }
+        
+        .decision-tree-option i {
+            color: #ee2726;
+            font-size: 1.25rem;
+            width: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .decision-tree-result {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+            border: 2px solid #ee2726;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .decision-tree-result h3 {
+            color: #ee2726;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        
+        .decision-tree-result .action-btn {
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #ee2726;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .decision-tree-result .action-btn:hover {
+            background: #d41e1d;
+            transform: translateY(-2px);
+        }
+        
         /* Counter Styles for Hero Section */
         #customerCounter,
         #yearsCounter {
@@ -1636,13 +1715,49 @@
                     </div>
                 </div>
                 
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="#services" class="inline-flex items-center gap-3 px-10 py-4 bg-dcq-red text-white rounded-lg font-semibold text-lg hover:bg-opacity-90 hover:scale-105 transition-all shadow-2xl hover:shadow-red-500/50">
                     Ontdek Meer
                     <i class="fas fa-arrow-down text-sm"></i>
                 </a>
+                    <button id="decisionTreeBtn" class="inline-flex items-center gap-3 px-10 py-4 bg-white/10 backdrop-blur-sm text-white rounded-lg font-semibold text-lg hover:bg-white/20 hover:scale-105 transition-all border-2 border-white/30">
+                        <i class="fas fa-compass text-sm"></i>
+                        Wat heeft u nodig?
+                    </button>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Decision Tree Modal -->
+    <div id="decisionTreeModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-900">Wat heeft u nodig?</h2>
+                <button id="closeDecisionTree" class="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors">
+                    <i class="fas fa-times text-gray-500"></i>
+                </button>
+            </div>
+            
+            <!-- Decision Tree Content -->
+            <div class="flex-1 overflow-y-auto p-6">
+                <div id="decisionTreeContent" class="space-y-4">
+                    <!-- Initial question will be inserted here -->
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <div id="decisionTreeNav" class="hidden border-t border-gray-200 p-4 flex items-center justify-between">
+                <button id="decisionTreeBack" class="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Terug
+                </button>
+                <button id="decisionTreeReset" class="px-4 py-2 text-dcq-red hover:text-dcq-red/80 transition-colors">
+                    Opnieuw beginnen
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Services Section -->
     <section id="services" class="py-0">
@@ -2099,17 +2214,21 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-6 md:py-8 bg-white">
+    <section id="faq" class="py-12 md:py-16 bg-white">
         <div class="container mx-auto max-w-2xl md:max-w-7xl px-4 md:px-6">
-            <button id="faqToggleBtn" class="w-full text-center fade-in hover:bg-gray-50 transition-colors rounded-lg p-4">
-                <div class="flex items-center justify-center gap-3">
-                    <h2 class="text-xl md:text-2xl font-bold">Veelgestelde vragen</h2>
-                    <i id="faqToggleIcon" class="fas fa-chevron-down text-dcq-red transition-transform"></i>
-                </div>
-                <p class="text-sm text-gray-600 mt-1">
-                    Klik om de veelgestelde vragen te bekijken
-                </p>
-            </button>
+            <div class="mb-8 md:mb-10 fade-in">
+                <button id="faqToggleBtn" class="w-full text-left fade-in hover:bg-gray-50 transition-colors rounded-lg p-4 -ml-4">
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex-1">
+                            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Veelgestelde vragen</h2>
+                            <p class="text-lg text-gray-600 max-w-2xl">
+                                Klik om de veelgestelde vragen te bekijken
+                            </p>
+                        </div>
+                        <i id="faqToggleIcon" class="fas fa-chevron-down text-dcq-red transition-transform text-2xl flex-shrink-0"></i>
+                    </div>
+                </button>
+            </div>
 
             <div id="faqContent" class="fade-in hidden mt-6 md:grid md:grid-cols-2 md:gap-4 md:space-y-0 space-y-3">
 

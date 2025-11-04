@@ -953,12 +953,308 @@ function initFAQ() {
     });
 }
 
+// Decision Tree Functionality
+const decisionTree = {
+    history: [],
+    currentStep: null,
+    
+    steps: {
+        start: {
+            question: "Wat zoekt u vandaag?",
+            options: [
+                { text: "Een nieuwe fiets", icon: "fa-bicycle", next: "bikeType" },
+                { text: "Fietsonderhoud of reparatie", icon: "fa-tools", next: "serviceType" },
+                { text: "Onderdelen of accessoires", icon: "fa-cog", next: "partsType" },
+                { text: "Informatie of advies", icon: "fa-info-circle", next: "infoType" }
+            ]
+        },
+        bikeType: {
+            question: "Welk type fiets zoekt u?",
+            options: [
+                { text: "Elektrische fiets", icon: "fa-bolt", result: "elektrische-fiets", action: "#services", actionText: "Bekijk ons aanbod" },
+                { text: "Stadsfiets", icon: "fa-city", result: "stadsfiets", action: "#services", actionText: "Bekijk ons aanbod" },
+                { text: "Ik weet het nog niet", icon: "fa-question-circle", next: "advice" }
+            ]
+        },
+        serviceType: {
+            question: "Wat heeft uw fiets nodig?",
+            options: [
+                { text: "Kleine reparatie (band, remmen, etc.)", icon: "fa-wrench", result: "kleine-reparatie", action: "#contact", actionText: "Contact opnemen" },
+                { text: "Onderhoudsbeurt", icon: "fa-oil-can", result: "onderhoud", action: "#contact", actionText: "Contact opnemen" },
+                { text: "Elektrische fiets service", icon: "fa-battery-half", result: "e-bike-service", action: "#contact", actionText: "Contact opnemen" },
+                { text: "Noodreparatie", icon: "fa-exclamation-triangle", result: "noodreparatie", action: "#contact", actionText: "Bel direct" }
+            ]
+        },
+        partsType: {
+            question: "Wat heeft u nodig?",
+            options: [
+                { text: "Fietsonderdelen", icon: "fa-cogs", result: "onderdelen", action: "#contact", actionText: "Contact opnemen" },
+                { text: "Accessoires", icon: "fa-shopping-bag", result: "accessoires", action: "#contact", actionText: "Contact opnemen" },
+                { text: "Batterij of oplader", icon: "fa-battery-full", result: "batterij", action: "#contact", actionText: "Contact opnemen" }
+            ]
+        },
+        infoType: {
+            question: "Waarover wilt u meer weten?",
+            options: [
+                { text: "Openingstijden", icon: "fa-clock", action: "#contact", actionText: "Bekijk openingstijden" },
+                { text: "Merken die we verkopen", icon: "fa-tags", action: "#brands", actionText: "Bekijk merken" },
+                { text: "Ons verhaal", icon: "fa-info-circle", action: "#about", actionText: "Lees meer" },
+                { text: "Veelgestelde vragen", icon: "fa-question-circle", action: "#faq", actionText: "Bekijk FAQ" }
+            ]
+        },
+        advice: {
+            question: "Laten we u helpen!",
+            options: [
+                { text: "Ik kom langs voor advies", icon: "fa-handshake", action: "#contact", actionText: "Bekijk openingstijden" },
+                { text: "Ik bel voor advies", icon: "fa-phone", action: "tel:+3250814220", actionText: "Bel nu" },
+                { text: "Ik stuur een e-mail", icon: "fa-envelope", action: "mailto:info@dcqbikes.be", actionText: "Stuur e-mail" }
+            ]
+        }
+    },
+    
+    results: {
+        "elektrische-fiets": {
+            title: "Elektrische Fietsen",
+            description: "Wij hebben een breed assortiment aan elektrische fietsen van gerenommeerde merken. Kom langs voor persoonlijk advies en testrit.",
+            action: "#services",
+            actionText: "Bekijk ons aanbod"
+        },
+        "stadsfiets": {
+            title: "Stadsfietsen",
+            description: "Ontdek onze collectie stadsfietsen - perfect voor dagelijks gebruik in de stad.",
+            action: "#services",
+            actionText: "Bekijk ons aanbod"
+        },
+        "kleine-reparatie": {
+            title: "Kleine Reparaties",
+            description: "Voor kleine reparaties kunt u gewoon binnenlopen tijdens onze openingsuren. Meestal de volgende dag klaar!",
+            action: "#contact",
+            actionText: "Bekijk openingstijden"
+        },
+        "onderhoud": {
+            title: "Onderhoudsbeurt",
+            description: "Voor een volledige onderhoudsbeurt raden we aan om eerst contact op te nemen. Zo kunnen we u een betere service garanderen.",
+            action: "#contact",
+            actionText: "Contact opnemen"
+        },
+        "e-bike-service": {
+            title: "Elektrische Fiets Service",
+            description: "Wij zijn gespecialiseerd in het onderhouden van elektrische fietsen. Batterij controles, motoronderhoud, software updates en meer.",
+            action: "#contact",
+            actionText: "Contact opnemen"
+        },
+        "noodreparatie": {
+            title: "Noodreparatie",
+            description: "Voor dringende reparaties, bel ons direct zodat we u kunnen helpen:",
+            action: "tel:+3250814220",
+            actionText: "Bel +32 50 81 42 20"
+        },
+        "onderdelen": {
+            title: "Fietsonderdelen",
+            description: "Wij hebben een ruim assortiment aan fietsonderdelen. Kom langs of neem contact op voor beschikbaarheid.",
+            action: "#contact",
+            actionText: "Contact opnemen"
+        },
+        "accessoires": {
+            title: "Accessoires",
+            description: "Van fietstassen tot verlichting - wij hebben alles wat u nodig heeft voor uw fiets.",
+            action: "#contact",
+            actionText: "Contact opnemen"
+        },
+        "batterij": {
+            title: "Batterij of Oplader",
+            description: "Voor batterijen en opladers voor elektrische fietsen, neem contact met ons op voor beschikbaarheid en prijzen.",
+            action: "#contact",
+            actionText: "Contact opnemen"
+        }
+    }
+};
+
+function initDecisionTree() {
+    const modal = document.getElementById('decisionTreeModal');
+    const openBtn = document.getElementById('decisionTreeBtn');
+    const closeBtn = document.getElementById('closeDecisionTree');
+    const backBtn = document.getElementById('decisionTreeBack');
+    const resetBtn = document.getElementById('decisionTreeReset');
+    const content = document.getElementById('decisionTreeContent');
+    const nav = document.getElementById('decisionTreeNav');
+    
+    if (!modal || !openBtn) return;
+    
+    function showStep(stepKey) {
+        const step = decisionTree.steps[stepKey];
+        if (!step) return;
+        
+        decisionTree.currentStep = stepKey;
+        content.innerHTML = '';
+        
+        const stepDiv = document.createElement('div');
+        stepDiv.className = 'decision-tree-step';
+        
+        // Only show question if it's not the start step
+        if (stepKey !== 'start' && step.question) {
+            const question = document.createElement('h3');
+            question.className = 'text-xl font-bold text-gray-900 mb-4';
+            question.textContent = step.question;
+            stepDiv.appendChild(question);
+        }
+        
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'space-y-3';
+        
+        step.options.forEach(option => {
+            const optionBtn = document.createElement('button');
+            optionBtn.className = 'decision-tree-option';
+            optionBtn.innerHTML = `
+                <i class="fas ${option.icon}"></i>
+                <span class="flex-1 font-medium text-gray-900">${option.text}</span>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+            `;
+            
+            optionBtn.addEventListener('click', () => {
+                if (option.result) {
+                    showResult(option.result);
+                } else if (option.action) {
+                    // Direct action - close modal first, then navigate
+                    closeModal();
+                    setTimeout(() => {
+                        if (option.action.startsWith('#')) {
+                            // For anchor links, scroll to section
+                            const targetId = option.action.substring(1);
+                            const targetElement = document.getElementById(targetId);
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        } else {
+                            // For tel: and mailto:, navigate directly
+                            window.location.href = option.action;
+                        }
+                    }, 300);
+                } else if (option.next) {
+                    decisionTree.history.push(stepKey);
+                    showStep(option.next);
+                    nav.classList.remove('hidden');
+                }
+            });
+            
+            optionsDiv.appendChild(optionBtn);
+        });
+        
+        stepDiv.appendChild(optionsDiv);
+        content.appendChild(stepDiv);
+    }
+    
+    function showResult(resultKey) {
+        const result = decisionTree.results[resultKey];
+        if (!result) return;
+        
+        content.innerHTML = '';
+        
+        const resultDiv = document.createElement('div');
+        resultDiv.className = 'decision-tree-result';
+        
+        const title = document.createElement('h3');
+        title.textContent = result.title;
+        
+        const description = document.createElement('p');
+        description.className = 'text-gray-700 mb-4';
+        description.textContent = result.description;
+        
+        const actionBtn = document.createElement('a');
+        actionBtn.href = result.action;
+        actionBtn.className = 'action-btn';
+        actionBtn.innerHTML = `${result.actionText} <i class="fas fa-arrow-right"></i>`;
+        
+        // Handle click to close modal and navigate properly
+        actionBtn.addEventListener('click', (e) => {
+            if (result.action.startsWith('#')) {
+                // For anchor links, prevent default and handle navigation after closing modal
+                e.preventDefault();
+                closeModal();
+                setTimeout(() => {
+                    const targetId = result.action.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 300);
+            } else {
+                // For tel: and mailto: links, close modal first then navigate
+                e.preventDefault();
+                closeModal();
+                setTimeout(() => {
+                    window.location.href = result.action;
+                }, 300);
+            }
+        });
+        
+        resultDiv.appendChild(title);
+        resultDiv.appendChild(description);
+        resultDiv.appendChild(actionBtn);
+        
+        content.appendChild(resultDiv);
+        nav.classList.remove('hidden');
+    }
+    
+    function goBack() {
+        if (decisionTree.history.length > 0) {
+            const previousStep = decisionTree.history.pop();
+            showStep(previousStep);
+            if (decisionTree.history.length === 0) {
+                nav.classList.add('hidden');
+            }
+        }
+    }
+    
+    function resetTree() {
+        decisionTree.history = [];
+        decisionTree.currentStep = null;
+        showStep('start');
+        nav.classList.add('hidden');
+    }
+    
+    function openModal() {
+        resetTree();
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.add('show'), 10);
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 300);
+    }
+    
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backBtn.addEventListener('click', goBack);
+    resetBtn.addEventListener('click', resetTree);
+    
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     loadBrandImages();
     await loadGalleryImages();
     await loadServiceBackgroundImages();
     updateStoreStatus();
     initFAQ();
+    initDecisionTree();
     
     // Update store status every minute
     setInterval(updateStoreStatus, 60000);
