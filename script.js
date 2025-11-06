@@ -841,23 +841,24 @@ function updateStoreStatus() {
     statusText.textContent = statusMessage;
 }
 
-// Load service block background images from images/onsaanbod folder
+// Load service block and service card background images
 async function loadServiceBackgroundImages() {
     // Map service blocks to their corresponding images
-    // Based on service-block-1, service-block-2, service-block-3 classes
     const serviceImageMap = {
-        'service-block-1': 'images/onsaanbod/verkoop.avif',
-        'service-block-2': 'images/onsaanbod/herstellingen.jpg',
-        'service-block-3': 'images/onsaanbod/grasmaaiers.jpg'
+        'service-block-1': 'gallerysection/picture7.jpg', // Electric bikes hero section
+        'service-card-1': 'images/onsaanbod/verkoop.avif', // Stadsfietsen
+        'service-card-2': 'images/onsaanbod/herstellingen.jpg', // Onderhoud & Herstel
+        'service-card-3': 'images/onsaanbod/herstellingen.jpg', // Onderdelen & Accessoires
+        'service-card-4': 'images/onsaanbod/grasmaaiers.jpg' // Grasmaaiers & Tuin
     };
     
-    // Get all service blocks
-    const serviceBlocks = document.querySelectorAll('.service-block');
+    // Get all service blocks and service cards
+    const serviceBlocks = document.querySelectorAll('.service-block, .service-card');
     
     if (serviceBlocks.length === 0) return;
     
     serviceBlocks.forEach((block) => {
-        // Find which service block class this element has
+        // Find which service block/card class this element has
         let imagePath = null;
         
         for (const className of block.classList) {
@@ -872,7 +873,6 @@ async function loadServiceBackgroundImages() {
             // Verify image exists first
             const img = new Image();
             img.onload = () => {
-                block.style.backgroundImage = `url(${imagePath})`;
                 block.setAttribute('data-bg-image', imagePath);
                 // Set the same background image on ::before pseudo-element for blur effect
                 block.style.setProperty('--bg-image', `url(${imagePath})`);
@@ -1122,11 +1122,17 @@ function initDecisionTree() {
                     closeModal();
                     setTimeout(() => {
                         if (option.action.startsWith('#')) {
-                            // For anchor links, scroll to section
+                            // For anchor links, scroll to section with navbar offset
                             const targetId = option.action.substring(1);
                             const targetElement = document.getElementById(targetId);
                             if (targetElement) {
-                                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
+                            const additionalOffset = 20; // Small offset to ensure section header is fully visible
+                            const targetPosition = targetElement.offsetTop - navHeight - additionalOffset;
+                            window.scrollTo({
+                                top: Math.max(0, targetPosition),
+                                behavior: 'smooth'
+                            });
                             }
                         } else {
                             // For tel: and mailto:, navigate directly
@@ -1178,7 +1184,13 @@ function initDecisionTree() {
                     const targetId = result.action.substring(1);
                     const targetElement = document.getElementById(targetId);
                     if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
+                            const additionalOffset = 20; // Small offset to ensure section header is fully visible
+                            const targetPosition = targetElement.offsetTop - navHeight - additionalOffset;
+                            window.scrollTo({
+                                top: Math.max(0, targetPosition),
+                                behavior: 'smooth'
+                            });
                     }
                 }, 300);
             } else {
