@@ -979,18 +979,18 @@ const decisionTree = {
         serviceType: {
             question: "Wat heeft uw fiets nodig?",
             options: [
-                { text: "Kleine reparatie (band, remmen, etc.)", icon: "fa-wrench", result: "kleine-reparatie", action: "#contact", actionText: "Contact opnemen" },
-                { text: "Onderhoudsbeurt", icon: "fa-oil-can", result: "onderhoud", action: "#contact", actionText: "Contact opnemen" },
-                { text: "Elektrische fiets service", icon: "fa-battery-half", result: "e-bike-service", action: "#contact", actionText: "Contact opnemen" },
-                { text: "Noodreparatie", icon: "fa-exclamation-triangle", result: "noodreparatie", action: "#contact", actionText: "Bel direct" }
+                { text: "Kleine reparatie (band, remmen, etc.)", icon: "fa-wrench", result: "kleine-reparatie", action: "#contact", actionText: "Kom langs" },
+                { text: "Onderhoudsbeurt", icon: "fa-oil-can", result: "onderhoud", action: "#contact", actionText: "Kom langs" },
+                { text: "Elektrische fiets service", icon: "fa-battery-half", result: "e-bike-service", action: "#contact", actionText: "Kom langs" },
+                { text: "Noodreparatie", icon: "fa-exclamation-triangle", result: "noodreparatie", action: "tel:+3250814220", actionText: "Bel direct" }
             ]
         },
         partsType: {
             question: "Wat heeft u nodig?",
             options: [
-                { text: "Fietsonderdelen", icon: "fa-cogs", result: "onderdelen", action: "#contact", actionText: "Contact opnemen" },
-                { text: "Accessoires", icon: "fa-shopping-bag", result: "accessoires", action: "#contact", actionText: "Contact opnemen" },
-                { text: "Batterij of oplader", icon: "fa-battery-full", result: "batterij", action: "#contact", actionText: "Contact opnemen" }
+                { text: "Fietsonderdelen", icon: "fa-cogs", result: "onderdelen", action: "#contact", actionText: "Kom langs" },
+                { text: "Accessoires", icon: "fa-shopping-bag", result: "accessoires", action: "#contact", actionText: "Kom langs" },
+                { text: "Batterij of oplader", icon: "fa-battery-full", result: "batterij", action: "#contact", actionText: "Kom langs" }
             ]
         },
         infoType: {
@@ -1006,7 +1006,7 @@ const decisionTree = {
             question: "Laten we u helpen!",
             options: [
                 { text: "Ik kom langs voor advies", icon: "fa-handshake", action: "#contact", actionText: "Bekijk openingstijden" },
-                { text: "Ik bel voor advies", icon: "fa-phone", action: "tel:+3250814220", actionText: "Bel nu" },
+                { text: "Ik wil eerst meer informatie", icon: "fa-info-circle", action: "#faq", actionText: "Bekijk FAQ" },
                 { text: "Ik stuur een e-mail", icon: "fa-envelope", action: "mailto:info@dcqbikes.be", actionText: "Stuur e-mail" }
             ]
         }
@@ -1021,27 +1021,27 @@ const decisionTree = {
         },
         "stadsfiets": {
             title: "Stadsfietsen",
-            description: "Ontdek onze collectie stadsfietsen - perfect voor dagelijks gebruik in de stad.",
+            description: "Ontdek onze collectie stadsfietsen, perfect voor dagelijks gebruik.",
             action: "#services",
             actionText: "Bekijk ons aanbod"
         },
         "kleine-reparatie": {
             title: "Kleine reparaties",
-            description: "Voor kleine reparaties kunt u gewoon binnenlopen tijdens onze openingsuren. Meestal de volgende dag klaar!",
+            description: "Voor kleine reparaties kunt u gewoon binnenlopen tijdens onze openingsuren. Meestal de volgende dag klaar! Kom gerust langs met uw fiets.",
             action: "#contact",
-            actionText: "Bekijk openingstijden"
+            actionText: "Kom langs"
         },
         "onderhoud": {
             title: "Onderhoudsbeurt",
-            description: "Voor een volledige onderhoudsbeurt raden we aan om eerst contact op te nemen. Zo kunnen we u een betere service garanderen.",
+            description: "Kom langs met uw fiets voor een volledige onderhoudsbeurt. Onze ervaren technici geven uw fiets een grondige controle en service. We helpen u graag persoonlijk!",
             action: "#contact",
-            actionText: "Contact opnemen"
+            actionText: "Kom langs"
         },
         "e-bike-service": {
             title: "Elektrische fiets service",
-            description: "Wij zijn gespecialiseerd in het onderhouden van elektrische fietsen. Batterij controles, motoronderhoud, software updates en meer.",
+            description: "Wij zijn gespecialiseerd in het onderhouden van elektrische fietsen. Kom langs voor batterij controles, motoronderhoud, software updates en meer. We bekijken uw e-bike graag ter plaatse.",
             action: "#contact",
-            actionText: "Contact opnemen"
+            actionText: "Kom langs"
         },
         "noodreparatie": {
             title: "Noodreparatie",
@@ -1051,21 +1051,21 @@ const decisionTree = {
         },
         "onderdelen": {
             title: "Fietsonderdelen",
-            description: "Wij hebben een ruim assortiment aan fietsonderdelen. Kom langs of neem contact op voor beschikbaarheid.",
+            description: "Wij hebben een ruim assortiment aan fietsonderdelen op voorraad. Kom langs in onze winkel om te zien wat we hebben. We helpen u graag persoonlijk bij het vinden van het juiste onderdeel.",
             action: "#contact",
-            actionText: "Contact opnemen"
+            actionText: "Kom langs"
         },
         "accessoires": {
             title: "Accessoires",
-            description: "Van fietstassen tot verlichting - wij hebben alles wat u nodig heeft voor uw fiets.",
+            description: "Van fietstassen tot verlichting, wij hebben alles wat u nodig heeft voor uw fiets. Kom langs om ons assortiment te bekijken en persoonlijk advies te krijgen.",
             action: "#contact",
-            actionText: "Contact opnemen"
+            actionText: "Kom langs"
         },
         "batterij": {
             title: "Batterij of oplader",
-            description: "Voor batterijen en opladers voor elektrische fietsen, neem contact met ons op voor beschikbaarheid en prijzen.",
+            description: "Voor batterijen en opladers voor elektrische fietsen, kom langs in onze winkel. We hebben verschillende modellen op voorraad en kunnen u helpen de juiste keuze te maken.",
             action: "#contact",
-            actionText: "Contact opnemen"
+            actionText: "Kom langs"
         }
     }
 };
