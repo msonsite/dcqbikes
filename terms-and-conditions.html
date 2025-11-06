@@ -15,33 +15,6 @@
     <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'dcq-black': '#010101',
-                        'dcq-white': '#fffefc',
-                        'dcq-red': '#ee2726'
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
     <style>
         * {
             margin: 0;
@@ -49,46 +22,62 @@
             box-sizing: border-box;
         }
         
-        :root {
-            --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            --font-heading: "Inter Tight", "Roboto Condensed", system-ui, sans-serif;
-        }
-        
         body {
-            font-family: var(--font-body);
-            line-height: 1.8;
-            color: #010101;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: #1f2937;
             background-color: #fffefc;
             font-size: 16px;
         }
         
-        h1, h2, h3 {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            line-height: 1.3;
+        .policy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
         }
         
-        main {
-            min-height: calc(100vh - 200px);
+        .policy-header {
+            background-color: #010101;
+            color: #fffefc;
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
         }
         
-        header {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 3rem;
+        .policy-header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .policy-header a {
+            color: #fffefc;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .policy-header a:hover {
+            color: #ee2726;
+        }
+        
+        .policy-header img {
+            height: 35px;
+            width: auto;
         }
         
         h1 {
-            font-size: 2.75rem;
-            margin-bottom: 1rem;
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
             color: #010101;
-            font-weight: 800;
-            letter-spacing: -0.02em;
+            font-weight: 700;
         }
         
         h2 {
-            font-size: 1.875rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
             color: #010101;
             font-weight: 700;
             padding-bottom: 0.5rem;
@@ -96,143 +85,110 @@
         }
         
         h3 {
-            font-size: 1.375rem;
-            margin-top: 1.75rem;
-            margin-bottom: 0.875rem;
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
             color: #010101;
             font-weight: 600;
         }
         
         p {
-            margin-bottom: 1.25rem;
-            color: #333;
-            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: #374151;
+            line-height: 1.7;
         }
         
         ul, ol {
-            margin-left: 1.75rem;
+            margin-left: 1.5rem;
             margin-bottom: 1.5rem;
             line-height: 1.8;
         }
         
         li {
-            margin-bottom: 0.75rem;
-            color: #333;
-        }
-        
-        ul li::marker {
-            color: #ee2726;
+            margin-bottom: 0.5rem;
+            color: #374151;
         }
         
         a {
             color: #ee2726;
             text-decoration: none;
-            transition: color 0.2s ease;
         }
         
         a:hover {
-            color: #d41e1d;
             text-decoration: underline;
         }
         
         .last-updated {
-            color: #666;
+            color: #6b7280;
             font-style: italic;
-            margin-bottom: 2.5rem;
-            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
         }
         
-        .highlight {
+        .highlight-box {
             background-color: #fef2f2;
-            padding: 1.25rem;
-            border-left: 4px solid #ee2726;
-            margin: 2rem 0;
-            border-radius: 4px;
-        }
-        
-        .highlight p {
-            margin-bottom: 0;
+            padding: 1rem;
+            border-left: 3px solid #ee2726;
+            margin: 1.5rem 0;
         }
         
         section {
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
         
-        footer {
+        .policy-footer {
             background-color: #010101;
             color: #fffefc;
-            padding: 2.5rem 0;
-            margin-top: 4rem;
+            padding: 2rem 0;
+            margin-top: 3rem;
             text-align: center;
         }
         
-        footer .container {
+        .policy-footer-content {
+            max-width: 900px;
+            margin: 0 auto;
             padding: 0 2rem;
         }
         
-        footer p {
+        .policy-footer p {
             color: #fffefc;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
         
-        footer a {
+        .policy-footer a {
             color: #ee2726;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-        
-        footer a:hover {
-            color: #ff4444;
-            text-decoration: underline;
         }
         
         @media (max-width: 768px) {
+            .policy-container {
+                padding: 1.5rem;
+            }
+            
             h1 {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
             
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.25rem;
             }
             
             h3 {
-                font-size: 1.125rem;
-            }
-            
-            .container {
-                padding: 1.25rem;
-            }
-            
-            header {
-                padding: 1rem 0;
-                margin-bottom: 2rem;
-            }
-            
-            header a {
-                font-size: 0.875rem;
-            }
-            
-            header img {
-                height: 35px;
-            }
-            
-            ul, ol {
-                margin-left: 1.25rem;
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="images/logo/dcqlogo_blackbackground.jpg" alt="DCQ Bikes logo" class="h-10">
-                <span>←</span> Terug naar hoofdpagina
+    <header class="policy-header">
+        <div class="policy-header-content">
+            <a href="index.html">
+                <img src="images/logo/dcqlogo_blackbackground.jpg" alt="DCQ Bikes logo">
+                <span>← Terug naar hoofdpagina</span>
             </a>
         </div>
     </header>
     
-    <main class="container">
+    <main class="policy-container">
         <h1>Algemene Voorwaarden</h1>
         <p class="last-updated">Laatst bijgewerkt: <span id="lastUpdated"></span></p>
         
@@ -241,11 +197,11 @@
             <p>
                 Deze algemene voorwaarden zijn van toepassing op het gebruik van de informatieve website <strong>www.dcqbikes.be</strong> van DCQ Bikes BV ("wij", "ons", "onze"). Door deze website te bezoeken en te gebruiken, gaat u akkoord met deze voorwaarden.
             </p>
-            <div class="highlight">
+            <div class="highlight-box">
                 <p><strong>Belangrijk:</strong> Deze website is uitsluitend informatief. Wij verkopen geen producten online, bieden geen webshop aan, verwerken geen online betalingen en hebben geen gebruikersaccounts. Deze website dient enkel om onze producten en diensten te tonen en contactgegevens te verschaffen.</p>
             </div>
             <p>
-                DCQ Bikes behoudt zich het recht voor om deze voorwaarden op elk moment te wijzigen zonder voorafgaande kennisgeving. Wijzigingen worden bekendgemaakt op deze pagina met bijgewerpen datum.
+                DCQ Bikes behoudt zich het recht voor om deze voorwaarden op elk moment te wijzigen zonder voorafgaande kennisgeving. Wijzigingen worden bekendgemaakt op deze pagina met bijgewerkte datum.
             </p>
         </section>
         
@@ -286,7 +242,26 @@
         </section>
         
         <section>
-            <h2>4. Aansprakelijkheid en Disclaimer</h2>
+            <h2>4. Technische Diensten en Externe Providers</h2>
+            <p>
+                Onze website maakt gebruik van externe technische diensten voor hosting, content delivery en functionaliteit:
+            </p>
+            
+            <p><strong>GitHub Pages</strong> - Website hosting en content delivery. Onze website wordt gehost via GitHub Pages. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">Privacybeleid</a></p>
+            
+            <p><strong>Cloudflare</strong> - Content delivery network (CDN) en beveiliging. Biedt DDoS-bescherming en versnelde content delivery. <a href="https://www.cloudflare.com/terms/" target="_blank" rel="noopener noreferrer">Servicevoorwaarden</a></p>
+            
+            <p><strong>Font Awesome</strong> - Iconen bibliotheek via CDN. Gebruikt voor het tonen van iconen op onze website. <a href="https://fontawesome.com/license" target="_blank" rel="noopener noreferrer">Licentie</a></p>
+            
+            <p><strong>Fastly CDN</strong> - Content delivery network voor Font Awesome en andere assets. Levert content via hun CDN. <a href="https://www.fastly.com/terms-and-policies" target="_blank" rel="noopener noreferrer">Servicevoorwaarden</a></p>
+            
+            <p>
+                <strong>Opmerking:</strong> Deze externe diensten hebben hun eigen servicevoorwaarden en privacybeleid. Door gebruik te maken van onze website, gaat u ook akkoord met de relevante voorwaarden van deze externe diensten indien van toepassing.
+            </p>
+        </section>
+        
+        <section>
+            <h2>5. Aansprakelijkheid en Disclaimer</h2>
             <p>
                 DCQ Bikes streeft ernaar om nauwkeurige en actuele informatie op deze website te plaatsen. Echter:
             </p>
@@ -294,6 +269,7 @@
                 <li><strong>Wijzigingen zonder kennisgeving:</strong> Informatie op deze website kan zonder voorafgaande kennisgeving worden gewijzigd, bijgewerkt of verwijderd.</li>
                 <li><strong>Geen garantie:</strong> Wij garanderen niet dat alle informatie op deze website volledig, nauwkeurig of actueel is.</li>
                 <li><strong>Typografische fouten:</strong> Ondanks onze zorgvuldigheid kunnen er typografische fouten of onvolledigheden voorkomen in de informatie op deze website.</li>
+                <li><strong>Technische storingen:</strong> Wij zijn niet aansprakelijk voor technische problemen veroorzaakt door externe diensten (GitHub Pages, Cloudflare, etc.)</li>
                 <li><strong>Externe links:</strong> Deze website kan links bevatten naar externe websites. Wij zijn niet verantwoordelijk voor de inhoud, privacybeleid of beschikbaarheid van deze externe websites.</li>
             </ul>
             <p>
@@ -303,11 +279,12 @@
                 <li>Directe of indirecte schade voortvloeiend uit het gebruik van deze website</li>
                 <li>Schade veroorzaakt door technische problemen, onderbrekingen of fouten op de website</li>
                 <li>Schade ten gevolge van het vertrouwen op informatie op deze website</li>
+                <li>Schade veroorzaakt door storingen of problemen bij externe diensten (hosting, CDN, etc.)</li>
             </ul>
         </section>
         
         <section>
-            <h2>5. Intellectueel Eigendom</h2>
+            <h2>6. Intellectueel Eigendom</h2>
             <p>
                 Alle intellectuele eigendomsrechten op de inhoud van deze website behoren toe aan DCQ Bikes BV of zijn licentiegevers. Dit omvat:
             </p>
@@ -332,7 +309,7 @@
         </section>
         
         <section>
-            <h2>6. Toepasselijk Recht en Bevoegde Rechtbank</h2>
+            <h2>7. Toepasselijk Recht en Bevoegde Rechtbank</h2>
             <p>
                 Op deze algemene voorwaarden is <strong>Belgisch recht</strong> van toepassing.
             </p>
@@ -342,14 +319,14 @@
         </section>
         
         <section>
-            <h2>7. Privacy en Gegevensbescherming</h2>
+            <h2>8. Privacy en Gegevensbescherming</h2>
             <p>
-                DCQ Bikes respecteert uw privacy en verwerkt persoonlijke gegevens in overeenstemming met de AVG/GDPR en Belgische privacywetgeving. Voor meer informatie, zie ons <a href="privacy-policy.html">Privacybeleid</a> en <a href="cookie-policy.html">Cookiebeleid</a>.
+                DCQ Bikes respecteert uw privacy en verwerkt persoonlijke gegevens in overeenstemming met de AVG/GDPR en Belgische privacywetgeving. Voor meer informatie over hoe wij uw gegevens verwerken en welke externe diensten gegevens kunnen verwerken, zie ons <a href="privacy-policy.html">Privacybeleid</a> en <a href="cookie-policy.html">Cookiebeleid</a>.
             </p>
         </section>
         
         <section>
-            <h2>8. Contact</h2>
+            <h2>9. Contact</h2>
             <p>
                 Voor vragen over deze algemene voorwaarden of over onze website, neem contact met ons op:
             </p>
@@ -362,7 +339,7 @@
         </section>
         
         <section>
-            <h2>9. Wijzigingen en Slotbepalingen</h2>
+            <h2>10. Wijzigingen en Slotbepalingen</h2>
             <p>
                 DCQ Bikes behoudt zich het recht voor om deze algemene voorwaarden op elk moment te wijzigen. Wijzigingen worden bekendgemaakt op deze pagina met bijgewerkte datum.
             </p>
@@ -373,12 +350,11 @@
                 <strong>Laatst bijgewerkt:</strong> <span id="lastUpdatedFooter"></span>
             </p>
         </section>
-        
     </main>
     
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 DCQ BIKES. Alle rechten voorbehouden.</p>
+    <footer class="policy-footer">
+        <div class="policy-footer-content">
+            <p>&copy; <span id="currentYear"></span> DCQ BIKES. Alle rechten voorbehouden.</p>
             <p style="margin-top: 1rem;">
                 <a href="cookie-policy.html">Cookiebeleid</a> | 
                 <a href="privacy-policy.html">Privacybeleid</a> | 
@@ -388,7 +364,13 @@
     </footer>
     
     <script>
-        // Dynamically set last updated date
+        // Set current year
+        const yearElement = document.getElementById('currentYear');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
+        
+        // Set last updated date
         const monthNames = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", 
                           "Juli", "Augustus", "September", "Oktober", "November", "December"];
         const now = new Date();
@@ -401,4 +383,3 @@
     </script>
 </body>
 </html>
-
