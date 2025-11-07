@@ -1006,7 +1006,6 @@ const decisionTree = {
             question: "Laten we u helpen!",
             options: [
                 { text: "Ik kom langs voor advies", icon: "fa-handshake", action: "#contact", actionText: "Bekijk openingstijden" },
-                { text: "Ik wil eerst meer informatie", icon: "fa-info-circle", action: "#faq", actionText: "Bekijk FAQ" },
                 { text: "Ik stuur een e-mail", icon: "fa-envelope", action: "mailto:info@dcqbikes.be", actionText: "Stuur e-mail" }
             ]
         }
