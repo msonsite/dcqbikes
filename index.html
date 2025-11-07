@@ -420,25 +420,43 @@
         .service-hero-brands .brand-logo-link {
             display: inline-block;
             text-decoration: none;
-            transition: transform 0.2s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.3);
+            min-width: 44px;
+            min-height: 44px;
         }
         
-        .service-hero-brands .brand-logo-link:hover {
-            transform: scale(1.05);
+        .service-hero-brands .brand-logo-link:hover .brand-logo {
+            background: rgba(255, 255, 255, 0.75);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+        
+        .service-hero-brands .brand-logo-link:active .brand-logo {
+            transform: scale(0.97);
+            background: rgba(255, 255, 255, 0.7);
         }
         
         .service-hero-brands .brand-logo {
             width: 140px;
             height: 70px;
             object-fit: contain;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.65);
             padding: 0.75rem 1rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.9);
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
             display: block;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         @media (max-width: 768px) {
@@ -447,10 +465,78 @@
                 padding: 0.75rem;
             }
             
+            .service-hero-brands .brand-logo-link {
+                min-width: 44px;
+                min-height: 44px;
+            }
+            
             .service-hero-brands .brand-logo {
                 width: 110px;
                 height: 60px;
                 padding: 0.5rem 0.75rem;
+            }
+        }
+        
+        /* Disable hover effects on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            .service-hero-brands .brand-logo-link:hover .brand-logo {
+                background: rgba(255, 255, 255, 0.65);
+                border-color: rgba(255, 255, 255, 0.5);
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.12),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            }
+            
+            .service-hero-brands .brand-logo-link:active .brand-logo {
+                transform: scale(0.95);
+                background: rgba(255, 255, 255, 0.7);
+            }
+        }
+        
+        /* Decision Tree Button - Glassmorphic iOS Style */
+        #decisionTreeBtn {
+            background: rgba(255, 255, 255, 0.65) !important;
+            backdrop-filter: blur(20px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+            border: 1px solid rgba(255, 255, 255, 0.5) !important;
+            border-radius: 16px !important;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+            color: #1f2937 !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        #decisionTreeBtn:hover {
+            background: rgba(255, 255, 255, 0.75) !important;
+            border-color: rgba(255, 255, 255, 0.6) !important;
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+            transform: scale(1.02) !important;
+        }
+        
+        #decisionTreeBtn:active {
+            transform: scale(0.98) !important;
+            background: rgba(255, 255, 255, 0.7) !important;
+        }
+        
+        /* Disable hover effects on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            #decisionTreeBtn:hover {
+                background: rgba(255, 255, 255, 0.65) !important;
+                border-color: rgba(255, 255, 255, 0.5) !important;
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.12),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+                transform: none !important;
+            }
+            
+            #decisionTreeBtn:active {
+                transform: scale(0.97) !important;
+                background: rgba(255, 255, 255, 0.7) !important;
             }
         }
         
@@ -463,14 +549,14 @@
         }
         
         .feature-badge {
-            background: rgba(238, 39, 38, 0.9);
+            background: transparent;
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.875rem;
             font-weight: 500;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1.5px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: none;
         }
         
         /* Services Card Grid */
@@ -731,41 +817,54 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem 1.25rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.75rem;
-            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: left;
             width: 100%;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
+            box-shadow: 
+                0 4px 16px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
         
         .decision-tree-option:hover {
-            border-color: #ee2726;
-            background: #fef2f2;
-            transform: translateX(4px);
+            border-color: rgba(238, 39, 38, 0.3);
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 
+                0 8px 24px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
         }
         
         .decision-tree-option:active {
-            border-color: #ee2726;
-            background: #fef2f2;
-            transform: translateX(4px);
+            transform: translateY(0) scale(0.98);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
         
         /* Prevent hover state from persisting on mobile after tap */
         @media (hover: none) and (pointer: coarse) {
             .decision-tree-option:hover {
-                border-color: #e5e7eb;
-                background: white;
+                border-color: rgba(0, 0, 0, 0.08);
+                background: rgba(255, 255, 255, 0.7);
+                box-shadow: 
+                    0 4px 16px rgba(0, 0, 0, 0.08),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.9);
                 transform: none;
             }
             
             .decision-tree-option:active {
-                border-color: #ee2726;
-                background: #fef2f2;
-                transform: translateX(4px);
+                transform: scale(0.97);
+                background: rgba(255, 255, 255, 0.8);
+                border-color: rgba(238, 39, 38, 0.2);
             }
         }
         
@@ -778,10 +877,15 @@
         
         .decision-tree-result {
             padding: 1.5rem;
-            background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
-            border: 2px solid #ee2726;
-            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(238, 39, 38, 0.2);
+            border-radius: 16px;
             margin-top: 1rem;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
         
         .decision-tree-result h3 {
@@ -797,16 +901,124 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.75rem 1.5rem;
-            background: #ee2726;
+            background: rgba(238, 39, 38, 0.9);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             color: white;
-            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
             font-weight: 600;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 4px 16px rgba(238, 39, 38, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .decision-tree-result .action-btn:hover {
-            background: #d41e1d;
+            background: rgba(212, 30, 29, 0.95);
+            box-shadow: 
+                0 8px 24px rgba(238, 39, 38, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
+        }
+        
+        .decision-tree-result .action-btn:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 
+                0 2px 8px rgba(238, 39, 38, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Close button */
+        #closeDecisionTree {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(20px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+            border-radius: 50% !important;
+            box-shadow: 
+                0 4px 16px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        #closeDecisionTree:hover {
+            background: rgba(255, 255, 255, 0.85) !important;
+            box-shadow: 
+                0 8px 24px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+            transform: scale(1.05) !important;
+        }
+        
+        #closeDecisionTree:active {
+            transform: scale(0.95) !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        /* Navigation buttons */
+        #decisionTreeBack,
+        #decisionTreeReset {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(20px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+            border-radius: 12px !important;
+            padding: 0.625rem 1rem !important;
+            box-shadow: 
+                0 4px 16px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            font-weight: 500 !important;
+        }
+        
+        #decisionTreeBack:hover {
+            background: rgba(255, 255, 255, 0.85) !important;
+            box-shadow: 
+                0 8px 24px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        #decisionTreeReset {
+            color: #ee2726 !important;
+        }
+        
+        #decisionTreeReset:hover {
+            background: rgba(255, 255, 255, 0.85) !important;
+            border-color: rgba(238, 39, 38, 0.2) !important;
+            box-shadow: 
+                0 8px 24px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        #decisionTreeBack:active,
+        #decisionTreeReset:active {
+            transform: translateY(0) scale(0.98) !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        /* Disable hover effects on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            #closeDecisionTree:hover,
+            #decisionTreeBack:hover,
+            #decisionTreeReset:hover,
+            .decision-tree-result .action-btn:hover {
+                transform: none !important;
+            }
+            
+            #closeDecisionTree:active,
+            #decisionTreeBack:active,
+            #decisionTreeReset:active,
+            .decision-tree-result .action-btn:active {
+                transform: scale(0.97) !important;
+            }
         }
         
         /* Counter Styles for Hero Section */
