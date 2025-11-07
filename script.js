@@ -1088,69 +1088,82 @@ function initDecisionTree() {
         decisionTree.currentStep = stepKey;
         content.innerHTML = '';
         
-        const stepDiv = document.createElement('div');
-        stepDiv.className = 'decision-tree-step';
-        
-        // Only show question if it's not the start step
-        if (stepKey !== 'start' && step.question) {
-            const question = document.createElement('h3');
-            question.className = 'text-xl font-bold text-gray-900 mb-4';
-            question.textContent = step.question;
-            stepDiv.appendChild(question);
+        // Force clear any active/focus states
+        if (document.activeElement && document.activeElement.blur) {
+            document.activeElement.blur();
         }
         
-        const optionsDiv = document.createElement('div');
-        optionsDiv.className = 'space-y-3';
+        // Use requestAnimationFrame to prevent hover state from persisting on mobile
+        requestAnimationFrame(() => {
+            const stepDiv = document.createElement('div');
+            stepDiv.className = 'decision-tree-step';
         
-        step.options.forEach(option => {
-            const optionBtn = document.createElement('button');
-            optionBtn.className = 'decision-tree-option';
-            optionBtn.innerHTML = `
-                <i class="fas ${option.icon}"></i>
-                <span class="flex-1 font-medium text-gray-900">${option.text}</span>
-                <i class="fas fa-chevron-right text-gray-400"></i>
-            `;
+            // Only show question if it's not the start step
+            if (stepKey !== 'start' && step.question) {
+                const question = document.createElement('h3');
+                question.className = 'text-xl font-bold text-gray-900 mb-4';
+                question.textContent = step.question;
+                stepDiv.appendChild(question);
+            }
             
-            optionBtn.addEventListener('click', () => {
-                if (option.result) {
-                    // Push current step to history before showing result
-                    decisionTree.history.push(stepKey);
-                    showResult(option.result);
-                    nav.classList.remove('hidden');
-                } else if (option.action) {
-                    // Direct action - close modal first, then navigate
-                    closeModal();
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'space-y-3';
+            
+            step.options.forEach(option => {
+                const optionBtn = document.createElement('button');
+                optionBtn.className = 'decision-tree-option';
+                optionBtn.innerHTML = `
+                    <i class="fas ${option.icon}"></i>
+                    <span class="flex-1 font-medium text-gray-900">${option.text}</span>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                `;
+                
+                // Clear focus/active state after interaction on mobile
+                optionBtn.addEventListener('click', (e) => {
+                    // Blur the button to clear any active states
                     setTimeout(() => {
-                        if (option.action.startsWith('#')) {
-                            // For anchor links, scroll to section with navbar offset
-                            const targetId = option.action.substring(1);
-                            const targetElement = document.getElementById(targetId);
-                            if (targetElement) {
-                            const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
-                            const additionalOffset = 20; // Small offset to ensure section header is fully visible
-                            const targetPosition = targetElement.offsetTop - navHeight - additionalOffset;
-                            window.scrollTo({
-                                top: Math.max(0, targetPosition),
-                                behavior: 'smooth'
-                            });
+                        optionBtn.blur();
+                    }, 100);
+                    if (option.result) {
+                        // Push current step to history before showing result
+                        decisionTree.history.push(stepKey);
+                        showResult(option.result);
+                        nav.classList.remove('hidden');
+                    } else if (option.action) {
+                        // Direct action - close modal first, then navigate
+                        closeModal();
+                        setTimeout(() => {
+                            if (option.action.startsWith('#')) {
+                                // For anchor links, scroll to section with navbar offset
+                                const targetId = option.action.substring(1);
+                                const targetElement = document.getElementById(targetId);
+                                if (targetElement) {
+                                const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
+                                const additionalOffset = 20; // Small offset to ensure section header is fully visible
+                                const targetPosition = targetElement.offsetTop - navHeight - additionalOffset;
+                                window.scrollTo({
+                                    top: Math.max(0, targetPosition),
+                                    behavior: 'smooth'
+                                });
+                                }
+                            } else {
+                                // For tel: and mailto:, navigate directly
+                                window.location.href = option.action;
                             }
-                        } else {
-                            // For tel: and mailto:, navigate directly
-                            window.location.href = option.action;
-                        }
-                    }, 300);
-                } else if (option.next) {
-                    decisionTree.history.push(stepKey);
-                    showStep(option.next);
-                    nav.classList.remove('hidden');
-                }
+                        }, 300);
+                    } else if (option.next) {
+                        decisionTree.history.push(stepKey);
+                        showStep(option.next);
+                        nav.classList.remove('hidden');
+                    }
+                });
+                
+                optionsDiv.appendChild(optionBtn);
             });
             
-            optionsDiv.appendChild(optionBtn);
+            stepDiv.appendChild(optionsDiv);
+            content.appendChild(stepDiv);
         });
-        
-        stepDiv.appendChild(optionsDiv);
-        content.appendChild(stepDiv);
     }
     
     function showResult(resultKey) {

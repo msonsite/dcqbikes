@@ -738,12 +738,35 @@
             transition: all 0.2s ease;
             text-align: left;
             width: 100%;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .decision-tree-option:hover {
             border-color: #ee2726;
             background: #fef2f2;
             transform: translateX(4px);
+        }
+        
+        .decision-tree-option:active {
+            border-color: #ee2726;
+            background: #fef2f2;
+            transform: translateX(4px);
+        }
+        
+        /* Prevent hover state from persisting on mobile after tap */
+        @media (hover: none) and (pointer: coarse) {
+            .decision-tree-option:hover {
+                border-color: #e5e7eb;
+                background: white;
+                transform: none;
+            }
+            
+            .decision-tree-option:active {
+                border-color: #ee2726;
+                background: #fef2f2;
+                transform: translateX(4px);
+            }
         }
         
         .decision-tree-option i {
