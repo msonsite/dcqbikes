@@ -693,21 +693,54 @@ function isOnVacation(currentDate) {
     return { isOnVacation: false };
 }
 
-// Helper function to check if current date is a holiday from HOLIDAY_DATES
+// Belgian public holidays loaded from CSV
+let BELGIAN_HOLIDAYS = [];
+
+// Load public holidays from CSV file
+async function loadHolidaysFromCSV() {
+    try {
+        const response = await fetch('./belgium_public_holidays_2026_2040.csv');
+        if (!response.ok) {
+            console.warn('Could not load holidays CSV file');
+            return;
+        }
+        
+        const csvText = await response.text();
+        const lines = csvText.split('\n');
+        
+        // Skip header line (line 0) and process data
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+            
+            // Parse CSV line (format: Date,Holiday)
+            const commaIndex = line.indexOf(',');
+            if (commaIndex === -1) continue;
+            
+            const dateStr = line.substring(0, commaIndex).trim();
+            
+            // Date format: YYYY-MM-DD
+            if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                BELGIAN_HOLIDAYS.push(dateStr);
+            }
+        }
+        
+        console.log(`Loaded ${BELGIAN_HOLIDAYS.length} public holidays from CSV`);
+    } catch (error) {
+        console.error('Error loading holidays CSV:', error);
+    }
+}
+
+// Helper function to check if current date is a holiday
 function isHoliday(currentDate) {
-    if (typeof HOLIDAY_DATES === 'undefined' || !Array.isArray(HOLIDAY_DATES)) return false;
+    if (BELGIAN_HOLIDAYS.length === 0) return false;
     
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth();
-    const currentDay = currentDate.getDate();
-    const currentDateOnly = new Date(currentYear, currentMonth, currentDay);
-    currentDateOnly.setHours(0, 0, 0, 0);
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const dateString = `${year}-${month}-${day}`;
     
-    return HOLIDAY_DATES.some(holiday => {
-        const holidayDate = new Date(holiday[0], holiday[1] - 1, holiday[2]);
-        holidayDate.setHours(0, 0, 0, 0);
-        return holidayDate.getTime() === currentDateOnly.getTime();
-    });
+    return BELGIAN_HOLIDAYS.includes(dateString);
 }
 
 // Helper function to format date in Dutch format (DD/MM/YYYY)
@@ -745,7 +778,7 @@ function updateStoreStatus() {
         return;
     }
     
-    // Check if today is a holiday from HOLIDAY_DATES
+    // Check if today is a holiday from CSV file
     if (isHoliday(now)) {
         storeStatus.classList.remove('open', 'warning', 'closed');
         storeStatus.classList.add('closed');
@@ -971,8 +1004,8 @@ const decisionTree = {
         bikeType: {
             question: "Welk type fiets zoekt u?",
             options: [
-                { text: "Elektrische fiets", icon: "fa-bolt", result: "elektrische-fiets", action: "#services", actionText: "Bekijk ons aanbod" },
-                { text: "Stadsfiets", icon: "fa-city", result: "stadsfiets", action: "#services", actionText: "Bekijk ons aanbod" },
+                { text: "Elektrische fiets", icon: "fa-bolt", result: "elektrische-fiets", action: "#contact", actionText: "Kom langs" },
+                { text: "Stadsfiets", icon: "fa-city", result: "stadsfiets", action: "#contact", actionText: "Kom langs" },
                 { text: "Ik weet het nog niet", icon: "fa-question-circle", next: "advice" }
             ]
         },
@@ -1021,8 +1054,8 @@ const decisionTree = {
         "stadsfiets": {
             title: "Stadsfietsen",
             description: "Ontdek onze collectie stadsfietsen, perfect voor dagelijks gebruik.",
-            action: "#services",
-            actionText: "Bekijk ons aanbod"
+            action: "#contact",
+            actionText: "Kom langs"
         },
         "kleine-reparatie": {
             title: "Kleine reparaties",
@@ -1278,12 +1311,54 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadBrandImages();
     await loadGalleryImages();
     await loadServiceBackgroundImages();
+    
+    // Load holidays from CSV file
+    await loadHolidaysFromCSV();
+    
+    // Update store status (will show "Gesloten (Feestdag)" if today is a holiday from CSV)
     updateStoreStatus();
+    
     initFAQ();
     initDecisionTree();
     
     // Update store status every minute
     setInterval(updateStoreStatus, 60000);
+    
+    // Make store status button clickable on mobile to navigate to contact section
+    const storeStatus = document.getElementById('storeStatus');
+    if (storeStatus) {
+        const isMobile = () => window.innerWidth < 768;
+        
+        // Add click handler for mobile
+        storeStatus.addEventListener('click', () => {
+            if (isMobile()) {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
+                    const targetPosition = contactSection.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+        
+        // Handle keyboard navigation
+        storeStatus.addEventListener('keydown', (e) => {
+            if ((e.key === 'Enter' || e.key === ' ') && isMobile()) {
+                e.preventDefault();
+                storeStatus.click();
+            }
+        });
+        
+        // Update cursor based on screen size
+        const updateCursor = () => {
+            storeStatus.style.cursor = isMobile() ? 'pointer' : 'default';
+        };
+        updateCursor();
+        window.addEventListener('resize', updateCursor);
+    }
 });
 
 // Mobile brand chips filtering
