@@ -6,7 +6,7 @@
     
     <!-- Homepage -->
     <url>
-        <loc>https://dcqbikes.be/</loc>
+        <loc>https://msonsite.github.io/dcqbikes/</loc>
         <lastmod>2024-12-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -14,7 +14,7 @@
     
     <!-- Privacy Policy -->
     <url>
-        <loc>https://dcqbikes.be/privacy-policy.html</loc>
+        <loc>https://msonsite.github.io/dcqbikes/privacy-policy.html</loc>
         <lastmod>2024-12-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -22,7 +22,7 @@
     
     <!-- Terms and Conditions -->
     <url>
-        <loc>https://dcqbikes.be/terms-and-conditions.html</loc>
+        <loc>https://msonsite.github.io/dcqbikes/terms-and-conditions.html</loc>
         <lastmod>2024-12-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -30,7 +30,7 @@
     
     <!-- Cookie Policy -->
     <url>
-        <loc>https://dcqbikes.be/cookie-policy.html</loc>
+        <loc>https://msonsite.github.io/dcqbikes/cookie-policy.html</loc>
         <lastmod>2024-12-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
