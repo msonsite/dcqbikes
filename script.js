@@ -881,19 +881,19 @@ async function loadServiceBackgroundImages() {
         'service-block-1': 'gallerysection/picture7.jpg', // Electric bikes hero section
         'service-card-1': 'images/onsaanbod/verkoop.avif', // Stadsfietsen
         'service-card-2': 'images/onsaanbod/herstellingen.jpg', // Onderhoud & Herstel
-        'service-card-3': 'images/onsaanbod/herstellingen.jpg', // Onderdelen & Accessoires
+        'service-card-3': 'images/onsaanbod/onderdelen.jpg', // Onderdelen & Accessoires
         'service-card-4': 'images/onsaanbod/grasmaaiers.jpg' // Grasmaaiers & Tuin
     };
     
-    // Get all service blocks and service cards
-    const serviceBlocks = document.querySelectorAll('.service-block, .service-card');
+    // Get all service blocks
+    const serviceBlocks = document.querySelectorAll('.service-block');
     
-    if (serviceBlocks.length === 0) return;
+    // Get all service cards (new design)
+    const serviceCards = document.querySelectorAll('.service-card-new');
     
+    // Load images for service blocks (hero sections)
     serviceBlocks.forEach((block) => {
-        // Find which service block/card class this element has
         let imagePath = null;
-        
         for (const className of block.classList) {
             if (serviceImageMap[className]) {
                 imagePath = serviceImageMap[className];
@@ -901,13 +901,10 @@ async function loadServiceBackgroundImages() {
             }
         }
         
-        // If found, set the background image
         if (imagePath) {
-            // Verify image exists first
             const img = new Image();
             img.onload = () => {
                 block.setAttribute('data-bg-image', imagePath);
-                // Set the same background image on ::before pseudo-element for blur effect
                 block.style.setProperty('--bg-image', `url(${imagePath})`);
             };
             img.onerror = () => {
@@ -916,6 +913,8 @@ async function loadServiceBackgroundImages() {
             img.src = imagePath;
         }
     });
+    
+    // Service cards now use img tags directly in HTML, no need to set background images
 }
 
 // Initialize on DOM load
@@ -986,327 +985,6 @@ function initFAQ() {
     });
 }
 
-// Decision Tree Functionality
-const decisionTree = {
-    history: [],
-    currentStep: null,
-    
-    steps: {
-        start: {
-            question: "Wat zoekt u vandaag?",
-            options: [
-                { text: "Een nieuwe fiets", icon: "fa-bicycle", next: "bikeType" },
-                { text: "Fietsonderhoud of reparatie", icon: "fa-tools", next: "serviceType" },
-                { text: "Onderdelen of accessoires", icon: "fa-cog", next: "partsType" },
-                { text: "Informatie of advies", icon: "fa-info-circle", next: "infoType" }
-            ]
-        },
-        bikeType: {
-            question: "Welk type fiets zoekt u?",
-            options: [
-                { text: "Elektrische fiets", icon: "fa-bolt", result: "elektrische-fiets", action: "#contact", actionText: "Kom langs" },
-                { text: "Stadsfiets", icon: "fa-city", result: "stadsfiets", action: "#contact", actionText: "Kom langs" },
-                { text: "Ik weet het nog niet", icon: "fa-question-circle", next: "advice" }
-            ]
-        },
-        serviceType: {
-            question: "Wat heeft uw fiets nodig?",
-            options: [
-                { text: "Kleine reparatie (band, remmen, etc.)", icon: "fa-wrench", result: "kleine-reparatie", action: "#contact", actionText: "Kom langs" },
-                { text: "Onderhoudsbeurt", icon: "fa-oil-can", result: "onderhoud", action: "#contact", actionText: "Kom langs" },
-                { text: "Elektrische fiets service", icon: "fa-battery-half", result: "e-bike-service", action: "#contact", actionText: "Kom langs" },
-                { text: "Noodreparatie", icon: "fa-exclamation-triangle", result: "noodreparatie", action: "tel:+3250814220", actionText: "Bel direct" }
-            ]
-        },
-        partsType: {
-            question: "Wat heeft u nodig?",
-            options: [
-                { text: "Fietsonderdelen", icon: "fa-cogs", result: "onderdelen", action: "#contact", actionText: "Kom langs" },
-                { text: "Accessoires", icon: "fa-shopping-bag", result: "accessoires", action: "#contact", actionText: "Kom langs" },
-                { text: "Batterij of oplader", icon: "fa-battery-full", result: "batterij", action: "#contact", actionText: "Kom langs" }
-            ]
-        },
-        infoType: {
-            question: "Waarover wilt u meer weten?",
-            options: [
-                { text: "Openingstijden", icon: "fa-clock", action: "#contact", actionText: "Bekijk openingstijden" },
-                { text: "Merken die we verkopen", icon: "fa-tags", action: "#brands", actionText: "Bekijk merken" },
-                { text: "Ons verhaal", icon: "fa-info-circle", action: "#about", actionText: "Lees meer" },
-                { text: "Veelgestelde vragen", icon: "fa-question-circle", action: "#faq", actionText: "Bekijk FAQ" }
-            ]
-        },
-        advice: {
-            question: "Laten we u helpen!",
-            options: [
-                { text: "Ik kom langs voor advies", icon: "fa-handshake", action: "#contact", actionText: "Bekijk openingstijden" },
-                { text: "Ik stuur een e-mail", icon: "fa-envelope", action: "mailto:info@dcqbikes.be", actionText: "Stuur e-mail" }
-            ]
-        }
-    },
-    
-    results: {
-        "elektrische-fiets": {
-            title: "Elektrische fietsen",
-            description: "Wij hebben een breed assortiment aan elektrische fietsen van gerenommeerde merken. Kom langs voor persoonlijk advies en testrit.",
-            action: "#services",
-            actionText: "Bekijk ons aanbod"
-        },
-        "stadsfiets": {
-            title: "Stadsfietsen",
-            description: "Ontdek onze collectie stadsfietsen, perfect voor dagelijks gebruik.",
-            action: "#contact",
-            actionText: "Kom langs"
-        },
-        "kleine-reparatie": {
-            title: "Kleine reparaties",
-            description: "Voor kleine reparaties kunt u gewoon binnenlopen tijdens onze openingsuren. Meestal de volgende dag klaar! Kom gerust langs met uw fiets.",
-            action: "#contact",
-            actionText: "Kom langs"
-        },
-        "onderhoud": {
-            title: "Onderhoudsbeurt",
-            description: "Kom langs met uw fiets voor een volledige onderhoudsbeurt. Onze ervaren technici geven uw fiets een grondige controle en service. We helpen u graag persoonlijk!",
-            action: "#contact",
-            actionText: "Kom langs"
-        },
-        "e-bike-service": {
-            title: "Elektrische fiets service",
-            description: "Wij zijn gespecialiseerd in het onderhouden van elektrische fietsen. Kom langs voor batterij controles, motoronderhoud, software updates en meer. We bekijken uw e-bike graag ter plaatse.",
-            action: "#contact",
-            actionText: "Kom langs"
-        },
-        "noodreparatie": {
-            title: "Noodreparatie",
-            description: "Voor dringende reparaties, bel ons direct zodat we u kunnen helpen:",
-            action: "tel:+3250814220",
-            actionText: "Bel +32 50 81 42 20"
-        },
-        "onderdelen": {
-            title: "Fietsonderdelen",
-            description: "Wij hebben een ruim assortiment aan fietsonderdelen op voorraad. Kom langs in onze winkel om te zien wat we hebben. We helpen u graag persoonlijk bij het vinden van het juiste onderdeel.",
-            action: "#contact",
-            actionText: "Kom langs"
-        },
-        "accessoires": {
-            title: "Accessoires",
-            description: "Van fietstassen tot verlichting, wij hebben alles wat u nodig heeft voor uw fiets. Kom langs om ons assortiment te bekijken en persoonlijk advies te krijgen.",
-            action: "#contact",
-            actionText: "Kom langs"
-        },
-        "batterij": {
-            title: "Batterij of oplader",
-            description: "Voor batterijen en opladers voor elektrische fietsen, kom langs in onze winkel. We hebben verschillende modellen op voorraad en kunnen u helpen de juiste keuze te maken.",
-            action: "#contact",
-            actionText: "Kom langs"
-        }
-    }
-};
-
-function initDecisionTree() {
-    const modal = document.getElementById('decisionTreeModal');
-    const openBtn = document.getElementById('decisionTreeBtn');
-    const closeBtn = document.getElementById('closeDecisionTree');
-    const backBtn = document.getElementById('decisionTreeBack');
-    const resetBtn = document.getElementById('decisionTreeReset');
-    const content = document.getElementById('decisionTreeContent');
-    const nav = document.getElementById('decisionTreeNav');
-    
-    if (!modal || !openBtn) return;
-    
-    function showStep(stepKey) {
-        const step = decisionTree.steps[stepKey];
-        if (!step) return;
-        
-        decisionTree.currentStep = stepKey;
-        content.innerHTML = '';
-        
-        // Force clear any active/focus states
-        if (document.activeElement && document.activeElement.blur) {
-            document.activeElement.blur();
-        }
-        
-        // Use requestAnimationFrame to prevent hover state from persisting on mobile
-        requestAnimationFrame(() => {
-            const stepDiv = document.createElement('div');
-            stepDiv.className = 'decision-tree-step';
-        
-            // Only show question if it's not the start step
-            if (stepKey !== 'start' && step.question) {
-                const question = document.createElement('h3');
-                question.className = 'text-xl font-bold text-gray-900 mb-4';
-                question.textContent = step.question;
-                stepDiv.appendChild(question);
-            }
-            
-            const optionsDiv = document.createElement('div');
-            optionsDiv.className = 'space-y-3';
-            
-            step.options.forEach(option => {
-                const optionBtn = document.createElement('button');
-                optionBtn.className = 'decision-tree-option';
-                optionBtn.innerHTML = `
-                    <i class="fas ${option.icon}"></i>
-                    <span class="flex-1 font-medium text-gray-900">${option.text}</span>
-                    <i class="fas fa-chevron-right text-gray-400"></i>
-                `;
-                
-                // Clear focus/active state after interaction on mobile
-                optionBtn.addEventListener('click', (e) => {
-                    // Blur the button to clear any active states
-                    setTimeout(() => {
-                        optionBtn.blur();
-                    }, 100);
-                    if (option.result) {
-                        // Push current step to history before showing result
-                        decisionTree.history.push(stepKey);
-                        showResult(option.result);
-                        nav.classList.remove('hidden');
-                    } else if (option.action) {
-                        // Direct action - close modal first, then navigate
-                        closeModal();
-                        setTimeout(() => {
-                            if (option.action.startsWith('#')) {
-                                // For anchor links, scroll to section with navbar offset
-                                const targetId = option.action.substring(1);
-                                const targetElement = document.getElementById(targetId);
-                                if (targetElement) {
-                                const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
-                                const additionalOffset = 20; // Small offset to ensure section header is fully visible
-                                const targetPosition = targetElement.offsetTop - navHeight - additionalOffset;
-                                window.scrollTo({
-                                    top: Math.max(0, targetPosition),
-                                    behavior: 'smooth'
-                                });
-                                }
-                            } else {
-                                // For tel: and mailto:, navigate directly
-                                window.location.href = option.action;
-                            }
-                        }, 300);
-                    } else if (option.next) {
-                        decisionTree.history.push(stepKey);
-                        showStep(option.next);
-                        nav.classList.remove('hidden');
-                    }
-                });
-                
-                optionsDiv.appendChild(optionBtn);
-            });
-            
-            stepDiv.appendChild(optionsDiv);
-            content.appendChild(stepDiv);
-        });
-    }
-    
-    function showResult(resultKey) {
-        const result = decisionTree.results[resultKey];
-        if (!result) return;
-        
-        content.innerHTML = '';
-        
-        const resultDiv = document.createElement('div');
-        resultDiv.className = 'decision-tree-result';
-        
-        const title = document.createElement('h3');
-        title.textContent = result.title;
-        
-        const description = document.createElement('p');
-        description.className = 'text-gray-700 mb-4';
-        description.textContent = result.description;
-        
-        const actionBtn = document.createElement('a');
-        actionBtn.href = result.action;
-        actionBtn.className = 'action-btn';
-        actionBtn.innerHTML = `${result.actionText} <i class="fas fa-arrow-right"></i>`;
-        
-        // Handle click to close modal and navigate properly
-        actionBtn.addEventListener('click', (e) => {
-            if (result.action.startsWith('#')) {
-                // For anchor links, prevent default and handle navigation after closing modal
-                e.preventDefault();
-                closeModal();
-                setTimeout(() => {
-                    const targetId = result.action.substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                            const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
-                            const additionalOffset = 20; // Small offset to ensure section header is fully visible
-                            const targetPosition = targetElement.offsetTop - navHeight - additionalOffset;
-                            window.scrollTo({
-                                top: Math.max(0, targetPosition),
-                                behavior: 'smooth'
-                            });
-                    }
-                }, 300);
-            } else {
-                // For tel: and mailto: links, close modal first then navigate
-                e.preventDefault();
-                closeModal();
-                setTimeout(() => {
-                    window.location.href = result.action;
-                }, 300);
-            }
-        });
-        
-        resultDiv.appendChild(title);
-        resultDiv.appendChild(description);
-        resultDiv.appendChild(actionBtn);
-        
-        content.appendChild(resultDiv);
-    }
-    
-    function goBack() {
-        if (decisionTree.history.length > 0) {
-            const previousStep = decisionTree.history.pop();
-            showStep(previousStep);
-            if (decisionTree.history.length === 0) {
-                nav.classList.add('hidden');
-            }
-        }
-    }
-    
-    function resetTree() {
-        decisionTree.history = [];
-        decisionTree.currentStep = null;
-        showStep('start');
-        nav.classList.add('hidden');
-    }
-    
-    function openModal() {
-        resetTree();
-        modal.classList.remove('hidden');
-        setTimeout(() => modal.classList.add('show'), 10);
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closeModal() {
-        modal.classList.remove('show');
-        setTimeout(() => {
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }, 300);
-    }
-    
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    backBtn.addEventListener('click', goBack);
-    resetBtn.addEventListener('click', resetTree);
-    
-    // Close on backdrop click
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-    
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
-            closeModal();
-        }
-    });
-}
-
 document.addEventListener('DOMContentLoaded', async () => {
     loadBrandImages();
     await loadGalleryImages();
@@ -1319,7 +997,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateStoreStatus();
     
     initFAQ();
-    initDecisionTree();
     
     // Update store status every minute
     setInterval(updateStoreStatus, 60000);
