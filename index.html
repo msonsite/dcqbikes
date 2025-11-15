@@ -340,23 +340,49 @@
         /* Header */
         .services-header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
         
         .services-title {
-            font-size: 2.5rem;
+            font-size: 1.875rem;
             font-weight: 800;
             color: #1f2937;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
             letter-spacing: -0.02em;
         }
         
+        @media (min-width: 768px) {
+            .services-title {
+                font-size: 2.25rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .services-title {
+                font-size: 3rem;
+            }
+        }
+        
         .services-subtitle {
-            font-size: 1.125rem;
+            font-size: 1rem;
             color: #6b7280;
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
+            padding: 0 2rem;
             line-height: 1.6;
+        }
+        
+        @media (min-width: 768px) {
+            .services-subtitle {
+                font-size: 1.125rem;
+                padding: 0 3rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .services-subtitle {
+                padding: 0 4rem;
+            }
         }
         
         /* Main Grid */
@@ -2180,7 +2206,7 @@
     <section id="services" class="services-section-new">
         <div class="services-container">
             <!-- Header -->
-            <div class="services-header">
+            <div class="services-header fade-in">
                 <h2 class="services-title">Ons Aanbod</h2>
                 <p class="services-subtitle">
                     Een breed assortiment aan fietsen, onderdelen en diensten van gerenommeerde merken
