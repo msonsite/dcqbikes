@@ -325,7 +325,7 @@
         
         /* Services Section - Complete New Design */
         .services-section-new {
-            background: linear-gradient(to bottom, #ffffff, #f8fafc);
+            background: #0a0a0a;
             padding: 3rem 0;
         }
         
@@ -344,7 +344,7 @@
         .services-title {
             font-size: 1.875rem;
             font-weight: 800;
-            color: #1f2937;
+            color: #fffefc;
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
         }
@@ -363,7 +363,7 @@
         
         .services-subtitle {
             font-size: 1rem;
-            color: #6b7280;
+            color: rgba(255, 254, 252, 0.8);
             max-width: 900px;
             margin: 0 auto;
             padding: 0 2rem;
@@ -911,6 +911,47 @@
             background-color: white;
             border-color: #d1d5db;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* FAQ on dark background */
+        section[style*="background: #0a0a0a"] .faq-question {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            color: #fffefc !important;
+        }
+        
+        section[style*="background: #0a0a0a"] .faq-question:hover {
+            background-color: rgba(255, 255, 255, 0.15) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        section[style*="background: #0a0a0a"] .faq-question span {
+            color: #fffefc !important;
+        }
+        
+        section[style*="background: #0a0a0a"] .faq-item.active .faq-question {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        section[style*="background: #0a0a0a"] .faq-answer,
+        section[style*="background: #0a0a0a"] .faq-answer p,
+        section[style*="background: #0a0a0a"] .faq-answer span,
+        section[style*="background: #0a0a0a"] .faq-answer strong,
+        section[style*="background: #0a0a0a"] .faq-answer li {
+            color: rgba(255, 254, 252, 0.9) !important;
+        }
+        
+        section[style*="background: #0a0a0a"] .faq-answer strong {
+            color: #fffefc !important;
+        }
+        
+        section[style*="background: #0a0a0a"] #faqToggleBtn {
+            background-color: transparent !important;
+        }
+        
+        section[style*="background: #0a0a0a"] #faqToggleBtn:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
         }
         
         .faq-question {
@@ -1709,9 +1750,7 @@
             overflow: hidden;
             cursor: pointer;
             min-height: 100%;
-            background: rgba(255, 255, 255, 0.7) !important;
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: #ffffff !important;
             border: 1px solid rgba(0, 0, 0, 0.08);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
@@ -1719,9 +1758,8 @@
         /* Media Box Styles */
         .media-box {
             border-radius: 16px;
-            background: rgba(255, 255, 255, 0.7) !important;
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            overflow: hidden;
+            background: #ffffff !important;
             border: 1px solid rgba(0, 0, 0, 0.08) !important;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -1748,9 +1786,7 @@
         }
         
         .team-container {
-            background: rgba(255, 255, 255, 0.7) !important;
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: #ffffff !important;
             border: 1px solid rgba(0, 0, 0, 0.08) !important;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
             border-radius: 16px !important;
@@ -2124,7 +2160,7 @@
     </div>
 
     <!-- Sticky Navigation -->
-    <nav id="mainNav" class="sticky top-0 bg-dcq-black shadow-md z-40 transition-all">
+    <nav id="mainNav" class="sticky top-0 shadow-md z-40 transition-all" style="background: #0a0a0a;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="flex items-center justify-between py-4">
                 <a href="#home" class="flex items-center gap-2">
@@ -2144,7 +2180,7 @@
                 </button>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-2 bg-dcq-black">
+            <div id="mobileMenu" class="hidden md:hidden pb-2" style="background: #0a0a0a;">
                 <div class="flex flex-col gap-1">
                     <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Home</a>
                     <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Aanbod</a>
@@ -2398,10 +2434,10 @@
     </div>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="py-10 md:py-12 bg-dcq-white overflow-hidden">
+    <section id="gallery" class="py-10 md:py-12 overflow-hidden" style="background: #0a0a0a;">
         <div class="text-center mb-6 md:mb-8 fade-in px-4">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Galerij</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Galerij</h2>
+                <p class="text-lg max-w-2xl mx-auto" style="color: rgba(255, 254, 252, 0.8);">
                 Een kijkje in onze winkel
                 </p>
             </div>
@@ -2428,18 +2464,18 @@
     </div>
 
     <!-- About Section -->
-    <section id="about" class="py-12 md:py-16 bg-white relative overflow-hidden">
+    <section id="about" class="py-12 md:py-16 relative overflow-hidden" style="background: #0a0a0a;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="mb-6 md:mb-8 fade-in">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">Over DCQ Bikes</h2>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6" style="color: #fffefc;">Over DCQ Bikes</h2>
                 <div class="max-w-3xl">
                     <div class="flex items-start gap-3 mb-4">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full bg-dcq-red/10 flex items-center justify-center mt-1">
                             <i class="fas fa-bicycle text-dcq-red text-xl"></i>
                         </div>
                         <div class="flex-1">
-                            <p class="text-base md:text-lg text-gray-700 leading-relaxed">
-                                Bij <span class="font-semibold text-gray-900">DCQ Bikes</span> draait alles om fietsen. Van <span class="text-dcq-red font-medium">snelle reparaties</span> tot <span class="text-dcq-red font-medium">uitgebreide onderhoudsbeurten</span>, van stadsfietsen tot elektrische modellen, wij zorgen ervoor dat u altijd soepel op weg kunt.
+                            <p class="text-base md:text-lg leading-relaxed" style="color: rgba(255, 254, 252, 0.9);">
+                                Bij <span class="font-semibold" style="color: #fffefc;">DCQ Bikes</span> draait alles om fietsen. Van <span class="text-dcq-red font-medium">snelle reparaties</span> tot <span class="text-dcq-red font-medium">uitgebreide onderhoudsbeurten</span>, van stadsfietsen tot elektrische modellen, wij zorgen ervoor dat u altijd soepel op weg kunt.
                 </p>
             </div>
                     </div>
@@ -2448,8 +2484,8 @@
                             <i class="fas fa-handshake text-dcq-red text-xl"></i>
                         </div>
                         <div class="flex-1">
-                            <p class="text-base md:text-lg text-gray-700 leading-relaxed">
-                                Met onze <span class="font-semibold text-gray-900">lokale expertise</span> en <span class="font-semibold text-gray-900">persoonlijke service</span> staan we klaar om u te helpen, of u nu op zoek bent naar een nieuwe fiets of uw huidig exemplaar weer als nieuw wilt laten lopen.
+                            <p class="text-base md:text-lg leading-relaxed" style="color: rgba(255, 254, 252, 0.9);">
+                                Met onze <span class="font-semibold" style="color: #fffefc;">lokale expertise</span> en <span class="font-semibold" style="color: #fffefc;">persoonlijke service</span> staan we klaar om u te helpen, of u nu op zoek bent naar een nieuwe fiets of uw huidig exemplaar weer als nieuw wilt laten lopen.
                             </p>
                         </div>
                     </div>
@@ -2552,7 +2588,7 @@
                 <!-- Media Box -->
                 <div>
                     <div class="media-box h-full flex flex-col">
-                        <div class="relative p-4 flex items-center justify-center border-b border-gray-200/30 flex-shrink-0" style="background: rgba(249, 250, 251, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                        <div class="relative p-4 flex items-center justify-center border-b border-gray-200/30 flex-shrink-0 media-box-header" style="background: #ffffff; border-top-left-radius: 16px; border-top-right-radius: 16px;">
                                 <i class="fas fa-newspaper text-4xl text-dcq-red opacity-80"></i>
                             </div>
                         <div class="p-5 flex-1 overflow-hidden flex flex-col" style="min-height: 0;">
@@ -2760,14 +2796,14 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-12 md:py-16 bg-white">
+    <section id="faq" class="py-12 md:py-16" style="background: #0a0a0a;">
         <div class="container mx-auto max-w-2xl md:max-w-7xl px-4 md:px-6">
             <div class="mb-8 md:mb-10 fade-in">
-                <button id="faqToggleBtn" class="w-full text-left fade-in hover:bg-gray-50 transition-colors rounded-lg p-4 -ml-4">
+                <button id="faqToggleBtn" class="w-full text-left fade-in transition-colors rounded-lg p-4 -ml-4">
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
-                            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Veelgestelde vragen</h2>
-                            <p class="text-lg text-gray-600 max-w-2xl">
+                            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Veelgestelde vragen</h2>
+                            <p class="text-lg max-w-2xl" style="color: rgba(255, 254, 252, 0.8);">
                                 Klik om de veelgestelde vragen te bekijken
                             </p>
                         </div>
@@ -2945,7 +2981,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dcq-black text-dcq-white py-6 md:py-10">
+    <footer class="text-dcq-white py-6 md:py-10" style="background: #0a0a0a;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-6 md:mb-8">
                 <div class="col-span-2 md:col-span-2">
