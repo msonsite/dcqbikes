@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
     ============================================
-    DOMAIN MIGRATION INSTRUCTIONS
+    DOMAIN MIGRATION COMPLETE
     ============================================
-    CURRENT DOMAIN: https://msonsite.github.io/dcqbikes/
-    FUTURE DOMAIN: https://dcqbikes.be
-    
-    When migrating, replace all instances of:
-    "https://msonsite.github.io/dcqbikes" 
-    with:
-    "https://dcqbikes.be"
+    All URLs have been updated to use: https://dcqbikes.be
     ============================================
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -19,7 +13,7 @@
     
     <!-- Homepage -->
     <url>
-        <loc>https://msonsite.github.io/dcqbikes/</loc>
+        <loc>https://dcqbikes.be/</loc>
         <lastmod>2024-12-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -27,7 +21,7 @@
     
     <!-- Privacy Policy -->
     <url>
-        <loc>https://msonsite.github.io/dcqbikes/privacy-policy.html</loc>
+        <loc>https://dcqbikes.be/privacy-policy.html</loc>
         <lastmod>2024-12-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -35,7 +29,7 @@
     
     <!-- Terms and Conditions -->
     <url>
-        <loc>https://msonsite.github.io/dcqbikes/terms-and-conditions.html</loc>
+        <loc>https://dcqbikes.be/terms-and-conditions.html</loc>
         <lastmod>2024-12-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -43,7 +37,7 @@
     
     <!-- Cookie Policy -->
     <url>
-        <loc>https://msonsite.github.io/dcqbikes/cookie-policy.html</loc>
+        <loc>https://dcqbikes.be/cookie-policy.html</loc>
         <lastmod>2024-12-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
