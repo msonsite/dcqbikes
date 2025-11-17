@@ -731,6 +731,26 @@ async function loadHolidaysFromCSV() {
     }
 }
 
+// Helper function to check if current date is in HOLIDAY_DATES from store-config.js
+function isHolidayDate(currentDate) {
+    if (typeof HOLIDAY_DATES === 'undefined') return false;
+    
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-indexed
+    const currentDay = currentDate.getDate();
+    
+    for (const holidayDate of HOLIDAY_DATES) {
+        // HOLIDAY_DATES format: [year, month, day] (1-indexed month)
+        if (holidayDate[0] === currentYear && 
+            holidayDate[1] === currentMonth && 
+            holidayDate[2] === currentDay) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 // Helper function to check if current date is a holiday
 function isHoliday(currentDate) {
     if (BELGIAN_HOLIDAYS.length === 0) return false;
@@ -778,7 +798,15 @@ function updateStoreStatus() {
         return;
     }
     
-    // Check if today is a holiday from CSV file
+    // Check if today is in HOLIDAY_DATES from store-config.js (show just "Gesloten")
+    if (isHolidayDate(now)) {
+        storeStatus.classList.remove('open', 'warning', 'closed');
+        storeStatus.classList.add('closed');
+        statusText.textContent = 'Gesloten';
+        return;
+    }
+    
+    // Check if today is a holiday from CSV file (show "Gesloten (Feestdag)")
     if (isHoliday(now)) {
         storeStatus.classList.remove('open', 'warning', 'closed');
         storeStatus.classList.add('closed');
