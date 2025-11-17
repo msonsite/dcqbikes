@@ -17,4 +17,5 @@ const VACATION_PERIODS = [
 // To add specific holiday dates that don't fall in vacation periods
 const HOLIDAY_DATES = [
     // [2025, 11, 1],
+    [2025, 11, 19]
 ];
