@@ -699,7 +699,7 @@ let BELGIAN_HOLIDAYS = [];
 // Load public holidays from CSV file
 async function loadHolidaysFromCSV() {
     try {
-        const response = await fetch('./data/belgium_public_holidays_2026_2040.csv');
+        const response = await fetch('../data/belgium_public_holidays_2026_2040.csv');
         if (!response.ok) {
             console.warn('Could not load holidays CSV file');
             return;
