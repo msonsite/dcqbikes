@@ -146,34 +146,34 @@ async function loadBrandImages() {
     // Define the actual brand images that are available
     const brandImages = {
         'large': [
-            { src: 'images/brands/large/conway.png', name: 'Conway', alt: 'Conway Logo', url: 'https://www.conway-bikes.com/nl/' },
-            { src: 'images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo', url: 'https://egopowerplus.be/' },
-            { src: 'images/brands/large/norta.png', name: 'Norta', alt: 'Norta Logo', url: 'https://norta.be/nl/home' },
-            { src: 'images/brands/large/oxfordlogo.webp', name: 'Oxford', alt: 'Oxford Logo', url: 'https://www.oxfordbikes.be/' },
-            { src: 'images/brands/large/qio.png', name: 'Qio', alt: 'Qio Logo', url: 'https://www.qio-bikes.com/nl/' },
-            { src: 'images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo', url: 'https://www.victoria-bikes.com/nl/' }
+            { src: 'assets/images/brands/large/conway.png', name: 'Conway', alt: 'Conway Logo', url: 'https://www.conway-bikes.com/nl/' },
+            { src: 'assets/images/brands/large/ego-logo.png', name: 'EGO', alt: 'EGO Logo', url: 'https://egopowerplus.be/' },
+            { src: 'assets/images/brands/large/norta.png', name: 'Norta', alt: 'Norta Logo', url: 'https://norta.be/nl/home' },
+            { src: 'assets/images/brands/large/oxfordlogo.webp', name: 'Oxford', alt: 'Oxford Logo', url: 'https://www.oxfordbikes.be/' },
+            { src: 'assets/images/brands/large/qio.png', name: 'Qio', alt: 'Qio Logo', url: 'https://www.qio-bikes.com/nl/' },
+            { src: 'assets/images/brands/large/victoria-groot.png', name: 'Victoria', alt: 'Victoria Logo', url: 'https://www.victoria-bikes.com/nl/' }
         ],
         'medium': [
-            { src: 'images/brands/medium/abus.webp', name: 'Abus', alt: 'Abus Logo', url: 'https://www.abus.com/be_nl/' },
-            { src: 'images/brands/medium/basil.webp', name: 'Basil', alt: 'Basil Logo', url: 'https://www.basil.com/nl/' },
-            { src: 'images/brands/medium/bollé.png', name: 'Bollé', alt: 'Bollé Logo', url: 'https://www.bolle.com/' },
-            { src: 'images/brands/medium/contec.webp', name: 'Contec', alt: 'Contec Logo', url: 'https://www.contec-parts.com/nl/' },
-            { src: 'images/brands/medium/dandell.png', name: 'Dandell', alt: 'Dandell Logo', url: 'https://www.dandell.be/' },
-            { src: 'images/brands/medium/polisport.png', name: 'Polisport', alt: 'Polisport Logo', url: 'https://www.polisport.com/en/' },
-            { src: 'images/brands/medium/selleroyal.png', name: 'Selle Royal', alt: 'Selle Royal Logo', url: 'https://www.selleroyal.com/nl_nl/' },
-            { src: 'images/brands/medium/sks.png', name: 'SKS', alt: 'SKS Logo', url: 'https://www.sks-germany.com/nl/' }
+            { src: 'assets/images/brands/medium/abus.webp', name: 'Abus', alt: 'Abus Logo', url: 'https://www.abus.com/be_nl/' },
+            { src: 'assets/images/brands/medium/basil.webp', name: 'Basil', alt: 'Basil Logo', url: 'https://www.basil.com/nl/' },
+            { src: 'assets/images/brands/medium/bollé.png', name: 'Bollé', alt: 'Bollé Logo', url: 'https://www.bolle.com/' },
+            { src: 'assets/images/brands/medium/contec.webp', name: 'Contec', alt: 'Contec Logo', url: 'https://www.contec-parts.com/nl/' },
+            { src: 'assets/images/brands/medium/dandell.png', name: 'Dandell', alt: 'Dandell Logo', url: 'https://www.dandell.be/' },
+            { src: 'assets/images/brands/medium/polisport.png', name: 'Polisport', alt: 'Polisport Logo', url: 'https://www.polisport.com/en/' },
+            { src: 'assets/images/brands/medium/selleroyal.png', name: 'Selle Royal', alt: 'Selle Royal Logo', url: 'https://www.selleroyal.com/nl_nl/' },
+            { src: 'assets/images/brands/medium/sks.png', name: 'SKS', alt: 'SKS Logo', url: 'https://www.sks-germany.com/nl/' }
         ],
         'small': [
-            { src: 'images/brands/small/bosch.png', name: 'Bosch', alt: 'Bosch Logo', url: 'https://www.bosch-ebike.com/be/' },
-            { src: 'images/brands/small/continental.png', name: 'Continental', alt: 'Continental Logo', url: 'https://www.continental-tires.com/products/b2c/bicycle/' },
-            { src: 'images/brands/small/cst.png', name: 'CST', alt: 'CST Logo', url: 'https://www.csttires.com/int/' },
-            { src: 'images/brands/small/kmc.png', name: 'KMC', alt: 'KMC Logo', url: 'https://www.kmcchain.eu/' },
-            { src: 'images/brands/small/magura.svg', name: 'Magura', alt: 'Magura Logo', url: 'https://www.magura.com/' },
-            { src: 'images/brands/small/michelin.png', name: 'Michelin', alt: 'Michelin Logo', url: 'https://www.michelin.nl/bicycle/fietsbanden' },
-            { src: 'images/brands/small/morganblue.png', name: 'Morgan Blue', alt: 'Morgan Blue Logo', url: 'https://www.morganblue.net/' },
-            { src: 'images/brands/small/sapim.png', name: 'Sapim', alt: 'Sapim Logo', url: 'https://www.sapim.be/' },
-            { src: 'images/brands/small/schwalbe.webp', name: 'Schwalbe', alt: 'Schwalbe Logo', url: 'https://www.schwalbe.com/nl/' },
-            { src: 'images/brands/small/shimano.png', name: 'Shimano', alt: 'Shimano Logo', url: 'https://bike.shimano.com/nl-NL/home.html' }
+            { src: 'assets/images/brands/small/bosch.png', name: 'Bosch', alt: 'Bosch Logo', url: 'https://www.bosch-ebike.com/be/' },
+            { src: 'assets/images/brands/small/continental.png', name: 'Continental', alt: 'Continental Logo', url: 'https://www.continental-tires.com/products/b2c/bicycle/' },
+            { src: 'assets/images/brands/small/cst.png', name: 'CST', alt: 'CST Logo', url: 'https://www.csttires.com/int/' },
+            { src: 'assets/images/brands/small/kmc.png', name: 'KMC', alt: 'KMC Logo', url: 'https://www.kmcchain.eu/' },
+            { src: 'assets/images/brands/small/magura.svg', name: 'Magura', alt: 'Magura Logo', url: 'https://www.magura.com/' },
+            { src: 'assets/images/brands/small/michelin.png', name: 'Michelin', alt: 'Michelin Logo', url: 'https://www.michelin.nl/bicycle/fietsbanden' },
+            { src: 'assets/images/brands/small/morganblue.png', name: 'Morgan Blue', alt: 'Morgan Blue Logo', url: 'https://www.morganblue.net/' },
+            { src: 'assets/images/brands/small/sapim.png', name: 'Sapim', alt: 'Sapim Logo', url: 'https://www.sapim.be/' },
+            { src: 'assets/images/brands/small/schwalbe.webp', name: 'Schwalbe', alt: 'Schwalbe Logo', url: 'https://www.schwalbe.com/nl/' },
+            { src: 'assets/images/brands/small/shimano.png', name: 'Shimano', alt: 'Shimano Logo', url: 'https://bike.shimano.com/nl-NL/home.html' }
         ]
     };
     
@@ -332,14 +332,14 @@ async function imageExists(url) {
 
 // Dynamically discover images in the gallerysection folder
 async function discoverGalleryImages() {
-    const basePath = 'gallerysection/';
+    const basePath = 'assets/images/gallery/';
     const extensions = ['webp', 'jpg', 'jpeg', 'png', 'avif', 'gif'];
     const maxAttempts = 100; // Check up to 100 images
     const discoveredImages = [];
     
     // Try to load a gallery manifest file first (optional)
     try {
-        const manifestResponse = await fetch('gallerysection/manifest.json');
+        const manifestResponse = await fetch('assets/images/gallery/manifest.json');
         if (manifestResponse.ok) {
             const manifest = await manifestResponse.json();
             if (manifest.images && Array.isArray(manifest.images)) {
@@ -699,7 +699,7 @@ let BELGIAN_HOLIDAYS = [];
 // Load public holidays from CSV file
 async function loadHolidaysFromCSV() {
     try {
-        const response = await fetch('./belgium_public_holidays_2026_2040.csv');
+        const response = await fetch('./data/belgium_public_holidays_2026_2040.csv');
         if (!response.ok) {
             console.warn('Could not load holidays CSV file');
             return;
@@ -878,11 +878,11 @@ function updateStoreStatus() {
 async function loadServiceBackgroundImages() {
     // Map service blocks to their corresponding images
     const serviceImageMap = {
-        'service-block-1': 'gallerysection/picture7.jpg', // Electric bikes hero section
-        'service-card-1': 'images/onsaanbod/verkoop.avif', // Stadsfietsen
-        'service-card-2': 'images/onsaanbod/herstellingen.jpg', // Onderhoud & Herstel
-        'service-card-3': 'images/onsaanbod/onderdelen.jpg', // Onderdelen & Accessoires
-        'service-card-4': 'images/onsaanbod/grasmaaiers.jpg' // Grasmaaiers & Tuin
+        'service-block-1': 'assets/images/gallery/picture7.jpg', // Electric bikes hero section
+        'service-card-1': 'assets/images/onsaanbod/verkoop.avif', // Stadsfietsen
+        'service-card-2': 'assets/images/onsaanbod/herstellingen.jpg', // Onderhoud & Herstel
+        'service-card-3': 'assets/images/onsaanbod/onderdelen.jpg', // Onderdelen & Accessoires
+        'service-card-4': 'assets/images/onsaanbod/grasmaaiers.jpg' // Grasmaaiers & Tuin
     };
     
     // Get all service blocks

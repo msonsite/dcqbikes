@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
+# UPDATE WHEN MIGRATING: Change to https://dcqbikes.be/sitemap.xml
 Sitemap: https://msonsite.github.io/dcqbikes/sitemap.xml
 
 # Disallow crawling of admin or private directories (if any)
