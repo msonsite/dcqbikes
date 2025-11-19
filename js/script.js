@@ -732,24 +732,47 @@ async function loadHolidaysFromCSV() {
     }
 }
 
-// Helper function to check if current date is in HOLIDAY_DATES from store-config.js
-function isHolidayDate(currentDate) {
-    if (typeof HOLIDAY_DATES === 'undefined') return false;
+// Helper to find today's entry in HOLIDAY_DATES (supports multiple formats)
+function getHolidayDateEntry(currentDate) {
+    if (typeof HOLIDAY_DATES === 'undefined') return null;
     
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-indexed
-    const currentDay = currentDate.getDate();
+    const targetYear = currentDate.getFullYear();
+    const targetMonth = currentDate.getMonth() + 1; // 1-indexed
+    const targetDay = currentDate.getDate();
     
-    for (const holidayDate of HOLIDAY_DATES) {
-        // HOLIDAY_DATES format: [year, month, day] (1-indexed month)
-        if (holidayDate[0] === currentYear && 
-            holidayDate[1] === currentMonth && 
-            holidayDate[2] === currentDay) {
-            return true;
+    const normalize = (value) => (typeof value === 'string' ? parseInt(value, 10) : value);
+    
+    for (const holiday of HOLIDAY_DATES) {
+        let year, month, day, message = '';
+        
+        if (Array.isArray(holiday)) {
+            [year, month, day] = holiday;
+        } else if (holiday && typeof holiday === 'object') {
+            if (Array.isArray(holiday.date)) {
+                [year, month, day] = holiday.date;
+            } else {
+                year = holiday.year;
+                month = holiday.month;
+                day = holiday.day;
+            }
+            message = holiday.message || holiday.label || '';
+        } else if (typeof holiday === 'string' && holiday.includes('-')) {
+            const parts = holiday.split('-');
+            if (parts.length === 3) {
+                [year, month, day] = parts.map(normalize);
+            }
+        }
+        
+        year = normalize(year);
+        month = normalize(month);
+        day = normalize(day);
+        
+        if (year === targetYear && month === targetMonth && day === targetDay) {
+            return { message: message || null };
         }
     }
     
-    return false;
+    return null;
 }
 
 // Helper function to check if current date is a holiday
@@ -779,14 +802,6 @@ function updateStoreStatus() {
     
     const now = new Date();
     
-    // Check manual override flag first (for holidays, special closures, etc.)
-    if (typeof MANUAL_CLOSED_OVERRIDE !== 'undefined' && MANUAL_CLOSED_OVERRIDE) {
-        storeStatus.classList.remove('open', 'warning', 'closed');
-        storeStatus.classList.add('closed');
-        statusText.textContent = 'Gesloten (Feestdag)';
-        return;
-    }
-    
     // Check if currently on vacation
     const vacationCheck = isOnVacation(now);
     if (vacationCheck.isOnVacation) {
@@ -799,11 +814,14 @@ function updateStoreStatus() {
         return;
     }
     
-    // Check if today is in HOLIDAY_DATES from store-config.js (show just "Gesloten")
-    if (isHolidayDate(now)) {
+    // Check if today is in HOLIDAY_DATES from store-config.js (always override)
+    const holidayEntry = getHolidayDateEntry(now);
+    if (holidayEntry) {
         storeStatus.classList.remove('open', 'warning', 'closed');
         storeStatus.classList.add('closed');
-        statusText.textContent = 'Gesloten';
+        statusText.textContent = holidayEntry.message
+            ? `Gesloten (${holidayEntry.message})`
+            : 'Gesloten (Uitzonderlijk)';
         return;
     }
     
@@ -1235,4 +1253,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
 
