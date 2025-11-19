@@ -624,6 +624,14 @@
             flex-direction: column;
         }
         
+        .service-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-bottom: 0.65rem;
+        }
+        
         .service-card-icon-box {
             width: 40px;
             height: 40px;
@@ -644,6 +652,19 @@
         .service-card-icon-box i {
             font-size: 1.125rem;
             color: #ee2726;
+        }
+        
+        .service-card-partner-logo {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        
+        .service-card-partner-logo img {
+            height: 25px;
+            width: auto;
+            object-fit: contain;
+            
         }
         
         .service-card-title {
@@ -967,14 +988,6 @@
             color: #fffefc !important;
         }
         
-        section[style*="background: #0a0a0a"] #faqToggleBtn {
-            background-color: transparent !important;
-        }
-        
-        section[style*="background: #0a0a0a"] #faqToggleBtn:hover {
-            background-color: rgba(255, 255, 255, 0.05) !important;
-        }
-        
         .faq-question {
             cursor: pointer;
             outline: none;
@@ -1035,23 +1048,7 @@
         
         /* FAQ Section Collapsible */
         #faqContent {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, opacity 0.3s ease;
-            opacity: 0;
-        }
-        
-        #faqContent.show {
-            max-height: 5000px;
             opacity: 1;
-        }
-        
-        #faqToggleIcon {
-            transition: transform 0.3s ease;
-        }
-        
-        #faqToggleBtn.expanded #faqToggleIcon {
-            transform: rotate(180deg);
         }
         
         /* Counter Styles for Hero Section */
@@ -1995,6 +1992,24 @@
             justify-content: center;
         }
         
+        @media (min-width: 640px) and (max-width: 1100px) {
+            .team-showcase {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                justify-content: center;
+            }
+            
+            .team-member {
+                flex: 1 1 calc(50% - 1.5rem);
+            }
+            
+            .team-member-photo-wrapper,
+            .team-member-photo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        
         @keyframes subtle-glow {
             0%, 100% {
                 box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08), 
@@ -2275,7 +2290,7 @@
                     <div class="service-featured-video-section">
                         <div class="service-featured-image"></div>
                         <video class="service-featured-video" autoplay muted loop playsinline>
-                            <source src="assets/videos/herovideo.mp4" type="video/mp4">
+                            <source src="assets/images/onsaanbod/elektrischefietsenvideo.mp4" type="video/mp4">
                         </video>
                         <div class="service-featured-overlay"></div>
                 </div>
@@ -2336,39 +2351,45 @@
                     <!-- Stadsfietsen -->
                     <div class="service-card-new service-card-1">
                         <div class="service-card-image">
-                            <img src="assets/images/gallery/picture2.jpg" alt="Stadsfietsen" class="service-card-img">
+                            <img src="assets/images/onsaanbod/verkoop.avif" alt="Stadsfietsen" class="service-card-img">
             </div>
                         <div class="service-card-content">
-                            <div class="service-card-icon-box">
+                            <div class="service-card-top">
+                                <div class="service-card-icon-box">
                         <i class="fas fa-bicycle"></i>
                     </div>
-                            <h4 class="service-card-title">Stadsfietsen</h4>
-                            <p class="service-card-description">Perfecte fietsen voor dagelijks gebruik in de stad</p>
                 </div>
+                            <h4 class="service-card-title">Stadsfietsen</h4>
+                            <p class="service-card-description">Perfecte fietsen voor dagelijks gebruik</p>
             </div>
+                    </div>
 
                     <!-- Onderhoud & Herstel -->
                     <div class="service-card-new service-card-2">
                         <div class="service-card-image">
-                            <img src="assets/images/gallery/picture5.jpg" alt="Onderhoud & Herstel" class="service-card-img">
+                            <img src="assets/images/onsaanbod/herstellingen.jpg" alt="Onderhoud & Herstel" class="service-card-img">
                         </div>
                         <div class="service-card-content">
-                            <div class="service-card-icon-box">
+                            <div class="service-card-top">
+                                <div class="service-card-icon-box">
                         <i class="fas fa-tools"></i>
                     </div>
+                </div>
                             <h4 class="service-card-title">Onderhoud & Herstel</h4>
                             <p class="service-card-description">Professioneel onderhoud en reparaties door ervaren technici</p>
-                </div>
+                    </div>
                     </div>
 
                     <!-- Onderdelen & Accessoires -->
                     <div class="service-card-new service-card-3">
                         <div class="service-card-image">
-                            <img src="assets/images/gallery/picture6.webp" alt="Onderdelen & Accessoires" class="service-card-img">
+                            <img src="assets/images/onsaanbod/onderdelen.jpg" alt="Onderdelen & Accessoires" class="service-card-img">
                         </div>
                         <div class="service-card-content">
-                            <div class="service-card-icon-box">
-                                <i class="fas fa-cog"></i>
+                            <div class="service-card-top">
+                                <div class="service-card-icon-box">
+                                    <i class="fas fa-cog"></i>
+                                </div>
                             </div>
                             <h4 class="service-card-title">Onderdelen & Accessoires</h4>
                             <p class="service-card-description">Ruim assortiment aan onderdelen en accessoires</p>
@@ -2378,12 +2399,17 @@
                     <!-- Grasmaaiers & Tuin -->
                     <div class="service-card-new service-card-4">
                         <div class="service-card-image">
-                            <img src="assets/images/gallery/picture9.jpg" alt="Grasmaaiers & Tuin" class="service-card-img">
+                            <img src="assets/images/onsaanbod/grasmaaiers.jpg" alt="Grasmaaiers & Tuin" class="service-card-img">
                         </div>
                         <div class="service-card-content">
-                            <div class="service-card-icon-box">
+                            <div class="service-card-top">
+                                <div class="service-card-icon-box">
                         <i class="fas fa-leaf"></i>
                 </div>
+                                <div class="service-card-partner-logo" aria-label="EGO Power+">
+                                    <img src="assets/images/brands/large/ego-logo.png" alt="EGO Power+">
+                                </div>
+                            </div>
                             <h4 class="service-card-title">Grasmaaiers & Tuin</h4>
                             <p class="service-card-description">Elektrische grasmaaiers en tuinaccessoires</p>
                         </div>
@@ -2776,21 +2802,14 @@
     <!-- FAQ Section -->
     <section id="faq" class="py-12 md:py-16" style="background: #0a0a0a;">
         <div class="container mx-auto max-w-2xl md:max-w-7xl px-4 md:px-6">
-            <div class="mb-8 md:mb-10 fade-in">
-                <button id="faqToggleBtn" class="w-full text-left fade-in transition-colors rounded-lg p-4 -ml-4">
-                    <div class="flex items-center justify-between gap-3">
-                        <div class="flex-1">
-                            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Veelgestelde vragen</h2>
-                            <p class="text-lg max-w-2xl" style="color: rgba(255, 254, 252, 0.8);">
-                                Klik om de veelgestelde vragen te bekijken
-                            </p>
-                        </div>
-                        <i id="faqToggleIcon" class="fas fa-chevron-down text-dcq-red transition-transform text-2xl flex-shrink-0"></i>
-                    </div>
-                </button>
+            <div class="mb-8 md:mb-10 fade-in text-center md:text-left">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Veelgestelde vragen</h2>
+                <p class="text-lg max-w-3xl mx-auto md:mx-0" style="color: rgba(255, 254, 252, 0.8);">
+                    Vind meteen antwoord op de meest voorkomende vragen.
+                </p>
             </div>
 
-            <div id="faqContent" class="fade-in hidden mt-6 md:grid md:grid-cols-2 md:gap-4 md:space-y-0 space-y-3">
+            <div id="faqContent" class="fade-in mt-6 md:grid md:grid-cols-2 md:gap-4 md:space-y-0 space-y-3">
 
                 <div class="faq-item group">
                     <button class="faq-question w-full text-left flex items-start justify-between gap-4 p-5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200" aria-expanded="false">
@@ -2997,7 +3016,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-4 md:pt-6 text-gray-400">
+            <div class="pt-4 md:pt-6 text-gray-400" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
                 <div class="flex flex-col sm:flex-row items-center sm:items-center justify-center sm:justify-between gap-2 text-xs md:text-sm">
                     <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
                     <p class="text-center sm:text-left">&copy; <span id="currentYear"></span> DCQ Bikes BV. Alle rechten voorbehouden.</p>

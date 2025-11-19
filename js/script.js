@@ -167,6 +167,7 @@ async function loadBrandImages() {
             { src: 'assets/images/brands/small/bosch.png', name: 'Bosch', alt: 'Bosch Logo', url: 'https://www.bosch-ebike.com/be/' },
             { src: 'assets/images/brands/small/continental.png', name: 'Continental', alt: 'Continental Logo', url: 'https://www.continental-tires.com/products/b2c/bicycle/' },
             { src: 'assets/images/brands/small/cst.png', name: 'CST', alt: 'CST Logo', url: 'https://www.csttires.com/int/' },
+            { src: 'assets/images/brands/small/descheemaeker.png', name: 'Descheemaeker', alt: 'Descheemaeker Logo', url: 'https://www.descheemaeker.be/nl' },
             { src: 'assets/images/brands/small/kmc.png', name: 'KMC', alt: 'KMC Logo', url: 'https://www.kmcchain.eu/' },
             { src: 'assets/images/brands/small/magura.svg', name: 'Magura', alt: 'Magura Logo', url: 'https://www.magura.com/' },
             { src: 'assets/images/brands/small/michelin.png', name: 'Michelin', alt: 'Michelin Logo', url: 'https://www.michelin.nl/bicycle/fietsbanden' },
@@ -948,32 +949,6 @@ async function loadServiceBackgroundImages() {
 // Initialize on DOM load
 // FAQ Accordion Functionality
 function initFAQ() {
-    // Toggle FAQ section visibility
-    const faqToggleBtn = document.getElementById('faqToggleBtn');
-    const faqContent = document.getElementById('faqContent');
-    const faqToggleIcon = document.getElementById('faqToggleIcon');
-    
-    if (faqToggleBtn && faqContent) {
-        faqToggleBtn.addEventListener('click', () => {
-            const isExpanded = faqToggleBtn.classList.contains('expanded');
-            
-            if (isExpanded) {
-                faqToggleBtn.classList.remove('expanded');
-                faqContent.classList.remove('show');
-                faqContent.classList.add('hidden');
-                faqToggleBtn.setAttribute('aria-expanded', 'false');
-            } else {
-                faqToggleBtn.classList.add('expanded');
-                faqContent.classList.remove('hidden');
-                faqContent.classList.add('show');
-                faqToggleBtn.setAttribute('aria-expanded', 'true');
-            }
-        });
-        
-        // Set initial state
-        faqToggleBtn.setAttribute('aria-expanded', 'false');
-    }
-    
     // Individual FAQ item accordion
     const faqItems = document.querySelectorAll('.faq-item');
     
