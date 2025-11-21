@@ -155,6 +155,7 @@ async function loadBrandImages() {
         ],
         'medium': [
             { src: 'assets/images/brands/medium/abus.webp', name: 'Abus', alt: 'Abus Logo', url: 'https://www.abus.com/be_nl/' },
+            { src: 'assets/images/brands/medium/axa.avif', name: 'Axa', alt: 'Axa Logo', url: 'https://axabikesecurity.com/nl/' },
             { src: 'assets/images/brands/medium/basil.webp', name: 'Basil', alt: 'Basil Logo', url: 'https://www.basil.com/nl/' },
             { src: 'assets/images/brands/medium/bollé.png', name: 'Bollé', alt: 'Bollé Logo', url: 'https://www.bolle.com/' },
             { src: 'assets/images/brands/medium/contec.webp', name: 'Contec', alt: 'Contec Logo', url: 'https://www.contec-parts.com/nl/' },
