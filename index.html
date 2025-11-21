@@ -4,19 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="DCQ Bikes - Fietsenwinkel in Jabbeke gespecialiseerd in elektrische fietsen, stadsfietsen en grasmaaiers.">
-    <title>DCQ Bikes - Fietsenwinkel in Jabbeke</title>
-    
-    <!-- ============================================
-         DOMAIN CONFIGURATION - UPDATE WHEN MIGRATING
-         ============================================
-         CURRENT DOMAIN: https://dcqbikes.be
-         All URLs have been updated to use dcqbikes.be
-         ============================================ -->
+    <title>DCQ Bikes | Fietsenwinkel in Jabbeke</title>
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://dcqbikes.be/">
-    <meta property="og:title" content="DCQ Bikes - Fietsenwinkel in Jabbeke">
+    <meta property="og:title" content="DCQ Bikes | Fietsenwinkel in Jabbeke">
     <meta property="og:description" content="Uw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke.">
     <meta property="og:image" content="https://dcqbikes.be/assets/images/logo/dcqbikeslogotransparent.png">
     <meta property="og:image:secure_url" content="https://dcqbikes.be/assets/images/logo/dcqbikeslogotransparent.png">
@@ -24,22 +17,19 @@
     <meta property="og:locale" content="nl_BE">
     <meta property="og:site_name" content="DCQ Bikes">
     
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://dcqbikes.be/">
-    <meta name="twitter:title" content="DCQ Bikes - Fietsenwinkel in Jabbeke">
+    <meta name="twitter:title" content="DCQ Bikes | Fietsenwinkel in Jabbeke">
     <meta name="twitter:description" content="Uw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke.">
     <meta name="twitter:image" content="https://dcqbikes.be/assets/images/logo/dcqbikeslogotransparent.png">
     <meta name="twitter:image:alt" content="DCQ Bikes Logo">
     
-    <!-- Additional SEO Meta Tags -->
     <meta name="keywords" content="fietsenwinkel, elektrische fietsen, stadsfietsen, grasmaaiers, fietsonderhoud, fietsherstelling, Jabbeke, DCQ Bikes">
     <meta name="author" content="DCQ Bikes">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://dcqbikes.be/">
     <link rel="sitemap" type="application/xml" href="https://dcqbikes.be/sitemap.xml">
     
-    <!-- Favicons - Following Google's Guidelines -->
     <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
     <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
@@ -48,19 +38,15 @@
     <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/web-app-manifest-512x512.png">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Custom Tailwind Config -->
+    <!-- Custom Tailwind config -->
     <script>
         tailwind.config = {
             theme: {
@@ -90,7 +76,6 @@
         
         body { font-family: var(--font-body); }
         
-        /* Cookie Banner Styles */
         #cookieBanner {
             transform: translateY(100%);
             transition: transform 0.3s ease-in-out;
@@ -100,7 +85,6 @@
             transform: translateY(0);
         }
         
-        /* Smooth fade-in animations */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -112,7 +96,6 @@
             transform: translateY(0);
         }
         
-        /* Gallery Immersive Masonry Layout */
         .gallery-masonry-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -153,7 +136,6 @@
             -o-user-drag: none;
         }
         
-        /* Prevent image selection and dragging globally */
         img {
             user-select: none;
             -webkit-user-select: none;
@@ -170,7 +152,6 @@
             transform: scale(1.1);
         }
         
-        /* Different tile sizes for dynamic layout */
         .gallery-item.wide {
             grid-column: span 2;
         }
@@ -184,7 +165,6 @@
             grid-row: span 2;
         }
         
-        /* Overlay on hover */
         .gallery-item::after {
             content: '';
             position: absolute;
@@ -216,12 +196,10 @@
             }
         }
         
-        /* Legacy masonry grid (for backwards compatibility) */
         .masonry-grid {
             column-gap: 1rem;
         }
 
-        /* Apply heading font to main headings/titles */
         h1, h2, h3, .brand-row-title {
             font-family: var(--font-heading);
         }
@@ -249,7 +227,6 @@
             margin-bottom: 1rem;
         }
         
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -271,7 +248,6 @@
             to { opacity: 1; }
         }
         
-        /* Lightbox Styles */
         .lightbox {
             display: none;
             position: fixed;
@@ -288,12 +264,10 @@
             display: flex;
         }
         
-        /* Hero Video Overlay */
         .hero-overlay {
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 100%);
         }
         
-        /* Enhanced text readability */
         #home .hero-title-gradient {
             filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.8)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
         }
@@ -302,7 +276,6 @@
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.6);
         }
         
-        /* Video optimization */
         #heroVideo {
             object-fit: cover;
             object-position: center;
@@ -322,7 +295,6 @@
             }
         }
         
-        /* Hero Title Gradient */
         .hero-title-gradient {
             background: linear-gradient(135deg, #ffffff 0%, #d1d5db 30%, #9ca3af 50%, #d1d5db 70%, #ffffff 100%);
             -webkit-background-clip: text;
@@ -332,7 +304,6 @@
             animation: none !important;
         }
         
-        /* Services Section - Complete New Design */
         .services-section-new {
             background: #0a0a0a;
             padding: 3rem 0;
@@ -344,7 +315,6 @@
             padding: 0 2rem;
         }
         
-        /* Header */
         .services-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -392,14 +362,12 @@
             }
         }
         
-        /* Main Grid */
         .services-main-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
         }
         
-        /* Featured Card (Electric Bikes) */
         .service-featured-card {
             position: relative;
             border-radius: 24px;
@@ -563,14 +531,12 @@
             flex-shrink: 0;
         }
         
-        /* Service Cards Wrapper */
         .services-cards-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.25rem;
         }
         
-        /* Service Cards */
         .service-card-new {
             position: relative;
             border-radius: 20px;
@@ -685,7 +651,6 @@
             flex: 1;
         }
         
-        /* Responsive */
         @media (max-width: 1024px) {
             .services-section-new {
                 padding: 2.5rem 0;
@@ -946,7 +911,6 @@
             }
         }
         
-        /* FAQ Section Styles - Complete Redesign */
         .faq-item {
             transition: all 0.2s ease;
         }
@@ -957,7 +921,6 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
         
-        /* FAQ on dark background */
         section[style*="background: #0a0a0a"] .faq-question {
             background-color: rgba(255, 255, 255, 0.1) !important;
             border-color: rgba(255, 255, 255, 0.2) !important;
@@ -1031,7 +994,6 @@
             display: block;
         }
         
-        /* Desktop: Use maximum horizontal space */
         @media (min-width: 768px) {
             #faqContent {
                 display: grid;
@@ -1048,12 +1010,10 @@
             }
         }
         
-        /* FAQ Section Collapsible */
         #faqContent {
             opacity: 1;
         }
         
-        /* Counter Styles for Hero Section */
         #customerCounter,
         #yearsCounter {
             transition: none;
@@ -1078,7 +1038,6 @@
             }
         }
         
-        /* Opening Hours Single Line */
         .hours-single-line {
             display: flex;
             align-items: center;
@@ -1105,7 +1064,6 @@
             }
         }
         
-        /* Mobile & Tablet Tweaks */
         @media (max-width: 1024px) {
             .hours-single-line {
                 max-width: 900px;
@@ -1162,7 +1120,6 @@
             }
         }
 
-        /* Mobile brand marquee (infinite, non-interactive) */
         @media (max-width: 768px) {
             .brand-marquee {
                 overflow: hidden;
@@ -1194,7 +1151,6 @@
             }
         }
         
-        /* Store Status Indicator */
         .store-status {
             display: inline-flex;
             align-items: center;
@@ -1284,7 +1240,6 @@
             }
         }
         
-        /* Brand Section Styles */
         #brands-large,
         #brands-medium,
         #brands-small {
@@ -1296,7 +1251,6 @@
         }
         
         
-        /* Brand items are now clickable links */
         .brand-item {
             text-decoration: none;
             color: inherit;
@@ -1398,7 +1352,6 @@
             }
         }
         
-        /* Brand Quote Styling */
         .quote-container {
             position: relative;
             padding: 0.5rem 0;
@@ -1434,7 +1387,6 @@
             max-width: calc(100% - 120px);
         }
         
-        /* Mobile-specific quote styling - consistent with other subtexts */
         @media (max-width: 768px) {
             .quote-container {
                 padding: 0.5rem 1rem;
@@ -1446,13 +1398,13 @@
             
             .quote-icon-left,
             .quote-icon-right {
-                font-size: 1rem !important; /* text-base */
+                font-size: 1rem !important;
                 opacity: 0.7;
                 flex-shrink: 0;
             }
             
             .quote-content {
-                font-size: 1.125rem !important; /* text-lg - matches other subtexts */
+                font-size: 1.125rem !important; 
                 flex: 1 1 auto;
             }
         }
@@ -1480,7 +1432,6 @@
             }
         }
         
-        /* About Section Background Image */
         #about {
             position: relative;
         }
@@ -1507,9 +1458,7 @@
             z-index: 1;
         }
         
-        /* Brand Section Styles - Desktop */
         @media (min-width: 769px) {
-            /* Fixed width container for all brand rows */
         .brand-row-container {
                 margin-bottom: 1rem;
                 padding: 0;
@@ -1531,7 +1480,6 @@
             letter-spacing: -0.01em;
             }
             
-            /* Brand rows with equal width and evenly distributed items */
             .brand-row {
                 display: flex;
                 flex-wrap: nowrap;
@@ -1544,7 +1492,6 @@
                 margin: 0 auto;
             }
             
-            /* Ensure all brand items fill available space evenly */
             #brands-large .brand-item {
                 flex: 1 1 0;
                 min-width: 0;
@@ -1597,7 +1544,6 @@
             }
         }
         
-        /* Brand Item Styles - Adaptive Size Boxes */
         @media (min-width: 769px) {
         .brand-item {
                 width: 100%;
@@ -1616,8 +1562,7 @@
                 transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
         }
             
-            /* Adaptive heights based on available width */
-            #brands-large .brand-item {
+        #brands-large .brand-item {
                 min-height: 110px;
                 padding: 1rem;
         }
@@ -1662,7 +1607,6 @@
             display: none;
         }
         
-        /* Mobile Horizontal Scroll */
         @media (max-width: 768px) {
             .brand-row {
                 display: flex;
@@ -1691,7 +1635,6 @@
             }
         }
         
-        /* Contact Section Height Matching */
         @media (min-width: 1024px) {
             #contact .contact-form-container {
                 min-height: 400px;
@@ -1702,16 +1645,13 @@
             }
         }
         
-        /* Team Container Styles */
         
-        /* Contact Section Box Styles - Red top border */
         .contact-box {
             border-top: 3px solid #ee2726;
             border-top-left-radius: 0.75rem;
             border-top-right-radius: 0.75rem;
         }
         
-        /* Contact section phone buttons hover */
         a[href^="tel:"]:hover {
             background: rgba(255, 255, 255, 0.85) !important;
             border-color: rgba(238, 39, 38, 0.2) !important;
@@ -1723,7 +1663,6 @@
             transform: scale(0.98) !important;
         }
         
-        /* Contact form submit button hover */
         #contactSubmit:hover {
             background: rgba(212, 30, 29, 0.95) !important;
             box-shadow: 0 8px 24px rgba(238, 39, 38, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
@@ -1733,7 +1672,6 @@
             transform: scale(0.98) !important;
         }
         
-        /* Form inputs focus state */
         #contactForm input:focus,
         #contactForm textarea:focus {
             background: rgba(255, 255, 255, 0.95) !important;
@@ -1741,7 +1679,6 @@
             border-color: rgba(238, 39, 38, 0.3) !important;
         }
         
-        /* Disable hover effects on touch devices */
         @media (hover: none) and (pointer: coarse) {
             a[href^="tel:"]:hover,
             #contactSubmit:hover,
@@ -1762,7 +1699,6 @@
             }
         }
         
-        /* Award Box Styles */
         .award-box {
             border-radius: 16px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1775,7 +1711,6 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
         
-        /* Media Box Styles */
         .media-box {
             border-radius: 16px;
             overflow: hidden;
@@ -1787,7 +1722,6 @@
             flex-direction: column;
         }
         
-        /* Custom scrollbar for media box articles */
         .media-box .space-y-4::-webkit-scrollbar {
             width: 6px;
         }
@@ -1871,7 +1805,6 @@
                 width: 60px;
             }
             
-            /* Desktop award box - Clean Apple style */
             .award-box {
                 background: #ffffff;
             }
@@ -1883,7 +1816,6 @@
             }
         }
         
-        /* Media Box Styles */
         .line-clamp-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -1960,7 +1892,6 @@
             }
         }
         
-        /* Team Showcase Styles */
         .team-showcase {
             display: flex;
             flex-direction: row;
@@ -2038,7 +1969,6 @@
             transition: none;
         }
         
-        /* Removed hover effects - team members are not clickable */
         .team-member:hover .team-member-photo {
             transform: none;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
@@ -2111,7 +2041,6 @@
             }
         }
         
-        /* Designer credit - subtle */
         .designer-credit {
             display: inline-flex;
             align-items: center;
@@ -2149,7 +2078,6 @@
             transform: scaleX(1);
         }
         
-        /* Team Member Card Enhancements */
         .team-member {
             background: transparent;
             border: 0;
@@ -2236,7 +2164,6 @@
     <section id="home" class="relative h-[70vh] md:h-[75vh] lg:h-[70vh] overflow-hidden">
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" id="heroVideo">
             <source src="assets/videos/herovideo.mov" type="video/mp4">
-            <!-- Fallback image shown via JS if video fails -->
         </video>
         <div class="hero-overlay absolute inset-0 flex flex-col items-center justify-center">
             <div class="text-center px-4 z-10 fade-in">
@@ -2274,7 +2201,7 @@
         </div>
     </section>
 
-    <!-- Services Section - Complete Redesign -->
+    <!-- Services Section  -->
     <section id="services" class="services-section-new">
         <div class="services-container">
             <!-- Header -->
@@ -2548,16 +2475,13 @@
                         <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="group block h-full">
                             <i class="fas fa-external-link-alt external-link-icon"></i>
                             
-                            <!-- Desktop: Clean Apple-style redesign -->
                             <div class="hidden md:flex flex-col h-full items-center justify-center p-8 text-center w-full">
-                                <!-- Logo -->
                                 <div class="mb-8 flex justify-center w-full">
                                     <img src="assets/images/vriendelijkstehandelaar/vriendelijkstehandelaarlogo.png" 
                                          alt="Vriendelijkste Handelaar Logo" 
                                          class="h-20 w-auto object-contain">
                                 </div>
                                 
-                                <!-- Main content -->
                                 <div class="mb-8 flex flex-col items-center w-full">
                                     <p class="text-sm text-gray-500 mb-3 font-light tracking-wide text-center">
                                         DCQ Bikes werd uitgeroepen tot
@@ -2570,10 +2494,8 @@
                                     </p>
                                 </div>
                                 
-                                <!-- Divider -->
                                 <div class="w-12 h-px bg-gray-200 mb-8 mx-auto"></div>
                                 
-                                <!-- Issued by -->
                                 <div class="flex flex-col items-center w-full">
                                     <span class="text-xs text-gray-400 uppercase tracking-widest mb-3 font-light text-center">Uitgereikt door</span>
                                     <img src="assets/images/vriendelijkstehandelaar/handelsgidslogo.png" 
@@ -2609,7 +2531,6 @@
                     </div>
                 </div>
                 
-                    <!-- Team Showcase -->
                 <div>
                     <div class="team-container p-6 h-full flex flex-col">
                         <div class="mb-4">
@@ -2634,7 +2555,6 @@
                                 </div>
                             </div>
                 
-                <!-- Image Box -->
                 <div>
                     <div class="media-box h-full flex flex-col">
                         <div class="relative flex-1 overflow-hidden" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
