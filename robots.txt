@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://dcqbikes.be/sitemap.xml
+Sitemap: https://www.dcqbikes.be/sitemap.xml
 
 # Disallow crawling of admin or private directories (if any)
 # Disallow: /admin/
