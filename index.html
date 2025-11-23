@@ -1124,32 +1124,70 @@
 
         @media (max-width: 768px) {
             .brand-marquee {
+                position: relative;
+                width: 100%;
                 overflow: hidden;
-                pointer-events: none; /* non-interactive */
-                -webkit-mask-image: linear-gradient(to right, transparent, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, transparent);
-                        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, transparent);
+                padding: 2rem 0;
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
             }
+            
             .brand-marquee-track {
                 display: flex;
-                width: max-content;
                 align-items: center;
-                gap: 1rem;
-                animation: brands-marquee 50s linear infinite;
+                gap: 2rem;
+                width: max-content;
                 will-change: transform;
+                transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             }
+            
             .brand-marquee .brand-item {
                 flex: 0 0 auto;
-                width: 120px;
-                height: 72px;
-                padding: 0.35rem;
-                border-radius: 12px;
+                width: 140px;
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem;
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 16px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease;
+                cursor: pointer;
+                position: relative;
             }
+            
+            .brand-marquee .brand-item:hover,
+            .brand-marquee .brand-item:active {
+                transform: scale(1.05);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            }
+            
             .brand-marquee .brand-item img {
-                max-height: 40px;
+                max-width: 100%;
+                max-height: 50px;
+                width: auto;
+                height: auto;
+                object-fit: contain;
             }
-            @keyframes brands-marquee {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
+            
+            /* Subtle progress indicator */
+            .brand-carousel-progress {
+                width: 100%;
+                height: 2px;
+                background: rgba(0, 0, 0, 0.08);
+                border-radius: 2px;
+                margin-top: 1.5rem;
+                overflow: hidden;
+                position: relative;
+            }
+            
+            .brand-carousel-progress-bar {
+                height: 100%;
+                background: linear-gradient(90deg, #ee2726 0%, #d41e1d 100%);
+                border-radius: 2px;
+                transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                width: 0%;
             }
         }
         
@@ -2362,10 +2400,13 @@
                 </div>
             </div>
             
-            <!-- Mobile: Infinite marquee carousel (non-interactive) -->
+            <!-- Mobile: Interactive carousel with auto-scroll -->
             <div class="md:hidden fade-in">
                 <div id="brands-mobile" class="brand-marquee">
                     <div id="brandsMarqueeTrack" class="brand-marquee-track"></div>
+                </div>
+                <div id="brandCarouselProgress" class="brand-carousel-progress">
+                    <div id="brandCarouselProgressBar" class="brand-carousel-progress-bar"></div>
                 </div>
             </div>
             <!-- Large Brands (Row 1) -->

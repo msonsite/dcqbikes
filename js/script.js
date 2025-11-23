@@ -234,27 +234,226 @@ async function loadBrandImages() {
         });
     }
 
-    // Build infinite marquee: duplicate sequence to allow seamless loop
+    // Build mobile carousel: single sequence (no duplicates needed with transform-based approach)
     if (mobileMarquee && mobileLogos.length) {
-        const sequence = document.createDocumentFragment();
         mobileLogos.forEach(node => {
-            const c = node.cloneNode(true);
-            c.style.animation = 'none';
-            c.style.opacity = '1';
-            c.style.transform = 'none';
-            sequence.appendChild(c);
+            node.style.animation = 'none';
+            node.style.opacity = '1';
+            node.style.transform = 'none';
+            mobileMarquee.appendChild(node);
         });
-        const sequence2 = document.createDocumentFragment();
-        mobileLogos.forEach(node => {
-            const c2 = node.cloneNode(true);
-            c2.style.animation = 'none';
-            c2.style.opacity = '1';
-            c2.style.transform = 'none';
-            sequence2.appendChild(c2);
-        });
-        mobileMarquee.appendChild(sequence);
-        mobileMarquee.appendChild(sequence2);
     }
+}
+
+// Initialize interactive mobile brands carousel
+function initMobileBrandsCarousel() {
+    const brandsMobile = document.getElementById('brands-mobile');
+    const brandsTrack = document.getElementById('brandsMarqueeTrack');
+    const progressBar = document.getElementById('brandCarouselProgressBar');
+    
+    if (!brandsMobile || !brandsTrack || window.innerWidth >= 768) {
+        return;
+    }
+    
+    const brandItems = brandsTrack.querySelectorAll('.brand-item');
+    if (brandItems.length === 0) return;
+    
+    // Calculate item dimensions
+    const itemWidth = 140; // from CSS
+    const itemGap = 32; // 2rem = 32px
+    const itemTotalWidth = itemWidth + itemGap;
+    const containerWidth = brandsMobile.offsetWidth;
+    const centerOffset = (containerWidth - itemWidth) / 2;
+    
+    let currentIndex = 0;
+    let autoScrollInterval = null;
+    let isUserInteracting = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let startTransform = 0;
+    let isDragging = false;
+    
+    // Update progress bar
+    function updateProgress(index) {
+        if (!progressBar) return;
+        const progress = ((index + 1) / brandItems.length) * 100;
+        progressBar.style.width = `${progress}%`;
+    }
+    
+    // Calculate transform for index
+    function getTransformForIndex(index) {
+        return -(index * itemTotalWidth) + centerOffset;
+    }
+    
+    // Go to specific index
+    function goToIndex(index, smooth = true) {
+        if (index < 0) index = 0;
+        if (index >= brandItems.length) index = brandItems.length - 1;
+        
+        currentIndex = index;
+        const transform = getTransformForIndex(index);
+        
+        if (smooth) {
+            brandsTrack.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        } else {
+            brandsTrack.style.transition = 'none';
+        }
+        
+        brandsTrack.style.transform = `translateX(${transform}px)`;
+        updateProgress(index);
+    }
+    
+    // Auto-scroll function
+    function startAutoScroll() {
+        if (autoScrollInterval) clearInterval(autoScrollInterval);
+        if (isUserInteracting) return;
+        
+        autoScrollInterval = setInterval(() => {
+            if (isUserInteracting || isDragging) return;
+            
+            const nextIndex = (currentIndex + 1) % brandItems.length;
+            goToIndex(nextIndex, true);
+        }, 2000); // 2 seconds
+    }
+    
+    // Stop auto-scroll
+    function stopAutoScroll() {
+        if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+        }
+    }
+    
+    // Touch events
+    brandsTrack.addEventListener('touchstart', (e) => {
+        isUserInteracting = true;
+        isDragging = true;
+        stopAutoScroll();
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        const currentTransform = brandsTrack.style.transform;
+        startTransform = currentTransform ? parseFloat(currentTransform.match(/translateX\(([^)]+)\)/)?.[1] || 0) : getTransformForIndex(currentIndex);
+        brandsTrack.style.transition = 'none';
+    }, { passive: true });
+    
+    brandsTrack.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        
+        const deltaX = e.touches[0].clientX - touchStartX;
+        const deltaY = e.touches[0].clientY - touchStartY;
+        
+        // Only allow horizontal scrolling if horizontal movement is greater
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            e.preventDefault();
+            const newTransform = startTransform + deltaX;
+            brandsTrack.style.transform = `translateX(${newTransform}px)`;
+        }
+    }, { passive: false });
+    
+    brandsTrack.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        // Calculate which index we're closest to
+        const currentTransform = parseFloat(brandsTrack.style.transform.match(/translateX\(([^)]+)\)/)?.[1] || 0);
+        const targetIndex = Math.round(-(currentTransform - centerOffset) / itemTotalWidth);
+        
+        // Snap to nearest valid index
+        const snappedIndex = Math.max(0, Math.min(targetIndex, brandItems.length - 1));
+        goToIndex(snappedIndex, true);
+        
+        // Resume auto-scroll after delay
+        setTimeout(() => {
+            isUserInteracting = false;
+            startAutoScroll();
+        }, 1000);
+    }, { passive: true });
+    
+    // Mouse events for desktop testing
+    let mouseDown = false;
+    brandsTrack.addEventListener('mousedown', (e) => {
+        if (window.innerWidth < 768) {
+            isUserInteracting = true;
+            isDragging = true;
+            stopAutoScroll();
+            mouseDown = true;
+            touchStartX = e.clientX;
+            touchStartY = e.clientY;
+            const currentTransform = brandsTrack.style.transform;
+            startTransform = currentTransform ? parseFloat(currentTransform.match(/translateX\(([^)]+)\)/)?.[1] || 0) : getTransformForIndex(currentIndex);
+            brandsTrack.style.transition = 'none';
+        }
+    });
+    
+    brandsTrack.addEventListener('mousemove', (e) => {
+        if (mouseDown && window.innerWidth < 768 && isDragging) {
+            const deltaX = e.clientX - touchStartX;
+            const newTransform = startTransform + deltaX;
+            brandsTrack.style.transform = `translateX(${newTransform}px)`;
+        }
+    });
+    
+    brandsTrack.addEventListener('mouseup', () => {
+        if (mouseDown && window.innerWidth < 768) {
+            mouseDown = false;
+            isDragging = false;
+            
+            const currentTransform = parseFloat(brandsTrack.style.transform.match(/translateX\(([^)]+)\)/)?.[1] || 0);
+            const targetIndex = Math.round(-(currentTransform - centerOffset) / itemTotalWidth);
+            const snappedIndex = Math.max(0, Math.min(targetIndex, brandItems.length - 1));
+            goToIndex(snappedIndex, true);
+            
+            setTimeout(() => {
+                isUserInteracting = false;
+                startAutoScroll();
+            }, 1000);
+        }
+    });
+    
+    brandsTrack.addEventListener('mouseleave', () => {
+        if (mouseDown && window.innerWidth < 768) {
+            mouseDown = false;
+            isDragging = false;
+            
+            const currentTransform = parseFloat(brandsTrack.style.transform.match(/translateX\(([^)]+)\)/)?.[1] || 0);
+            const targetIndex = Math.round(-(currentTransform - centerOffset) / itemTotalWidth);
+            const snappedIndex = Math.max(0, Math.min(targetIndex, brandItems.length - 1));
+            goToIndex(snappedIndex, true);
+            
+            setTimeout(() => {
+                isUserInteracting = false;
+                startAutoScroll();
+            }, 1000);
+        }
+    });
+    
+    // Prevent link clicks during drag
+    brandItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            if (isDragging) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+    });
+    
+    // Initialize
+    updateProgress(0);
+    goToIndex(0, false);
+    
+    // Start auto-scroll after initialization
+    setTimeout(() => {
+        startAutoScroll();
+    }, 1000);
+    
+    // Restart auto-scroll when window regains focus
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !isUserInteracting) {
+            startAutoScroll();
+        } else {
+            stopAutoScroll();
+        }
+    });
 }
 
 // Brand Modal Functionality
@@ -1009,6 +1208,12 @@ function initFAQ() {
 
 document.addEventListener('DOMContentLoaded', async () => {
     loadBrandImages();
+    
+    // Initialize mobile brands carousel after images are loaded
+    setTimeout(() => {
+        initMobileBrandsCarousel();
+    }, 500);
+    
     await loadGalleryImages();
     await loadServiceBackgroundImages();
     
@@ -1058,6 +1263,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateCursor();
         window.addEventListener('resize', updateCursor);
     }
+    
+    // Reinitialize mobile brands carousel on resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (window.innerWidth < 768) {
+                initMobileBrandsCarousel();
+            }
+        }, 300);
+    });
 });
 
 // Mobile brand chips filtering
