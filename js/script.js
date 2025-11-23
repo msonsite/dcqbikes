@@ -85,10 +85,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-            const navHeight = document.getElementById('mainNav').offsetHeight;
-            const targetPosition = target.offsetTop - navHeight;
+            const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
+            
+            // Check if element has scroll-mt class and extract value
+            let scrollOffset = navHeight + 20; // Default extra padding
+            const scrollMtClass = Array.from(target.classList).find(cls => cls.startsWith('scroll-mt-'));
+            if (scrollMtClass) {
+                const mtValue = parseInt(scrollMtClass.replace('scroll-mt-', ''));
+                if (!isNaN(mtValue)) {
+                    // Tailwind spacing: each unit = 0.25rem = 4px (at default 16px base)
+                    scrollOffset = navHeight + (mtValue * 4);
+                }
+            }
+            
+            const targetPosition = target.offsetTop - scrollOffset;
             window.scrollTo({
-                top: targetPosition,
+                top: Math.max(0, targetPosition),
                 behavior: 'smooth'
             });
         }

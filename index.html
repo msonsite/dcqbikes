@@ -1157,10 +1157,17 @@
                 position: relative;
             }
             
-            .brand-marquee .brand-item:hover,
-            .brand-marquee .brand-item:active {
+            .brand-marquee .brand-item:hover {
                 transform: scale(1.05);
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            }
+            
+            .brand-marquee .brand-item:active,
+            .brand-marquee .brand-item:focus {
+                transform: scale(1);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+                outline: none;
+                border: none;
             }
             
             .brand-marquee .brand-item img {
@@ -1314,6 +1321,11 @@
             opacity: 1;
         }
         
+        /* Disable ::before for marquee items */
+        .brand-marquee .brand-item::before {
+            display: none;
+        }
+        
         @media (min-width: 769px) {
             .brand-item:hover {
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
@@ -1328,7 +1340,15 @@
             transform: translateY(-8px) scale(1.05);
             background: linear-gradient(135deg, #fffefc 0%, #f8f8f8 100%);
             border: 2px solid rgba(238, 39, 38, 0.3);
-            }
+        }
+        
+        /* Override for marquee items - no red effects */
+        .brand-marquee .brand-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+        }
         }
         
         .brand-item-inner {
@@ -2945,13 +2965,13 @@
     <!-- Footer -->
     <footer class="text-dcq-white py-6 md:py-10" style="background: #0a0a0a; border-top: 1px solid rgba(255, 255, 255, 0.1);">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-6 md:mb-8">
-                <div class="col-span-2 md:col-span-2">
-                    <img src="assets/images/logo/dcqbikeslogotransparent.png" alt="DCQ Bikes logo" class="h-10 md:h-16 lg:h-20 w-auto mb-3 md:mb-4 object-contain">
-                    <p class="text-sm md:text-base text-gray-400 leading-relaxed mb-3 md:mb-4">
+            <div class="mb-6 md:mb-8">
+                <div class="text-center md:text-center">
+                    <img src="assets/images/logo/dcqbikeslogotransparent.png" alt="DCQ Bikes logo" class="h-10 md:h-16 lg:h-20 w-auto mb-3 md:mb-4 object-contain mx-auto">
+                    <p class="text-sm md:text-base text-gray-400 leading-relaxed mb-3 md:mb-4 max-w-2xl mx-auto">
                         Uw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers.
                     </p>
-                    <div class="flex items-center gap-3">
+                    <div class="flex items-center justify-center gap-3">
                         <a href="https://www.linkedin.com/company/dcqbikes/?originalSubdomain=be" aria-label="LinkedIn" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#151515] hover:bg-dcq-red text-white/90 hover:text-white flex items-center justify-center transition-colors border border-white/10" target="_blank" rel="noopener">
                             <i class="fab fa-linkedin"></i>
                         </a>
@@ -2960,39 +2980,28 @@
                         </a>
                     </div>
                 </div>
-                <div>
-                    <h4 class="font-semibold text-base md:text-lg mb-2 md:mb-3 tracking-tight">Navigatie</h4>
-                    <ul class="space-y-1 md:space-y-2 text-sm md:text-base text-gray-400">
-                        <li><a href="#home" class="hover:underline hover:text-white transition-colors">Home</a></li>
-                        <li><a href="#services" class="hover:underline hover:text-white transition-colors">Aanbod</a></li>
-                        <li><a href="#brands" class="hover:underline hover:text-white transition-colors">Merken</a></li>
-                        <li><a href="#gallery" class="hover:underline hover:text-white transition-colors">Galerij</a></li>
-                        <li><a href="#about" class="hover:underline hover:text-white transition-colors">Over Ons</a></li>
-                        <li><a href="#contact" class="hover:underline hover:text-white transition-colors">Contact</a></li>
-                        <li><a href="#faq" class="hover:underline hover:text-white transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-base md:text-lg mb-2 md:mb-3 tracking-tight">Juridisch</h4>
-                    <ul class="space-y-1 md:space-y-2 text-sm md:text-base text-gray-400">
-                        <li><a href="cookie-policy.html" class="hover:underline hover:text-white transition-colors">Cookiebeleid</a></li>
-                        <li><a href="privacy-policy.html" class="hover:underline hover:text-white transition-colors">Privacybeleid</a></li>
-                        <li><a href="terms-and-conditions.html" class="hover:underline hover:text-white transition-colors">Algemene Voorwaarden</a></li>
-                    </ul>
-                </div>
             </div>
-            <div class="pt-4 md:pt-6 text-gray-400" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                <div class="flex flex-col sm:flex-row items-center sm:items-center justify-center sm:justify-between gap-2 text-xs md:text-sm">
-                    <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
-                    <p class="text-center sm:text-left">&copy; <span id="currentYear"></span> DCQ Bikes BV. Alle rechten voorbehouden.</p>
-                        <span class="hidden sm:inline">•</span>
-                        <p class="text-center sm:text-left">BTW-nummer: BE 0685.615.103</p>
+            <div class="pt-4 md:pt-6 text-gray-500" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <div class="flex flex-col gap-3 text-xs">
+                    <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-2">
+                        <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 text-gray-400">
+                            <p class="text-center sm:text-left">&copy; <span id="currentYear"></span> DCQ Bikes BV. Alle rechten voorbehouden.</p>
+                            <span class="hidden sm:inline text-gray-600">•</span>
+                            <p class="text-center sm:text-left">BTW-nummer: BE 0685.615.103</p>
+                        </div>
+                        <span class="designer-credit text-center sm:text-right text-gray-500">
+                            <i class="fas fa-sparkles" aria-hidden="true"></i>
+                            Design by
+                            <a href="https://www.linkedin.com/in/sanderdelobel/" target="_blank" rel="noopener" class="hover:text-gray-400 transition-colors">Sander de Lobel</a>
+                        </span>
                     </div>
-                    <span class="designer-credit text-center sm:text-right text-xs">
-                        <i class="fas fa-sparkles" aria-hidden="true"></i>
-                        Design by
-                        <a href="https://www.linkedin.com/in/sanderdelobel/" target="_blank" rel="noopener">Sander de Lobel</a>
-                    </span>
+                    <div class="flex items-center justify-center gap-2 text-gray-600">
+                        <a href="cookie-policy.html" class="hover:text-gray-400 transition-colors">Cookiebeleid</a>
+                        <span>•</span>
+                        <a href="privacy-policy.html" class="hover:text-gray-400 transition-colors">Privacybeleid</a>
+                        <span>•</span>
+                        <a href="terms-and-conditions.html" class="hover:text-gray-400 transition-colors">Algemene Voorwaarden</a>
+                    </div>
                 </div>
             </div>
         </div>
