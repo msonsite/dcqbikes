@@ -856,7 +856,7 @@ function updateStoreStatus() {
     if (currentDay === 0 || currentDay === 1) {
         // Sunday or Monday - Closed
         storeStatus.classList.add('closed');
-        statusMessage = currentDay === 0 ? 'Gesloten (Zondag)' : 'Gesloten (Maandag)';
+        statusMessage = currentDay === 0 ? 'Gesloten' : 'Gesloten';
     } else if (currentDay >= 2 && currentDay <= 5) {
         // Tuesday to Friday
         const morningStart = 9 * 60; // 09:00
