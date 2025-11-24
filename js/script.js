@@ -216,7 +216,8 @@ async function loadBrandImages() {
             const img = document.createElement('img');
             img.src = brand.src;
             img.alt = brand.alt;
-            img.loading = 'lazy';
+            // Use eager loading for mobile marquee, lazy for desktop
+            img.loading = mobileMarquee ? 'eager' : 'lazy';
             
             brandWrapper.appendChild(img);
             brandLink.appendChild(brandWrapper);
@@ -240,7 +241,17 @@ async function loadBrandImages() {
                 clone.style.opacity = '1';
                 clone.style.transform = 'none';
                 const imgEl = clone.querySelector('img');
-                if (imgEl) imgEl.loading = 'lazy';
+                if (imgEl) {
+                    // Force eager loading for mobile carousel to prevent white boxes
+                    imgEl.loading = 'eager';
+                    imgEl.fetchPriority = 'high';
+                    // Preload the image
+                    const link = document.createElement('link');
+                    link.rel = 'preload';
+                    link.as = 'image';
+                    link.href = imgEl.src;
+                    document.head.appendChild(link);
+                }
                 mobileLogos.push(clone);
             }
         });
