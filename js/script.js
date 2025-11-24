@@ -258,13 +258,28 @@ async function loadBrandImages() {
 }
 
 // Initialize interactive mobile brands carousel
+let mobileCarouselInitialized = false;
+let mobileCarouselCleanup = null;
+
 function initMobileBrandsCarousel() {
     const brandsMobile = document.getElementById('brands-mobile');
     const brandsTrack = document.getElementById('brandsMarqueeTrack');
     const progressBar = document.getElementById('brandCarouselProgressBar');
     
     if (!brandsMobile || !brandsTrack || window.innerWidth >= 768) {
+        // Cleanup if switching to desktop
+        if (mobileCarouselCleanup) {
+            mobileCarouselCleanup();
+            mobileCarouselCleanup = null;
+            mobileCarouselInitialized = false;
+        }
         return;
+    }
+    
+    // Cleanup previous initialization if exists
+    if (mobileCarouselCleanup) {
+        mobileCarouselCleanup();
+        mobileCarouselCleanup = null;
     }
     
     const brandItems = brandsTrack.querySelectorAll('.brand-item');
@@ -284,6 +299,20 @@ function initMobileBrandsCarousel() {
     let touchStartY = 0;
     let startTransform = 0;
     let isDragging = false;
+    let isVisible = false;
+    
+    // Store event handlers for cleanup
+    const eventHandlers = {
+        touchstart: null,
+        touchmove: null,
+        touchend: null,
+        mousedown: null,
+        mousemove: null,
+        mouseup: null,
+        mouseleave: null,
+        visibilitychange: null,
+        intersection: null
+    };
     
     // Update progress bar
     function updateProgress(index) {
@@ -318,10 +347,10 @@ function initMobileBrandsCarousel() {
     // Auto-scroll function
     function startAutoScroll() {
         if (autoScrollInterval) clearInterval(autoScrollInterval);
-        if (isUserInteracting) return;
+        if (isUserInteracting || !isVisible) return;
         
         autoScrollInterval = setInterval(() => {
-            if (isUserInteracting || isDragging) return;
+            if (isUserInteracting || isDragging || !isVisible) return;
             
             const nextIndex = (currentIndex + 1) % brandItems.length;
             goToIndex(nextIndex, true);
@@ -337,7 +366,7 @@ function initMobileBrandsCarousel() {
     }
     
     // Touch events
-    brandsTrack.addEventListener('touchstart', (e) => {
+    eventHandlers.touchstart = (e) => {
         isUserInteracting = true;
         isDragging = true;
         stopAutoScroll();
@@ -346,9 +375,9 @@ function initMobileBrandsCarousel() {
         const currentTransform = brandsTrack.style.transform;
         startTransform = currentTransform ? parseFloat(currentTransform.match(/translateX\(([^)]+)\)/)?.[1] || 0) : getTransformForIndex(currentIndex);
         brandsTrack.style.transition = 'none';
-    }, { passive: true });
+    };
     
-    brandsTrack.addEventListener('touchmove', (e) => {
+    eventHandlers.touchmove = (e) => {
         if (!isDragging) return;
         
         const deltaX = e.touches[0].clientX - touchStartX;
@@ -360,9 +389,9 @@ function initMobileBrandsCarousel() {
             const newTransform = startTransform + deltaX;
             brandsTrack.style.transform = `translateX(${newTransform}px)`;
         }
-    }, { passive: false });
+    };
     
-    brandsTrack.addEventListener('touchend', () => {
+    eventHandlers.touchend = () => {
         if (!isDragging) return;
         isDragging = false;
         
@@ -377,13 +406,19 @@ function initMobileBrandsCarousel() {
         // Resume auto-scroll after delay
         setTimeout(() => {
             isUserInteracting = false;
-            startAutoScroll();
+            if (isVisible) {
+                startAutoScroll();
+            }
         }, 1000);
-    }, { passive: true });
+    };
+    
+    brandsTrack.addEventListener('touchstart', eventHandlers.touchstart, { passive: true });
+    brandsTrack.addEventListener('touchmove', eventHandlers.touchmove, { passive: false });
+    brandsTrack.addEventListener('touchend', eventHandlers.touchend, { passive: true });
     
     // Mouse events for desktop testing
     let mouseDown = false;
-    brandsTrack.addEventListener('mousedown', (e) => {
+    eventHandlers.mousedown = (e) => {
         if (window.innerWidth < 768) {
             isUserInteracting = true;
             isDragging = true;
@@ -395,17 +430,17 @@ function initMobileBrandsCarousel() {
             startTransform = currentTransform ? parseFloat(currentTransform.match(/translateX\(([^)]+)\)/)?.[1] || 0) : getTransformForIndex(currentIndex);
             brandsTrack.style.transition = 'none';
         }
-    });
+    };
     
-    brandsTrack.addEventListener('mousemove', (e) => {
+    eventHandlers.mousemove = (e) => {
         if (mouseDown && window.innerWidth < 768 && isDragging) {
             const deltaX = e.clientX - touchStartX;
             const newTransform = startTransform + deltaX;
             brandsTrack.style.transform = `translateX(${newTransform}px)`;
         }
-    });
+    };
     
-    brandsTrack.addEventListener('mouseup', () => {
+    eventHandlers.mouseup = () => {
         if (mouseDown && window.innerWidth < 768) {
             mouseDown = false;
             isDragging = false;
@@ -417,12 +452,14 @@ function initMobileBrandsCarousel() {
             
             setTimeout(() => {
                 isUserInteracting = false;
-                startAutoScroll();
+                if (isVisible) {
+                    startAutoScroll();
+                }
             }, 1000);
         }
-    });
+    };
     
-    brandsTrack.addEventListener('mouseleave', () => {
+    eventHandlers.mouseleave = () => {
         if (mouseDown && window.innerWidth < 768) {
             mouseDown = false;
             isDragging = false;
@@ -434,38 +471,109 @@ function initMobileBrandsCarousel() {
             
             setTimeout(() => {
                 isUserInteracting = false;
-                startAutoScroll();
+                if (isVisible) {
+                    startAutoScroll();
+                }
             }, 1000);
         }
-    });
+    };
+    
+    brandsTrack.addEventListener('mousedown', eventHandlers.mousedown);
+    brandsTrack.addEventListener('mousemove', eventHandlers.mousemove);
+    brandsTrack.addEventListener('mouseup', eventHandlers.mouseup);
+    brandsTrack.addEventListener('mouseleave', eventHandlers.mouseleave);
     
     // Prevent link clicks during drag
+    const clickHandlers = [];
     brandItems.forEach(item => {
-        item.addEventListener('click', (e) => {
+        const clickHandler = (e) => {
             if (isDragging) {
                 e.preventDefault();
                 e.stopPropagation();
             }
-        });
+        };
+        item.addEventListener('click', clickHandler);
+        clickHandlers.push({ element: item, handler: clickHandler });
     });
+    
+    // Intersection Observer to detect when section is visible
+    const brandsSection = brandsMobile.closest('section');
+    if (brandsSection) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isVisible = entry.isIntersecting && entry.intersectionRatio > 0.3;
+                if (isVisible && !isUserInteracting && !isDragging) {
+                    // Small delay to ensure smooth transition
+                    setTimeout(() => {
+                        if (isVisible && !isUserInteracting && !isDragging) {
+                            startAutoScroll();
+                        }
+                    }, 300);
+                } else {
+                    stopAutoScroll();
+                }
+            });
+        }, {
+            threshold: [0, 0.3, 0.5, 1],
+            rootMargin: '0px'
+        });
+        
+        sectionObserver.observe(brandsSection);
+        eventHandlers.intersection = sectionObserver;
+    }
+    
+    // Restart auto-scroll when window regains focus
+    eventHandlers.visibilitychange = () => {
+        if (!document.hidden && !isUserInteracting && isVisible) {
+            startAutoScroll();
+        } else {
+            stopAutoScroll();
+        }
+    };
+    document.addEventListener('visibilitychange', eventHandlers.visibilitychange);
     
     // Initialize
     updateProgress(0);
     goToIndex(0, false);
     
-    // Start auto-scroll after initialization
-    setTimeout(() => {
-        startAutoScroll();
-    }, 1000);
-    
-    // Restart auto-scroll when window regains focus
-    document.addEventListener('visibilitychange', () => {
-        if (!document.hidden && !isUserInteracting) {
-            startAutoScroll();
-        } else {
-            stopAutoScroll();
+    // Cleanup function
+    mobileCarouselCleanup = () => {
+        stopAutoScroll();
+        
+        // Remove event listeners
+        if (brandsTrack) {
+            brandsTrack.removeEventListener('touchstart', eventHandlers.touchstart);
+            brandsTrack.removeEventListener('touchmove', eventHandlers.touchmove);
+            brandsTrack.removeEventListener('touchend', eventHandlers.touchend);
+            brandsTrack.removeEventListener('mousedown', eventHandlers.mousedown);
+            brandsTrack.removeEventListener('mousemove', eventHandlers.mousemove);
+            brandsTrack.removeEventListener('mouseup', eventHandlers.mouseup);
+            brandsTrack.removeEventListener('mouseleave', eventHandlers.mouseleave);
         }
-    });
+        
+        // Remove click handlers
+        clickHandlers.forEach(({ element, handler }) => {
+            element.removeEventListener('click', handler);
+        });
+        
+        // Remove visibility change listener
+        if (eventHandlers.visibilitychange) {
+            document.removeEventListener('visibilitychange', eventHandlers.visibilitychange);
+        }
+        
+        // Disconnect intersection observer
+        if (eventHandlers.intersection) {
+            eventHandlers.intersection.disconnect();
+        }
+        
+        // Reset transform
+        if (brandsTrack) {
+            brandsTrack.style.transform = '';
+            brandsTrack.style.transition = '';
+        }
+    };
+    
+    mobileCarouselInitialized = true;
 }
 
 // Brand Modal Functionality
