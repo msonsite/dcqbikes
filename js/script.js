@@ -243,14 +243,9 @@ async function loadBrandImages() {
                 const imgEl = clone.querySelector('img');
                 if (imgEl) {
                     // Force eager loading for mobile carousel to prevent white boxes
+                    // Using eager + high priority without preload links to avoid competing with hero video
                     imgEl.loading = 'eager';
                     imgEl.fetchPriority = 'high';
-                    // Preload the image
-                    const link = document.createElement('link');
-                    link.rel = 'preload';
-                    link.as = 'image';
-                    link.href = imgEl.src;
-                    document.head.appendChild(link);
                 }
                 mobileLogos.push(clone);
             }
