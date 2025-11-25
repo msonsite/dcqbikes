@@ -83,17 +83,38 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (href === '#' || href === '#!') return;
         
         e.preventDefault();
+        
+        if (href === '#home') {
+            const headerRibbon = document.getElementById('headerRibbon');
+            
+            if (headerRibbon) {
+                const ribbonRect = headerRibbon.getBoundingClientRect();
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                const ribbonBottom = ribbonRect.bottom + currentScroll;
+                
+                window.scrollTo({
+                    top: ribbonBottom,
+                    behavior: 'smooth'
+                });
+            } else {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            return;
+        }
+        
         const target = document.querySelector(href);
         if (target) {
             const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
             
             // Check if element has scroll-mt class and extract value
-            let scrollOffset = navHeight + 20; // Default extra padding
+            let scrollOffset = navHeight + 20;
             const scrollMtClass = Array.from(target.classList).find(cls => cls.startsWith('scroll-mt-'));
             if (scrollMtClass) {
                 const mtValue = parseInt(scrollMtClass.replace('scroll-mt-', ''));
                 if (!isNaN(mtValue)) {
-                    // Tailwind spacing: each unit = 0.25rem = 4px (at default 16px base)
                     scrollOffset = navHeight + (mtValue * 4);
                 }
             }
