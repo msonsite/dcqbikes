@@ -110,7 +110,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
             
             // Check if element has scroll-mt class and extract value
-            let scrollOffset = navHeight + 20;
+            let scrollOffset = navHeight;
             const scrollMtClass = Array.from(target.classList).find(cls => cls.startsWith('scroll-mt-'));
             if (scrollMtClass) {
                 const mtValue = parseInt(scrollMtClass.replace('scroll-mt-', ''));
@@ -1618,6 +1618,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
 
 
 
