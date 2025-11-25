@@ -1400,6 +1400,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }, 300);
     });
+    
 });
 
 // Mobile brand chips filtering
@@ -1596,5 +1597,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
 
 

@@ -998,14 +998,16 @@
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
+                align-items: stretch;
             }
             
             .faq-item {
-                height: fit-content;
+                display: flex;
+                flex-direction: column;
             }
             
             .faq-question {
-                min-height: auto;
+                flex-grow: 1;
             }
         }
         
@@ -1515,7 +1517,63 @@
             z-index: 1;
         }
         
-        @media (min-width: 769px) {
+        /* iPad/Tablet specific styles (768px - 1023px) */
+        @media (min-width: 769px) and (max-width: 1023px) {
+            .brand-row-container {
+                margin-bottom: 1.5rem;
+                padding: 0;
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .brand-row-container:last-child {
+                margin-bottom: 0;
+            }
+            
+            .brand-row {
+                display: grid;
+                gap: 1rem;
+                padding: 0.75rem 0;
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+                justify-items: center;
+                align-items: center;
+            }
+            
+            #brands-large.brand-row {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                max-width: 900px;
+            }
+            
+            #brands-medium.brand-row {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+                max-width: 900px;
+            }
+            
+            #brands-small.brand-row {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                max-width: 900px;
+            }
+            
+            #brands-large .brand-item {
+                max-width: 180px;
+                width: 100%;
+            }
+            
+            #brands-medium .brand-item {
+                max-width: 150px;
+                width: 100%;
+            }
+            
+            #brands-small .brand-item {
+                max-width: 120px;
+                width: 100%;
+            }
+        }
+        
+        @media (min-width: 1024px) {
         .brand-row-container {
                 margin-bottom: 1rem;
                 padding: 0;
@@ -1993,10 +2051,18 @@
                 flex: 1 1 calc(50% - 1.5rem);
             }
             
-            .team-member-photo-wrapper,
+            .team-member-photo-wrapper {
+                width: 120px;
+                height: 120px;
+                aspect-ratio: 1 / 1;
+            }
+            
             .team-member-photo {
                 width: 120px;
                 height: 120px;
+                border-radius: 50%;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
             }
         }
         
@@ -2144,6 +2210,26 @@
             transition: none;
         }
         .team-member:hover { transform: none; box-shadow: none; }
+        
+        /* Special Offers Section */
+        .offer-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .offer-card img {
+            transition: transform 0.5s ease;
+        }
+        
+        @media (max-width: 1023px) {
+            .offer-card {
+                max-width: 100%;
+            }
+        }
+        
     </style>
 </head>
 <body class="bg-dcq-white text-dcq-black antialiased">
@@ -2193,10 +2279,8 @@
                     <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Home</a>
                     <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Aanbod</a>
                     <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Merken</a>
-                    <a href="#gallery" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Galerij</a>
                     <a href="#about" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Over Ons</a>
                     <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Contact</a>
-                    <a href="#faq" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">FAQ</a>
                 </div>
                 <button id="mobileMenuBtn" class="md:hidden text-dcq-white hover:text-dcq-red transition-colors">
                     <i class="fas fa-bars text-2xl"></i>
@@ -2208,10 +2292,8 @@
                     <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Home</a>
                     <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Aanbod</a>
                     <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Merken</a>
-                    <a href="#gallery" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Galerij</a>
                     <a href="#about" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Over Ons</a>
                     <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Contact</a>
-                    <a href="#faq" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">FAQ</a>
                 </div>
             </div>
         </div>
@@ -2781,27 +2863,103 @@
         </div>
     </section>
 
-    <!-- Cadeaubon Section -->
-    <section class="py-8 md:py-12 bg-gray-50">
-        <div class="container mx-auto max-w-6xl px-4 md:px-6">
-            <div class="fade-in">
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-                        <!-- Image -->
-                        <div class="relative h-64 md:h-auto md:min-h-[400px]">
-                            <img src="assets/images/cadeaubon/cadeaubon.png" alt="DCQ Bikes Cadeaubon" class="w-full h-full object-cover" loading="lazy">
+    <!-- Special Offers Section -->
+    <section class="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6">
+            <div class="text-center mb-10 md:mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Speciale Aanbiedingen</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Ontdek onze exclusieve cadeaubonnen en unieke ervaringen</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
+                <!-- Cadeaubon Card -->
+                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 fade-in">
+                    <div class="relative h-64 md:h-80 overflow-hidden">
+                        <img src="assets/images/cadeaubon/cadeaubon.png" alt="DCQ Bikes Cadeaubon" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <div class="mb-3">
+                            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">DCQ Bikes Cadeaubon</h3>
+                            <p class="text-sm text-gray-600">Flexibel bedrag • Geldig voor alle producten</p>
                         </div>
-                        <!-- Content -->
-                        <div class="p-6 md:p-10 flex flex-col justify-center bg-white">
-                            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">DCQ Bikes Cadeaubon</h3>
-                            <p class="text-gray-700 mb-6 text-base md:text-lg leading-relaxed">
-                                Geef het perfecte cadeau voor elke fietsliefhebber. Kom langs in onze winkel voor meer informatie over onze cadeaubonnen.
-                            </p>
-                            <div class="flex items-center gap-2 text-gray-600">
-                                <i class="fas fa-store text-dcq-red"></i>
-                                <span class="text-sm md:text-base">Beschikbaar in de winkel</span>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            Geef het perfecte cadeau voor elke fietsliefhebber. Onze cadeaubonnen zijn beschikbaar in verschillende bedragen en kunnen gebruikt worden voor alle producten en diensten in onze winkel.
+                        </p>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            Of het nu gaat om een nieuwe elektrische fiets, een stadsfiets, onderdelen, accessoires of onderhoud, met een DCQ Bikes cadeaubon geeft u de ontvanger de vrijheid om zelf te kiezen wat hij of zij het meest nodig heeft.
+                        </p>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Perfect voor verjaardagen, feestdagen of gewoon om iemand te verrassen. De cadeaubon heeft een lange geldigheidsduur en kan op elk moment ingewisseld worden.
+                        </p>
+                        
+                        <!-- Features List -->
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-sm md:text-base">Beschikbaar in verschillende bedragen</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-sm md:text-base">Geldig voor alle producten en diensten</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-sm md:text-base">Lange geldigheidsduur</span>
                             </div>
                         </div>
+                        
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <i class="fas fa-store text-dcq-red text-lg"></i>
+                            <span class="text-base">Beschikbaar in de winkel</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Circuit Experience Card -->
+                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 fade-in">
+                    <div class="relative h-64 md:h-80 overflow-hidden">
+                        <img src="assets/images/cadeaubon/trackday.JPG" alt="Circuit Experience Stay Fast DW16" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    </div>
+                    <div class="p-6 md:p-8 relative">
+                        <div class="absolute top-6 right-6 md:top-8 md:right-8">
+                            <span class="bg-dcq-red text-white text-base md:text-lg font-bold px-5 py-2.5 rounded-lg shadow-lg inline-block">€100</span>
+                        </div>
+                        <div class="mb-3 pr-20">
+                            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">Circuit Experience</h3>
+                            <p class="text-sm text-gray-600">Taxi rit Stay Fast DW16 • 282pk • 600kg</p>
+                        </div>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            Stap in de passagiersstoel van onze <strong>Stay Fast DW16</strong> en beleef een onvergetelijke rit op het circuit. Deze high-performance auto met 282pk en slechts 600kg gewicht biedt u een unieke kans om de wereld van motorsport van dichtbij te ervaren.
+                        </p>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            Tijdens <strong>vijf intensieve rondes</strong> op het circuit voelt u elke bocht, elke versnelling en elke rem. De G-krachten drukken u in uw stoel, de wind suist langs u heen, en u ervaart de pure adrenaline van het racen. Een ervaring die u niet snel zult vergeten.
+                        </p>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Of u nu een motorsportliefhebber bent of gewoon op zoek bent naar een uniek cadeau, deze Racing Experience is perfect voor iedereen die hunkert naar opwinding en snelheid.
+                        </p>
+                        
+                        <!-- Features List -->
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-sm md:text-base">Vijf rondes op het circuit</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-sm md:text-base">Vragen stellen en foto's maken</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-sm md:text-base">Veiligheid is onze topprioriteit</span>
+                            </div>
+                        </div>
+                        
+                        <a href="mailto:info@dcqbikes.be?subject=Circuit Experience - Vraag" class="inline-flex items-center gap-2 px-6 py-3 bg-dcq-red text-white font-semibold rounded-lg hover:bg-red-700 transition-colors duration-200">
+                            <i class="fas fa-envelope"></i>
+                            <span>Stuur een e-mail</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -3020,6 +3178,8 @@
                         </span>
                     </div>
                     <div class="flex items-center justify-center gap-2 text-gray-600">
+                        <a href="#faq" class="hover:text-gray-400 transition-colors">FAQ</a>
+                        <span>•</span>
                         <a href="cookie-policy.html" class="hover:text-gray-400 transition-colors">Cookiebeleid</a>
                         <span>•</span>
                         <a href="privacy-policy.html" class="hover:text-gray-400 transition-colors">Privacybeleid</a>
