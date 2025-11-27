@@ -306,350 +306,387 @@
             animation: none !important;
         }
         
-        .services-section-new {
-            background: #0a0a0a;
-            padding: 3rem 0;
+        /* Storytelling Services Section */
+        .services-storytelling {
+            background: #ffffff;
         }
         
-        .services-container {
+        .service-story-block {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        
+        /* Electric Bikes - Full Bleed Hero */
+        
+        .service-story-brands {
+            margin-top: 2rem;
+        }
+        
+        .service-story-brands-label {
+            display: block;
+            font-size: 0.75rem;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .service-story-brands-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .service-story-brand-link {
+            display: block;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .service-story-brand-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .service-story-brands-grid img {
+            width: 120px;
+            height: 60px;
+            object-fit: contain;
+            background: #ffffff;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: block;
+        }
+        
+        .service-story-brand-link:hover img {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Split Screen Layouts */
+        .service-story-split {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            min-height: 480px;
+        }
+        
+        .service-story-image-side {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-story-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-story-block:hover .service-story-img {
+            transform: scale(1.05);
+        }
+        
+        .service-story-text-side {
+            display: flex;
+            align-items: center;
+            padding: 4rem;
+            background: #ffffff;
+        }
+        
+        .service-story-text-inner {
+            max-width: 500px;
+        }
+        
+        .service-story-number {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ee2726;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+        
+        .service-story-text-side .service-story-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            text-shadow: none;
+        }
+        
+        .service-story-text-side .service-story-description {
+            font-size: 1.125rem;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            text-shadow: none;
+        }
+        
+        .service-story-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        
+        .service-story-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            color: #374151;
+        }
+        
+        .service-story-feature i {
+            color: #ee2726;
+            font-size: 1.125rem;
+        }
+        
+        .service-story-brands-compact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        
+        .service-story-brands-compact img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .service-story-brands-compact img:hover {
+            opacity: 1;
+        }
+        
+        .service-story-split-reverse {
+            direction: rtl;
+        }
+        
+        .service-story-split-reverse > * {
+            direction: ltr;
+        }
+        
+        /* Grid Layout */
+        .service-story-grid {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            min-height: 480px;
+        }
+        
+        .service-story-grid-image {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-story-grid-content {
+            display: flex;
+            align-items: center;
+            padding: 4rem;
+            background: #ffffff;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-story-grid-content .service-story-text-inner {
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .service-story-grid-content .service-story-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            text-shadow: none;
+        }
+        
+        .service-story-grid-content .service-story-description {
+            font-size: 1.125rem;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            text-shadow: none;
+        }
+        
+        .service-story-grid-content .service-story-number {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ee2726;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+        
+        .service-story-brands-many {
+            gap: 0.5rem;
+        }
+        
+        .service-story-brands-many img {
+            height: 32px;
+        }
+        
+        /* Full Width Layout */
+        .service-story-fullwidth {
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-story-fullwidth-image {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+        
+        .service-story-fullwidth-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 2;
+        }
+        
+        .service-story-fullwidth-content {
+            position: relative;
+            z-index: 3;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 4rem 2rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
         }
         
-        .services-header {
-            text-align: center;
-            margin-bottom: 3rem;
+        .service-story-fullwidth-content .service-story-text-inner {
+            max-width: 500px;
         }
         
-        .services-title {
-            font-size: 1.875rem;
+        .service-story-fullwidth-content .service-story-number {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .service-story-fullwidth-content .service-story-title {
+            font-size: 3rem;
             font-weight: 800;
-            color: #fffefc;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
-        @media (min-width: 768px) {
-            .services-title {
+        .service-story-fullwidth-content .service-story-description {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-story-fullwidth-content .service-story-feature {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .service-story-split,
+            .service-story-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-story-img {
+            width: 100%;
+        }
+        
+            .service-story-split-reverse .service-story-img {
+            width: 100%;
+                margin-left: 0;
+            }
+            
+            .service-story-split-reverse {
+                direction: ltr;
+            }
+            
+            .service-story-text-side {
+                padding: 3rem 2rem;
+            }
+            
+            .service-story-grid-content {
+                padding: 3rem 2rem;
+            }
+            
+            .service-story-title {
+                font-size: 2.5rem;
+            }
+            
+            .service-story-text-side .service-story-title {
                 font-size: 2.25rem;
             }
         }
         
-        @media (min-width: 1024px) {
-            .services-title {
-                font-size: 3rem;
-            }
-        }
-        
-        .services-subtitle {
-            font-size: 1rem;
-            color: rgba(255, 254, 252, 0.8);
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            line-height: 1.6;
-        }
-        
-        @media (min-width: 768px) {
-            .services-subtitle {
-                font-size: 1.125rem;
-                padding: 0 3rem;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .services-subtitle {
-                padding: 0 4rem;
-            }
-        }
-        
-        .services-main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-        
-        .service-featured-card {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            min-height: 480px;
-            display: flex;
-            flex-direction: column;
-            background: #1f2937;
-        }
-        
-        .service-featured-video-section {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            flex-shrink: 0;
-            overflow: hidden;
-        }
-        
-        .service-featured-image {
-            position: absolute;
-            inset: 0;
-            background-image: var(--bg-image, none);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: 1;
-        }
-        
-        .service-featured-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
-        
-        .service-featured-image {
-            opacity: 0;
-        }
-        
-        .service-featured-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
-            z-index: 2;
-        }
-        
-        .service-featured-content {
-            position: relative;
-            z-index: 3;
-            padding: 2rem;
-            width: 100%;
-            color: #1f2937;
-            background: #ffffff;
-            flex: 1;
-        }
-        
-        .service-featured-header {
-            display: flex;
-            align-items: center;
-            gap: 0.875rem;
-            margin-bottom: 1rem;
-        }
-        
-        .service-featured-icon-wrapper {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            background: rgba(238, 39, 38, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(238, 39, 38, 0.2);
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-        
-        .service-featured-icon-wrapper i {
-            font-size: 1.5rem;
-            color: #ee2726;
-        }
-        
-        .service-featured-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 0;
-            color: #1f2937;
-            line-height: 1.2;
-        }
-        
-        .service-featured-description {
-            font-size: 1rem;
-            color: #4b5563;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-        
-        .service-featured-brands {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: #f9fafb;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-        }
-        
-        .featured-brand-link {
-            display: inline-block;
-            text-decoration: none;
-            touch-action: manipulation;
-        }
-        
-        .featured-brand-logo {
-            width: 100px;
-            height: 50px;
-            object-fit: contain;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 0.625rem;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .featured-brand-link:hover .featured-brand-logo {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            border-color: rgba(238, 39, 38, 0.4);
-        }
-        
-        .service-featured-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-        }
-        
-        .featured-feature-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.625rem;
-            padding: 0.75rem 1rem;
-            background: #f9fafb;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #1f2937;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-            white-space: nowrap;
-        }
-        
-        .featured-feature-badge i {
-            color: #ee2726;
-            font-size: 0.875rem;
-            flex-shrink: 0;
-        }
-        
-        .services-cards-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-        }
-        
-        .service-card-new {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #ffffff;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            min-height: 220px;
-        }
-        
-        .service-card-new:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-        
-        .service-card-image {
-            position: relative;
-            width: 100%;
-            height: 140px;
-            overflow: hidden;
-            background: #f3f4f6;
-        }
-        
-        .service-card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        
-        .service-card-new:hover .service-card-img {
-            transform: scale(1.05);
-        }
-        
-        .service-card-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .service-card-new:hover .service-card-image::after {
-            opacity: 1;
-        }
-        
-        .service-card-content {
-            padding: 1.25rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .service-card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .service-card-icon-box {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, rgba(238, 39, 38, 0.1), rgba(238, 39, 38, 0.05));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .service-card-new:hover .service-card-icon-box {
-            background: linear-gradient(135deg, rgba(238, 39, 38, 0.15), rgba(238, 39, 38, 0.08));
-            transform: scale(1.05);
-        }
-        
-        .service-card-icon-box i {
-            font-size: 0.875rem;
-            color: #ee2726;
-        }
-        
-        .service-card-partner-logo {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-        
-        .service-card-partner-logo img {
-            height: 25px;
-            width: auto;
-            object-fit: contain;
+        @media (max-width: 768px) {
             
+            .service-story-text-side .service-story-title {
+                font-size: 1.875rem;
+            }
+            
+            .service-story-grid-content .service-story-title {
+                font-size: 1.875rem;
+            }
+            
+            .service-story-description {
+                font-size: 1rem;
+            }
+            
+            .service-story-text-side .service-story-description {
+                font-size: 1rem;
+            }
+            
+            .service-story-grid-content .service-story-description {
+                font-size: 1rem;
+            }
+            
+            .service-story-text-side,
+            .service-story-grid-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .service-story-fullwidth-content {
+                padding: 3rem 1.5rem;
+            }
+            
+            .service-story-fullwidth-content .service-story-title {
+                font-size: 2rem;
+            }
+            
+            .service-story-brands-grid img {
+                width: 100px;
+                height: 50px;
+            }
+            
+            .service-story-brand-link {
+                display: block;
+            }
         }
         
-        .service-card-title {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 0.25rem;
-            line-height: 1.3;
-        }
-        
-        .service-card-description {
-            font-size: 0.8125rem;
-            color: #6b7280;
-            line-height: 1.5;
-            margin: 0;
-            flex: 1;
+        @media (max-width: 1024px) {
+            .service-story-fullwidth-content {
+                padding: 3rem 2rem;
+            }
+            
+            .service-story-fullwidth-content .service-story-title {
+                font-size: 2.5rem;
+            }
         }
         
         @media (max-width: 1024px) {
@@ -847,38 +884,57 @@
             
             .services-cards-wrapper {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.25rem;
             }
             
             .service-card-new {
-                min-height: 180px;
-                border-radius: 16px;
+                border-radius: 20px;
             }
             
             .service-card-image {
-                height: 100px;
+                height: 160px;
             }
             
             .service-card-content {
-                padding: 1rem;
+                padding: 1.5rem;
             }
             
-            .service-card-icon-box {
-                width: 32px;
-                height: 32px;
+            .service-card-icon-wrapper {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 0.625rem;
             }
             
-            .service-card-icon-box i {
-                font-size: 0.875rem;
+            .service-card-icon-wrapper i {
+                font-size: 1rem;
             }
             
             .service-card-title {
-                font-size: 1rem;
-                margin-bottom: 0.25rem;
+                font-size: 1.125rem;
+                margin-bottom: 0.375rem;
             }
             
             .service-card-description {
+                font-size: 0.875rem;
+                margin-bottom: 1rem;
+            }
+            
+            .service-card-benefits {
+                margin-bottom: 1rem;
+            }
+            
+            .service-card-benefit {
                 font-size: 0.75rem;
+                padding: 0.3125rem 0.625rem;
+            }
+            
+            .service-card-brands {
+                padding-top: 1rem;
+            }
+            
+            .service-card-brand-item {
+                height: 28px;
+                padding: 0.25rem 0.5rem;
             }
         }
         
@@ -1341,7 +1397,7 @@
             transform: translateY(-8px) scale(1.05);
             background: linear-gradient(135deg, #fffefc 0%, #f8f8f8 100%);
             border: 2px solid rgba(238, 39, 38, 0.3);
-        }
+            }
         
         /* Override for marquee items - no red effects */
         .brand-marquee .brand-item:hover {
@@ -1349,7 +1405,7 @@
             transform: scale(1.05);
             background: rgba(255, 255, 255, 0.95);
             border: none;
-        }
+            }
         }
         
         .brand-item-inner {
@@ -2331,146 +2387,151 @@
         </div>
     </section>
 
-    <!-- Services Section  -->
-    <section id="services" class="services-section-new">
-        <div class="services-container">
-            <!-- Header -->
-            <div class="services-header fade-in">
-                <h2 class="services-title">Ons Aanbod</h2>
-                <p class="services-subtitle">
-                    Fietsen en service van merken die we vertrouwen.
-                </p>
+    <!-- Services Section - Storytelling Approach -->
+    <section id="services" class="services-storytelling">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6 pt-12 md:pt-16 pb-4 md:pb-6">
+            <div class="text-center mb-2 md:mb-3 fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Ons Aanbod</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Alles wat je nodig hebt voor je fiets</p>
             </div>
-            
-            <!-- Main Content Grid -->
-            <div class="services-main-grid">
-                <!-- Electric Bikes - Featured Large Card -->
-                <div class="service-featured-card service-block-1">
-                    <div class="service-featured-video-section">
-                        <div class="service-featured-image"></div>
-                        <video class="service-featured-video" autoplay muted loop playsinline>
-                            <source src="assets/videos/herovideo2.mov" type="video/mp4">
-                        </video>
-                        <div class="service-featured-overlay"></div>
                 </div>
-                    <div class="service-featured-content">
-                        <div class="service-featured-header">
-                            <div class="service-featured-icon-wrapper">
-                                <i class="fas fa-bolt"></i>
+        <!-- Electric Bikes - Reverse Split Screen -->
+        <div class="service-story-block service-story-electric">
+            <div class="service-story-split service-story-split-reverse">
+                <div class="service-story-image-side">
+                    <img src="assets/images/gallery/picture3.webp" alt="Elektrische Fietsen" class="service-story-img">
             </div>
-                            <h3 class="service-featured-title">Elektrische Fietsen</h3>
+                <div class="service-story-text-side">
+                    <div class="service-story-text-inner">
+                        <span class="service-story-number">01</span>
+                        <h2 class="service-story-title">Elektrische Fietsen</h2>
+                        <p class="service-story-description">Of je nu naar het werk pendelt of de wereld verkent, met een elektrische fiets maak je elke rit tot een genot. Wij vinden samen jouw ideale e-bike.</p>
+                        <div class="service-story-brands">
+                            <span class="service-story-brands-label">Onze merken</span>
+                            <div class="service-story-brands-grid">
+                                <a href="https://www.victoria-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
+                                    <img src="assets/images/brands/large/victoria-groot.png" alt="Victoria">
+                                </a>
+                                <a href="https://norta.be/nl/home" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
+                                    <img src="assets/images/brands/large/norta.png" alt="Norta">
+                                </a>
+                                <a href="https://www.conway-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
+                                    <img src="assets/images/brands/large/conway.png" alt="Conway">
+                                </a>
+                                <a href="https://www.oxfordbikes.be/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
+                                    <img src="assets/images/brands/large/oxfordlogo.webp" alt="Oxford">
+                                </a>
+                                <a href="https://www.qio-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
+                                    <img src="assets/images/brands/large/qio.png" alt="Qio">
+                                </a>
+                            </div>
+                        </div>
             </div>
-                        <p class="service-featured-description">
-                            Breed assortiment van topmerken met persoonlijk advies en testritten
-                        </p>
-                        
-                        <!-- Brand Logos -->
-                        <div class="service-featured-brands">
-                            <a href="https://www.victoria-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="featured-brand-link featured-brand-large">
-                                <img src="assets/images/brands/large/victoria-groot.png" alt="Victoria" class="featured-brand-logo" />
-                            </a>
-                            <a href="https://norta.be/nl/home" target="_blank" rel="noopener noreferrer" class="featured-brand-link featured-brand-large">
-                                <img src="assets/images/brands/large/norta.png" alt="Norta" class="featured-brand-logo" />
-                            </a>
-                            <a href="https://www.conway-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="featured-brand-link featured-brand-small">
-                                <img src="assets/images/brands/large/conway.png" alt="Conway" class="featured-brand-logo" />
-                            </a>
-                            <a href="https://www.oxfordbikes.be/" target="_blank" rel="noopener noreferrer" class="featured-brand-link featured-brand-small">
-                                <img src="assets/images/brands/large/oxfordlogo.webp" alt="Oxford" class="featured-brand-logo" />
-                            </a>
-                            <a href="https://www.qio.bike/" target="_blank" rel="noopener noreferrer" class="featured-brand-link featured-brand-small">
-                                <img src="assets/images/brands/large/qio.png" alt="Qio" class="featured-brand-logo" />
-                            </a>
+                </div>
+            </div>
                         </div>
 
-                        <!-- Features -->
-                        <div class="service-featured-features">
-                            <span class="featured-feature-badge">
+        <!-- Stadsfietsen - Split Screen -->
+        <div class="service-story-block service-story-city">
+            <div class="service-story-split">
+                <div class="service-story-image-side">
+                    <img src="assets/images/onsaanbod/stadsfietsen.jpeg" alt="Stadsfietsen" class="service-story-img">
+                </div>
+                <div class="service-story-text-side">
+                    <div class="service-story-text-inner">
+                        <span class="service-story-number">02</span>
+                        <h2 class="service-story-title">Stadsfietsen</h2>
+                        <p class="service-story-description">Je trouwe stadsgenoot die elke dag klaarstaat. Van boodschappen tot werk, deze fietsen zijn gebouwd om jarenlang mee te gaan zonder gedoe.</p>
+                        <div class="service-story-features">
+                            <div class="service-story-feature">
                                 <i class="fas fa-check-circle"></i>
-                                Verschillende types
-                            </span>
-                            <span class="featured-feature-badge">
+                                <span>Rijdt soepel door elke straat</span>
+                            </div>
+                            <div class="service-story-feature">
                                 <i class="fas fa-check-circle"></i>
-                                Persoonlijk advies
-                            </span>
-                            <span class="featured-feature-badge">
-                                <i class="fas fa-check-circle"></i>
-                                Testritten mogelijk
-                            </span>
-                            <span class="featured-feature-badge">
-                                <i class="fas fa-check-circle"></i>
-                                Professioneel onderhoud
-                            </span>
+                                <span>Gaat jarenlang mee zonder zorgen</span>
             </div>
         </div>
+                        <div class="service-story-brands">
+                            <span class="service-story-brands-label">Onze merken</span>
+                            <div class="service-story-brands-grid">
+                                <a href="https://www.victoria-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
+                                    <img src="assets/images/brands/large/victoria-groot.png" alt="Victoria">
+                                </a>
+                                <a href="https://www.oxfordbikes.be/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
+                                    <img src="assets/images/brands/large/oxfordlogo.webp" alt="Oxford">
+                                </a>
     </div>
-
-                <!-- Service Cards Grid -->
-                <div class="services-cards-wrapper">
-                    <!-- Stadsfietsen -->
-                    <div class="service-card-new service-card-1">
-                        <div class="service-card-image">
-                            <img src="assets/images/onsaanbod/stadsfietsen.jpeg" alt="Stadsfietsen" class="service-card-img">
             </div>
-                        <div class="service-card-content">
-                            <div class="service-card-top">
-                                <div class="service-card-icon-box">
-                        <i class="fas fa-bicycle"></i>
                     </div>
                 </div>
-                            <h4 class="service-card-title">Stadsfietsen</h4>
-                            <p class="service-card-description">Betrouwbare fietsen voor dagelijks woon-werkverkeer en vrijetijdsgebruik. Praktisch, comfortabel en onderhoudsvriendelijk.</p>
             </div>
                     </div>
 
-                    <!-- Onderhoud & Herstel -->
-                    <div class="service-card-new service-card-2">
-                        <div class="service-card-image">
-                            <img src="assets/images/onsaanbod/herstellingen.jpeg" alt="Onderhoud & Herstel" class="service-card-img">
+        <!-- Onderhoud & Herstel - Reverse Split -->
+        <div class="service-story-block service-story-repair">
+            <div class="service-story-split service-story-split-reverse">
+                <div class="service-story-image-side">
+                    <img src="assets/images/onsaanbod/herstellingen.jpeg" alt="Onderhoud & Herstel" class="service-story-img">
                         </div>
-                        <div class="service-card-content">
-                            <div class="service-card-top">
-                                <div class="service-card-icon-box">
-                        <i class="fas fa-tools"></i>
+                <div class="service-story-text-side">
+                    <div class="service-story-text-inner">
+                        <span class="service-story-number">03</span>
+                        <h2 class="service-story-title">Onderhoud & Herstel</h2>
+                        <p class="service-story-description">Onze vakmensen geven elke fiets de aandacht die hij verdient, zodat jij weer zorgeloos de weg op kunt.</p>
+                        <div class="service-story-features">
+                            <div class="service-story-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Klaar wanneer jij het nodig hebt</span>
                     </div>
+                            <div class="service-story-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>We kennen elk merk van binnen en buiten</span>
                 </div>
-                            <h4 class="service-card-title">Onderhoud & Herstel</h4>
-                            <p class="service-card-description">Snelle reparaties en uitgebreide onderhoudsbeurten door onze ervaren technici. Van kleine aanpassingen tot volledige revisies.</p>
+                            <div class="service-story-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Vakmanschap dat je vertrouwt</span>
                     </div>
                     </div>
-
-                    <!-- Onderdelen & Accessoires -->
-                    <div class="service-card-new service-card-3">
-                        <div class="service-card-image">
-                            <img src="assets/images/onsaanbod/onderdelen.jpeg" alt="Onderdelen & Accessoires" class="service-card-img">
                         </div>
-                        <div class="service-card-content">
-                            <div class="service-card-top">
-                                <div class="service-card-icon-box">
-                                    <i class="fas fa-cog"></i>
                                 </div>
-                            </div>
-                            <h4 class="service-card-title">Onderdelen & Accessoires</h4>
-                            <p class="service-card-description">Uitgebreid assortiment aan kwalitatieve onderdelen en praktische accessoires. Alles wat u nodig heeft voor uw fiets.</p>
                         </div>
                     </div>
 
-                    <!-- Grasmaaiers & Tuin -->
-                    <div class="service-card-new service-card-4">
-                        <div class="service-card-image">
-                            <img src="assets/images/onsaanbod/grasmaaiers.jpeg" alt="Grasmaaiers & Tuin" class="service-card-img">
+        <!-- Onderdelen & Accessoires - Grid Layout -->
+        <div class="service-story-block service-story-parts">
+            <div class="service-story-grid">
+                <div class="service-story-grid-image">
+                    <img src="assets/images/onsaanbod/onderdelen.jpeg" alt="Onderdelen & Accessoires" class="service-story-img">
                         </div>
-                        <div class="service-card-content">
-                            <div class="service-card-top">
-                                <div class="service-card-icon-box">
-                        <i class="fas fa-leaf"></i>
+                <div class="service-story-grid-content">
+                    <div class="service-story-text-inner">
+                        <span class="service-story-number">04</span>
+                        <h2 class="service-story-title">Onderdelen & Accessoires</h2>
+                        <p class="service-story-description">Van die ene ontbrekende schroef tot een nieuwe fietsmand, wij hebben wat je zoekt. Alleen de beste merken, want jouw veiligheid en comfort staan voorop.</p>
                 </div>
-                                <div class="service-card-partner-logo" aria-label="EGO Power+">
-                                    <img src="assets/images/brands/large/ego-logo.png" alt="EGO Power+">
                                 </div>
                             </div>
-                            <h4 class="service-card-title">Grasmaaiers & Tuin</h4>
-                            <p class="service-card-description">Moderne elektrische grasmaaiers en tuinaccessoires van EGO Power+. Stil, krachtig en milieuvriendelijk.</p>
+                        </div>
+
+        <!-- Grasmaaiers & Tuin - Reverse Split -->
+        <div class="service-story-block service-story-garden">
+            <div class="service-story-split service-story-split-reverse">
+                <div class="service-story-image-side">
+                    <img src="assets/images/onsaanbod/grasmaaiers.jpeg" alt="Grasmaaiers & Tuin" class="service-story-img">
+                </div>
+                <div class="service-story-text-side">
+                    <div class="service-story-text-inner">
+                        <span class="service-story-number">05</span>
+                        <h2 class="service-story-title">Grasmaaiers & Tuin</h2>
+                        <p class="service-story-description">Je tuin verdient de beste verzorging. Met EGO Power+ onderhoud je je tuin zonder lawaai of uitstoot. Stil, krachtig en volledig elektrisch. Tuinieren wordt weer een moment van rust.</p>
+                        <div class="service-story-brands">
+                            <span class="service-story-brands-label">Ons merk</span>
+                            <div class="service-story-brands-grid">
+                                <a href="https://egopowerplus.be/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
+                                    <img src="assets/images/brands/large/ego-logo.png" alt="EGO">
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2482,12 +2543,8 @@
     <section id="brands" class="py-12 md:py-16 bg-gray-50">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="text-center mb-8 md:mb-10 fade-in">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Merken</h2>
-                <div class="quote-container max-w-3xl mx-auto">
-                    <p class="quote-text text-lg font-light text-gray-700 italic leading-relaxed">
-                        Geselecteerd met oog voor kwaliteit.                    
-                    </p>
-                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Merken</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Geselecteerd met oog voor kwaliteit</p>
             </div>
             
             <!-- Mobile: Interactive carousel with auto-scroll -->
@@ -3153,20 +3210,20 @@
                         </a>
                     </div>
                 </div>
-            </div>
+                </div>
             <div class="pt-4 md:pt-6 text-gray-500" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
                 <div class="flex flex-col gap-3 text-xs">
                     <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-2">
                         <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 text-gray-400">
-                            <p class="text-center sm:text-left">&copy; <span id="currentYear"></span> DCQ Bikes BV. Alle rechten voorbehouden.</p>
+                    <p class="text-center sm:text-left">&copy; <span id="currentYear"></span> DCQ Bikes BV. Alle rechten voorbehouden.</p>
                             <span class="hidden sm:inline text-gray-600">•</span>
-                            <p class="text-center sm:text-left">BTW-nummer: BE 0685.615.103</p>
-                        </div>
+                        <p class="text-center sm:text-left">BTW-nummer: BE 0685.615.103</p>
+                    </div>
                         <span class="designer-credit text-center sm:text-right text-gray-500">
-                            <i class="fas fa-sparkles" aria-hidden="true"></i>
-                            Design by
+                        <i class="fas fa-sparkles" aria-hidden="true"></i>
+                        Design by
                             <a href="https://www.linkedin.com/in/sanderdelobel/" target="_blank" rel="noopener" class="hover:text-gray-400 transition-colors">Sander de Lobel</a>
-                        </span>
+                    </span>
                     </div>
                     <div class="flex items-center justify-center gap-2 text-gray-600">
                         <a href="#faq" class="hover:text-gray-400 transition-colors">FAQ</a>
@@ -3187,5 +3244,6 @@
     <script src="js/script.js"></script>
 </body>
 </html>
+
 
 

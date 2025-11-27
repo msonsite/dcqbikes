@@ -107,7 +107,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         
         const target = document.querySelector(href);
         if (target) {
-            const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
+            const mainNav = document.getElementById('mainNav');
+            if (!mainNav) return;
+            
+            // Get navigation height
+            const navHeight = mainNav.offsetHeight;
+            
+            // Get target's offsetTop (position from top of document)
+            const targetTop = target.offsetTop;
             
             // Check if element has scroll-mt class and extract value
             let scrollOffset = navHeight;
@@ -119,9 +126,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 }
             }
             
-            const targetPosition = target.offsetTop - scrollOffset;
+            // Calculate scroll position: target top minus nav height
+            // This positions the section right below the sticky navigation
+            const scrollPosition = targetTop - scrollOffset;
+            
             window.scrollTo({
-                top: Math.max(0, targetPosition),
+                top: Math.max(0, scrollPosition),
                 behavior: 'smooth'
             });
         }
@@ -586,7 +596,7 @@ function initMobileBrandsCarousel() {
         // Remove visibility change listener
         if (eventHandlers.visibilitychange) {
             document.removeEventListener('visibilitychange', eventHandlers.visibilitychange);
-        }
+    }
         
         // Disconnect intersection observer
         if (eventHandlers.intersection) {
