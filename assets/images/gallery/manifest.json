@@ -1,13 +1,13 @@
 {
   "images": [
-    "picture2.jpg",
+    "picture2.jpeg",
     "picture3.webp",
     "picture4.webp",
-    "picture5.jpg",
-    "picture6.webp",
     "picture7.jpg",
-    "picture10.webp",
-    "picture9.jpg"
+    "picture6.jpeg",
+    "picture9.jpg",
+    "picture8.jpeg",
+    "picture10.webp"
   ],
   "note": "Add or remove image filenames here. The gallery will automatically load them. Supports: webp, jpg, jpeg, png, avif, gif"
 }
