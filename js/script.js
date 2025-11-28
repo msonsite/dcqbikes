@@ -294,7 +294,7 @@ async function loadBrandImages() {
     }
 }
 
-// Initialize interactive mobile brands carousel
+// Initialize mobile brands scroll with native scrolling
 let mobileCarouselInitialized = false;
 let mobileCarouselCleanup = null;
 
@@ -322,291 +322,49 @@ function initMobileBrandsCarousel() {
     const brandItems = brandsTrack.querySelectorAll('.brand-item');
     if (brandItems.length === 0) return;
     
-    // Calculate item dimensions
+    // Calculate dimensions for progress bar
     const itemWidth = 140; // from CSS
-    const itemGap = 32; // 2rem = 32px
+    const itemGap = 24; // 1.5rem = 24px
     const itemTotalWidth = itemWidth + itemGap;
-    const containerWidth = brandsMobile.offsetWidth;
-    const centerOffset = (containerWidth - itemWidth) / 2;
     
-    let currentIndex = 0;
-    let autoScrollInterval = null;
-    let isUserInteracting = false;
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let startTransform = 0;
-    let isDragging = false;
-    let isVisible = false;
-    
-    // Store event handlers for cleanup
-    const eventHandlers = {
-        touchstart: null,
-        touchmove: null,
-        touchend: null,
-        mousedown: null,
-        mousemove: null,
-        mouseup: null,
-        mouseleave: null,
-        visibilitychange: null,
-        intersection: null
-    };
-    
-    // Update progress bar
-    function updateProgress(index) {
-        if (!progressBar) return;
-        const progress = ((index + 1) / brandItems.length) * 100;
-        progressBar.style.width = `${progress}%`;
-    }
-    
-    // Calculate transform for index
-    function getTransformForIndex(index) {
-        return -(index * itemTotalWidth) + centerOffset;
-    }
-    
-    // Go to specific index
-    function goToIndex(index, smooth = true) {
-        if (index < 0) index = 0;
-        if (index >= brandItems.length) index = brandItems.length - 1;
+    // Update progress bar based on scroll position
+    let rafId = null;
+    function updateProgress() {
+        if (!progressBar || !brandsMobile) return;
         
-        currentIndex = index;
-        const transform = getTransformForIndex(index);
-        
-        if (smooth) {
-            brandsTrack.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-        } else {
-            brandsTrack.style.transition = 'none';
+        if (rafId) {
+            cancelAnimationFrame(rafId);
         }
         
-        brandsTrack.style.transform = `translateX(${transform}px)`;
-        updateProgress(index);
-    }
-    
-    // Auto-scroll function
-    function startAutoScroll() {
-        if (autoScrollInterval) clearInterval(autoScrollInterval);
-        if (isUserInteracting || !isVisible) return;
-        
-        autoScrollInterval = setInterval(() => {
-            if (isUserInteracting || isDragging || !isVisible) return;
-            
-            const nextIndex = (currentIndex + 1) % brandItems.length;
-            goToIndex(nextIndex, true);
-        }, 2000); // 2 seconds
-    }
-    
-    // Stop auto-scroll
-    function stopAutoScroll() {
-        if (autoScrollInterval) {
-            clearInterval(autoScrollInterval);
-            autoScrollInterval = null;
-        }
-    }
-    
-    // Touch events
-    eventHandlers.touchstart = (e) => {
-        isUserInteracting = true;
-        isDragging = true;
-        stopAutoScroll();
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        const currentTransform = brandsTrack.style.transform;
-        startTransform = currentTransform ? parseFloat(currentTransform.match(/translateX\(([^)]+)\)/)?.[1] || 0) : getTransformForIndex(currentIndex);
-        brandsTrack.style.transition = 'none';
-    };
-    
-    eventHandlers.touchmove = (e) => {
-        if (!isDragging) return;
-        
-        const deltaX = e.touches[0].clientX - touchStartX;
-        const deltaY = e.touches[0].clientY - touchStartY;
-        
-        // Only allow horizontal scrolling if horizontal movement is greater
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-            e.preventDefault();
-            const newTransform = startTransform + deltaX;
-            brandsTrack.style.transform = `translateX(${newTransform}px)`;
-        }
-    };
-    
-    eventHandlers.touchend = () => {
-        if (!isDragging) return;
-        isDragging = false;
-        
-        // Calculate which index we're closest to
-        const currentTransform = parseFloat(brandsTrack.style.transform.match(/translateX\(([^)]+)\)/)?.[1] || 0);
-        const targetIndex = Math.round(-(currentTransform - centerOffset) / itemTotalWidth);
-        
-        // Snap to nearest valid index
-        const snappedIndex = Math.max(0, Math.min(targetIndex, brandItems.length - 1));
-        goToIndex(snappedIndex, true);
-        
-        // Resume auto-scroll after delay
-        setTimeout(() => {
-            isUserInteracting = false;
-            if (isVisible) {
-                startAutoScroll();
-            }
-        }, 1000);
-    };
-    
-    brandsTrack.addEventListener('touchstart', eventHandlers.touchstart, { passive: true });
-    brandsTrack.addEventListener('touchmove', eventHandlers.touchmove, { passive: false });
-    brandsTrack.addEventListener('touchend', eventHandlers.touchend, { passive: true });
-    
-    // Mouse events for desktop testing
-    let mouseDown = false;
-    eventHandlers.mousedown = (e) => {
-        if (window.innerWidth < 768) {
-            isUserInteracting = true;
-            isDragging = true;
-            stopAutoScroll();
-            mouseDown = true;
-            touchStartX = e.clientX;
-            touchStartY = e.clientY;
-            const currentTransform = brandsTrack.style.transform;
-            startTransform = currentTransform ? parseFloat(currentTransform.match(/translateX\(([^)]+)\)/)?.[1] || 0) : getTransformForIndex(currentIndex);
-            brandsTrack.style.transition = 'none';
-        }
-    };
-    
-    eventHandlers.mousemove = (e) => {
-        if (mouseDown && window.innerWidth < 768 && isDragging) {
-            const deltaX = e.clientX - touchStartX;
-            const newTransform = startTransform + deltaX;
-            brandsTrack.style.transform = `translateX(${newTransform}px)`;
-        }
-    };
-    
-    eventHandlers.mouseup = () => {
-        if (mouseDown && window.innerWidth < 768) {
-            mouseDown = false;
-            isDragging = false;
-            
-            const currentTransform = parseFloat(brandsTrack.style.transform.match(/translateX\(([^)]+)\)/)?.[1] || 0);
-            const targetIndex = Math.round(-(currentTransform - centerOffset) / itemTotalWidth);
-            const snappedIndex = Math.max(0, Math.min(targetIndex, brandItems.length - 1));
-            goToIndex(snappedIndex, true);
-            
-            setTimeout(() => {
-                isUserInteracting = false;
-                if (isVisible) {
-                    startAutoScroll();
-                }
-            }, 1000);
-        }
-    };
-    
-    eventHandlers.mouseleave = () => {
-        if (mouseDown && window.innerWidth < 768) {
-            mouseDown = false;
-            isDragging = false;
-            
-            const currentTransform = parseFloat(brandsTrack.style.transform.match(/translateX\(([^)]+)\)/)?.[1] || 0);
-            const targetIndex = Math.round(-(currentTransform - centerOffset) / itemTotalWidth);
-            const snappedIndex = Math.max(0, Math.min(targetIndex, brandItems.length - 1));
-            goToIndex(snappedIndex, true);
-            
-            setTimeout(() => {
-                isUserInteracting = false;
-                if (isVisible) {
-                    startAutoScroll();
-                }
-            }, 1000);
-        }
-    };
-    
-    brandsTrack.addEventListener('mousedown', eventHandlers.mousedown);
-    brandsTrack.addEventListener('mousemove', eventHandlers.mousemove);
-    brandsTrack.addEventListener('mouseup', eventHandlers.mouseup);
-    brandsTrack.addEventListener('mouseleave', eventHandlers.mouseleave);
-    
-    // Prevent link clicks during drag
-    const clickHandlers = [];
-    brandItems.forEach(item => {
-        const clickHandler = (e) => {
-            if (isDragging) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        };
-        item.addEventListener('click', clickHandler);
-        clickHandlers.push({ element: item, handler: clickHandler });
-    });
-    
-    // Intersection Observer to detect when section is visible
-    const brandsSection = brandsMobile.closest('section');
-    if (brandsSection) {
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                isVisible = entry.isIntersecting && entry.intersectionRatio > 0.3;
-                if (isVisible && !isUserInteracting && !isDragging) {
-                    // Small delay to ensure smooth transition
-                    setTimeout(() => {
-                        if (isVisible && !isUserInteracting && !isDragging) {
-                            startAutoScroll();
-                        }
-                    }, 300);
-                } else {
-                    stopAutoScroll();
-                }
-            });
-        }, {
-            threshold: [0, 0.3, 0.5, 1],
-            rootMargin: '0px'
+        rafId = requestAnimationFrame(() => {
+            const scrollLeft = brandsMobile.scrollLeft;
+            const scrollWidth = brandsMobile.scrollWidth - brandsMobile.clientWidth;
+            const progress = scrollWidth > 0 ? (scrollLeft / scrollWidth) * 100 : 0;
+            progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
         });
-        
-        sectionObserver.observe(brandsSection);
-        eventHandlers.intersection = sectionObserver;
     }
     
-    // Restart auto-scroll when window regains focus
-    eventHandlers.visibilitychange = () => {
-        if (!document.hidden && !isUserInteracting && isVisible) {
-            startAutoScroll();
-        } else {
-            stopAutoScroll();
-        }
+    // Scroll event handler
+    const scrollHandler = () => {
+        updateProgress();
     };
-    document.addEventListener('visibilitychange', eventHandlers.visibilitychange);
     
-    // Initialize
-    updateProgress(0);
-    goToIndex(0, false);
+    brandsMobile.addEventListener('scroll', scrollHandler, { passive: true });
+    
+    // Initialize progress bar
+    updateProgress();
     
     // Cleanup function
     mobileCarouselCleanup = () => {
-        stopAutoScroll();
-        
-        // Remove event listeners
-        if (brandsTrack) {
-            brandsTrack.removeEventListener('touchstart', eventHandlers.touchstart);
-            brandsTrack.removeEventListener('touchmove', eventHandlers.touchmove);
-            brandsTrack.removeEventListener('touchend', eventHandlers.touchend);
-            brandsTrack.removeEventListener('mousedown', eventHandlers.mousedown);
-            brandsTrack.removeEventListener('mousemove', eventHandlers.mousemove);
-            brandsTrack.removeEventListener('mouseup', eventHandlers.mouseup);
-            brandsTrack.removeEventListener('mouseleave', eventHandlers.mouseleave);
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
         }
-        
-        // Remove click handlers
-        clickHandlers.forEach(({ element, handler }) => {
-            element.removeEventListener('click', handler);
-        });
-        
-        // Remove visibility change listener
-        if (eventHandlers.visibilitychange) {
-            document.removeEventListener('visibilitychange', eventHandlers.visibilitychange);
-    }
-        
-        // Disconnect intersection observer
-        if (eventHandlers.intersection) {
-            eventHandlers.intersection.disconnect();
+        if (brandsMobile) {
+            brandsMobile.removeEventListener('scroll', scrollHandler);
         }
-        
-        // Reset transform
-        if (brandsTrack) {
-            brandsTrack.style.transform = '';
-            brandsTrack.style.transition = '';
+        if (progressBar) {
+            progressBar.style.width = '0%';
         }
     };
     

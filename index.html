@@ -1183,19 +1183,27 @@
             .brand-marquee {
                 position: relative;
                 width: 100%;
-                overflow: hidden;
+                overflow-x: auto;
+                overflow-y: hidden;
                 padding: 2rem 0;
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-                mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* IE and Edge */
+                scroll-snap-type: x mandatory;
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            }
+            
+            .brand-marquee::-webkit-scrollbar {
+                display: none; /* Chrome, Safari, Opera */
             }
             
             .brand-marquee-track {
                 display: flex;
                 align-items: center;
-                gap: 2rem;
+                gap: 1.5rem;
                 width: max-content;
-                will-change: transform;
-                transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                padding: 0 calc(50% - 70px); /* Center first item, 70px = half of 140px item width */
             }
             
             .brand-marquee .brand-item {
@@ -1212,6 +1220,7 @@
                 transition: all 0.3s ease;
                 cursor: pointer;
                 position: relative;
+                scroll-snap-align: center;
             }
             
             .brand-marquee .brand-item:hover {
@@ -1238,9 +1247,9 @@
             /* Subtle progress indicator */
             .brand-carousel-progress {
                 width: 100%;
-                height: 2px;
+                height: 3px;
                 background: rgba(0, 0, 0, 0.08);
-                border-radius: 2px;
+                border-radius: 3px;
                 margin-top: 1.5rem;
                 overflow: hidden;
                 position: relative;
@@ -1249,7 +1258,8 @@
             .brand-carousel-progress-bar {
                 height: 100%;
                 background: linear-gradient(90deg, #ee2726 0%, #d41e1d 100%);
-                border-radius: 2px;
+                border-radius: 3px;
+                transition: width 0.1s ease-out;
                 transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
                 width: 0%;
             }
@@ -2441,15 +2451,15 @@
                     <div class="service-story-text-inner">
                         <span class="service-story-number">02</span>
                         <h2 class="service-story-title">Stadsfietsen</h2>
-                        <p class="service-story-description">Je trouwe stadsgenoot die elke dag klaarstaat. Van boodschappen tot werk, deze fietsen zijn gebouwd om jarenlang mee te gaan zonder gedoe.</p>
+                        <p class="service-story-description">De fiets die je elke dag gebruikt, zonder erover na te denken. Of je nu naar de bakker fietst of naar je werk, deze fietsen zijn gemaakt om gewoon te werken. Altijd. Zonder gedoe.</p>
                         <div class="service-story-features">
                             <div class="service-story-feature">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Rijdt soepel door elke straat</span>
+                                <span>Gebouwd voor het echte leven</span>
                             </div>
                             <div class="service-story-feature">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Gaat jarenlang mee zonder zorgen</span>
+                                <span>Klaar voor elke dag, jaar na jaar</span>
             </div>
         </div>
                         <div class="service-story-brands">
@@ -2479,22 +2489,23 @@
                         <span class="service-story-number">03</span>
                         <h2 class="service-story-title">Onderhoud & Herstel</h2>
                         <p class="service-story-description">Onze vakmensen geven elke fiets de aandacht die hij verdient, zodat jij weer zorgeloos de weg op kunt.</p>
-                        <div class="service-story-features">
-                            <div class="service-story-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Klaar wanneer jij het nodig hebt</span>
+                        <div class="service-story-brands">
+                            <span class="service-story-brands-label">Enkele van onze merken</span>
+                            <div class="service-story-brands-grid">
+                                <div class="service-story-brand-link">
+                                    <img src="assets/images/brands/small/shimano.png" alt="Shimano">
                     </div>
-                            <div class="service-story-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>We kennen elk merk van binnen en buiten</span>
+                                <div class="service-story-brand-link">
+                                    <img src="assets/images/brands/small/bosch.png" alt="Bosch">
                 </div>
-                            <div class="service-story-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Vakmanschap dat je vertrouwt</span>
+                                <div class="service-story-brand-link">
+                                    <img src="assets/images/brands/small/michelin.png" alt="Michelin">
                     </div>
                     </div>
+                            <p class="text-sm text-gray-500 mt-3">En nog veel meer merken die we dagelijks gebruiken</p>
                         </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
 
@@ -2509,6 +2520,21 @@
                         <span class="service-story-number">04</span>
                         <h2 class="service-story-title">Onderdelen & Accessoires</h2>
                         <p class="service-story-description">Van die ene ontbrekende schroef tot een nieuwe fietsmand, wij hebben wat je zoekt. Alleen de beste merken, want jouw veiligheid en comfort staan voorop.</p>
+                        <div class="service-story-brands">
+                            <span class="service-story-brands-label">Enkele van onze merken</span>
+                            <div class="service-story-brands-grid">
+                                <div class="service-story-brand-link">
+                                    <img src="assets/images/brands/medium/abus.webp" alt="Abus">
+                </div>
+                                <div class="service-story-brand-link">
+                                    <img src="assets/images/brands/medium/basil.webp" alt="Basil">
+                                </div>
+                                <div class="service-story-brand-link">
+                                    <img src="assets/images/brands/medium/axa.avif" alt="Axa">
+                            </div>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-3">En nog veel meer merken die we dagelijks gebruiken</p>
+                        </div>
                 </div>
                                 </div>
                             </div>
@@ -2524,7 +2550,7 @@
                     <div class="service-story-text-inner">
                         <span class="service-story-number">05</span>
                         <h2 class="service-story-title">Grasmaaiers & Tuin</h2>
-                        <p class="service-story-description">Je tuin verdient de beste verzorging. Met EGO Power+ onderhoud je je tuin zonder lawaai of uitstoot. Stil, krachtig en volledig elektrisch. Tuinieren wordt weer een moment van rust.</p>
+                        <p class="service-story-description">Je tuin onderhouden zonder lawaai of uitstoot. EGO Power+ geeft je alles wat je nodig hebt: grasmaaiers, bladblazers, trimmers en nog veel meer. Allemaal stil, krachtig en volledig elektrisch. En het slimste? Eén batterij past in al je apparaten. Eén keer investeren, jarenlang genieten van een perfect onderhouden tuin.</p>
                         <div class="service-story-brands">
                             <span class="service-story-brands-label">Ons merk</span>
                             <div class="service-story-brands-grid">
@@ -2540,7 +2566,7 @@
     </section>
 
     <!-- Brands Section -->
-    <section id="brands" class="py-12 md:py-16 bg-gray-50">
+    <section id="brands" class="pt-16 md:pt-20 pb-12 md:pb-16" style="background: #ffffff;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="text-center mb-8 md:mb-10 fade-in">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Merken</h2>
@@ -2641,7 +2667,7 @@
                         </div>
                         <div class="flex-1">
                             <p class="text-base md:text-lg leading-relaxed" style="color: rgba(255, 254, 252, 0.9);">
-                                Bij <span class="font-semibold" style="color: #fffefc;">DCQ Bikes</span> draait alles om fietsen. Van <span class="text-dcq-red font-medium">snelle reparaties</span> tot <span class="text-dcq-red font-medium">uitgebreide onderhoudsbeurten</span>, van stadsfietsen tot elektrische modellen, wij zorgen ervoor dat u altijd soepel op weg kunt.
+                                Bij <span class="font-semibold" style="color: #fffefc;">DCQ Bikes</span> draait alles om fietsen. Van <span class="text-dcq-red font-medium">vakkundige reparaties</span> tot <span class="text-dcq-red font-medium">uitgebreide onderhoudsbeurten</span>, van stadsfietsen tot elektrische modellen, wij zorgen ervoor dat u altijd soepel op weg kunt.
                 </p>
             </div>
                     </div>
@@ -3226,8 +3252,6 @@
                     </span>
                     </div>
                     <div class="flex items-center justify-center gap-2 text-gray-600">
-                        <a href="#faq" class="hover:text-gray-400 transition-colors">FAQ</a>
-                        <span>•</span>
                         <a href="cookie-policy.html" class="hover:text-gray-400 transition-colors">Cookiebeleid</a>
                         <span>•</span>
                         <a href="privacy-policy.html" class="hover:text-gray-400 transition-colors">Privacybeleid</a>
