@@ -263,6 +263,8 @@ async function loadBrandImages() {
             brandLink.style.animationDelay = `${index * 0.1}s`;
             brandLink.style.opacity = '0';
             brandLink.style.animation = 'fadeInUp 0.6s ease forwards';
+            // Set CSS variable for pulse animation delay
+            brandLink.style.setProperty('--index', index);
             
             if (container) container.appendChild(brandLink);
             if (mobileMarquee) {
