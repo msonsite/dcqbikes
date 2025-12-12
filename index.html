@@ -287,6 +287,20 @@
             height: 100%;
         }
         
+        @media (min-width: 1024px) {
+            #heroVideo {
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            #heroVideo {
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        
         @media (max-width: 768px) {
             #heroVideo {
                 object-fit: cover;
@@ -2377,7 +2391,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-[70vh] md:h-[75vh] lg:h-[70vh] overflow-hidden">
+    <section id="home" class="relative h-[70vh] md:h-[75vh] lg:h-[85vh] xl:h-[90vh] 2xl:h-[95vh] overflow-hidden">
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" id="heroVideo">
             <source src="assets/videos/herovideo.MP4" type="video/mp4">
         </video>
@@ -2453,35 +2467,25 @@
                             </a>
                                 <a href="https://www.qio-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
                                     <img src="assets/images/brands/large/qio.png" alt="Qio">
-                                </a>
-                            </div>
+                            </a>
+                        </div>
                         </div>
             </div>
-                </div>
             </div>
-                        </div>
+        </div>
+    </div>
 
         <!-- Stadsfietsen - Split Screen -->
         <div class="service-story-block service-story-city">
             <div class="service-story-split">
                 <div class="service-story-image-side">
                     <img src="assets/images/onsaanbod/stadsfietsen.jpeg" alt="Stadsfietsen" class="service-story-img">
-                </div>
+            </div>
                 <div class="service-story-text-side">
                     <div class="service-story-text-inner">
                         <span class="service-story-number">02</span>
                         <h2 class="service-story-title">Stadsfietsen</h2>
-                        <p class="service-story-description">De fiets die je elke dag gebruikt, zonder erover na te denken. Of je nu naar de bakker fietst of naar je werk, deze fietsen zijn gemaakt om gewoon te werken. Altijd. Zonder gedoe.</p>
-                        <div class="service-story-features">
-                            <div class="service-story-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Robuust gebouwd, jarenlang betrouwbaar</span>
-                            </div>
-                            <div class="service-story-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Slim ontworpen, zonder onnodige complexiteit</span>
-            </div>
-        </div>
+                        <p class="service-story-description">Van Victoria tot Oxford: wij selecteren alleen stadsfietsen die dagelijks gebruik aankunnen. Elke fiets wordt bij aankoop volledig afgesteld en getest, zodat je meteen probleemloos de weg op kunt.</p>
                         <div class="service-story-brands">
                             <span class="service-story-brands-label">Onze merken</span>
                             <div class="service-story-brands-grid">
@@ -2491,8 +2495,8 @@
                                 <a href="https://www.oxfordbikes.be/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
                                     <img src="assets/images/brands/large/oxfordlogo.webp" alt="Oxford">
                                 </a>
-    </div>
-            </div>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
