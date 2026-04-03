@@ -980,8 +980,24 @@
             }
         }
         
-        .faq-item {
-            transition: all 0.2s ease;
+        /* Eén uitklapbare “kaart” per vraag; antwoord alleen zichtbaar bij .active */
+        #faq .faq-item {
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            overflow: hidden;
+        }
+        
+        #faq .faq-item.active {
+            border-color: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+        }
+        
+        #faq .faq-item .faq-question {
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
         }
         
         .faq-item.active .faq-question {
@@ -1047,20 +1063,20 @@
             color: white;
         }
         
-        .faq-answer {
+        #faq .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+            padding-top: 0;
+            padding-bottom: 0;
+            border-top: 1px solid transparent;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease, border-color 0.25s ease;
         }
         
-        .faq-item.active .faq-answer {
-            max-height: 1000px;
+        #faq .faq-item.active .faq-answer {
+            max-height: min(2000px, 85vh);
             padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-        
-        .faq-item.active .faq-answer.hidden {
-            display: block;
+            padding-bottom: 1.25rem;
+            border-top-color: rgba(255, 255, 255, 0.12);
         }
         
         @media (min-width: 768px) {
@@ -1068,16 +1084,13 @@
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
-                align-items: stretch;
+                align-items: start;
             }
             
             .faq-item {
                 display: flex;
                 flex-direction: column;
-            }
-            
-            .faq-question {
-                flex-grow: 1;
+                width: 100%;
             }
         }
         
@@ -1975,6 +1988,107 @@
             transform: none !important;
         }
         
+        .about-showcase-media {
+            background: #0a0a0a;
+        }
+        
+        /* Mediakaart: hele videobeeld zichtbaar (letterbox/pillarbox), geen crop */
+        .about-showcase-media--card {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 220px;
+        }
+        
+        @media (min-width: 1024px) {
+            .about-showcase-media--card {
+                min-height: 280px;
+            }
+        }
+        
+        .about-showcase-media--card .about-showcase-video {
+            z-index: 0;
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: min(56vh, 520px);
+            margin: 0 auto;
+            object-fit: contain;
+            object-position: center center;
+        }
+        
+        @media (min-width: 1024px) {
+            .about-showcase-media--card .about-showcase-video {
+                max-height: min(68vh, 720px);
+            }
+        }
+        
+        /* Aparte sfeer-sectie: 16:9 kader, video vult het vlak */
+        .about-showcase-media--section {
+            aspect-ratio: 16 / 9;
+        }
+        
+        .about-showcase-media--section .about-showcase-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+        
+        .about-showcase-sound-btn {
+            position: absolute;
+            bottom: 0.75rem;
+            right: 0.75rem;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fffefc;
+            background: rgba(1, 1, 1, 0.55);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .about-showcase-sound-btn:hover {
+            background: rgba(238, 39, 38, 0.85);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        
+        .about-showcase-sound-btn:focus-visible {
+            outline: 2px solid #ee2726;
+            outline-offset: 2px;
+        }
+        
+        .about-showcase-sound-btn[aria-pressed="true"] {
+            background: rgba(238, 39, 38, 0.9);
+        }
+        
+        .offer-details-summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .offer-details[open] .offer-details-chevron {
+            transform: rotate(180deg);
+        }
+        
+        .offer-details-summary:focus-visible {
+            outline: 2px solid #ee2726;
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+        
         .award-box a {
             text-decoration: none;
             color: inherit;
@@ -2436,7 +2550,7 @@
         <div class="container mx-auto max-w-7xl px-4 md:px-6 pt-12 md:pt-16 pb-4 md:pb-6">
             <div class="text-center mb-2 md:mb-3 fade-in">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Ons Aanbod</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Alles wat je nodig hebt voor je fiets</p>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Alles voor fiets en tuin</p>
             </div>
                 </div>
         <!-- Electric Bikes - Reverse Split Screen -->
@@ -2449,7 +2563,7 @@
                     <div class="service-story-text-inner">
                         <span class="service-story-number">01</span>
                         <h2 class="service-story-title">Elektrische Fietsen</h2>
-                        <p class="service-story-description">Of je nu naar het werk pendelt of de wereld verkent, met een elektrische fiets maak je elke rit tot een genot. Wij vinden samen jouw ideale e-bike.</p>
+                        <p class="service-story-description">Elektrische fietsen combineren jouw trapkracht met een elektrische motor en accu, waardoor je makkelijker langere afstanden, hellingen en woon‑werktrajecten kunt doen. In onze winkel kijk je samen met een expert welk type e‑bike het best aansluit op jouw ritten. Of het nu gaat om compacte stadsmodellen, all‑round e-bikes of iets dat daar tussenin ligt.</p>
                         <div class="service-story-brands">
                             <span class="service-story-brands-label">Onze merken</span>
                             <div class="service-story-brands-grid">
@@ -2485,7 +2599,7 @@
                     <div class="service-story-text-inner">
                         <span class="service-story-number">02</span>
                         <h2 class="service-story-title">Stadsfietsen</h2>
-                        <p class="service-story-description">Van Victoria tot Oxford: wij selecteren alleen stadsfietsen die dagelijks gebruik aankunnen. Elke fiets wordt bij aankoop volledig afgesteld en getest, zodat je meteen probleemloos de weg op kunt.</p>
+                        <p class="service-story-description">Onze selectie Victoria‑ en Oxford‑stadsfietsen draait om eenvoud, comfort en degelijkheid. Deze fietsen zijn ontworpen voor dagelijks gebruik — scherpe wendbaarheid, betrouwbare onderdelen en een zithouding die je helpt ontspannen door de stad of buurt te bewegen. Iedere fiets wordt door onze technici afgesteld, afgestemd op jouw maat en voorkeur.</p>
                         <div class="service-story-brands">
                             <span class="service-story-brands-label">Onze merken</span>
                             <div class="service-story-brands-grid">
@@ -2512,7 +2626,7 @@
                     <div class="service-story-text-inner">
                         <span class="service-story-number">03</span>
                         <h2 class="service-story-title">Onderhoud & Herstel</h2>
-                        <p class="service-story-description">Onze vakmensen geven elke fiets de aandacht die hij verdient, zodat jij weer zorgeloos de weg op kunt.</p>
+                        <p class="service-story-description">Fietsonderhoud is meer dan “even nalopen”. Wij voeren gecontroleerde beurten uit volgens fabrikantstandaarden, inspecteren remmen en versnellingen, stellen elektra en mechaniek precies af, en stellen je fiets in optimale staat. Of het nu om kabelspanning, trapas, velgen of software‑diagnose gaat: onze monteurs pakken het gestructureerd aan met het juiste gereedschap en ervaring.</p>
                         <div class="service-story-brands">
                             <span class="service-story-brands-label">Enkele van onze merken</span>
                             <div class="service-story-brands-grid">
@@ -2542,7 +2656,7 @@
                     <div class="service-story-text-inner">
                         <span class="service-story-number">04</span>
                         <h2 class="service-story-title">Onderdelen & Accessoires</h2>
-                        <p class="service-story-description">Van die ene ontbrekende schroef tot een nieuwe fietsmand, wij hebben wat je zoekt. Alleen de beste merken, want jouw veiligheid en comfort staan voorop.</p>
+                        <p class="service-story-description">Van specifieke onderdelen zoals remmen, kettingen en verlichting tot praktische accessoires zoals tassen, manden, sloten en kinderzitjes: we bieden een uitgebreid assortiment dat aansluit op echte functionele behoeften. Alle componenten zijn gericht op veiligheid, compatibiliteit en meer comfort onderweg, zodat je fiets precies doet wat je verwacht.</p>
                         <div class="service-story-brands">
                             <span class="service-story-brands-label">Enkele van onze merken</span>
                             <div class="service-story-brands-grid">
@@ -2685,6 +2799,35 @@
         </div>
     </div>
 
+    <!-- Sfeerimpressie -->
+    <section id="sfeer" class="py-12 md:py-16 relative overflow-hidden border-t border-white/5" style="background: #0a0a0a;" aria-labelledby="sfeer-heading">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6">
+            <div class="fade-in mb-8 md:mb-10 text-center px-2">
+                <p class="text-sm font-semibold uppercase tracking-widest text-dcq-red mb-2">Sfeerimpressie</p>
+                <h2 id="sfeer-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Even binnen kijken</h2>
+                <p class="text-lg max-w-2xl mx-auto" style="color: rgba(255, 254, 252, 0.8);">
+                    Een korte blik in onze winkel.
+                </p>
+            </div>
+            <div class="about-showcase-media about-showcase-media--section relative w-full max-w-4xl mx-auto overflow-hidden rounded-2xl border border-white/10 shadow-2xl fade-in">
+                <video
+                    id="aboutShowcaseVideo"
+                    class="about-showcase-video"
+                    playsinline
+                    muted
+                    loop
+                    preload="auto"
+                    aria-label="Video impressie DCQ Bikes">
+                    <source src="assets/videos/overons.mp4" type="video/mp4">
+                </video>
+                <button type="button" id="aboutShowcaseSoundBtn" class="about-showcase-sound-btn" aria-pressed="false" title="Geluid aan">
+                    <i class="fas fa-volume-mute" aria-hidden="true"></i>
+                    <span class="about-showcase-sound-label">Geluid aan</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="py-12 md:py-16 relative overflow-hidden" style="background: #0a0a0a;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
@@ -2803,13 +2946,12 @@
                 
                 <div>
                     <div class="media-box h-full flex flex-col">
-                        <div class="relative flex-1 overflow-hidden" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
-                            <img src="assets/images/onsaanbod/picture5.webp" alt="DCQ Bikes" class="w-full h-full object-cover" style="object-position: center center;">
-                            </div>
-                                </div>
-                                </div>
+                        <div class="relative flex-1 overflow-hidden min-h-[220px] md:min-h-[280px]" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+                            <img src="assets/images/onsaanbod/picture5.webp" alt="DCQ Bikes winkel" class="w-full h-full object-cover absolute inset-0" style="object-position: center center;">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
         </div>
     </section>
 
@@ -2967,103 +3109,113 @@
         </div>
     </section>
 
-    <!-- Special Offers Section -->
-    <section class="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
+    <!-- Special Offers Section: kaarten naast elkaar; uitgebreide tekst per kaart inklapbaar -->
+    <section id="aanbiedingen" class="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="text-center mb-10 md:mb-12 fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Speciale Aanbiedingen</h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto">Voor momenten die blijven hangen.</p>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto items-start">
                 <!-- Cadeaubon Card -->
-                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg fade-in">
-                    <div class="relative h-64 md:h-80 overflow-hidden">
+                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg fade-in flex flex-col w-full">
+                    <div class="relative h-64 md:h-80 overflow-hidden flex-shrink-0">
                         <img src="assets/images/cadeaubon/cadeaubon.webp" alt="DCQ Bikes Cadeaubon" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>
-                    <div class="p-6 md:p-8">
-                        <div class="mb-3">
+                    <div class="p-6 md:p-8 flex flex-col">
+                        <div class="mb-1">
                             <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">DCQ Bikes Cadeaubon</h3>
                             <p class="text-sm text-gray-600">Flexibel bedrag • Geldig voor alle producten</p>
                         </div>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            Geef het perfecte cadeau voor elke fietsliefhebber. Onze cadeaubonnen zijn beschikbaar in verschillende bedragen en kunnen gebruikt worden voor <strong>alle producten en diensten</strong> in onze winkel.
-                        </p>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            Of het nu gaat om een nieuwe elektrische fiets, een stadsfiets, onderdelen, accessoires of onderhoud, met een DCQ Bikes cadeaubon geeft u de ontvanger de vrijheid om zelf te kiezen wat hij of zij het meest nodig heeft.
-                        </p>
-                        <p class="text-gray-700 mb-6 leading-relaxed">
-                            Perfect voor verjaardagen, feestdagen of gewoon om iemand te verrassen. De cadeaubon heeft een <strong>lange geldigheidsduur</strong> en kan op elk moment ingewisseld worden.
-                        </p>
-                        
-                        <!-- Features List -->
-                        <div class="space-y-2 mb-6">
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
-                                <span class="text-gray-700 text-sm md:text-base">Beschikbaar in verschillende bedragen</span>
+                        <details class="offer-details mt-4 border-t border-gray-100 pt-4">
+                            <summary class="offer-details-summary flex items-center justify-between gap-2 text-dcq-red font-semibold text-base cursor-pointer list-none select-none">
+                                <span>Meer informatie &amp; details</span>
+                                <i class="fas fa-chevron-down offer-details-chevron text-sm transition-transform duration-200 flex-shrink-0"></i>
+                            </summary>
+                            <div class="mt-4 space-y-4 text-gray-700 leading-relaxed">
+                                <p>
+                                    Geef het perfecte cadeau voor elke fietsliefhebber. Onze cadeaubonnen zijn beschikbaar in verschillende bedragen en kunnen gebruikt worden voor <strong>alle producten en diensten</strong> in onze winkel.
+                                </p>
+                                <p>
+                                    Of het nu gaat om een nieuwe elektrische fiets, een stadsfiets, onderdelen, accessoires of onderhoud, met een DCQ Bikes cadeaubon geeft u de ontvanger de vrijheid om zelf te kiezen wat hij of zij het meest nodig heeft.
+                                </p>
+                                <p>
+                                    Perfect voor verjaardagen, feestdagen of gewoon om iemand te verrassen. De cadeaubon heeft een <strong>lange geldigheidsduur</strong> en kan op elk moment ingewisseld worden.
+                                </p>
+                                <div class="space-y-2 pt-2">
+                                    <div class="flex items-start gap-2">
+                                        <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                        <span class="text-sm md:text-base">Beschikbaar in verschillende bedragen</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                        <span class="text-sm md:text-base">Geldig voor alle producten en diensten</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                        <span class="text-sm md:text-base">Lange geldigheidsduur</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-600 pt-2">
+                                    <i class="fas fa-store text-dcq-red text-lg"></i>
+                                    <span class="text-base">Beschikbaar in de winkel</span>
+                                </div>
                             </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
-                                <span class="text-gray-700 text-sm md:text-base">Geldig voor alle producten en diensten</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
-                                <span class="text-gray-700 text-sm md:text-base">Lange geldigheidsduur</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center gap-2 text-gray-600">
-                            <i class="fas fa-store text-dcq-red text-lg"></i>
-                            <span class="text-base">Beschikbaar in de winkel</span>
-                        </div>
+                        </details>
                     </div>
                 </div>
                 
                 <!-- Circuit Experience Card -->
-                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg fade-in">
-                    <div class="relative h-64 md:h-80 overflow-hidden">
+                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg fade-in flex flex-col w-full">
+                    <div class="relative h-64 md:h-80 overflow-hidden flex-shrink-0">
                         <img src="assets/images/cadeaubon/trackday.JPG" alt="Circuit Experience Stayfast DW16" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>
-                    <div class="p-6 md:p-8 relative">
+                    <div class="p-6 md:p-8 relative flex flex-col">
                         <div class="absolute top-6 right-6 md:top-8 md:right-8">
                             <span class="bg-dcq-red text-white text-base md:text-lg font-bold px-5 py-2.5 rounded-lg shadow-lg inline-block">€100</span>
                         </div>
-                        <div class="mb-3 pr-20">
+                        <div class="mb-1 pr-20">
                             <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">Circuit Experience</h3>
                             <p class="text-sm text-gray-600">Passagiersrit Stayfast DW16 • 282pk • 600kg</p>
                         </div>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            Stap in de passagiersstoel van onze <strong>Stayfast DW16</strong> en beleef een onvergetelijke rit op het circuit. Deze high-performance auto met 282pk en slechts 600kg gewicht biedt u een unieke kans om de wereld van motorsport van dichtbij te ervaren.
-                        </p>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            Tijdens <strong>8 intensieve rondes</strong> op het circuit voelt u elke bocht, elke versnelling en elke rem. De G-krachten drukken u in uw stoel, de wind suist langs u heen, en u ervaart de pure adrenaline van het racen. Een ervaring die u niet snel zult vergeten.
-                        </p>
-                        <p class="text-gray-700 mb-6 leading-relaxed">
-                            Of u nu een motorsportliefhebber bent of gewoon op zoek bent naar een uniek cadeau, deze Circuit Experience is perfect voor iedereen die hunkert naar opwinding en snelheid.
-                        </p>
-                        
-                        <!-- Features List -->
-                        <div class="space-y-2 mb-6">
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
-                                <span class="text-gray-700 text-sm md:text-base">8 rondes op het circuit</span>
+                        <details class="offer-details mt-4 border-t border-gray-100 pt-4">
+                            <summary class="offer-details-summary flex items-center justify-between gap-2 text-dcq-red font-semibold text-base cursor-pointer list-none select-none">
+                                <span>Meer informatie &amp; details</span>
+                                <i class="fas fa-chevron-down offer-details-chevron text-sm transition-transform duration-200 flex-shrink-0"></i>
+                            </summary>
+                            <div class="mt-4 space-y-4 text-gray-700 leading-relaxed">
+                                <p>
+                                    Stap in de passagiersstoel van onze <strong>Stayfast DW16</strong> en beleef een onvergetelijke rit op het circuit. Deze high-performance auto met 282pk en slechts 600kg gewicht biedt u een unieke kans om de wereld van motorsport van dichtbij te ervaren.
+                                </p>
+                                <p>
+                                    Tijdens <strong>8 intensieve rondes</strong> op het circuit voelt u elke bocht, elke versnelling en elke rem. De G-krachten drukken u in uw stoel, de wind suist langs u heen, en u ervaart de pure adrenaline van het racen. Een ervaring die u niet snel zult vergeten.
+                                </p>
+                                <p>
+                                    Of u nu een motorsportliefhebber bent of gewoon op zoek bent naar een uniek cadeau, deze Circuit Experience is perfect voor iedereen die hunkert naar opwinding en snelheid.
+                                </p>
+                                <div class="space-y-2 pt-2">
+                                    <div class="flex items-start gap-2">
+                                        <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                        <span class="text-sm md:text-base">8 rondes op het circuit</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                        <span class="text-sm md:text-base">Vragen stellen en foto's maken</span>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
+                                        <span class="text-sm md:text-base">Veiligheid is onze topprioriteit</span>
+                                    </div>
+                                </div>
+                                <a href="mailto:info@dcqbikes.be" class="inline-flex items-center gap-2 px-6 py-3 bg-dcq-red text-white font-semibold rounded-lg hover:bg-red-700 transition-colors duration-200 mt-2">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Stuur een e-mail</span>
+                                </a>
                             </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
-                                <span class="text-gray-700 text-sm md:text-base">Vragen stellen en foto's maken</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
-                                <span class="text-gray-700 text-sm md:text-base">Veiligheid is onze topprioriteit</span>
-                            </div>
-                        </div>
-                        
-                        <a href="mailto:info@dcqbikes.be" class="inline-flex items-center gap-2 px-6 py-3 bg-dcq-red text-white font-semibold rounded-lg hover:bg-red-700 transition-colors duration-200">
-                            <i class="fas fa-envelope"></i>
-                            <span>Stuur een e-mail</span>
-                        </a>
+                        </details>
                     </div>
                 </div>
             </div>
@@ -3080,7 +3232,7 @@
                 </p>
             </div>
 
-            <div id="faqContent" class="fade-in mt-6 md:grid md:grid-cols-2 md:gap-4 md:space-y-0 space-y-3">
+            <div id="faqContent" class="fade-in mt-6 md:grid md:grid-cols-2 md:gap-4 md:items-start md:space-y-0 space-y-3">
 
                 <div class="faq-item group">
                     <button class="faq-question w-full text-left flex items-start justify-between gap-4 p-5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200" aria-expanded="false">
@@ -3089,7 +3241,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer hidden px-5 pt-0 pb-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
                         <p class="mb-3 text-gray-800">De duur van een herstelling hangt af van het type probleem:</p>
                         <ul class="list-none space-y-2.5 ml-0">
                             <li class="flex items-start gap-2">
@@ -3116,7 +3268,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer hidden px-5 pt-0 pb-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
                         <p class="text-gray-800 mb-3">Wij accepteren de volgende betalingsmethoden:</p>
                         <ul class="list-none space-y-2.5 ml-0">
                             <li class="flex items-center gap-3">
@@ -3143,7 +3295,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer hidden px-5 pt-0 pb-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
                         <p class="text-gray-800 mb-3">Nee, voor de meeste reparaties en vragen kunt u gewoon <strong>langs komen</strong> tijdens onze <a href="#contact" class="text-dcq-red font-semibold hover:underline">openingstijden</a>. Wij helpen u graag persoonlijk!</p>
                         <p class="text-gray-800 mb-3">Voor <strong>kleine reparaties</strong> kunt u altijd binnenlopen. Voor <strong>grotere herstellingen</strong> of een volledige onderhoudsbeurt kunt u ook gewoon langskomen. We bekijken dan ter plaatse wat er nodig is.</p>
                         <p class="text-gray-800 mb-3">Als u liever eerst contact opneemt, kunt u een e-mail sturen naar <a href="mailto:info@dcqbikes.be" class="text-dcq-red font-semibold hover:underline">info@dcqbikes.be</a> of bellen op <a href="tel:+3250814220" class="text-dcq-red font-semibold hover:underline">+32 50 81 42 20</a> of <a href="tel:+32475822376" class="text-dcq-red font-semibold hover:underline">+32 475 82 23 76</a>.</p>
@@ -3158,7 +3310,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer hidden px-5 pt-0 pb-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
                         <p class="text-gray-800 mb-3">Ja, wij zijn zelfs <strong>gespecialiseerd</strong> in het onderhouden en herstellen van elektrische fietsen van <strong>alle merken</strong>:</p>
                         <ul class="list-none space-y-2.5 ml-0">
                             <li class="flex items-start gap-2">
@@ -3193,7 +3345,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer hidden px-5 pt-0 pb-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
                         <p class="text-gray-800 mb-3">De frequentie van onderhoud hangt af van <strong>gebruik</strong> en <strong>fiets type</strong>:</p>
                         <ul class="list-none space-y-2.5 ml-0">
                             <li class="flex items-start gap-2">
@@ -3220,7 +3372,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer hidden px-5 pt-0 pb-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
                         <p class="text-gray-800 mb-3">Om het proces soepel te laten verlopen, raden we aan om het volgende mee te nemen:</p>
                         <ul class="list-none space-y-2.5 ml-0">
                             <li class="flex items-start gap-2">

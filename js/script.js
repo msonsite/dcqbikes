@@ -1098,25 +1098,20 @@ function initFAQ() {
             
             const isActive = item.classList.contains('active');
             
-            // Close all FAQ items
+            // Sluit alle andere items (uitklapbaar via .active + CSS max-height)
             faqItems.forEach(otherItem => {
                 if (otherItem !== item) {
                     otherItem.classList.remove('active');
-                    const otherAnswer = otherItem.querySelector('.faq-answer');
                     const otherQuestion = otherItem.querySelector('.faq-question');
-                    if (otherAnswer) otherAnswer.classList.add('hidden');
                     if (otherQuestion) otherQuestion.setAttribute('aria-expanded', 'false');
                 }
             });
             
-            // Toggle current item
             if (isActive) {
                 item.classList.remove('active');
-                answer.classList.add('hidden');
                 question.setAttribute('aria-expanded', 'false');
             } else {
                 item.classList.add('active');
-                answer.classList.remove('hidden');
                 question.setAttribute('aria-expanded', 'true');
             }
         });
@@ -1389,6 +1384,59 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Sfeer-sectie #sfeer: video loop bij zichtbaarheid; start stom; geluid via knop
+(function() {
+    const wrap = document.querySelector('.about-showcase-media--section');
+    const video = document.getElementById('aboutShowcaseVideo');
+    const soundBtn = document.getElementById('aboutShowcaseSoundBtn');
+    if (!wrap || !video || !soundBtn) return;
 
+    const icon = soundBtn.querySelector('i');
+    const label = soundBtn.querySelector('.about-showcase-sound-label');
+
+    function setSoundUi(isUnmuted) {
+        soundBtn.setAttribute('aria-pressed', isUnmuted ? 'true' : 'false');
+        if (icon) {
+            icon.classList.toggle('fa-volume-mute', !isUnmuted);
+            icon.classList.toggle('fa-volume-up', isUnmuted);
+        }
+        if (label) {
+            label.textContent = isUnmuted ? 'Geluid uit' : 'Geluid aan';
+        }
+        soundBtn.setAttribute('title', isUnmuted ? 'Geluid uit' : 'Geluid aan');
+    }
+
+    soundBtn.addEventListener('click', function() {
+        video.muted = !video.muted;
+        setSoundUi(!video.muted);
+        video.play().catch(function() {});
+    });
+
+    setSoundUi(false);
+
+    function tryPlay() {
+        video.play().catch(function() {});
+    }
+
+    if (!('IntersectionObserver' in window)) {
+        tryPlay();
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    tryPlay();
+                } else {
+                    video.pause();
+                }
+            });
+        },
+        { threshold: 0.2, rootMargin: '0px 0px -5% 0px' }
+    );
+
+    observer.observe(wrap);
+})();
 
 
