@@ -2514,17 +2514,21 @@
                 <div class="mb-6 flex justify-center">
                     <img src="assets/images/logo/dcqbikeslogotransparent.png" alt="DCQ Bikes" class="h-20 md:h-32 lg:h-40 w-auto object-contain drop-shadow-lg">
                 </div>
-            <!--    <p class="text-xl md:text-2xl lg:text-3xl text-dcq-white/95 mb-2 font-light tracking-wide drop-shadow-lg">
-                    Waar passie en precisie samenkomen
-                </p> -->
-                <p class="text-sm md:text-base text-dcq-white/80 mb-8 tracking-[0.15em] uppercase">
-                    Elektrische Fietsen • Stadsfietsen • Grasmaaiers
+
+                <p class="text-xl md:text-2xl lg:text-3xl font-semibold text-dcq-white mb-8 tracking-[0.15em] uppercase leading-relaxed text-center">
+                    <span class="block md:inline">Elektrische Fietsen</span>
+                    <span class="hidden md:inline"> • </span>
+                
+                    <span class="block md:inline">Stadsfietsen</span>
+                    <span class="hidden md:inline"> • </span>
+                
+                    <span class="block md:inline">Grasmaaiers</span>
                 </p>
                 
                 <!-- Counters in Hero -->
                 <div class="flex flex-row items-center justify-center gap-6 md:gap-12 mb-8">
-                    <div>
-                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-1 text-dcq-white drop-shadow-lg" id="customerCounter">
+                    <div class="text-center">
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-1 text-dcq-white drop-shadow-lg" id="customerCounter">
                             +0
                         </h2>
                         <p class="text-sm md:text-base text-dcq-white/90 font-medium">
@@ -2532,8 +2536,9 @@
                         </p>
                     </div>
                     <div class="w-px h-10 md:h-12 bg-dcq-white/30"></div>
-                    <div>
-                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-1 text-dcq-white drop-shadow-lg" id="yearsCounter">
+                
+                    <div class="text-center">
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-1 text-dcq-white drop-shadow-lg" id="yearsCounter">
                             +25
                         </h2>
                         <p class="text-sm md:text-base text-dcq-white/90 font-medium">
@@ -2701,6 +2706,35 @@
         </div>
     </section>
 
+    <!-- Sfeerimpressie -->
+    <section id="sfeer" class="py-12 md:py-16 relative overflow-hidden border-t border-white/5" style="background: #0a0a0a;" aria-labelledby="sfeer-heading">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6">
+            <div class="fade-in mb-8 md:mb-10 text-center px-2">
+                <p class="text-sm font-semibold uppercase tracking-widest text-dcq-red mb-2">Sfeerimpressie</p>
+                <h2 id="sfeer-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Even binnen kijken</h2>
+                <p class="text-lg max-w-2xl mx-auto" style="color: rgba(255, 254, 252, 0.8);">
+                    Een korte blik in onze winkel.
+                </p>
+            </div>
+            <div class="about-showcase-media about-showcase-media--section relative w-full max-w-4xl mx-auto overflow-hidden rounded-2xl border border-white/10 shadow-2xl fade-in">
+                <video
+                    id="aboutShowcaseVideo"
+                    class="about-showcase-video"
+                    playsinline
+                    muted
+                    loop
+                    preload="auto"
+                    aria-label="Video impressie DCQ Bikes">
+                    <source src="assets/videos/overons.mp4" type="video/mp4">
+                </video>
+                <button type="button" id="aboutShowcaseSoundBtn" class="about-showcase-sound-btn" aria-pressed="false" title="Geluid aan">
+                    <i class="fas fa-volume-mute" aria-hidden="true"></i>
+                    <span class="about-showcase-sound-label">Geluid aan</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Brands Section -->
     <section id="brands" class="pt-16 md:pt-20 pb-12 md:pb-16" style="background: #ffffff;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
@@ -2798,35 +2832,6 @@
             <video id="lightboxVideo" src="" controls class="max-w-full max-h-full object-contain hidden"></video>
         </div>
     </div>
-
-    <!-- Sfeerimpressie -->
-    <section id="sfeer" class="py-12 md:py-16 relative overflow-hidden border-t border-white/5" style="background: #0a0a0a;" aria-labelledby="sfeer-heading">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="fade-in mb-8 md:mb-10 text-center px-2">
-                <p class="text-sm font-semibold uppercase tracking-widest text-dcq-red mb-2">Sfeerimpressie</p>
-                <h2 id="sfeer-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Even binnen kijken</h2>
-                <p class="text-lg max-w-2xl mx-auto" style="color: rgba(255, 254, 252, 0.8);">
-                    Een korte blik in onze winkel.
-                </p>
-            </div>
-            <div class="about-showcase-media about-showcase-media--section relative w-full max-w-4xl mx-auto overflow-hidden rounded-2xl border border-white/10 shadow-2xl fade-in">
-                <video
-                    id="aboutShowcaseVideo"
-                    class="about-showcase-video"
-                    playsinline
-                    muted
-                    loop
-                    preload="auto"
-                    aria-label="Video impressie DCQ Bikes">
-                    <source src="assets/videos/overons.mp4" type="video/mp4">
-                </video>
-                <button type="button" id="aboutShowcaseSoundBtn" class="about-showcase-sound-btn" aria-pressed="false" title="Geluid aan">
-                    <i class="fas fa-volume-mute" aria-hidden="true"></i>
-                    <span class="about-showcase-sound-label">Geluid aan</span>
-                </button>
-            </div>
-        </div>
-    </section>
 
     <!-- About Section -->
     <section id="about" class="py-12 md:py-16 relative overflow-hidden" style="background: #0a0a0a;">
