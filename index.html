@@ -1068,14 +1068,16 @@
             overflow: hidden;
             padding-top: 0;
             padding-bottom: 0;
-            border-top: 1px solid transparent;
-            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease, border-color 0.25s ease;
+            border-top: 0;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease, border-top-color 0.25s ease;
         }
         
         #faq .faq-item.active .faq-answer {
             max-height: min(2000px, 85vh);
             padding-top: 1rem;
             padding-bottom: 1.25rem;
+            border-top-width: 1px;
+            border-top-style: solid;
             border-top-color: rgba(255, 255, 255, 0.12);
         }
         
@@ -1495,6 +1497,90 @@
         
         #brands-small .brand-item img {
             max-height: 55px;
+        }
+
+        /* Revsite-style partner logo lines (desktop) */
+        .glz_partner_group_block_img_wrapper{
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .glz_partner_group_block_img_wrapper .brand-item{
+            padding: 10px 20px 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .Logo-line-1 .glz_partner_group_block_img_wrapper img {
+            max-height: 80px;
+            height: auto;
+        }
+        .Logo-line-1 .glz_partner_group_block_img_wrapper .brand-item {
+            width: 25%;
+        }
+        .Logo-line-2 .glz_partner_group_block_img_wrapper img {
+            max-height: 50px;
+            height: auto;
+        }
+        .Logo-line-2 .glz_partner_group_block_img_wrapper .brand-item {
+            width: 20%;
+        }
+        .Logo-line-3 .glz_partner_group_block_img_wrapper img {
+            max-height: 20px;
+            height: auto;
+        }
+        .Logo-line-3 .glz_partner_group_block_img_wrapper .brand-item {
+            width: 15%;
+        }
+        .glz_partner_group_block_img_wrapper img:hover {
+            opacity: 0.7;
+        }
+
+        /* Desktop logo lines: make spacing uniform */
+        @media (min-width: 768px) {
+            .glz_partner_group_block_img_wrapper {
+                gap: 1.75rem;
+            }
+            .glz_partner_group_block_img_wrapper .brand-item {
+                width: auto !important;
+                padding: 0.25rem 0.75rem !important;
+            }
+        }
+
+        /* Brands section:
+           - Mobile: keep original scroller "cards"
+           - Desktop: no cards/boxes for logo lines */
+        @media (min-width: 768px) {
+            #brands .brand-item,
+            #brands .brand-item:hover,
+            #brands .brand-item:active,
+            #brands .brand-item:focus {
+                background: transparent !important;
+                box-shadow: none !important;
+                border: none !important;
+                transform: none !important;
+            }
+            #brands .brand-item-inner {
+                background: transparent !important;
+            }
+            #brands .brand-item img {
+                background: transparent !important;
+            }
+        }
+        @media (max-width: 767px) {
+            #brands .brand-marquee .brand-item {
+                background: rgba(255, 255, 255, 0.95) !important;
+                border-radius: 16px !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+                padding: 1rem !important;
+                border: none !important;
+            }
+            #brands .brand-carousel-progress {
+                background: rgba(0, 0, 0, 0.08) !important;
+            }
+            #brands .brand-carousel-progress-bar {
+                background: linear-gradient(90deg, #ee2726 0%, #d41e1d 100%) !important;
+            }
         }
         
         @media (min-width: 769px) {
@@ -2709,14 +2795,14 @@
     <!-- Sfeerimpressie -->
     <section id="sfeer" class="py-12 md:py-16 relative overflow-hidden border-t border-white/5" style="background: #0a0a0a;" aria-labelledby="sfeer-heading">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="fade-in mb-8 md:mb-10 text-center px-2">
+            <div class="mb-6 md:mb-8 text-center px-2">
                 <p class="text-sm font-semibold uppercase tracking-widest text-dcq-red mb-2">Sfeerimpressie</p>
                 <h2 id="sfeer-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Even binnen kijken</h2>
                 <p class="text-lg max-w-2xl mx-auto" style="color: rgba(255, 254, 252, 0.8);">
                     Een korte blik in onze winkel.
                 </p>
             </div>
-            <div class="about-showcase-media about-showcase-media--section relative w-full max-w-4xl mx-auto overflow-hidden rounded-2xl border border-white/10 shadow-2xl fade-in">
+            <div class="about-showcase-media about-showcase-media--section relative w-full max-w-4xl mx-auto mt-2 md:mt-4 overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
                 <video
                     id="aboutShowcaseVideo"
                     class="about-showcase-video"
@@ -2732,25 +2818,49 @@
                     <span class="about-showcase-sound-label">Geluid aan</span>
                 </button>
             </div>
+
+            <!-- Foto's (uit de oude galerij) -->
+            <div class="max-w-6xl mx-auto mt-10 md:mt-12 lg:mt-14">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-6 md:gap-x-4 md:gap-y-8">
+                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
+                        <img src="assets/images/gallery/picture2.jpeg" alt="DCQ Bikes sfeerfoto 1" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
+                        <img src="assets/images/gallery/picture3.webp" alt="DCQ Bikes sfeerfoto 2" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
+                        <img src="assets/images/gallery/picture4.webp" alt="DCQ Bikes sfeerfoto 3" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
+                        <img src="assets/images/gallery/picture6.jpeg" alt="DCQ Bikes sfeerfoto 4" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
+                        <img src="assets/images/gallery/picture7.jpg" alt="DCQ Bikes sfeerfoto 5" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
+                        <img src="assets/images/gallery/picture8.jpeg" alt="DCQ Bikes sfeerfoto 6" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Brands Section -->
+    <!-- Brands / Partners Section (revsite-style) -->
     <section id="brands" class="pt-16 md:pt-20 pb-12 md:pb-16" style="background: #ffffff;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="text-center mb-8 md:mb-10 fade-in">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Merken</h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-2">Geselecteerd met oog voor kwaliteit</p>
-                <p class="text-sm text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2 hidden md:flex">
-                    <i class="fas fa-mouse-pointer text-gray-400"></i>
+                <p class="text-sm text-gray-400 max-w-2xl mx-auto mt-3 flex items-center justify-center gap-2 hidden md:flex">
+                    <i class="fas fa-mouse-pointer" aria-hidden="true"></i>
                     <span class="brand-click-hint">Klik op een merk voor meer informatie</span>
                 </p>
             </div>
-            
-            <!-- Mobile: Interactive carousel with auto-scroll -->
+
+            <!-- Mobile: Interactive carousel with native scroll -->
             <div class="md:hidden fade-in">
                 <p class="text-xs text-gray-400 text-center mb-4 flex items-center justify-center gap-1.5">
-                    <i class="fas fa-hand-pointer text-gray-400"></i>
+                    <i class="fas fa-hand-pointer" aria-hidden="true"></i>
                     <span>Swipe om te scrollen, tap voor meer info</span>
                 </p>
                 <div id="brands-mobile" class="brand-marquee">
@@ -2760,27 +2870,29 @@
                     <div id="brandCarouselProgressBar" class="brand-carousel-progress-bar"></div>
                 </div>
             </div>
-            <!-- Large Brands (Row 1) -->
-            <div class="brand-row-container fade-in hidden md:block">
-                <!--<h3 class="brand-row-title">Hoofdmerken</h3>-->
-                <div id="brands-large" class="brand-row">
-                    <!-- Brand logos will be loaded dynamically -->
+
+            <!-- Desktop: revsite-style 3 logo lines -->
+            <div class="hidden md:block fade-in">
+                <div class="Logo-line-1">
+                    <div class="glz_partner_group_block line-one-(1)">
+                        <div id="brands-large" class="glz_partner_group_block_img_wrapper">
+                            <!-- Brand logos will be loaded dynamically -->
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Medium Brands (Row 2) -->
-            <div class="brand-row-container fade-in hidden md:block">
-                <!-- Medium Brands (Row 2)<h3 class="brand-row-title">Accessoire Merken</h3>-->
-                <div id="brands-medium" class="brand-row">
-                    <!-- Brand logos will be loaded dynamically -->
+                <div class="Logo-line-2 mt-4 md:mt-6">
+                    <div class="glz_partner_group_block line-two-(2)">
+                        <div id="brands-medium" class="glz_partner_group_block_img_wrapper">
+                            <!-- Brand logos will be loaded dynamically -->
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Small Brands (Row 3) -->
-            <div class="brand-row-container fade-in hidden md:block">
-            <!--<h3 class="brand-row-title">Partner Merken</h3>-->
-                <div id="brands-small" class="brand-row">
-                    <!-- Brand logos will be loaded dynamically -->
+                <div class="Logo-line-3 mt-4 md:mt-6">
+                    <div class="glz_partner_group_block line-three-(3)">
+                        <div id="brands-small" class="glz_partner_group_block_img_wrapper">
+                            <!-- Brand logos will be loaded dynamically -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2800,36 +2912,6 @@
                     <!-- Content loaded dynamically -->
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-10 md:py-12 overflow-hidden" style="background: #0a0a0a;">
-        <div class="text-center mb-6 md:mb-8 fade-in px-4">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Galerij</h2>
-                <p class="text-lg max-w-2xl mx-auto" style="color: rgba(255, 254, 252, 0.8);">
-                Een kijkje in onze winkel
-                </p>
-            </div>
-        <div id="galleryGrid" class="gallery-masonry-grid">
-                <!-- Gallery items loaded dynamically -->
-        </div>
-    </section>
-
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-label="Afbeelding viewer">
-        <button id="closeLightbox" class="absolute top-4 right-4 text-white text-3xl hover:text-dcq-red z-10" aria-label="Sluiten">
-            <i class="fas fa-times"></i>
-        </button>
-        <button id="prevLightbox" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-dcq-red z-10" aria-label="Vorige">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button id="nextLightbox" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-dcq-red z-10" aria-label="Volgende">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="m-auto max-w-7xl w-full h-full flex items-center justify-center p-4">
-            <img id="lightboxImage" src="" alt="" class="max-w-full max-h-full object-contain">
-            <video id="lightboxVideo" src="" controls class="max-w-full max-h-full object-contain hidden"></video>
         </div>
     </div>
 
