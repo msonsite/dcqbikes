@@ -138,25 +138,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for Fade-in Animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-// Observe all fade-in elements
-document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
-});
-
 // Hero Video Setup
 const heroVideo = document.getElementById('heroVideo');
 if (heroVideo) {
@@ -269,7 +250,7 @@ async function loadBrandImages() {
             if (container) container.appendChild(brandLink);
             if (mobileMarquee) {
                 const clone = brandLink.cloneNode(true);
-                // Remove any fade-in inline animation styles from desktop rendering
+                // Remove stagger animation styles from desktop marquee clone
                 clone.style.animation = 'none';
                 clone.style.opacity = '1';
                 clone.style.transform = 'none';
@@ -561,7 +542,7 @@ async function loadGalleryImages() {
             finalPattern = 'tall';
         }
         
-        galleryItem.className = `gallery-item ${finalPattern} fade-in`;
+        galleryItem.className = `gallery-item ${finalPattern}`;
         galleryItem.setAttribute('role', 'button');
         galleryItem.setAttribute('tabindex', '0');
         galleryItem.setAttribute('aria-label', `Bekijk afbeelding ${index + 1}`);
@@ -591,26 +572,6 @@ async function loadGalleryImages() {
         });
         
         galleryGrid.appendChild(galleryItem);
-    });
-    
-    // Observe gallery items for fade-in animation
-    const galleryObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }, index * 50);
-                galleryObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(20px)';
-        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        galleryObserver.observe(item);
     });
 }
 
@@ -1120,6 +1081,27 @@ function initFAQ() {
 
 document.addEventListener('DOMContentLoaded', async () => {
     loadBrandImages();
+
+    // Make hero section fill the remaining viewport height (below ribbon + nav)
+    const updateHeroHeight = () => {
+        const hero = document.getElementById('home');
+        if (!hero) return;
+        const ribbon = document.getElementById('headerRibbon');
+        const nav = document.getElementById('mainNav');
+        const ribbonH = ribbon ? ribbon.offsetHeight : 0;
+        const navH = nav ? nav.offsetHeight : 0;
+        const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
+        const target = Math.max(420, viewportH - ribbonH - navH);
+        document.documentElement.style.setProperty('--hero-h', `${target}px`);
+    };
+    updateHeroHeight();
+    window.addEventListener('resize', () => {
+        // Run after layout settles (esp. iOS / address bar)
+        requestAnimationFrame(updateHeroHeight);
+    }, { passive: true });
+    window.addEventListener('orientationchange', () => {
+        setTimeout(updateHeroHeight, 150);
+    }, { passive: true });
     
     // Initialize mobile brands carousel after images are loaded
     setTimeout(() => {

@@ -89,17 +89,6 @@
             transform: translateY(0);
         }
         
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
         .gallery-masonry-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -285,6 +274,12 @@
             object-position: center;
             width: 100%;
             height: 100%;
+        }
+
+        /* Hero: fill remaining viewport below ribbon + nav */
+        #home {
+            height: var(--hero-h, 85vh);
+            min-height: 520px;
         }
         
         @media (min-width: 1024px) {
@@ -1539,7 +1534,7 @@
         /* Desktop logo lines: make spacing uniform */
         @media (min-width: 768px) {
             .glz_partner_group_block_img_wrapper {
-                gap: 1.75rem;
+                gap: 2.5rem;
             }
             .glz_partner_group_block_img_wrapper .brand-item {
                 width: auto !important;
@@ -2079,6 +2074,25 @@
             border-color: rgba(0, 0, 0, 0.12) !important;
             transform: none !important;
         }
+
+        /* About: drie gelijke donkere kadertjes (award, team, quote) */
+        #about .about-dark-tile {
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.72) 55%, rgba(238, 39, 38, 0.18) 100%);
+        }
+        #about .about-dark-tile-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        #about .about-dark-tile-link:hover {
+            text-decoration: none;
+        }
+        #about .about-dark-tile-link .about-dark-external {
+            color: rgba(255, 254, 252, 0.55);
+            transition: color 0.2s ease, opacity 0.2s ease;
+        }
+        #about .about-dark-tile-link:hover .about-dark-external {
+            color: rgba(255, 254, 252, 0.95);
+        }
         
         .about-showcase-media {
             background: #0a0a0a;
@@ -2597,12 +2611,12 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-[70vh] md:h-[75vh] lg:h-[85vh] xl:h-[90vh] 2xl:h-[95vh] overflow-hidden">
+    <section id="home" class="relative overflow-hidden">
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" id="heroVideo">
             <source src="assets/videos/herovideo.MP4" type="video/mp4">
         </video>
         <div class="hero-overlay absolute inset-0 flex flex-col items-center justify-center">
-            <div class="text-center px-4 z-10 fade-in">
+            <div class="text-center px-4 z-10">
                 <div class="mb-6 flex justify-center">
                     <img src="assets/images/logo/dcqbikeslogotransparent.png" alt="DCQ Bikes" class="h-20 md:h-32 lg:h-40 w-auto object-contain drop-shadow-lg">
                 </div>
@@ -2645,7 +2659,7 @@
     <!-- Services Section - Storytelling Approach -->
     <section id="services" class="services-storytelling">
         <div class="container mx-auto max-w-7xl px-4 md:px-6 pt-12 md:pt-16 pb-4 md:pb-6">
-            <div class="text-center mb-2 md:mb-3 fade-in">
+            <div class="text-center mb-2 md:mb-3">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Ons Aanbod</h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto">Alles voor fiets en tuin</p>
             </div>
@@ -2854,17 +2868,13 @@
     <!-- Brands / Partners Section (revsite-style) -->
     <section id="brands" class="pt-16 md:pt-20 pb-12 md:pb-16" style="background: #ffffff;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="text-center mb-8 md:mb-10 fade-in">
+            <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Merken</h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-2">Geselecteerd met oog voor kwaliteit</p>
-                <p class="text-sm text-gray-400 max-w-2xl mx-auto mt-3 flex items-center justify-center gap-2 hidden md:flex">
-                    <i class="fas fa-mouse-pointer" aria-hidden="true"></i>
-                    <span class="brand-click-hint">Klik op een merk voor meer informatie</span>
-                </p>
             </div>
 
             <!-- Mobile: Interactive carousel with native scroll -->
-            <div class="md:hidden fade-in">
+            <div class="md:hidden">
                 <p class="text-xs text-gray-400 text-center mb-4 flex items-center justify-center gap-1.5">
                     <i class="fas fa-hand-pointer" aria-hidden="true"></i>
                     <span>Swipe om te scrollen, tap voor meer info</span>
@@ -2878,7 +2888,7 @@
             </div>
 
             <!-- Desktop: revsite-style 3 logo lines -->
-            <div class="hidden md:block fade-in">
+            <div class="hidden md:block">
                 <div class="Logo-line-1">
                     <div class="glz_partner_group_block line-one-(1)">
                         <div id="brands-large" class="glz_partner_group_block_img_wrapper">
@@ -2886,14 +2896,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="Logo-line-2 mt-10 md:mt-14">
+                <div class="Logo-line-2 mt-14 md:mt-20">
                     <div class="glz_partner_group_block line-two-(2)">
                         <div id="brands-medium" class="glz_partner_group_block_img_wrapper">
                             <!-- Brand logos will be loaded dynamically -->
                         </div>
                     </div>
                 </div>
-                <div class="Logo-line-3 mt-10 md:mt-14 mb-10 md:mb-16">
+                <div class="Logo-line-3 mt-14 md:mt-20 mb-12 md:mb-20">
                     <div class="glz_partner_group_block line-three-(3)">
                         <div id="brands-small" class="glz_partner_group_block_img_wrapper">
                             <!-- Brand logos will be loaded dynamically -->
@@ -2924,141 +2934,115 @@
     <!-- About Section -->
     <section id="about" class="py-12 md:py-16 relative overflow-hidden" style="background: #0a0a0a;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="mb-10 md:mb-14 fade-in">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                    <div class="lg:col-span-7">
+            <div class="mb-10 md:mb-14">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 lg:items-stretch">
+                    <div class="lg:col-span-7 min-w-0">
                         <p class="text-sm font-semibold uppercase tracking-widest text-dcq-red mb-3">Over DCQ Bikes</p>
-                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-5" style="color: #fffefc;">Fietsen, service en vakmanschap, lokaal in Jabbeke</h2>
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3" style="color: #fffefc;">Fietsen, service en vakmanschap, lokaal in Jabbeke</h2>
+                        <p class="text-lg md:text-xl font-semibold mb-6" style="color: rgba(255, 254, 252, 0.92);">Van leergast tot zaakvoerder: passie en doorzetting</p>
 
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-4">
-                                <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-dcq-red/10 flex items-center justify-center mt-0.5 border border-dcq-red/20">
-                                    <i class="fas fa-bicycle text-dcq-red text-xl" aria-hidden="true"></i>
-                                </div>
-                                <p class="text-base md:text-lg leading-relaxed" style="color: rgba(255, 254, 252, 0.9);">
-                                    Bij <span class="font-semibold" style="color: #fffefc;">DCQ Bikes</span> draait alles om fietsen. Van <span class="text-dcq-red font-medium">vakkundige reparaties</span> tot <span class="text-dcq-red font-medium">uitgebreide onderhoudsbeurten</span>, van stadsfietsen tot elektrische modellen: wij zorgen dat u altijd soepel op weg kunt.
-                                </p>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-dcq-red/10 flex items-center justify-center mt-0.5 border border-dcq-red/20">
-                                    <i class="fas fa-handshake text-dcq-red text-xl" aria-hidden="true"></i>
-                                </div>
-                                <p class="text-base md:text-lg leading-relaxed" style="color: rgba(255, 254, 252, 0.9);">
-                                    Met onze <span class="font-semibold" style="color: #fffefc;">lokale expertise</span> en <span class="font-semibold" style="color: #fffefc;">persoonlijke service</span> staan we klaar om u te helpen — of u nu op zoek bent naar een nieuwe fiets of uw huidig exemplaar weer als nieuw wilt laten lopen.
-                                </p>
-                            </div>
+                        <div class="space-y-5 text-base md:text-lg leading-relaxed" style="color: rgba(255, 254, 252, 0.88);">
+                            <p>
+                                Op achttienjarige leeftijd stapte <span class="font-semibold" style="color: #fffefc;">Kurt Declercq</span> de fietswereld in als leergast. Wat toen een opleiding was, groeide al snel uit tot een echte passie voor het vak: techniek, mensen en de fiets zelf.
+                            </p>
+                            <p>
+                                In <span class="font-semibold text-dcq-red">2006</span> zette hij de stap naar zelfstandigheid en richtte <span class="font-semibold" style="color: #fffefc;">DCQ Bikes</span> op. Met veel inzet, vallen en opstaan, en vooral respect voor klant en materiaal bouwde hij de zaak uit tot wat zij vandaag is: een adres waar je terecht kan voor advies, onderhoud, herstel en een brede keuze aan fietsen, waaronder elektrische modellen.
+                            </p>
+                            <p>
+                                Inmiddels kijkt Kurt met trots terug op dat traject. Minstens zo belangrijk blijft vooruitkijken: inspelen op wat de sector vraagt, met <span class="text-dcq-red font-medium">e-bikes</span> en innovatie als vaste pijlers in de toekomst van de winkel.
+                            </p>
+                            <p class="text-base md:text-lg border-l-2 border-dcq-red/60 pl-4" style="color: rgba(255, 254, 252, 0.82);">
+                                Dankbaar voor iedereen die deel uitmaakt van dit verhaal: klanten, partners en het team. Op naar de volgende kilometers.
+                            </p>
                         </div>
-
-                        <div class="mt-6"></div>
                     </div>
 
-                    <div class="lg:col-span-5">
-                        <div class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-dcq-red/25 via-transparent to-white/5"></div>
-                            <img src="assets/images/onsaanbod/picture5.webp" alt="DCQ Bikes winkel" class="relative w-full h-[320px] md:h-[380px] object-cover">
+                    <div class="lg:col-span-5 flex flex-col min-h-0 lg:h-full">
+                        <div class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl min-h-[240px] h-[280px] sm:h-[320px] lg:min-h-0 lg:flex-1 lg:h-full">
+                            <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-tr from-dcq-red/25 via-transparent to-white/5"></div>
+                            <img src="assets/images/onsaanbod/picture5.webp" alt="DCQ Bikes winkel" class="absolute inset-0 w-full h-full object-cover object-center">
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 fade-in">
-                <!-- Award Box -->
-                <div>
-                    <div class="award-box h-full">
-                        <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="group block h-full">
-                            <i class="fas fa-external-link-alt external-link-icon"></i>
-                            
-                            <div class="hidden md:flex flex-col h-full items-center justify-center p-8 text-center w-full">
-                                <div class="mb-8 flex justify-center w-full">
-                                    <img src="assets/images/vriendelijkstehandelaar/vriendelijkstehandelaarlogo.png" 
-                                         alt="Vriendelijkste Handelaar Logo" 
-                                         class="h-20 w-auto object-contain">
-                                </div>
-                                
-                                <div class="mb-8 flex flex-col items-center w-full">
-                                    <p class="text-sm text-gray-500 mb-3 font-light tracking-wide text-center">
-                                        DCQ Bikes werd uitgeroepen tot
-                                    </p>
-                                    <h3 class="text-2xl font-semibold text-gray-900 mb-2 leading-tight tracking-tight text-center">
-                                        Vriendelijkste Handelaar
-                                    </h3>
-                                    <p class="text-base text-gray-600 font-light text-center">
-                                        in Jabbeke
-                                    </p>
-                                </div>
-                                
-                                <div class="w-12 h-px bg-gray-200 mb-8 mx-auto"></div>
-                                
-                                <div class="flex flex-col items-center w-full">
-                                    <span class="text-xs text-gray-400 uppercase tracking-widest mb-3 font-light text-center">Uitgereikt door</span>
-                                    <img src="assets/images/vriendelijkstehandelaar/handelsgidslogo.png" 
-                                         alt="Handelsgids Logo" 
-                                         class="h-6 w-auto object-contain opacity-70 mx-auto">
-                                </div>
-                            </div>
-                            
-                            <!-- Mobile: Original layout -->
-                            <div class="md:hidden">
-                                <div class="award-logo-side">
-                                    <img src="assets/images/vriendelijkstehandelaar/vriendelijkstehandelaarlogo.png" 
-                                         alt="Vriendelijkste Handelaar Logo" 
-                                         class="object-contain">
-                                </div>
-                                <div class="award-content">
-                                    <div class="flex flex-col items-center text-center">
-                                        <p class="text-xs font-medium text-gray-700 mb-3">
-                                            DCQ Bikes werd uitgeroepen tot<br>
-                                            <span class="text-dcq-red font-semibold">Vriendelijkste Handelaar</span><br>
-                                            in Jabbeke
-                                        </p>
-                                        <div class="flex items-center justify-center gap-2">
-                                            <span class="text-[10px] font-medium text-gray-500 uppercase tracking-wider">Uitgereikt door</span>
-                                            <img src="assets/images/vriendelijkstehandelaar/handelsgidslogo.png" 
-                                                 alt="Handelsgids Logo" 
-                                                 class="h-5 w-auto object-contain opacity-80">
-                                        </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Award: flow layout zodat inhoud niet wordt afgesneden -->
+                <div class="min-h-0">
+                    <div class="media-box h-full flex flex-col min-h-0">
+                        <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="about-dark-tile-link relative flex flex-col flex-1 gap-6 p-6 md:p-8 about-dark-tile group rounded-t-2xl min-h-[240px]">
+                            <i class="fas fa-external-link-alt about-dark-external absolute top-6 right-6 z-10 text-sm pointer-events-none" aria-hidden="true"></i>
+                            <div class="pr-8 min-w-0">
+                                <div class="flex items-start justify-between gap-4">
+                                    <div class="min-w-0">
+                                        <p class="text-xs font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Erkenning</p>
+                                        <h3 class="text-2xl font-bold mt-2" style="color: #fffefc;">Vriendelijkste Handelaar</h3>
+                                        <p class="text-sm mt-1" style="color: rgba(255, 254, 252, 0.78);">Jabbeke</p>
                                     </div>
+                                    <div class="flex-shrink-0 w-16 h-16 flex items-center justify-center rounded-2xl border border-white/10 bg-black/20 p-2">
+                                        <img src="assets/images/vriendelijkstehandelaar/vriendelijkstehandelaarlogo.png" alt="Vriendelijkste Handelaar" class="max-h-12 w-auto object-contain">
+                                    </div>
+                                </div>
+                                <p class="mt-5 text-lg leading-relaxed" style="color: rgba(255, 254, 252, 0.92);">
+                                    DCQ Bikes werd door de Handelsgids bekroond als Vriendelijkste Handelaar in Jabbeke.
+                                </p>
+                            </div>
+                            <div class="pt-5 border-t border-white/10 mt-auto">
+                                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                    <p class="text-xs font-medium uppercase tracking-wider" style="color: rgba(255, 254, 252, 0.70);">Uitgereikt door</p>
+                                    <img src="assets/images/vriendelijkstehandelaar/handelsgidslogo.png" alt="Handelsgids" class="h-6 md:h-7 w-auto object-contain opacity-90 brightness-0 invert sm:ml-auto">
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
-                
-                <div>
-                    <div class="team-container p-6 h-full flex flex-col">
-                        <div class="mb-4">
-                            <h3 class="text-xl font-bold tracking-tight">Ons Team</h3>
+
+                <!-- Team -->
+                <div class="min-h-0">
+                    <div class="media-box h-full flex flex-col min-h-0">
+                        <div class="flex flex-col flex-1 gap-6 p-6 md:p-8 about-dark-tile rounded-t-2xl min-h-[240px]">
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Mensen achter DCQ Bikes</p>
+                                <h3 class="text-2xl font-bold mt-2" style="color: #fffefc;">Ons team</h3>
+                                <div class="mt-6 md:mt-7 flex flex-row flex-nowrap items-start justify-center gap-5 sm:gap-8">
+                                    <div class="text-center shrink-0 w-[104px] sm:w-[112px]">
+                                        <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-2.5 rounded-2xl overflow-hidden border border-white/15 bg-black/30">
+                                            <img src="assets/images/profilepictures/kurtdeclercq.png" alt="Kurt Declercq" class="w-full h-full object-cover" onerror="this.src='assets/images/profilepictures/kurt.jpg'; this.onerror=null;">
+                                        </div>
+                                        <p class="text-sm font-bold" style="color: #fffefc;">Kurt</p>
+                                        <p class="text-xs mt-0.5" style="color: rgba(255, 254, 252, 0.72);">Zaakvoerder</p>
+                                    </div>
+                                    <div class="text-center shrink-0 w-[104px] sm:w-[112px]">
+                                        <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-2.5 rounded-2xl overflow-hidden border border-white/15 bg-black/30">
+                                            <img src="assets/images/profilepictures/maximehoflack.png" alt="Maxime Hoflack" class="w-full h-full object-cover" onerror="this.src='assets/images/profilepictures/maxime.jpg'; this.onerror=null;">
+                                        </div>
+                                        <p class="text-sm font-bold" style="color: #fffefc;">Maxime</p>
+                                        <p class="text-xs mt-0.5" style="color: rgba(255, 254, 252, 0.72);">Fietstechnicus</p>
+                                    </div>
                                 </div>
-                        <div class="team-showcase flex-1 flex items-center justify-center">
-                            <div class="team-member">
-                                <div class="team-member-photo-wrapper">
-                                    <img src="assets/images/profilepictures/kurtdeclercq.png" alt="Kurt Declercq" class="team-member-photo" onerror="this.src='assets/images/profilepictures/kurt.jpg'; this.onerror=null;">
                             </div>
-                                <div class="team-member-name">Kurt</div>
-                                <div class="team-member-role">Zaakvoerder</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kurt / quote -->
+                <div class="min-h-0">
+                    <div class="media-box h-full flex flex-col min-h-0">
+                        <div class="flex flex-col flex-1 gap-5 p-6 md:p-8 about-dark-tile rounded-t-2xl min-h-[240px] md:min-h-[280px]">
+                            <div class="flex items-start justify-between gap-4 min-w-0 shrink-0">
+                                <div class="min-w-0">
+                                    <p class="text-xs font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Een woordje van Kurt</p>
+                                    <h3 class="text-2xl font-bold mt-2" style="color: #fffefc;">Kurt Declercq</h3>
                                 </div>
-                            <div class="team-member">
-                                <div class="team-member-photo-wrapper">
-                                    <img src="assets/images/profilepictures/maximehoflack.png" alt="Maxime Hoflack" class="team-member-photo" onerror="this.src='assets/images/profilepictures/maxime.jpg'; this.onerror=null;">
-                            </div>
-                                <div class="team-member-name">Maxime</div>
-                                <div class="team-member-role">Fietstechnicus</div>
+                                <div class="flex-shrink-0 w-14 h-14 rounded-2xl overflow-hidden border border-white/10 bg-black/30">
+                                    <img src="assets/images/profilepictures/kurtdeclercq.png" alt="Kurt Declercq" class="w-full h-full object-cover" onerror="this.src='assets/images/profilepictures/kurt.jpg'; this.onerror=null;">
                                 </div>
                             </div>
-                                </div>
+                            <div class="mt-2 md:mt-0 md:flex-1 md:flex md:flex-col md:justify-center md:min-h-0">
+                                <p class="text-base md:text-lg lg:text-xl md:leading-relaxed leading-relaxed border-l-2 border-dcq-red/60 pl-4 md:border-l-0 md:pl-0 md:pt-6 md:border-t-2 md:border-dcq-red/60 md:text-center" style="color: rgba(255, 254, 252, 0.88);">
+                                    “Wat je over ons leest, moet in Jabbeke in de zaak ook zo aanvoelen. Daar nemen we met het team de tijd voor tot het voor jou klopt.”
+                                </p>
                             </div>
-                
-                <div>
-                    <div class="media-box h-full flex flex-col">
-                        <div class="relative flex-1 overflow-hidden min-h-[220px] md:min-h-[280px]" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
-                            <iframe
-                                class="absolute inset-0 w-full h-full"
-                                title="DCQ Bikes op Google Maps"
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                                src="https://www.google.com/maps?q=Gistelsteenweg%20282%2C%208490%20Jabbeke&output=embed"
-                                allowfullscreen>
-                            </iframe>
                         </div>
                     </div>
                 </div>
@@ -3069,7 +3053,7 @@
     <!-- Contact Section -->
     <section id="contact" class="py-12 md:py-16 bg-gray-50">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="mb-8 md:mb-10 fade-in">
+            <div class="mb-8 md:mb-10">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Contact</h2>
                 <p class="text-lg text-gray-600 max-w-2xl">
                     Kom binnen. Wij helpen je verder.
@@ -3077,7 +3061,7 @@
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                 <!-- Contact Info -->
-                <div class="space-y-4 md:space-y-6 fade-in">
+                <div class="space-y-4 md:space-y-6">
                     <div class="contact-box p-6 rounded-2xl h-full flex flex-col" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); will-change: transform; transform: translateZ(0);">
                         <h3 class="text-xl font-bold tracking-tight mb-5">Contactgegevens</h3>
 
@@ -3186,7 +3170,7 @@
                 </div>
                 
                 <!-- Contact Form -->
-                <div class="fade-in">
+                <div>
                     <div class="contact-box p-6 rounded-2xl contact-form-container h-full flex flex-col" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); will-change: transform; transform: translateZ(0);">
                         <h3 class="text-xl font-bold tracking-tight mb-5">Heeft u een vraag?</h3>
                         <p class="text-gray-600 mb-6">Stel hier uw vraag en we nemen zo snel mogelijk contact met u op.</p>
@@ -3223,14 +3207,14 @@
     <!-- Special Offers Section: kaarten naast elkaar; uitgebreide tekst per kaart inklapbaar -->
     <section id="aanbiedingen" class="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="text-center mb-10 md:mb-12 fade-in">
+            <div class="text-center mb-10 md:mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Speciale Aanbiedingen</h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto">Voor momenten die blijven hangen.</p>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto items-start">
                 <!-- Cadeaubon Card -->
-                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg fade-in flex flex-col w-full">
+                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg flex flex-col w-full">
                     <div class="relative h-64 md:h-80 overflow-hidden flex-shrink-0">
                         <img src="assets/images/cadeaubon/cadeaubon.webp" alt="DCQ Bikes Cadeaubon" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -3279,7 +3263,7 @@
                 </div>
                 
                 <!-- Circuit Experience Card -->
-                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg fade-in flex flex-col w-full">
+                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg flex flex-col w-full">
                     <div class="relative h-64 md:h-80 overflow-hidden flex-shrink-0">
                         <img src="assets/images/cadeaubon/trackday.JPG" alt="Circuit Experience Stayfast DW16" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -3336,14 +3320,14 @@
     <!-- FAQ Section -->
     <section id="faq" class="py-12 md:py-16" style="background: #0a0a0a;">
         <div class="container mx-auto max-w-2xl md:max-w-7xl px-4 md:px-6">
-            <div class="mb-8 md:mb-10 fade-in text-center md:text-left">
+            <div class="mb-8 md:mb-10 text-center md:text-left">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Veelgestelde vragen</h2>
                 <p class="text-lg max-w-3xl mx-auto md:mx-0" style="color: rgba(255, 254, 252, 0.8);">
                     Vind meteen antwoord op de meest voorkomende vragen.
                 </p>
             </div>
 
-            <div id="faqContent" class="fade-in mt-6 md:grid md:grid-cols-2 md:gap-4 md:items-start md:space-y-0 space-y-3">
+            <div id="faqContent" class="mt-6 md:grid md:grid-cols-2 md:gap-4 md:items-start md:space-y-0 space-y-3">
 
                 <div class="faq-item group">
                     <button class="faq-question w-full text-left flex items-start justify-between gap-4 p-5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200" aria-expanded="false">
