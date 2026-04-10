@@ -76,6 +76,14 @@ document.querySelectorAll('#mobileMenu a').forEach(link => {
     });
 });
 
+// Touch-first / reduced-motion: smooth scroll (CSS of JS) botst soms met momentum scroll — daar 'auto'
+function scrollBehaviorPreferred() {
+    if (typeof window.matchMedia !== 'function') return 'smooth';
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 'auto';
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return 'auto';
+    return 'smooth';
+}
+
 // Smooth Scroll for Navigation Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -83,6 +91,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (href === '#' || href === '#!') return;
         
         e.preventDefault();
+        const behavior = scrollBehaviorPreferred();
         
         if (href === '#home') {
             const headerRibbon = document.getElementById('headerRibbon');
@@ -94,12 +103,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 
                 window.scrollTo({
                     top: ribbonBottom,
-                    behavior: 'smooth'
+                    behavior
                 });
             } else {
                 window.scrollTo({
                     top: 0,
-                    behavior: 'smooth'
+                    behavior
                 });
             }
             return;
@@ -132,7 +141,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             
             window.scrollTo({
                 top: Math.max(0, scrollPosition),
-                behavior: 'smooth'
+                behavior
             });
         }
     });
@@ -1096,7 +1105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     updateHeroHeight();
     window.addEventListener('resize', () => {
-        // Run after layout settles (esp. iOS / address bar)
+        // Run after layout settles (mobiele browsers met dynamische browser-UI / viewport)
         requestAnimationFrame(updateHeroHeight);
     }, { passive: true });
     window.addEventListener('orientationchange', () => {
@@ -1136,7 +1145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const targetPosition = contactSection.offsetTop - navHeight;
                     window.scrollTo({
                         top: targetPosition,
-                        behavior: 'smooth'
+                        behavior: scrollBehaviorPreferred()
                     });
                 }
             }
@@ -1310,60 +1319,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
     });
-});
-
-// About Section Mobile Scrollable Boxes Animation
-document.addEventListener('DOMContentLoaded', function() {
-    const aboutBoxesContainer = document.querySelector('.about-boxes-container');
-    if (!aboutBoxesContainer) return;
-    
-    // Only apply on mobile
-    if (window.innerWidth <= 1023) {
-        const boxes = aboutBoxesContainer.querySelectorAll('> div');
-        
-        // Intersection Observer for scroll-triggered animations
-        const boxObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    // Add delay based on index for staggered effect
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 150);
-                    boxObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        
-        boxes.forEach((box, index) => {
-            boxObserver.observe(box);
-        });
-        
-        // Smooth scroll behavior on mobile
-        let isScrolling = false;
-        aboutBoxesContainer.addEventListener('scroll', function() {
-            if (!isScrolling) {
-                window.requestAnimationFrame(function() {
-                    // Snap to nearest box
-                    const scrollLeft = aboutBoxesContainer.scrollLeft;
-                    const boxWidth = boxes[0].offsetWidth + 24; // 24px gap
-                    const nearestIndex = Math.round(scrollLeft / boxWidth);
-                    
-                    if (nearestIndex >= 0 && nearestIndex < boxes.length) {
-                        boxes[nearestIndex].scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'nearest',
-                            inline: 'start'
-                        });
-                    }
-                    isScrolling = false;
-                });
-                isScrolling = true;
-            }
-        });
-    }
 });
 
 // Sfeer-sectie #sfeer: video loop bij zichtbaarheid; start stom; geluid via knop
