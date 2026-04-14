@@ -76,39 +76,30 @@ document.querySelectorAll('#mobileMenu a').forEach(link => {
     });
 });
 
-// Touch-first / reduced-motion: smooth scroll (CSS of JS) botst soms met momentum scroll — daar 'auto'
-function scrollBehaviorPreferred() {
-    if (typeof window.matchMedia !== 'function') return 'smooth';
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 'auto';
-    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return 'auto';
-    return 'smooth';
-}
-
-// Smooth Scroll for Navigation Links
+// Anker-navigatie: altijd directe scroll (geen smooth) — stabiel op mobiel en desktop
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (href === '#' || href === '#!') return;
         
         e.preventDefault();
-        const behavior = scrollBehaviorPreferred();
         
         if (href === '#home') {
             const headerRibbon = document.getElementById('headerRibbon');
             
             if (headerRibbon) {
                 const ribbonRect = headerRibbon.getBoundingClientRect();
-                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                const currentScroll = window.scrollY || document.documentElement.scrollTop;
                 const ribbonBottom = ribbonRect.bottom + currentScroll;
                 
                 window.scrollTo({
                     top: ribbonBottom,
-                    behavior
+                    behavior: 'auto'
                 });
             } else {
                 window.scrollTo({
                     top: 0,
-                    behavior
+                    behavior: 'auto'
                 });
             }
             return;
@@ -119,29 +110,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const mainNav = document.getElementById('mainNav');
             if (!mainNav) return;
             
-            // Get navigation height
             const navHeight = mainNav.offsetHeight;
+            const rect = target.getBoundingClientRect();
+            const y = rect.top + (window.scrollY || document.documentElement.scrollTop);
             
-            // Get target's offsetTop (position from top of document)
-            const targetTop = target.offsetTop;
-            
-            // Check if element has scroll-mt class and extract value
             let scrollOffset = navHeight;
             const scrollMtClass = Array.from(target.classList).find(cls => cls.startsWith('scroll-mt-'));
             if (scrollMtClass) {
-                const mtValue = parseInt(scrollMtClass.replace('scroll-mt-', ''));
+                const mtValue = parseInt(scrollMtClass.replace('scroll-mt-', ''), 10);
                 if (!isNaN(mtValue)) {
                     scrollOffset = navHeight + (mtValue * 4);
                 }
             }
             
-            // Calculate scroll position: target top minus nav height
-            // This positions the section right below the sticky navigation
-            const scrollPosition = targetTop - scrollOffset;
-            
             window.scrollTo({
-                top: Math.max(0, scrollPosition),
-                behavior
+                top: Math.max(0, y - scrollOffset),
+                behavior: 'auto'
             });
         }
     });
@@ -731,21 +715,23 @@ if (contactForm) {
     });
 }
 
-// Navbar Scroll Effect
-let lastScroll = 0;
+// Navbar: schaduw bij scroll — passive + één rAF om main-thread te sparen
 const mainNav = document.getElementById('mainNav');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-        mainNav.classList.add('shadow-lg');
-    } else {
-        mainNav.classList.remove('shadow-lg');
-    }
-    
-    lastScroll = currentScroll;
-});
+if (mainNav) {
+    let navScrollRaf = null;
+    window.addEventListener('scroll', () => {
+        if (navScrollRaf != null) return;
+        navScrollRaf = requestAnimationFrame(() => {
+            navScrollRaf = null;
+            const y = window.scrollY || document.documentElement.scrollTop;
+            if (y > 100) {
+                mainNav.classList.add('shadow-lg');
+            } else {
+                mainNav.classList.remove('shadow-lg');
+            }
+        });
+    }, { passive: true });
+}
 
 // Store Status Checker
 // Configuration is in store-config.js - modify that file to change holidays/vacations
@@ -1091,8 +1077,14 @@ function initFAQ() {
 document.addEventListener('DOMContentLoaded', async () => {
     loadBrandImages();
 
-    // Make hero section fill the remaining viewport height (below ribbon + nav)
-    const updateHeroHeight = () => {
+    // Hero vult ruimte onder ribbon + nav. Op mobiel triggert scrollen vaak 'resize' door
+    // veranderende innerHeight (browser-UI) → elke herberekening van --hero-h verschuift het document.
+    // Debounce + negeer kleine hoogte-jitter zolang de breedte gelijk blijft (touch).
+    let heroResizeTimer = null;
+    let lastHeroInnerW = -1;
+    let lastHeroInnerH = -1;
+
+    function applyHeroHeight() {
         const hero = document.getElementById('home');
         if (!hero) return;
         const ribbon = document.getElementById('headerRibbon');
@@ -1102,14 +1094,42 @@ document.addEventListener('DOMContentLoaded', async () => {
         const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
         const target = Math.max(420, viewportH - ribbonH - navH);
         document.documentElement.style.setProperty('--hero-h', `${target}px`);
-    };
-    updateHeroHeight();
-    window.addEventListener('resize', () => {
-        // Run after layout settles (mobiele browsers met dynamische browser-UI / viewport)
-        requestAnimationFrame(updateHeroHeight);
-    }, { passive: true });
+        lastHeroInnerW = window.innerWidth;
+        lastHeroInnerH = window.innerHeight;
+    }
+
+    function isCoarseTouch() {
+        return typeof window.matchMedia === 'function'
+            && window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    }
+
+    function shouldIgnoreHeroResizeForViewportJitter() {
+        if (!isCoarseTouch()) return false;
+        if (lastHeroInnerW < 0) return false;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        if (w !== lastHeroInnerW) return false;
+        return Math.abs(h - lastHeroInnerH) < 100;
+    }
+
+    function scheduleHeroResize() {
+        if (shouldIgnoreHeroResizeForViewportJitter()) return;
+        clearTimeout(heroResizeTimer);
+        const delay = isCoarseTouch() ? 400 : 120;
+        heroResizeTimer = setTimeout(() => {
+            heroResizeTimer = null;
+            applyHeroHeight();
+        }, delay);
+    }
+
+    applyHeroHeight();
+    window.addEventListener('resize', scheduleHeroResize, { passive: true });
     window.addEventListener('orientationchange', () => {
-        setTimeout(updateHeroHeight, 150);
+        clearTimeout(heroResizeTimer);
+        heroResizeTimer = null;
+        setTimeout(() => {
+            applyHeroHeight();
+        }, 350);
     }, { passive: true });
     
     // Initialize mobile brands carousel after images are loaded
@@ -1142,10 +1162,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const contactSection = document.getElementById('contact');
                 if (contactSection) {
                     const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
-                    const targetPosition = contactSection.offsetTop - navHeight;
+                    const rect = contactSection.getBoundingClientRect();
+                    const y = rect.top + (window.scrollY || document.documentElement.scrollTop);
                     window.scrollTo({
-                        top: targetPosition,
-                        behavior: scrollBehaviorPreferred()
+                        top: Math.max(0, y - navHeight),
+                        behavior: 'auto'
                     });
                 }
             }
@@ -1167,11 +1188,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.addEventListener('resize', updateCursor);
     }
     
-    // Reinitialize mobile brands carousel on resize
-    let resizeTimeout;
+    // Merken-carrousel: alleen bij breedtewijziging (niet bij pure innerHeight-jitter)
+    let lastBrandResizeW = window.innerWidth;
+    let brandResizeTimeout;
     window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
+        const w = window.innerWidth;
+        if (w === lastBrandResizeW) return;
+        lastBrandResizeW = w;
+        clearTimeout(brandResizeTimeout);
+        brandResizeTimeout = setTimeout(() => {
             if (window.innerWidth < 768) {
                 initMobileBrandsCarousel();
             }
