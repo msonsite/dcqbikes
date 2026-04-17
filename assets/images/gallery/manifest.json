@@ -1,15 +1,15 @@
 {
   "images": [
-    "IMG_7763.JPG",
-    "IMG_7844.JPG",
-    "IMG_7891.JPG",
-    "IMG_7908.JPG",
-    "IMG_7916.JPG",
-    "IMG_7945.JPG",
-    "IMG_7950.JPG",
-    "IMG_7994.JPG",
-    "IMG_8025.JPG",
-    "IMG_8073.JPG"
+    "IMG_7763.jpg",
+    "IMG_7844.jpg",
+    "IMG_7891.jpg",
+    "IMG_7908.jpg",
+    "IMG_7916.jpg",
+    "IMG_7945.jpg",
+    "IMG_7950.jpg",
+    "IMG_7994.jpg",
+    "IMG_8025.jpg",
+    "IMG_8073.jpg"
   ],
-  "note": "Lijst voor loadGalleryImages() (#galleryGrid). Sfeer #sfeer: vaste HTML, 6 foto's in 2×3 (md: 3 kolommen). IMG_7945 niet in sfeer (gebruikt op Over). Extensies exact zoals op schijf."
+  "note": "Bestandsnamen exact zoals op de server (let op .jpg vs .JPG — Linux is hoofdlettergevoelig). Sfeer #sfeer: vaste HTML met 6 foto's. IMG_7945 niet in sfeer-raster (grote foto Over)."
 }
