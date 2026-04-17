@@ -11,5 +11,5 @@
     "IMG_8025.jpg",
     "IMG_8073.jpg"
   ],
-  "note": "Bestandsnamen exact zoals op de server (let op .jpg vs .JPG — Linux is hoofdlettergevoelig). Sfeer #sfeer: vaste HTML met 6 foto's. IMG_7945 niet in sfeer-raster (grote foto Over)."
+  "note": "Alle IMG_* in deze map gebruiken de extensie .jpg (kleine letters). Linux/GitHub Pages is hoofdlettergevoelig. Sfeer #sfeer: vaste HTML. IMG_7945 niet in sfeer-raster (grote foto Over)."
 }
