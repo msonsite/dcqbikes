@@ -1,13 +1,15 @@
 {
   "images": [
-    "picture2.jpeg",
-    "picture3.webp",
-    "picture4.webp",
-    "picture7.jpg",
-    "picture6.jpeg",
-    "picture9.jpg",
-    "picture8.jpeg",
-    "picture10.webp"
+    "IMG_7763.JPG",
+    "IMG_7844.JPG",
+    "IMG_7891.JPG",
+    "IMG_7908.JPG",
+    "IMG_7916.JPG",
+    "IMG_7945.JPG",
+    "IMG_7950.JPG",
+    "IMG_7994.JPG",
+    "IMG_8025.JPG",
+    "IMG_8073.JPG"
   ],
-  "note": "Add or remove image filenames here. The gallery will automatically load them. Supports: webp, jpg, jpeg, png, avif, gif"
+  "note": "Lijst voor loadGalleryImages() (#galleryGrid). Sfeer #sfeer: vaste HTML, 6 foto's in 2×3 (md: 3 kolommen). IMG_7945 niet in sfeer (gebruikt op Over). Extensies exact zoals op schijf."
 }
