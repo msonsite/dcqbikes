@@ -400,8 +400,8 @@
         
         .service-story-text-side {
             display: flex;
-            align-items: center;
-            padding: 4rem;
+            align-items: flex-start;
+            padding: 2rem 4rem 4rem;
             background: #f9fafb;
         }
         
@@ -496,10 +496,32 @@
             z-index: 1;
         }
         
+        /* Desktop: gelijke fotohoogte; eerste blok strakker boven “01” (niet op mobiel — zelfde padding als andere blokken) */
+        @media (min-width: 1025px) {
+            #services .service-story-image-side,
+            #services .service-story-grid-image {
+                height: 480px;
+                min-height: 480px;
+                max-height: 480px;
+                align-self: center;
+            }
+            
+            #services .service-story-text-side,
+            #services .service-story-grid-content {
+                align-items: center;
+                padding: 4rem;
+            }
+            
+            #services .service-story-electric .service-story-text-side {
+                align-items: flex-start;
+                padding: 0.5rem 4rem 4rem;
+            }
+        }
+        
         .service-story-grid-content {
             display: flex;
-            align-items: center;
-            padding: 4rem;
+            align-items: flex-start;
+            padding: 2rem 4rem 4rem;
             background: #f9fafb;
             position: relative;
             z-index: 2;
@@ -628,11 +650,11 @@
         }
         
             .service-story-text-side {
-                padding: 3rem 2rem;
+                padding: 1.75rem 2rem 3rem;
         }
         
             .service-story-grid-content {
-                padding: 3rem 2rem;
+                padding: 1.75rem 2rem 3rem;
             }
             
             .service-story-title {
@@ -668,7 +690,7 @@
         
             .service-story-text-side,
             .service-story-grid-content {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem 1.5rem 2rem;
         }
         
             .service-story-fullwidth-content {
@@ -1927,6 +1949,83 @@
             }
         }
         
+        .photo-strip-banner {
+            display: none;
+            width: 100%;
+            background: #0a0a0a;
+        }
+        
+        /* Mobiel: horizontaal scrollen; beeldhoogte volgt intrinsieke aspect ratio */
+        .photo-strip-banner__grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 2px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+            touch-action: pan-x;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+            align-items: stretch;
+        }
+        
+        .photo-strip-banner__grid::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        .photo-strip-banner__grid::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 2px;
+        }
+        
+        .photo-strip-banner__figure {
+            margin: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0a;
+            overflow: hidden;
+            flex: 0 0 clamp(11.5rem, 74vw, 18rem);
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
+        }
+        
+        @media (min-width: 768px) {
+            .photo-strip-banner {
+                display: block;
+            }
+            
+            .photo-strip-banner__grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                align-items: stretch;
+                overflow-x: visible;
+                overflow-y: visible;
+                scroll-snap-type: none;
+                touch-action: auto;
+            }
+            
+            .photo-strip-banner__figure {
+                flex: initial;
+                width: 100%;
+                min-width: 0;
+                align-self: stretch;
+                scroll-snap-align: unset;
+                scroll-snap-stop: normal;
+            }
+        }
+        
+        .photo-strip-banner__img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
         @media (min-width: 1024px) {
             #contact .contact-form-container {
                 min-height: 400px;
@@ -2050,9 +2149,24 @@
             transform: none !important;
         }
 
-        /* About: drie gelijke donkere kadertjes (award, team, quote) */
+        /* About: drie kaarten — vlak op #0a0a0a, geen witte wrapper / geen gradient */
+        #about .media-box {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0;
+            overflow: visible;
+        }
         #about .about-dark-tile {
-            background: linear-gradient(135deg, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.72) 55%, rgba(238, 39, 38, 0.18) 100%);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+        #about a.about-dark-tile:hover,
+        #about div.about-dark-tile:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.14);
         }
         #about .about-dark-tile-link {
             text-decoration: none;
@@ -2118,6 +2232,25 @@
             height: 100%;
             object-fit: cover;
             object-position: center center;
+        }
+
+        /* Sfeer-fotogrid: één klasse i.p.v. lange Tailwind-herhaling per cel */
+        #sfeer .sfeer-photo-cell {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.2);
+            height: 8rem;
+        }
+        @media (min-width: 640px) {
+            #sfeer .sfeer-photo-cell { height: 10rem; }
+        }
+        @media (min-width: 768px) {
+            #sfeer .sfeer-photo-cell { height: 12rem; }
+        }
+        @media (min-width: 1024px) {
+            #sfeer .sfeer-photo-cell { height: 14rem; }
         }
         
         .about-showcase-sound-btn {
@@ -2565,7 +2698,7 @@
                     <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Home</a>
                     <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Aanbod</a>
                     <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Merken</a>
-                    <a href="#about" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Over Ons</a>
+                    <a href="#over-ons" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Over Ons</a>
                     <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Contact</a>
                 </div>
                 <button id="mobileMenuBtn" class="md:hidden text-dcq-white hover:text-dcq-red transition-colors">
@@ -2633,12 +2766,12 @@
 
     <!-- Services Section - Storytelling Approach -->
     <section id="services" class="services-storytelling">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6 pt-12 md:pt-16 pb-4 md:pb-6">
-            <div class="text-center mb-2 md:mb-3">
+        <div class="container mx-auto max-w-7xl px-4 md:px-6 pt-12 md:pt-16 pb-6 md:pb-8">
+            <div class="text-center mb-3 md:mb-4">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Ons Aanbod</h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto">Alles voor fiets en tuin</p>
             </div>
-                </div>
+        </div>
         <!-- Electric Bikes - Reverse Split Screen -->
         <div class="service-story-block service-story-electric">
             <div class="service-story-split service-story-split-reverse">
@@ -2736,7 +2869,7 @@
         <div class="service-story-block service-story-parts">
             <div class="service-story-grid">
                 <div class="service-story-grid-image">
-                    <img src="assets/images/onsaanbod/IMG_7847.JPG" alt="Onderdelen & Accessoires" class="service-story-img">
+                    <img src="assets/images/onsaanbod/IMG_7736.JPG" alt="Onderdelen & Accessoires" class="service-story-img">
                         </div>
                 <div class="service-story-grid-content">
                     <div class="service-story-text-inner">
@@ -2814,34 +2947,22 @@
                 </button>
             </div>
 
-            <!-- Sfeerfoto's: 2×3 op desktop (3 kolommen), 2 kolommen op mobiel — zelfde beelden als vroeger (6 stuks) -->
+            <!-- Sfeerfoto's 2×3 (md: 3 kolommen); .sfeer-photo-cell = visueel gelijk aan vroeger -->
             <div class="w-full max-w-6xl mx-auto mt-10 md:mt-12 lg:mt-14">
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-6 md:gap-x-4 md:gap-y-8">
-                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
-                        <img src="assets/images/gallery/IMG_7763.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                    </div>
-                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
-                        <img src="assets/images/gallery/IMG_7908.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                    </div>
-                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
-                        <img src="assets/images/gallery/IMG_8025.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                    </div>
-                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
-                        <img src="assets/images/gallery/IMG_7916.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                    </div>
-                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
-                        <img src="assets/images/gallery/IMG_7992.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                    </div>
-                    <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 h-32 sm:h-40 md:h-48 lg:h-56">
-                        <img src="assets/images/gallery/IMG_7950.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                    </div>
+                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7763.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
+                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7908.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
+                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_8025.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
+                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7916.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
+                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7992.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
+                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7929.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Brands / Partners Section (revsite-style) -->
-    <section id="brands" class="pt-16 md:pt-20 pb-12 md:pb-16" style="background: #ffffff;">
+    <section id="brands" class="pt-16 md:pt-20 pb-10 md:pb-12" style="background: #ffffff;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Merken</h2>
@@ -2878,7 +2999,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="Logo-line-3 mt-14 md:mt-20 mb-12 md:mb-20">
+                <div class="Logo-line-3 mt-14 md:mt-20 mb-6 md:mb-10">
                     <div class="glz_partner_group_block line-three-(3)">
                         <div id="brands-small" class="glz_partner_group_block_img_wrapper">
                             <!-- Brand logos will be loaded dynamically -->
@@ -2886,6 +3007,24 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Full-width impressiestrip (assets/images/bannerstrip) -->
+    <section id="over-ons" class="photo-strip-banner" aria-label="Impressiebeelden winkel">
+        <div class="photo-strip-banner__grid">
+            <figure class="photo-strip-banner__figure">
+                <img class="photo-strip-banner__img" src="assets/images/bannerstrip/IMG_8014.jpg" alt="DCQ Bikes winkel — impressie" loading="lazy" decoding="async">
+            </figure>
+            <figure class="photo-strip-banner__figure">
+                <img class="photo-strip-banner__img" src="assets/images/bannerstrip/IMG_7968.jpg" alt="DCQ Bikes winkel — impressie" loading="lazy" decoding="async">
+            </figure>
+            <figure class="photo-strip-banner__figure">
+                <img class="photo-strip-banner__img" src="assets/images/bannerstrip/IMG_8083.jpg" alt="DCQ Bikes winkel — impressie" loading="lazy" decoding="async">
+            </figure>
+            <figure class="photo-strip-banner__figure">
+                <img class="photo-strip-banner__img" src="assets/images/bannerstrip/IMG_7999.jpg" alt="DCQ Bikes winkel — impressie" loading="lazy" decoding="async">
+            </figure>
         </div>
     </section>
 
@@ -2922,13 +3061,13 @@
                     </div>
 
                     <div class="lg:col-span-7 lg:col-start-1 lg:row-start-3 lg:row-span-2 min-w-0">
-                        <p class="text-lg md:text-xl font-semibold mb-2 lg:mb-5" style="color: rgba(255, 254, 252, 0.92);">Van leergast tot zaakvoerder: passie en doorzetting</p>
+                        <p class="text-lg md:text-xl font-semibold mb-2 lg:mb-5 text-dcq-red">Van leergast tot eigen zaak — elektrische fietsen centraal</p>
                         <div class="space-y-5 text-base md:text-lg leading-relaxed max-lg:space-y-4" style="color: rgba(255, 254, 252, 0.88);">
                             <p>
                                 Op achttienjarige leeftijd stapte <span class="font-semibold" style="color: #fffefc;">Kurt Declercq</span> de fietswereld in als leergast. Wat toen een opleiding was, groeide al snel uit tot een echte passie voor het vak: techniek, mensen en de fiets zelf.
                             </p>
                             <p>
-                                In <span class="font-semibold text-dcq-red">2006</span> zette hij de stap naar zelfstandigheid en richtte <span class="font-semibold" style="color: #fffefc;">DCQ Bikes</span> op. Met veel inzet, vallen en opstaan, en vooral respect voor klant en materiaal bouwde hij de zaak uit tot wat zij vandaag is: een adres waar je terecht kan voor advies, onderhoud, herstel en een brede keuze aan fietsen, waaronder elektrische modellen.
+                                In <span class="font-semibold text-dcq-red">2006</span> zette hij de stap naar zelfstandigheid en richtte <span class="font-semibold" style="color: #fffefc;">DCQ Bikes</span> op. Met veel inzet, passie, en vooral respect voor klant en materiaal bouwde hij de zaak uit tot wat zij vandaag is: een adres waar je terecht kan voor advies, onderhoud, herstel en een brede keuze aan elektrische fietsen.
                             </p>
                             <p>
                                 Inmiddels kijkt Kurt met trots terug op dat traject. Minstens zo belangrijk blijft vooruitkijken: inspelen op wat de sector vraagt, met <span class="text-dcq-red font-medium">e-bikes</span> en innovatie als vaste pijlers in de toekomst van de winkel.
@@ -2945,7 +3084,7 @@
                 <!-- Award: flow layout zodat inhoud niet wordt afgesneden; op mobiel onderaan (order) -->
                 <div class="min-h-0 order-3 lg:order-none">
                     <div class="media-box h-full flex flex-col min-h-0">
-                        <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="about-dark-tile-link relative flex flex-col flex-1 gap-3 p-4 md:gap-6 md:p-8 about-dark-tile group rounded-t-2xl min-h-0 md:min-h-[240px]">
+                        <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="about-dark-tile-link relative flex flex-col flex-1 gap-3 p-4 md:gap-6 md:p-8 about-dark-tile group rounded-xl min-h-0 md:min-h-[240px]">
                             <i class="fas fa-external-link-alt about-dark-external absolute top-4 right-4 md:top-6 md:right-6 z-10 text-xs md:text-sm pointer-events-none" aria-hidden="true"></i>
                             <div class="pr-7 md:pr-8 min-w-0">
                                 <div class="flex items-start justify-between gap-2 md:gap-4">
@@ -2975,7 +3114,7 @@
                 <!-- Team -->
                 <div class="min-h-0 order-1 lg:order-none">
                     <div class="media-box h-full flex flex-col min-h-0">
-                        <div class="flex flex-col flex-1 gap-6 p-6 md:p-8 about-dark-tile rounded-t-2xl min-h-[240px]">
+                        <div class="flex flex-col flex-1 gap-6 p-6 md:p-8 about-dark-tile rounded-xl min-h-[240px]">
                             <div class="min-w-0">
                                 <p class="text-xs font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Mensen achter DCQ Bikes</p>
                                 <h3 class="text-2xl font-bold mt-2" style="color: #fffefc;">Ons team</h3>
@@ -3003,7 +3142,7 @@
                 <!-- Kurt / quote -->
                 <div class="min-h-0 order-2 lg:order-none">
                     <div class="media-box h-full flex flex-col min-h-0">
-                        <div class="flex flex-col flex-1 gap-5 p-6 md:p-8 about-dark-tile rounded-t-2xl min-h-[240px] md:min-h-[280px]">
+                        <div class="flex flex-col flex-1 gap-5 p-6 md:p-8 about-dark-tile rounded-xl min-h-[240px] md:min-h-[280px]">
                             <div class="flex items-start justify-between gap-4 min-w-0 shrink-0">
                                 <div class="min-w-0">
                                     <p class="text-xs font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Een woordje van Kurt</p>
