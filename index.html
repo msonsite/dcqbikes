@@ -2184,6 +2184,87 @@
             color: rgba(255, 254, 252, 0.95);
         }
         
+        /* Easter egg: klik op Kurts naam → foto met schudeffect */
+        .dcq-kurt-egg-trigger {
+            cursor: pointer;
+            border-radius: 0.2em;
+            transition: background-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        
+        .dcq-kurt-egg-trigger:hover {
+            background-color: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+        }
+        
+        .dcq-kurt-egg-trigger:focus-visible {
+            outline: 2px solid rgba(238, 39, 38, 0.6);
+            outline-offset: 2px;
+        }
+        
+        @keyframes dcq-kurt-egg-wobble {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            6% { transform: translate(2px, 0) rotate(1deg) scale(1.03); }
+            12% { transform: translate(-2px, 0) rotate(-1deg) scale(1.05); }
+            18% { transform: translate(2px, 0) rotate(1deg) scale(1.07); }
+            24% { transform: translate(-2px, 1px) rotate(-1deg) scale(1.1); }
+            32% { transform: translate(2px, -1px) rotate(1deg) scale(1.14); }
+            42% { transform: translate(-2px, 0) rotate(-1deg) scale(1.18); }
+            52% { transform: translate(2px, 0) rotate(1deg) scale(1.22); }
+            62% { transform: translate(-2px, 0) rotate(-1deg) scale(1.24); }
+            74% { transform: translate(1px, -1px) rotate(1deg) scale(1.12); }
+            86% { transform: translate(-1px, 0) rotate(0deg) scale(1.04); }
+            100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        }
+        
+        @keyframes dcq-kurt-egg-backdrop {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        #dcqKurtEggOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.78);
+            animation: dcq-kurt-egg-backdrop 0.22s ease forwards;
+        }
+        
+        #dcqKurtEggOverlay .dcq-kurt-egg-img {
+            max-width: min(380px, 88vw);
+            width: auto;
+            height: auto;
+            display: block;
+            animation: dcq-kurt-egg-wobble 1.15s ease-in-out 2;
+            filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.55));
+        }
+        
+        #dcqKurtEggOverlay .dcq-kurt-egg-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 2.75rem;
+            height: 2.75rem;
+            border: none;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.14);
+            color: #fffefc;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s ease;
+        }
+        
+        #dcqKurtEggOverlay .dcq-kurt-egg-close:hover {
+            background: rgba(238, 39, 38, 0.9);
+        }
+        
         .about-showcase-media {
             background: #0a0a0a;
         }
@@ -3062,10 +3143,10 @@
                     </div>
 
                     <div class="lg:col-span-7 lg:col-start-1 lg:row-start-3 lg:row-span-2 min-w-0">
-                        <p class="text-lg md:text-xl font-semibold mb-2 lg:mb-5 text-dcq-red">Van leergast tot eigen zaak — elektrische fietsen centraal</p>
+                        <p class="text-lg md:text-xl font-semibold mb-2 lg:mb-5 text-dcq-white">Van leergast tot eigen zaak — elektrische fietsen centraal</p>
                         <div class="space-y-5 text-base md:text-lg leading-relaxed max-lg:space-y-4" style="color: rgba(255, 254, 252, 0.88);">
                             <p>
-                                Op achttienjarige leeftijd stapte <span class="font-semibold" style="color: #fffefc;">Kurt Declercq</span> de fietswereld in als leergast. Wat toen een opleiding was, groeide al snel uit tot een echte passie voor het vak: techniek, mensen en de fiets zelf.
+                                Op achttienjarige leeftijd stapte <span class="font-semibold dcq-kurt-egg-trigger" style="color: #fffefc;" tabindex="0" role="button" aria-label="Kurt Declercq">Kurt Declercq</span> de fietswereld in als leergast. Wat toen een opleiding was, groeide al snel uit tot een echte passie voor het vak: techniek, mensen en de fiets zelf.
                             </p>
                             <p>
                                 In <span class="font-semibold text-dcq-red">2006</span> zette hij de stap naar zelfstandigheid en richtte <span class="font-semibold" style="color: #fffefc;">DCQ Bikes</span> op. Met veel inzet, passie, en vooral respect voor klant en materiaal bouwde hij de zaak uit tot wat zij vandaag is: een adres waar je terecht kan voor advies, onderhoud, herstel en een brede keuze aan elektrische fietsen.

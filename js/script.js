@@ -85,23 +85,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         
         if (href === '#home') {
-            const headerRibbon = document.getElementById('headerRibbon');
-            
-            if (headerRibbon) {
-                const ribbonRect = headerRibbon.getBoundingClientRect();
-                const currentScroll = window.scrollY || document.documentElement.scrollTop;
-                const ribbonBottom = ribbonRect.bottom + currentScroll;
-                
-                window.scrollTo({
-                    top: ribbonBottom,
-                    behavior: 'auto'
-                });
-            } else {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'auto'
-                });
-            }
+            /* Bovenaan document = openingsuren-balk (#headerRibbon) + nav + hero zichtbaar */
+            window.scrollTo({
+                top: 0,
+                behavior: 'auto'
+            });
             return;
         }
         
@@ -1399,6 +1387,74 @@ document.addEventListener('DOMContentLoaded', function() {
     );
 
     observer.observe(wrap);
+})();
+
+// Easter egg Kurt: klik of Enter/Spatie op Kurts naam in "Over DCQ Bikes"
+(function() {
+    function closeKurtEgg(overlay, onKey) {
+        if (!overlay || !overlay.parentNode) return;
+        if (onKey) document.removeEventListener('keydown', onKey);
+        document.body.style.overflow = '';
+        overlay.parentNode.removeChild(overlay);
+    }
+
+    function openKurtEgg() {
+        if (document.getElementById('dcqKurtEggOverlay')) return;
+
+        const overlay = document.createElement('div');
+        overlay.id = 'dcqKurtEggOverlay';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-label', 'Leuk momentje');
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'dcq-kurt-egg-close';
+        btn.setAttribute('aria-label', 'Sluiten');
+        btn.appendChild(document.createTextNode('\u00D7'));
+
+        const img = document.createElement('img');
+        img.className = 'dcq-kurt-egg-img';
+        img.src = 'assets/images/profilepictures/eastereggkurt.png';
+        img.alt = 'Kurt als kind in een skelter — onderonsje bij DCQ Bikes.';
+
+        overlay.appendChild(btn);
+        overlay.appendChild(img);
+        document.body.appendChild(overlay);
+        document.body.style.overflow = 'hidden';
+
+        function onKey(e) {
+            if (e.key === 'Escape') {
+                closeKurtEgg(overlay, onKey);
+            }
+        }
+        document.addEventListener('keydown', onKey);
+
+        btn.addEventListener('click', function(ev) {
+            ev.stopPropagation();
+            closeKurtEgg(overlay, onKey);
+        });
+        overlay.addEventListener('click', function(ev) {
+            if (ev.target === overlay) {
+                closeKurtEgg(overlay, onKey);
+            }
+        });
+
+        btn.focus();
+    }
+
+    document.querySelectorAll('.dcq-kurt-egg-trigger').forEach(function(el) {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            openKurtEgg();
+        });
+        el.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openKurtEgg();
+            }
+        });
+    });
 })();
 
 
