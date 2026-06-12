@@ -184,20 +184,12 @@ async function loadBrandImages() {
         ]
     };
     
-    const brandsGrid = document.getElementById('brands-grid');
     const mobileMarquee = document.getElementById('brandsMarqueeTrack');
     const mobileLogos = [];
-    let gridAnimationIndex = 0;
-
-    const sizeOrder = ['large', 'medium', 'small'];
-    for (const size of sizeOrder) {
-        const images = brandImages[size];
-        if (!images || images.length === 0) continue;
-
-        const legacyContainer = document.getElementById(`brands-${size}`);
-        const targetContainer = brandsGrid || legacyContainer;
-        if (!targetContainer && !mobileMarquee) continue;
-
+    for (const [size, images] of Object.entries(brandImages)) {
+        const container = document.getElementById(`brands-${size}`);
+        if ((!container && !mobileMarquee) || images.length === 0) continue;
+        
         images.forEach((brand, index) => {
             const brandLink = document.createElement('a');
             brandLink.href = brand.url || '#';
@@ -206,38 +198,31 @@ async function loadBrandImages() {
             brandLink.className = 'brand-item';
             brandLink.setAttribute('data-brand-name', brand.name);
             brandLink.setAttribute('data-brand-image', brand.src);
-            brandLink.setAttribute('aria-label', `Bezoek website ${brand.name}`);
-
+            brandLink.setAttribute('aria-label', `Visit ${brand.name} website`);
+            
             const brandWrapper = document.createElement('div');
             brandWrapper.className = 'brand-item-inner';
-
+            
             const img = document.createElement('img');
             img.src = brand.src;
             img.alt = brand.alt;
-            const useMarquee = Boolean(mobileMarquee && !brandsGrid);
-            img.loading = useMarquee ? 'eager' : 'lazy';
-
+            img.loading = mobileMarquee ? 'eager' : 'lazy';
+            
             brandWrapper.appendChild(img);
             brandLink.appendChild(brandWrapper);
-
+            
             img.addEventListener('error', () => {
                 console.warn(`Failed to load brand image: ${brand.src}`);
                 brandLink.style.display = 'none';
             });
-
-            const animIndex = brandsGrid ? gridAnimationIndex++ : index;
-            brandLink.style.animationDelay = `${animIndex * 0.05}s`;
+            
+            brandLink.style.animationDelay = `${index * 0.1}s`;
             brandLink.style.opacity = '0';
             brandLink.style.animation = 'fadeInUp 0.6s ease forwards';
-            brandLink.style.setProperty('--index', animIndex);
-
-            if (brandsGrid) {
-                brandsGrid.appendChild(brandLink);
-            } else if (legacyContainer) {
-                legacyContainer.appendChild(brandLink);
-            }
-
-            if (useMarquee) {
+            brandLink.style.setProperty('--index', index);
+            
+            if (container) container.appendChild(brandLink);
+            if (mobileMarquee) {
                 const clone = brandLink.cloneNode(true);
                 clone.style.animation = 'none';
                 clone.style.opacity = '1';
@@ -252,8 +237,8 @@ async function loadBrandImages() {
         });
     }
 
-    if (mobileMarquee && mobileLogos.length && !brandsGrid) {
-        mobileLogos.forEach((node) => {
+    if (mobileMarquee && mobileLogos.length) {
+        mobileLogos.forEach(node => {
             node.style.animation = 'none';
             node.style.opacity = '1';
             node.style.transform = 'none';

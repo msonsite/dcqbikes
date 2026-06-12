@@ -1566,64 +1566,26 @@
             }
         }
 
-        /* Brands grid (Bike24-style uitgelichte merken) */
-        #brands #brands-grid .brand-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            aspect-ratio: 1 / 1;
-            background: #f3f4f6;
-            border-radius: 4px;
-            padding: 0.5rem;
-            text-decoration: none;
-            color: inherit;
-            transition: opacity 0.2s ease, box-shadow 0.2s ease;
-        }
-        
+        /* Brands section:
+           - Mobile: keep original scroller "cards"
+           - Desktop: no cards/boxes for logo lines */
         @media (min-width: 768px) {
-            #brands #brands-grid .brand-item {
-                aspect-ratio: auto;
-                min-height: 6.25rem;
-                padding: 1rem;
+            #brands .brand-item,
+            #brands .brand-item:hover,
+            #brands .brand-item:active,
+            #brands .brand-item:focus {
+                background: transparent !important;
+                box-shadow: none !important;
+                border: none !important;
+                transform: none !important;
+            }
+            #brands .brand-item-inner {
+                background: transparent !important;
+            }
+            #brands .brand-item img {
+                background: transparent !important;
             }
         }
-        
-        #brands #brands-grid .brand-item:focus-visible {
-            outline: 2px solid #ee2726;
-            outline-offset: 2px;
-        }
-        
-        #brands #brands-grid .brand-item:hover {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            opacity: 0.92;
-            transform: none;
-        }
-        
-        #brands #brands-grid .brand-item-inner {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-        }
-        
-        #brands #brands-grid .brand-item img {
-            width: 100%;
-            height: auto;
-            max-height: 2.75rem;
-            object-fit: contain;
-            filter: none !important;
-        }
-        
-        @media (min-width: 768px) {
-            #brands #brands-grid .brand-item img {
-                max-height: 3.5rem;
-                padding: 0.25rem;
-            }
-        }
-        
-        /* Legacy marquee (alleen als #brands-grid ontbreekt) */
         @media (max-width: 767px) {
             #brands .brand-marquee .brand-item {
                 background: rgba(255, 255, 255, 0.95) !important;
@@ -3083,16 +3045,52 @@
         </div>
     </section>
 
-    <!-- Brands / Partners Section (Bike24-style featured grid) -->
+    <!-- Brands / Partners Section (revsite-style) -->
     <section id="brands" class="pt-16 md:pt-20 pb-10 md:pb-12" style="background: #ffffff;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="mb-10 md:mb-12">
-                <h2 class="text-lg md:text-xl font-semibold text-gray-900">Uitgelichte merken</h2>
-                <p class="text-gray-600 text-base md:text-lg mt-2 max-w-2xl">Geselecteerd met oog voor kwaliteit</p>
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Merken</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-2">Geselecteerd met oog voor kwaliteit</p>
             </div>
 
-            <!-- Brand logos loaded dynamically into #brands-grid -->
-            <div id="brands-grid" class="grid grid-cols-3 gap-2 md:grid-cols-4 md:gap-5 xl:grid-cols-6 xl:gap-6"></div>
+            <!-- Mobile: Interactive carousel with native scroll -->
+            <div class="md:hidden">
+                <p class="text-xs text-gray-400 text-center mb-4 flex items-center justify-center gap-1.5">
+                    <i class="fas fa-hand-pointer" aria-hidden="true"></i>
+                    <span>Swipe om te scrollen, tap voor meer info</span>
+                </p>
+                <div id="brands-mobile" class="brand-marquee">
+                    <div id="brandsMarqueeTrack" class="brand-marquee-track"></div>
+                </div>
+                <div id="brandCarouselProgress" class="brand-carousel-progress">
+                    <div id="brandCarouselProgressBar" class="brand-carousel-progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Desktop: revsite-style 3 logo lines -->
+            <div class="hidden md:block">
+                <div class="Logo-line-1">
+                    <div class="glz_partner_group_block line-one-(1)">
+                        <div id="brands-large" class="glz_partner_group_block_img_wrapper">
+                            <!-- Brand logos will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+                <div class="Logo-line-2 mt-14 md:mt-20">
+                    <div class="glz_partner_group_block line-two-(2)">
+                        <div id="brands-medium" class="glz_partner_group_block_img_wrapper">
+                            <!-- Brand logos will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+                <div class="Logo-line-3 mt-14 md:mt-20 mb-6 md:mb-10">
+                    <div class="glz_partner_group_block line-three-(3)">
+                        <div id="brands-small" class="glz_partner_group_block_img_wrapper">
+                            <!-- Brand logos will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
