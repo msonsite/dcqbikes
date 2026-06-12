@@ -184,14 +184,21 @@ async function loadBrandImages() {
         ]
     };
     
+    const brandsGrid = document.getElementById('brands-grid');
     const mobileMarquee = document.getElementById('brandsMarqueeTrack');
     const mobileLogos = [];
-    for (const [size, images] of Object.entries(brandImages)) {
-        const container = document.getElementById(`brands-${size}`);
-        if ((!container && !mobileMarquee) || images.length === 0) continue;
-        
+    let gridAnimationIndex = 0;
+
+    const sizeOrder = ['large', 'medium', 'small'];
+    for (const size of sizeOrder) {
+        const images = brandImages[size];
+        if (!images || images.length === 0) continue;
+
+        const legacyContainer = document.getElementById(`brands-${size}`);
+        const targetContainer = brandsGrid || legacyContainer;
+        if (!targetContainer && !mobileMarquee) continue;
+
         images.forEach((brand, index) => {
-            // Create anchor tag for clickable brand logo
             const brandLink = document.createElement('a');
             brandLink.href = brand.url || '#';
             brandLink.target = '_blank';
@@ -199,46 +206,44 @@ async function loadBrandImages() {
             brandLink.className = 'brand-item';
             brandLink.setAttribute('data-brand-name', brand.name);
             brandLink.setAttribute('data-brand-image', brand.src);
-            brandLink.setAttribute('aria-label', `Visit ${brand.name} website`);
-            
-            // Create brand image wrapper div
+            brandLink.setAttribute('aria-label', `Bezoek website ${brand.name}`);
+
             const brandWrapper = document.createElement('div');
             brandWrapper.className = 'brand-item-inner';
-            
-            // Create image element
+
             const img = document.createElement('img');
             img.src = brand.src;
             img.alt = brand.alt;
-            // Use eager loading for mobile marquee, lazy for desktop
-            img.loading = mobileMarquee ? 'eager' : 'lazy';
-            
+            const useMarquee = Boolean(mobileMarquee && !brandsGrid);
+            img.loading = useMarquee ? 'eager' : 'lazy';
+
             brandWrapper.appendChild(img);
             brandLink.appendChild(brandWrapper);
-            
-            // Handle image load error
+
             img.addEventListener('error', () => {
                 console.warn(`Failed to load brand image: ${brand.src}`);
                 brandLink.style.display = 'none';
             });
-            
-            // Add staggered animation delay
-            brandLink.style.animationDelay = `${index * 0.1}s`;
+
+            const animIndex = brandsGrid ? gridAnimationIndex++ : index;
+            brandLink.style.animationDelay = `${animIndex * 0.05}s`;
             brandLink.style.opacity = '0';
             brandLink.style.animation = 'fadeInUp 0.6s ease forwards';
-            // Set CSS variable for pulse animation delay
-            brandLink.style.setProperty('--index', index);
-            
-            if (container) container.appendChild(brandLink);
-            if (mobileMarquee) {
+            brandLink.style.setProperty('--index', animIndex);
+
+            if (brandsGrid) {
+                brandsGrid.appendChild(brandLink);
+            } else if (legacyContainer) {
+                legacyContainer.appendChild(brandLink);
+            }
+
+            if (useMarquee) {
                 const clone = brandLink.cloneNode(true);
-                // Remove stagger animation styles from desktop marquee clone
                 clone.style.animation = 'none';
                 clone.style.opacity = '1';
                 clone.style.transform = 'none';
                 const imgEl = clone.querySelector('img');
                 if (imgEl) {
-                    // Force eager loading for mobile carousel to prevent white boxes
-                    // Using eager + high priority without preload links to avoid competing with hero video
                     imgEl.loading = 'eager';
                     imgEl.fetchPriority = 'high';
                 }
@@ -247,9 +252,8 @@ async function loadBrandImages() {
         });
     }
 
-    // Build mobile carousel: single sequence (no duplicates needed with transform-based approach)
-    if (mobileMarquee && mobileLogos.length) {
-        mobileLogos.forEach(node => {
+    if (mobileMarquee && mobileLogos.length && !brandsGrid) {
+        mobileLogos.forEach((node) => {
             node.style.animation = 'none';
             node.style.opacity = '1';
             node.style.transform = 'none';
