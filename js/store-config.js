@@ -5,8 +5,8 @@ const VACATION_PERIODS = [
         end: [2026, 1, 1]        
     },
     {
-        start: [2026, 7, 14],  
-        end: [2026, 7, 31]     
+        start: [2026, 6, 21],  
+        end: [2026, 7, 06]     
     },
 ];
 
