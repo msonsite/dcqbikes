@@ -1099,6 +1099,90 @@
             border-top-style: solid;
             border-top-color: rgba(255, 255, 255, 0.12);
         }
+
+        .faq-payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 0.25rem;
+        }
+
+        .faq-payment-method {
+            display: grid;
+            grid-template-columns: 1.25rem 1fr;
+            gap: 0.65rem 0.75rem;
+            align-items: start;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+        }
+
+        .faq-payment-method:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-payment-method__icon {
+            width: 1.25rem;
+            text-align: center;
+            line-height: 1.35;
+            flex-shrink: 0;
+        }
+
+        .faq-payment-method__body {
+            min-width: 0;
+        }
+
+        .faq-payment-method__title {
+            font-weight: 600;
+            color: #111827;
+            line-height: 1.4;
+        }
+
+        .faq-payment-note {
+            margin-top: 1rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-payment-logos {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.6rem;
+        }
+
+        .faq-payment-logoBox {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.35rem;
+            height: 1.85rem;
+            padding: 0.2rem 0.3rem;
+            background: #ffffff;
+            border-radius: 0.35rem;
+            flex-shrink: 0;
+        }
+
+        .faq-payment-logo {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        section[style*="background: #0a0a0a"] .faq-payment-method {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        section[style*="background: #0a0a0a"] .faq-payment-method__title {
+            color: #fffefc !important;
+        }
+
+        section[style*="background: #0a0a0a"] .faq-payment-note {
+            border-top-color: rgba(255, 255, 255, 0.12);
+        }
         
         @media (min-width: 768px) {
             #faqContent {
@@ -1410,6 +1494,87 @@
             justify-content: center;
             align-items: center;
             gap: 1.5rem;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Tablet: nette grid-uitlijning (768–1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            #brands-large,
+            #brands-medium,
+            #brands-small {
+                display: grid;
+                justify-content: center;
+                justify-items: center;
+                align-items: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #brands-large {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                max-width: 34rem;
+                gap: 1.25rem 1.75rem;
+            }
+
+            #brands-medium {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                max-width: 34rem;
+                gap: 1.1rem 1.5rem;
+            }
+
+            #brands-small {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                max-width: 38rem;
+                gap: 1rem 1.25rem;
+            }
+
+            #brands .brand-item {
+                width: 100% !important;
+                max-width: 8.5rem;
+                aspect-ratio: auto;
+                min-height: 0;
+                height: auto;
+                padding: 0.35rem 0.5rem;
+            }
+
+            #brands-large .brand-item {
+                max-width: 9.5rem;
+            }
+
+            #brands-medium .brand-item {
+                max-width: 8.25rem;
+            }
+
+            #brands-small .brand-item {
+                max-width: 6.5rem;
+            }
+        }
+
+        /* Desktop: gecentreerde rijen (ongewijzigd t.o.v. voorheen) */
+        @media (min-width: 1024px) {
+            #brands-large,
+            #brands-medium,
+            #brands-small {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                max-width: 72rem;
+                gap: 1.5rem 2rem;
+            }
+
+            #brands .brand-item {
+                flex: 0 1 auto;
+                min-width: 0;
+                max-width: none;
+                width: auto !important;
+                aspect-ratio: auto;
+                min-height: 0;
+                height: auto;
+                padding: 0.25rem 0.75rem;
+            }
         }
         
         /* Click hint styling */
@@ -1555,14 +1720,14 @@
             opacity: 0.7;
         }
 
-        /* Desktop logo lines: make spacing uniform */
-        @media (min-width: 768px) {
+        /* Desktop logo lines: uniform spacing (tablet/desktop handled above) */
+        @media (min-width: 1024px) {
             .glz_partner_group_block_img_wrapper {
-                gap: 2.5rem;
+                gap: 1.5rem;
             }
             .glz_partner_group_block_img_wrapper .brand-item {
                 width: auto !important;
-                padding: 0.25rem 0.75rem !important;
+                padding: 0.25rem 0.5rem !important;
             }
         }
 
@@ -1717,61 +1882,7 @@
             }
         }
         
-        /* iPad/Tablet specific styles (768px - 1023px) */
-        @media (min-width: 769px) and (max-width: 1023px) {
-            .brand-row-container {
-                margin-bottom: 1.5rem;
-                padding: 0;
-                max-width: 100%;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .brand-row-container:last-child {
-                margin-bottom: 0;
-            }
-            
-            .brand-row {
-                display: grid;
-                gap: 1rem;
-                padding: 0.75rem 0;
-                width: 100%;
-                max-width: 100%;
-                margin: 0 auto;
-                justify-items: center;
-                align-items: center;
-            }
-            
-            #brands-large.brand-row {
-                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-                max-width: 900px;
-            }
-            
-            #brands-medium.brand-row {
-                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-                max-width: 900px;
-            }
-            
-            #brands-small.brand-row {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                max-width: 900px;
-            }
-            
-            #brands-large .brand-item {
-                max-width: 180px;
-                width: 100%;
-            }
-            
-            #brands-medium .brand-item {
-                max-width: 150px;
-                width: 100%;
-            }
-            
-            #brands-small .brand-item {
-                max-width: 120px;
-                width: 100%;
-            }
-        }
+        /* iPad/Tablet: legacy brand-row rules — superseded by #brands-* grid above */
         
         @media (min-width: 1024px) {
         .brand-row-container {
@@ -1859,11 +1970,11 @@
             }
         }
         
-        @media (min-width: 769px) {
+        @media (min-width: 1024px) {
         .brand-item {
                 width: 100%;
-                aspect-ratio: 16 / 10;
-                min-height: 95px;
+                aspect-ratio: auto;
+                min-height: 0;
             background: white;
             border-radius: 12px;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -2383,6 +2494,235 @@
             outline: 2px solid #ee2726;
             outline-offset: 4px;
             border-radius: 4px;
+        }
+
+        /* Featured bikes (optional section) */
+        .featured-bikes {
+            background: #f9fafb;
+        }
+
+        .featured-bikes__scroller {
+            width: 100%;
+        }
+
+        .featured-bikes__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+            gap: 1.25rem;
+            max-width: 72rem;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .featured-bikes__grid[data-bike-count="1"] {
+            max-width: 24rem;
+            grid-template-columns: 1fr;
+        }
+
+        .featured-bikes__grid[data-bike-count="2"] {
+            max-width: 48rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .featured-bike-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 0.875rem;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .featured-bike-card__media {
+            position: relative;
+            aspect-ratio: 5 / 3;
+            background: #f3f4f6;
+            overflow: hidden;
+        }
+
+        .featured-bike-card__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .featured-bike-card__body {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 0.85rem 1rem 0.95rem;
+            gap: 0.15rem;
+        }
+
+        .featured-bike-card__brand {
+            display: flex;
+            align-items: center;
+            min-height: 1.15rem;
+        }
+
+        .featured-bike-card__brandText {
+            margin: 0;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #6b7280;
+        }
+
+        .featured-bike-card__brandLogo {
+            display: block;
+            max-height: 1.15rem;
+            max-width: 6.75rem;
+            width: auto;
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        .featured-bike-card__model {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-size: 1.0625rem;
+            font-weight: 700;
+            line-height: 1.25;
+            color: #111827;
+            overflow-wrap: anywhere;
+        }
+
+        .featured-bike-card__desc {
+            margin: 0.1rem 0 0;
+            font-size: 0.8125rem;
+            line-height: 1.45;
+            color: #4b5563;
+            overflow-wrap: anywhere;
+        }
+
+        .featured-bike-card__priceRow {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.35rem 0.6rem;
+            margin-top: auto;
+            padding-top: 0.35rem;
+        }
+
+        .featured-bike-card__price {
+            margin: 0;
+            font-size: 1.125rem;
+            font-weight: 800;
+            color: #111827;
+            letter-spacing: -0.02em;
+        }
+
+        @media (max-width: 1023px) {
+            .featured-bikes {
+                padding-top: 2.5rem !important;
+                padding-bottom: 2.5rem !important;
+            }
+
+            .featured-bikes__header {
+                margin-bottom: 1rem !important;
+            }
+
+            .featured-bikes__header h2 {
+                font-size: 1.75rem !important;
+            }
+
+            .featured-bikes__scroller {
+                overflow-x: auto;
+                overflow-y: visible;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                width: 100vw;
+                margin-left: calc(50% - 50vw);
+            }
+
+            .featured-bikes__scroller:has(.featured-bikes__grid[data-bike-count="1"]) {
+                overflow-x: hidden;
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .featured-bikes__scroller::-webkit-scrollbar {
+                display: none;
+            }
+
+            .featured-bikes__grid {
+                --featured-bike-card-width: min(calc(100vw - 2.5rem), 22rem);
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: flex-start;
+                gap: 0.85rem;
+                width: max-content;
+                max-width: none;
+                margin: 0;
+                padding: 0 calc(50vw - (var(--featured-bike-card-width) / 2)) 0.5rem;
+            }
+
+            .featured-bikes__grid[data-bike-count="1"] {
+                width: 100%;
+                max-width: var(--featured-bike-card-width);
+                margin: 0 auto;
+                justify-content: center;
+                padding: 0;
+            }
+
+            .featured-bike-card {
+                flex: 0 0 var(--featured-bike-card-width);
+                scroll-snap-align: center;
+                scroll-snap-stop: always;
+            }
+
+            .featured-bike-card__media {
+                aspect-ratio: 16 / 10;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .featured-bikes__grid {
+                gap: 1.5rem;
+            }
+
+            .featured-bikes__grid[data-bike-count="3"] {
+                max-width: 72rem;
+            }
+
+            .featured-bike-card__media {
+                aspect-ratio: 4 / 3;
+            }
+
+            .featured-bike-card__body {
+                padding: 1rem 1.25rem 1.15rem;
+                gap: 0.2rem;
+            }
+
+            .featured-bike-card__brand {
+                min-height: 1.35rem;
+            }
+
+            .featured-bike-card__brandText {
+                font-size: 0.75rem;
+            }
+
+            .featured-bike-card__brandLogo {
+                max-height: 1.35rem;
+                max-width: 7.5rem;
+            }
+
+            .featured-bike-card__model {
+                font-size: 1.25rem;
+            }
+
+            .featured-bike-card__desc {
+                font-size: 0.875rem;
+            }
+
+            .featured-bike-card__price {
+                font-size: 1.3rem;
+            }
         }
         
         .award-box a {
@@ -3511,21 +3851,48 @@
                     </button>
                     <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
                         <p class="text-gray-800 mb-3">Wij accepteren de volgende betalingsmethoden:</p>
-                        <ul class="list-none space-y-2.5 ml-0">
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-money-bill-wave text-dcq-red text-base w-5 text-center flex-shrink-0"></i>
-                                <span class="font-medium text-gray-900">Contant geld</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-mobile-alt text-dcq-red text-base w-5 text-center flex-shrink-0"></i>
-                                <span class="font-medium text-gray-900">Bancontact / Bancontact Mobile</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fas fa-credit-card text-dcq-red text-base w-5 text-center flex-shrink-0"></i>
-                                <span class="font-medium text-gray-900">Credit- en debetkaarten</span> <span class="text-gray-600">(Visa, Mastercard)</span>
-                            </li>
-                        </ul>
-                        <p class="mt-4 text-gray-800">Voor <strong>aankopen</strong> kunnen we ook een factuur opstellen voor achteraf betaling.</p>
+                        <div class="faq-payment-methods">
+                            <div class="faq-payment-method">
+                                <i class="fas fa-money-bill-wave text-dcq-red faq-payment-method__icon" aria-hidden="true"></i>
+                                <div class="faq-payment-method__body">
+                                    <p class="faq-payment-method__title">Contant geld</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-payment-method">
+                                <i class="fas fa-mobile-alt text-dcq-red faq-payment-method__icon" aria-hidden="true"></i>
+                                <div class="faq-payment-method__body">
+                                    <p class="faq-payment-method__title">Bancontact &amp; mobiel betalen</p>
+                                    <div class="faq-payment-logos" aria-label="Bancontact Pay, Apple Pay en Google Pay">
+                                        <span class="faq-payment-logoBox">
+                                            <img src="assets/images/payment/payconiq.svg" alt="Bancontact Pay" class="faq-payment-logo" loading="lazy" decoding="async">
+                                        </span>
+                                        <span class="faq-payment-logoBox">
+                                            <img src="assets/images/payment/apple-pay.svg" alt="Apple Pay" class="faq-payment-logo" loading="lazy" decoding="async">
+                                        </span>
+                                        <span class="faq-payment-logoBox">
+                                            <img src="assets/images/payment/google-pay.svg" alt="Google Pay" class="faq-payment-logo" loading="lazy" decoding="async">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-payment-method">
+                                <i class="fas fa-credit-card text-dcq-red faq-payment-method__icon" aria-hidden="true"></i>
+                                <div class="faq-payment-method__body">
+                                    <p class="faq-payment-method__title">Credit- en debetkaarten</p>
+                                    <div class="faq-payment-logos" aria-label="Visa en Mastercard">
+                                        <span class="faq-payment-logoBox">
+                                            <img src="assets/images/payment/visa.svg" alt="Visa" class="faq-payment-logo" loading="lazy" decoding="async">
+                                        </span>
+                                        <span class="faq-payment-logoBox">
+                                            <img src="assets/images/payment/mastercard.svg" alt="Mastercard" class="faq-payment-logo" loading="lazy" decoding="async">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="faq-payment-note text-gray-800">Voor <strong>aankopen</strong> kunnen we ook een factuur opstellen voor achteraf betaling.</p>
                     </div>
                 </div>
 
@@ -3688,6 +4055,8 @@
 
     <!-- JavaScript -->
     <script src="js/store-config.js"></script>
+    <script src="data/featured-bikes.js"></script>
+    <script src="js/featured-bikes.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
