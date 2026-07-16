@@ -637,7 +637,7 @@ if (contactForm) {
             console.log('Form submitted (demo):', Object.fromEntries(formData.entries()));
             contactForm.reset();
             if (statusEl) {
-                statusEl.textContent = 'Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.';
+                statusEl.textContent = 'Bedankt voor je bericht! We nemen zo spoedig mogelijk contact met je op.';
                 statusEl.classList.remove('hidden', 'text-red-600');
             }
             return;
@@ -669,7 +669,7 @@ if (contactForm) {
                     submitBtn.classList.add('bg-green-600');
                 }
                 if (statusEl) {
-                    statusEl.textContent = 'Bedankt! Uw bericht werd succesvol verzonden.';
+                    statusEl.textContent = 'Bedankt! Je bericht werd succesvol verzonden.';
                     statusEl.classList.remove('hidden', 'text-red-600');
                 }
         contactForm.reset();

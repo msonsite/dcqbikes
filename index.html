@@ -10,19 +10,19 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.dcqbikes.be/">
     <meta property="og:title" content="DCQ Bikes | Fietsenwinkel in Jabbeke">
-    <meta property="og:description" content="Uw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke.">
-    <meta property="og:image" content="https://www.dcqbikes.be/assets/images/logo/dcqbikeslogotransparent.png">
-    <meta property="og:image:secure_url" content="https://www.dcqbikes.be/assets/images/logo/dcqbikeslogotransparent.png">
-    <meta property="og:image:type" content="image/png">
+    <meta property="og:description" content="Jouw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke.">
+    <meta property="og:image" content="https://www.dcqbikes.be/assets/images/onsaanbod/picture5.webp">
+    <meta property="og:image:secure_url" content="https://www.dcqbikes.be/assets/images/onsaanbod/picture5.webp">
+    <meta property="og:image:type" content="image/webp">
     <meta property="og:locale" content="nl_BE">
     <meta property="og:site_name" content="DCQ Bikes">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://www.dcqbikes.be/">
     <meta name="twitter:title" content="DCQ Bikes | Fietsenwinkel in Jabbeke">
-    <meta name="twitter:description" content="Uw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke.">
-    <meta name="twitter:image" content="https://www.dcqbikes.be/assets/images/logo/dcqbikeslogotransparent.png">
-    <meta name="twitter:image:alt" content="DCQ Bikes Logo">
+    <meta name="twitter:description" content="Jouw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke.">
+    <meta name="twitter:image" content="https://www.dcqbikes.be/assets/images/onsaanbod/picture5.webp">
+    <meta name="twitter:image:alt" content="Gevel van DCQ Bikes in Jabbeke">
     
     <meta name="keywords" content="fietsenwinkel, elektrische fietsen, stadsfietsen, grasmaaiers, fietsonderhoud, fietsherstelling, Jabbeke, DCQ Bikes">
     <meta name="author" content="DCQ Bikes">
@@ -48,6 +48,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
      
     <meta name="google-site-verification" content="-fN6aiVcN0ZngFVhg6B8IIovlvMJAr3DRpcfPJ63HdI" />
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BicycleStore",
+        "name": "DCQ Bikes",
+        "legalName": "DCQ Bikes BV",
+        "url": "https://www.dcqbikes.be/",
+        "image": "https://www.dcqbikes.be/assets/images/onsaanbod/picture5.webp",
+        "logo": "https://www.dcqbikes.be/assets/images/logo/dcqbikeslogotransparent.png",
+        "telephone": ["+3250814220", "+32475822376"],
+        "email": "info@dcqbikes.be",
+        "vatID": "BE0685615103",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Gistelsteenweg 282",
+            "addressLocality": "Jabbeke",
+            "postalCode": "8490",
+            "addressCountry": "BE"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.179659,
+            "longitude": 3.099603
+        },
+        "priceRange": "€€",
+        "sameAs": [
+            "https://www.facebook.com/DCQBikes",
+            "https://www.linkedin.com/company/dcqbikes/"
+        ],
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "12:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "13:30",
+                "closes": "18:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "09:00",
+                "closes": "12:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "13:30",
+                "closes": "17:00"
+            }
+        ]
+    }
+    </script>
 
     <!-- Custom Tailwind config -->
     <script>
@@ -320,6 +378,7 @@
         .offer-section {
             background: #f9fafb;
             overflow: visible;
+            scroll-margin-top: 5.5rem;
         }
 
         .offer-section__intro {
@@ -1758,50 +1817,105 @@
             display: block;
         }
         
+        /* Contact section */
+        #contact {
+            scroll-margin-top: 5.5rem;
+        }
+
         @media (min-width: 1024px) {
             #contact .contact-form-container {
                 min-height: 400px;
             }
-            
+
             #contact .contact-form-container textarea {
                 min-height: 140px;
             }
         }
-        
-        
+
         .contact-box {
             border-top: 3px solid #ee2726;
             border-top-left-radius: 0.75rem;
             border-top-right-radius: 0.75rem;
         }
-        
+
+        .contact-hours {
+            margin-top: 0.25rem;
+        }
+
+        .contact-hours__title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4b5563;
+            margin: 0 0 0.5rem;
+        }
+
+        .contact-hours__list {
+            margin: 0;
+            padding: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-hours__row {
+            display: grid;
+            grid-template-columns: 6.5rem 1fr;
+            gap: 0.5rem 0.75rem;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+
+        @media (min-width: 480px) {
+            .contact-hours__row {
+                grid-template-columns: 7rem 1fr;
+                font-size: 0.9rem;
+            }
+        }
+
+        .contact-hours__row dt {
+            margin: 0;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .contact-hours__row dd {
+            margin: 0;
+            color: #111827;
+            text-align: right;
+        }
+
+        .contact-hours__row--closed dt,
+        .contact-hours__row--closed dd {
+            color: #9ca3af;
+        }
+
         a[href^="tel:"]:hover {
             background: rgba(255, 255, 255, 0.85) !important;
             border-color: rgba(238, 39, 38, 0.2) !important;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
             color: #ee2726 !important;
         }
-        
+
         a[href^="tel:"]:active {
             transform: scale(0.98) !important;
         }
-        
+
         #contactSubmit:hover {
             background: rgba(212, 30, 29, 0.95) !important;
             box-shadow: 0 8px 24px rgba(238, 39, 38, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
         }
-        
+
         #contactSubmit:active {
             transform: scale(0.98) !important;
         }
-        
+
         #contactForm input:focus,
         #contactForm textarea:focus {
             background: rgba(255, 255, 255, 0.95) !important;
             box-shadow: 0 4px 12px rgba(238, 39, 38, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
             border-color: rgba(238, 39, 38, 0.3) !important;
         }
-        
+
         @media (hover: none) and (pointer: coarse) {
             a[href^="tel:"]:hover,
             #contactSubmit:hover,
@@ -1810,12 +1924,12 @@
             .team-container:hover {
                 transform: none !important;
             }
-            
+
             a[href^="tel:"]:active,
             #contactSubmit:active {
                 transform: scale(0.97) !important;
             }
-            
+
             .award-box:active,
             .media-box:active {
                 transform: scale(0.98) !important;
@@ -2769,7 +2883,7 @@
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div class="flex-1">
                     <p class="text-sm md:text-base">
-                        Deze website gebruikt cookies om uw ervaring te verbeteren. Door verder te gaan, stemt u in met ons gebruik van cookies. 
+                        Deze website gebruikt cookies om je ervaring te verbeteren. Door verder te gaan, stem je in met ons gebruik van cookies. 
                         <a href="cookie-policy.html" class="text-dcq-red hover:underline font-medium">Meer informatie</a>
                     </p>
                 </div>
@@ -2807,8 +2921,7 @@
                 <div class="hidden md:flex items-center gap-8 text-dcq-white">
                     <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Home</a>
                     <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Aanbod</a>
-                    <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Merken</a>
-                    <a href="#over-ons" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Over Ons</a>
+                    <a href="#about" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Over Ons</a>
                     <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Contact</a>
                 </div>
                 <button id="mobileMenuBtn" class="md:hidden text-dcq-white hover:text-dcq-red transition-colors">
@@ -2820,7 +2933,6 @@
                 <div class="flex flex-col gap-1">
                     <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Home</a>
                     <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Aanbod</a>
-                    <a href="#brands" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Merken</a>
                     <a href="#about" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Over Ons</a>
                     <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Contact</a>
                 </div>
@@ -3009,7 +3121,7 @@
     </div>
 
     <!-- About Section -->
-    <section id="about" class="py-12 md:py-16 relative overflow-hidden" style="background: #0a0a0a;">
+    <section id="about" class="py-12 md:py-16 relative overflow-hidden" style="background: #0a0a0a; scroll-margin-top: 5.5rem;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="mb-10 md:mb-14">
                 <div class="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-[auto_auto_auto_1fr] gap-y-4 gap-x-0 lg:gap-x-12 lg:gap-y-3 lg:items-stretch">
@@ -3128,7 +3240,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-12 md:py-16 bg-gray-50" style="scroll-margin-top: 5.5rem;">
+    <section id="contact" class="py-12 md:py-16 bg-gray-50">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="mb-8 md:mb-10">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Contact</h2>
@@ -3156,13 +3268,13 @@
                                         <i class="fas fa-exclamation-triangle text-amber-500"></i>
                                         Let op: trajectcontrole op de Gistelsteenweg (50 km/u)
                                     </p>
+                                </div>
                             </div>
-                        </div>
 
                             <div class="py-4 flex items-start gap-4">
                                 <div class="w-10 h-10 rounded-full bg-dcq-red/10 text-dcq-red flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-phone"></i>
-                    </div>
+                                </div>
                                 <div class="min-w-0 w-full">
                                     <p class="text-sm text-gray-500">Telefoon</p>
                                     <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -3191,88 +3303,72 @@
                                     <i class="fas fa-clock"></i>
                                 </div>
                                 <div class="min-w-0 w-full">
-                                    <!-- Mobile: Collapsible dropdown -->
-                                    <details class="collapsible mt-1 md:hidden" open>
-                                        <summary class="text-sm text-gray-600 flex items-center justify-between select-none cursor-pointer">
-                                            <span>Openingsuren</span>
-                                            <i class="fas fa-chevron-down chevron text-gray-400 transition-transform duration-200"></i>
-                                        </summary>
-                                        <div class="mt-2 rounded-md border border-gray-100 bg-gray-50 p-2">
-                                            <div class="grid grid-cols-2 gap-y-1.5 gap-x-3 text-xs leading-5">
-                                                <div class="text-gray-600">Maandag</div>
-                                                <div class="text-gray-500">Gesloten</div>
-                                                <div class="text-gray-600">Dinsdag</div>
-                                                <div class="text-gray-800">09:00–12:00 / 13:30–18:00</div>
-                                                <div class="text-gray-600">Woensdag</div>
-                                                <div class="text-gray-800">09:00–12:00 / 13:30–18:00</div>
-                                                <div class="text-gray-600">Donderdag</div>
-                                                <div class="text-gray-800">09:00–12:00 / 13:30–18:00</div>
-                                                <div class="text-gray-600">Vrijdag</div>
-                                                <div class="text-gray-800">09:00–12:00 / 13:30–18:00</div>
-                                                <div class="text-gray-600">Zaterdag</div>
-                                                <div class="text-gray-800">09:00–12:00 / 13:30–17:00</div>
-                                                <div class="text-gray-600">Zondag</div>
-                                                <div class="text-gray-500">Gesloten</div>
+                                    <div class="contact-hours">
+                                        <p class="contact-hours__title">Openingsuren</p>
+                                        <dl class="contact-hours__list">
+                                            <div class="contact-hours__row contact-hours__row--closed">
+                                                <dt>Maandag</dt>
+                                                <dd>Gesloten</dd>
                                             </div>
-                                        </div>
-                                    </details>
-                                    <!-- Desktop: Always visible (no dropdown) -->
-                                    <div class="hidden md:block mt-1">
-                                        <p class="text-sm text-gray-600 mb-2">Openingsuren</p>
-                                        <div class="rounded-md border border-gray-100 bg-gray-50 p-2">
-                                            <div class="grid grid-cols-2 gap-y-1.5 gap-x-3 text-xs leading-5">
-                                                <div class="text-gray-600">Maandag</div>
-                                                <div class="text-gray-500">Gesloten</div>
-                                                <div class="text-gray-600">Dinsdag</div>
-                                                <div class="text-gray-800">09:00–12:00 / 13:30–18:00</div>
-                                                <div class="text-gray-600">Woensdag</div>
-                                                <div class="text-gray-800">09:00–12:00 / 13:30–18:00</div>
-                                                <div class="text-gray-600">Donderdag</div>
-                                                <div class="text-gray-800">09:00–12:00 / 13:30–18:00</div>
-                                                <div class="text-gray-600">Vrijdag</div>
-                                                <div class="text-gray-800">09:00–12:00 / 13:30–18:00</div>
-                                                <div class="text-gray-600">Zaterdag</div>
-                                                <div class="text-gray-800">09:00–12:00 / 13:30–17:00</div>
-                                                <div class="text-gray-600">Zondag</div>
-                                                <div class="text-gray-500">Gesloten</div>
+                                            <div class="contact-hours__row">
+                                                <dt>Dinsdag</dt>
+                                                <dd>09:00–12:00 / 13:30–18:00</dd>
+                                            </div>
+                                            <div class="contact-hours__row">
+                                                <dt>Woensdag</dt>
+                                                <dd>09:00–12:00 / 13:30–18:00</dd>
+                                            </div>
+                                            <div class="contact-hours__row">
+                                                <dt>Donderdag</dt>
+                                                <dd>09:00–12:00 / 13:30–18:00</dd>
+                                            </div>
+                                            <div class="contact-hours__row">
+                                                <dt>Vrijdag</dt>
+                                                <dd>09:00–12:00 / 13:30–18:00</dd>
+                                            </div>
+                                            <div class="contact-hours__row">
+                                                <dt>Zaterdag</dt>
+                                                <dd>09:00–12:00 / 13:30–17:00</dd>
+                                            </div>
+                                            <div class="contact-hours__row contact-hours__row--closed">
+                                                <dt>Zondag</dt>
+                                                <dd>Gesloten</dd>
+                                            </div>
+                                        </dl>
+                                    </div>
                                 </div>
                             </div>
-                                </div>
-                            </div>
-                        </div>
-
                         </div>
                     </div>
-                    
                 </div>
-                
+
                 <!-- Contact Form -->
                 <div>
                     <div class="contact-box p-6 rounded-2xl contact-form-container h-full flex flex-col" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); will-change: transform; transform: translateZ(0);">
-                        <h3 class="text-xl font-bold tracking-tight mb-5">Heeft u een vraag?</h3>
-                        <p class="text-gray-600 mb-6">Stel hier uw vraag en we nemen zo snel mogelijk contact met u op.</p>
+                        <h3 class="text-xl font-bold tracking-tight mb-5">Heb je een vraag?</h3>
+                        <p class="text-gray-600 mb-6">Stel hier je vraag en we nemen zo snel mogelijk contact met je op.</p>
                         <form id="contactForm" class="space-y-4 flex-1 flex flex-col" action="#" data-formspree="https://formspree.io/f/xyzlrwdb" method="POST">
                             <div class="flex-1 space-y-4">
-                            <div>
-                                <label for="name" class="block text-sm font-medium mb-2">Naam *</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium mb-2">E-mail *</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium mb-2">Bericht *</label>
-                                <textarea id="message" name="message" rows="7" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);"></textarea>
+                                <div>
+                                    <label for="name" class="block text-sm font-medium mb-2">Naam *</label>
+                                    <input type="text" id="name" name="name" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium mb-2">E-mail *</label>
+                                    <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium mb-2">Bericht *</label>
+                                    <textarea id="message" name="message" rows="7" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);"></textarea>
                                 </div>
                             </div>
                             <input type="hidden" name="_subject" value="Nieuw bericht via DCQ Bikes website">
                             <input type="text" name="_gotcha" style="display:none">
                             <div class="mt-auto">
-                            <button id="contactSubmit" type="submit" class="w-full py-3 rounded-xl font-semibold text-white transition-all" style="background: #ee2726; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 16px rgba(238, 39, 38, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2); touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
-                                Verzenden
-                            </button>
-                            <p id="contactStatus" class="mt-2 text-sm text-gray-600 hidden" aria-live="polite"></p>
+                                <button id="contactSubmit" type="submit" class="w-full py-3 rounded-xl font-semibold text-white transition-all" style="background: #ee2726; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 16px rgba(238, 39, 38, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2); touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
+                                    Verzenden
+                                </button>
+                                <p id="contactStatus" class="mt-2 text-sm text-gray-600 hidden" aria-live="polite"></p>
                             </div>
                         </form>
                     </div>
@@ -3311,7 +3407,7 @@
                                     Geef het perfecte cadeau voor elke fietsliefhebber. Onze cadeaubonnen zijn beschikbaar in verschillende bedragen en kunnen gebruikt worden voor <strong>alle producten en diensten</strong> in onze winkel.
                                 </p>
                                 <p>
-                                    Of het nu gaat om een nieuwe elektrische fiets, een stadsfiets, onderdelen, accessoires of onderhoud, met een DCQ Bikes cadeaubon geeft u de ontvanger de vrijheid om zelf te kiezen wat hij of zij het meest nodig heeft.
+                                    Of het nu gaat om een nieuwe elektrische fiets, een stadsfiets, onderdelen, accessoires of onderhoud, met een DCQ Bikes cadeaubon geef je de ontvanger de vrijheid om zelf te kiezen wat hij of zij het meest nodig heeft.
                                 </p>
                                 <p>
                                     Perfect voor verjaardagen, feestdagen of gewoon om iemand te verrassen. De cadeaubon heeft een <strong>lange geldigheidsduur</strong> en kan op elk moment ingewisseld worden.
@@ -3377,7 +3473,7 @@
                                 <span><strong class="text-gray-900">Complexe herstellingen:</strong> <span class="text-gray-900 font-medium">5-7 werkdagen</span> (afhankelijk van beschikbaarheid van onderdelen)</span>
                             </li>
                         </ul>
-                        <p class="mt-4 text-gray-800">Bij het binnenbrengen geven we altijd een <strong>geschatte oplevertijd</strong>. U ontvangt ook een <strong>SMS</strong> wanneer uw fiets klaar is!</p>
+                        <p class="mt-4 text-gray-800">Bij het binnenbrengen geven we altijd een <strong>geschatte oplevertijd</strong>. Je ontvangt ook een <strong>SMS</strong> wanneer je fiets klaar is!</p>
                     </div>
                 </div>
 
@@ -3443,10 +3539,10 @@
                         </div>
                     </button>
                     <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
-                        <p class="text-gray-800 mb-3">Nee, voor de meeste reparaties en vragen kunt u gewoon <strong>langs komen</strong> tijdens onze <a href="#contact" class="text-dcq-red font-semibold hover:underline">openingstijden</a>. Wij helpen u graag persoonlijk!</p>
-                        <p class="text-gray-800 mb-3">Voor <strong>kleine reparaties</strong> kunt u altijd binnenlopen. Voor <strong>grotere herstellingen</strong> of een volledige onderhoudsbeurt kunt u ook gewoon langskomen. We bekijken dan ter plaatse wat er nodig is.</p>
-                        <p class="text-gray-800 mb-3">Als u liever eerst contact opneemt, kunt u een e-mail sturen naar <a href="mailto:info@dcqbikes.be" class="text-dcq-red font-semibold hover:underline">info@dcqbikes.be</a> of bellen op <a href="tel:+3250814220" class="text-dcq-red font-semibold hover:underline">+32 50 81 42 20</a> of <a href="tel:+32475822376" class="text-dcq-red font-semibold hover:underline">+32 475 82 23 76</a>.</p>
-                        <p class="mt-4 text-gray-800">Door langs te komen kunnen we uw fiets <strong>direct bekijken</strong> en u meteen een <strong>geschatte oplevertijd</strong> geven.</p>
+                        <p class="text-gray-800 mb-3">Nee, voor de meeste reparaties en vragen kun je gewoon <strong>langs komen</strong> tijdens onze <a href="#contact" class="text-dcq-red font-semibold hover:underline">openingstijden</a>. Wij helpen je graag persoonlijk!</p>
+                        <p class="text-gray-800 mb-3">Voor <strong>kleine reparaties</strong> kun je altijd binnenlopen. Voor <strong>grotere herstellingen</strong> of een volledige onderhoudsbeurt kun je ook gewoon langskomen. We bekijken dan ter plaatse wat er nodig is.</p>
+                        <p class="text-gray-800 mb-3">Als je liever eerst contact opneemt, kun je een e-mail sturen naar <a href="mailto:info@dcqbikes.be" class="text-dcq-red font-semibold hover:underline">info@dcqbikes.be</a> of bellen op <a href="tel:+3250814220" class="text-dcq-red font-semibold hover:underline">+32 50 81 42 20</a> of <a href="tel:+32475822376" class="text-dcq-red font-semibold hover:underline">+32 475 82 23 76</a>.</p>
+                        <p class="mt-4 text-gray-800">Door langs te komen kunnen we je fiets <strong>direct bekijken</strong> en je meteen een <strong>geschatte oplevertijd</strong> geven.</p>
                     </div>
                 </div>
 
@@ -3524,7 +3620,7 @@
                         <ul class="list-none space-y-2.5 ml-0">
                             <li class="flex items-start gap-2">
                                 <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Uw fiets:</strong> <span class="text-gray-700">Uiteraard de fiets zelf</span></span>
+                                <span><strong class="text-gray-900">Je fiets:</strong> <span class="text-gray-700">Uiteraard de fiets zelf</span></span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <span class="text-dcq-red font-semibold mt-0.5">•</span>
@@ -3539,7 +3635,7 @@
                                 <span><strong class="text-gray-900">Een beschrijving van het probleem:</strong> <span class="text-gray-700">Dit helpt ons sneller de juiste diagnose te stellen</span></span>
                             </li>
                         </ul>
-                        <p class="mt-4 text-gray-800">Geen zorgen als u iets vergeet - wij kunnen altijd later <strong>contact met u opnemen</strong> indien nodig.</p>
+                        <p class="mt-4 text-gray-800">Geen zorgen als je iets vergeet - wij kunnen altijd later <strong>contact met je opnemen</strong> indien nodig.</p>
                     </div>
                 </div>
 
@@ -3554,7 +3650,7 @@
                 <div class="text-center md:text-center">
                     <img src="assets/images/logo/dcqbikeslogotransparent.png" alt="DCQ Bikes logo" class="h-10 md:h-16 lg:h-20 w-auto mb-3 md:mb-4 object-contain mx-auto">
                     <p class="text-sm md:text-base text-gray-400 leading-relaxed mb-3 md:mb-4 max-w-2xl mx-auto">
-                        Uw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers.
+                        Jouw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers.
                     </p>
                     <div class="flex items-center justify-center gap-3">
                         <a href="https://www.linkedin.com/company/dcqbikes/?originalSubdomain=be" aria-label="LinkedIn" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#151515] hover:bg-dcq-red text-white/90 hover:text-white flex items-center justify-center transition-colors border border-white/10" target="_blank" rel="noopener">
