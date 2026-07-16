@@ -36,7 +36,7 @@ const SERVICES_OFFER = [
         icon: 'fa-wrench',
         image: 'assets/images/onsaanbod/IMG_7875.JPG',
         description: 'Fietsonderhoud is meer dan “even nalopen”. Wij voeren gecontroleerde beurten uit volgens fabrikantstandaarden, inspecteren remmen en versnellingen, stellen elektra en mechaniek precies af, en brengen je fiets in optimale staat. Of het nu om kabelspanning, trapas, velgen of software‑diagnose gaat: onze monteurs pakken het gestructureerd aan met het juiste gereedschap en ervaring.',
-        brandsLabel: 'Enkele van onze merken',
+        brandsLabel: 'Enkele van onze partners',
         brands: [
             { name: 'Shimano', logo: 'assets/images/brands/small/shimano.png', url: 'https://www.shimano.com/' },
             { name: 'Bosch', logo: 'assets/images/brands/small/bosch.png', url: 'https://www.bosch-ebike.com/' },
