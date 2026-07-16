@@ -51,8 +51,8 @@
     }
 
     function createEntry(item, index) {
-        const align = index % 2 === 0 ? 'offer-entry--left' : 'offer-entry--right';
-        const entry = el('article', 'offer-entry ' + align);
+        const align = index % 2 === 0 ? 'left' : 'right';
+        const entry = el('article', 'offer-entry offer-entry--' + align);
         entry.id = 'offer-' + item.id;
 
         const inner = el('div', 'offer-entry__inner');
@@ -67,6 +67,9 @@
             content.appendChild(createBrandLinks(item));
         }
 
+        const visualWrap = el('div', 'offer-entry__visualWrap');
+        visualWrap.appendChild(el('span', 'offer-entry__accent'));
+
         const visual = el('div', 'offer-entry__visual');
         const img = document.createElement('img');
         img.className = 'offer-entry__img';
@@ -75,9 +78,10 @@
         img.loading = index === 0 ? 'eager' : 'lazy';
         img.decoding = 'async';
         visual.appendChild(img);
+        visualWrap.appendChild(visual);
 
         inner.appendChild(content);
-        inner.appendChild(visual);
+        inner.appendChild(visualWrap);
         entry.appendChild(inner);
         return entry;
     }

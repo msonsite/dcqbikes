@@ -144,10 +144,32 @@
         return card;
     }
 
+    function createSectionBridge() {
+        const wrap = el('div', 'featured-bikes__bridge');
+        wrap.setAttribute('aria-hidden', 'true');
+
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', '0 0 160 36');
+        svg.setAttribute('focusable', 'false');
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', 'M8 28 C40 28 52 8 80 10 C108 12 120 28 152 8');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', 'currentColor');
+        path.setAttribute('stroke-width', '1.5');
+        path.setAttribute('stroke-linecap', 'round');
+        path.setAttribute('stroke-dasharray', '2.5 5');
+        svg.appendChild(path);
+        wrap.appendChild(svg);
+        return wrap;
+    }
+
     function buildSection(bikes) {
         const section = el('section', 'featured-bikes py-10 md:py-14');
         section.id = SECTION_ID;
         section.setAttribute('aria-labelledby', 'featured-bikes-heading');
+
+        section.appendChild(createSectionBridge());
 
         const container = el('div', 'container mx-auto max-w-7xl px-4 md:px-6');
 
@@ -165,7 +187,7 @@
         header.appendChild(el(
             'p',
             'featured-bikes__lead',
-            'Dit zijn enkele voorbeelden in verschillende prijsklassen. In de winkel vind je tientallen modellen — van Victoria, Conway, Norta, QiO en meer.'
+            'Dit zijn enkele voorbeelden in verschillende prijsklassen. In de winkel vind je tientallen modellen: Victoria, Conway, Norta, QiO en meer.'
         ));
         container.appendChild(header);
 
@@ -182,7 +204,7 @@
         footer.appendChild(el(
             'p',
             'featured-bikes__footerText',
-            'Op zoek naar iets anders? Kom langs — we tonen je graag het volledige gamma en helpen je de juiste fiets kiezen.'
+            'Op zoek naar iets anders? Kom langs, we tonen je graag het volledige gamma en helpen je de juiste fiets kiezen.'
         ));
         const cta = el('a', 'featured-bikes__cta', 'Contact & openingsuren');
         cta.href = '#contact';
