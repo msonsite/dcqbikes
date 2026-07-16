@@ -32,18 +32,11 @@
             logo.loading = 'lazy';
             logo.decoding = 'async';
             brandWrap.appendChild(logo);
-
-            const brandMeta = el('meta');
-            brandMeta.setAttribute('itemprop', 'brand');
-            brandMeta.setAttribute('content', brand);
-            brandWrap.appendChild(brandMeta);
             body.appendChild(brandWrap);
             return;
         }
 
-        const brandMeta = el('p', 'featured-bike-card__brand featured-bike-card__brandText', brand);
-        brandMeta.setAttribute('itemprop', 'brand');
-        body.appendChild(brandMeta);
+        body.appendChild(el('p', 'featured-bike-card__brand featured-bike-card__brandText', brand));
     }
 
     function formatPrice(bike) {
@@ -97,9 +90,10 @@
     }
 
     function createBikeCard(bike) {
+        // Geen Product/Offer-schema: dit is een fysieke winkel zonder webshop.
+        // Merchant-listing markup triggert Google-eisen (shipping, retourbeleid, …)
+        // die hier niet van toepassing zijn.
         const card = el('article', 'featured-bike-card');
-        card.setAttribute('itemscope', '');
-        card.setAttribute('itemtype', 'https://schema.org/Product');
 
         const media = el('div', 'featured-bike-card__media');
         const img = document.createElement('img');
@@ -108,35 +102,20 @@
         img.loading = 'lazy';
         img.decoding = 'async';
         img.className = 'featured-bike-card__img';
-        img.setAttribute('itemprop', 'image');
         media.appendChild(img);
 
         const body = el('div', 'featured-bike-card__body');
 
         appendBrand(body, bike.brand);
 
-        const title = el('h3', 'featured-bike-card__model', bike.model.trim());
-        title.setAttribute('itemprop', 'name');
-        body.appendChild(title);
+        body.appendChild(el('h3', 'featured-bike-card__model', bike.model.trim()));
 
         if (bike.description && String(bike.description).trim()) {
             body.appendChild(el('p', 'featured-bike-card__desc', String(bike.description).trim()));
         }
 
         const priceWrap = el('div', 'featured-bike-card__priceRow');
-        const price = el('p', 'featured-bike-card__price', formatPrice(bike));
-        price.setAttribute('itemprop', 'offers');
-        price.setAttribute('itemscope', '');
-        price.setAttribute('itemtype', 'https://schema.org/Offer');
-        const priceMeta = el('meta');
-        priceMeta.setAttribute('itemprop', 'price');
-        priceMeta.setAttribute('content', String(getPriceValue(bike)));
-        const currencyMeta = el('meta');
-        currencyMeta.setAttribute('itemprop', 'priceCurrency');
-        currencyMeta.setAttribute('content', 'EUR');
-        price.appendChild(priceMeta);
-        price.appendChild(currencyMeta);
-        priceWrap.appendChild(price);
+        priceWrap.appendChild(el('p', 'featured-bike-card__price', formatPrice(bike)));
         body.appendChild(priceWrap);
 
         card.appendChild(media);
