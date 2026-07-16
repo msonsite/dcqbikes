@@ -358,6 +358,13 @@
                 z-index: 1;
                 border-radius: 0.75rem 0.75rem 0 0;
                 box-shadow: 0 -10px 28px rgba(17, 24, 39, 0.08);
+                /* Extra ruimte onder de content zodat logo’s zichtbaar blijven
+                   voor de volgende stack erover schuift */
+                padding-bottom: 16vh;
+            }
+
+            .offer-entry:last-child {
+                padding-bottom: 1.5rem;
             }
 
             .offer-entry:nth-child(1) { z-index: 1; }
@@ -369,6 +376,10 @@
             .offer-entry:first-child {
                 box-shadow: none;
                 border-radius: 0;
+            }
+
+            .offer-entry__inner {
+                padding-bottom: 1.25rem;
             }
         }
 
