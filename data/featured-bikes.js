@@ -27,5 +27,26 @@ const FEATURED_BIKES = [
         model: 'Tresalo 9 Trapeze',
         price: 3999,
         description: 'Comfortabele e-bike met trapeze-frame voor dagelijks gebruik en langere ritten. Bosch Performance Line, 800 Wh accu, Nexus 5, Gates riemaandrijving en Kiox 300 display.'
+    },
+    {
+        image: 'assets/images/uitgelicht/nortab3020my26.png',
+        brand: 'Norta',
+        model: 'B-3020 MY26',
+        price: 3799,
+        description: 'City&Tour e-bike voor dagelijks gebruik en langere ritten. Bosch Performance Line, 540 Wh PowerTube, Nexus 5, kettingaandrijving en Purion 200 display.'
+    },
+    {
+        image: 'assets/images/uitgelicht/qiocompactp5.avif',
+        brand: 'QiO',
+        model: 'Compact P5',
+        price: 3799,
+        description: 'Compacte e-bike voor stad en onderweg. Bosch Performance Line, 545 Wh accu, Nexus 5, Gates riemaandrijving, 20" wielen en Purion 200 display.'
+    },
+    {
+        image: 'assets/images/uitgelicht/conwaycaironcfs.avif',
+        brand: 'Conway',
+        model: 'Cairon C FS 2.0 800 SUV',
+        price: 4199,
+        description: 'Volledig geveerde e-SUV voor dagelijks gebruik en tochten. Bosch Performance Line PX, 800 Wh PowerTube, Shimano Cues 9-speed en Purion 200 display.'
     }
 ];

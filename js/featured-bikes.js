@@ -7,7 +7,7 @@
     const INSERT_AFTER_SELECTOR = '#services';
     const BRAND_LOGOS = {
         victoria: 'assets/images/brands/large/victoriablack.png',
-        conway: 'assets/images/brands/large/conway.png',
+        conway: 'assets/images/brands/large/Conway_Wortmarke.png',
         oxford: 'assets/images/brands/large/oxfordlogo.webp',
         qio: 'assets/images/brands/large/qio.png',
         norta: 'assets/images/brands/large/norta.png',

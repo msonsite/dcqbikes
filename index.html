@@ -316,688 +316,211 @@
             animation: none !important;
         }
         
-        /* Storytelling Services Section */
-        .services-storytelling {
+        /* Ons aanbod — lookbook licht, afwisselend L/R */
+        .offer-section {
             background: #f9fafb;
-        }
-        
-        .service-story-block {
-            position: relative;
-            width: 100%;
             overflow: hidden;
         }
-        
-        
-        /* Electric Bikes - Full Bleed Hero */
-        
-        .service-story-brands {
-            margin-top: 2rem;
+
+        .offer-section__intro {
+            text-align: center;
+            padding: 2.25rem 1rem 1.5rem;
         }
-        
-        .service-story-brands-label {
-            display: block;
-            font-size: 0.75rem;
-            color: #9ca3af;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        
-        .service-story-brands-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .service-story-brand-link {
-            display: block;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .service-story-brand-link:hover {
-            transform: translateY(-2px);
-        }
-        
-        .service-story-brands-grid img {
-            width: 120px;
-            height: 60px;
-            object-fit: contain;
-            background: #ffffff;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            display: block;
-        }
-        
-        .service-story-brand-link:hover img {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+        @media (min-width: 768px) {
+            .offer-section__intro {
+                padding: 3rem 1.5rem 1.75rem;
             }
-        
-        /* Split Screen Layouts */
-        .service-story-split {
-            display: grid;
-            grid-template-columns: 50% 50%;
-            min-height: 480px;
         }
-        
-        .service-story-image-side {
+
+        .offer-lookbook {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .offer-entry {
+            position: relative;
+            color: #111827;
+        }
+
+        .offer-entry:nth-child(even) {
+            background: #f3f4f6;
+        }
+
+        .offer-entry__inner {
+            max-width: 72rem;
+            margin: 0 auto;
+            padding: 2.25rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .offer-entry__inner {
+                padding: 2.75rem 1.5rem;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                gap: 2.5rem;
+                align-items: center;
+            }
+
+            .offer-entry--left .offer-entry__content {
+                order: 1;
+            }
+
+            .offer-entry--left .offer-entry__visual {
+                order: 2;
+            }
+
+            .offer-entry--right .offer-entry__content {
+                order: 2;
+                text-align: right;
+            }
+
+            .offer-entry--right .offer-entry__visual {
+                order: 1;
+            }
+
+            .offer-entry--right .offer-entry__head {
+                justify-content: flex-end;
+            }
+
+            .offer-entry--right .offer-entry__text {
+                margin-left: auto;
+            }
+
+            .offer-entry--right .offer-entry__brandsList {
+                justify-content: flex-end;
+            }
+
+            .offer-entry--right .offer-entry__brandsLabel {
+                text-align: right;
+            }
+        }
+
+        .offer-entry__content {
+            min-width: 0;
+        }
+
+        .offer-entry__head {
+            display: flex;
+            align-items: baseline;
+            gap: 0.65rem 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .offer-entry__index {
+            font-family: var(--font-heading);
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 0.02em;
+            color: #ee2726;
+            flex-shrink: 0;
+        }
+
+        .offer-entry__title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.25rem, 2vw, 1.625rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin: 0;
+            color: #111827;
+        }
+
+        .offer-entry__visual {
             position: relative;
             overflow: hidden;
+            width: 100%;
+            height: 16rem;
+            background: #e5e7eb;
+            justify-self: stretch;
         }
-        
-        .service-story-img {
+
+        @media (min-width: 768px) {
+            .offer-entry__visual {
+                height: 19rem;
+            }
+        }
+
+        .offer-entry__img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            object-position: center;
+            display: block;
         }
-        
-        .service-story-block:hover .service-story-img {
-            transform: scale(1.05);
-        }
-        
-        .service-story-text-side {
-            display: flex;
-            align-items: flex-start;
-            padding: 2rem 4rem 4rem;
-            background: #f9fafb;
-        }
-        
-        .service-story-text-inner {
-            max-width: 500px;
-        }
-        
-        .service-story-number {
-            display: inline-block;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #ee2726;
-            margin-bottom: 1rem;
-            opacity: 1;
-        }
-        
-        .service-story-text-side .service-story-title {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #111827;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
-            text-shadow: none;
-        }
-        
-        .service-story-text-side .service-story-description {
-            font-size: 1.125rem;
+
+        .offer-entry__text {
+            font-size: 0.9375rem;
+            line-height: 1.65;
+            margin: 0 0 1rem;
+            max-width: 36rem;
             color: #4b5563;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            text-shadow: none;
         }
-        
-        .service-story-features {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
+
+        .offer-entry__brandsLabel {
+            display: block;
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.65rem;
+            color: #9ca3af;
         }
-        
-        .service-story-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1rem;
-            color: #374151;
-        }
-        
-        .service-story-feature i {
-            color: #ee2726;
-            font-size: 1.125rem;
-        }
-        
-        .service-story-brands-compact {
+
+        .offer-entry__brandsList {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
             align-items: center;
+            gap: 0.625rem;
         }
-        
-        .service-story-brands-compact img {
-            height: 40px;
-            width: auto;
+
+        .offer-entry__brand {
+            display: block;
+            line-height: 0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .offer-entry__brand:hover {
+            transform: translateY(-2px);
+        }
+
+        .offer-entry__brand img {
+            width: 6.5rem;
+            height: 3rem;
             object-fit: contain;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
+            background: #ffffff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            display: block;
         }
-        
-        .service-story-brands-compact img:hover {
-            opacity: 1;
+
+        .offer-entry__brand:hover img {
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
         }
-        
-        .service-story-split-reverse {
-            direction: rtl;
-        }
-        
-        .service-story-split-reverse > * {
-            direction: ltr;
-        }
-        
-        /* Grid Layout */
-        .service-story-grid {
-            display: grid;
-            grid-template-columns: 50% 50%;
-            min-height: 480px;
-        }
-        
-        .service-story-grid-image {
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        /* Desktop: gelijke fotohoogte; eerste blok strakker boven “01” (niet op mobiel — zelfde padding als andere blokken) */
-        @media (min-width: 1025px) {
-            #services .service-story-image-side,
-            #services .service-story-grid-image {
-                height: 480px;
-                min-height: 480px;
-                max-height: 480px;
-                align-self: center;
+
+        @media (max-width: 767px) {
+            .offer-entry__visual {
+                height: 13rem;
+                order: -1;
             }
-            
-            #services .service-story-text-side,
-            #services .service-story-grid-content {
-                align-items: center;
-                padding: 4rem;
-            }
-            
-            #services .service-story-electric .service-story-text-side {
-                align-items: flex-start;
-                padding: 0.5rem 4rem 4rem;
-            }
-        }
-        
-        .service-story-grid-content {
-            display: flex;
-            align-items: flex-start;
-            padding: 2rem 4rem 4rem;
-            background: #f9fafb;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .service-story-grid-content .service-story-text-inner {
-            max-width: 500px;
-            width: 100%;
-        }
-        
-        .service-story-grid-content .service-story-title {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #111827;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
-            text-shadow: none;
-        }
-        
-        .service-story-grid-content .service-story-description {
-            font-size: 1.125rem;
-            color: #4b5563;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            text-shadow: none;
-        }
-        
-        .service-story-grid-content .service-story-number {
-            display: inline-block;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #ee2726;
-            margin-bottom: 1rem;
-            opacity: 1;
-        }
-        
-        .service-story-brands-many {
-            gap: 0.5rem;
-        }
-        
-        .service-story-brands-many img {
-            height: 32px;
-        }
-        
-        /* Full Width Layout */
-        .service-story-fullwidth {
-            position: relative;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .service-story-fullwidth-image {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-        }
-        
-        .service-story-fullwidth-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
-            z-index: 2;
-        }
-        
-        .service-story-fullwidth-content {
-            position: relative;
-            z-index: 3;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-        }
-        
-        .service-story-fullwidth-content .service-story-text-inner {
-            max-width: 500px;
-        }
-        
-        .service-story-fullwidth-content .service-story-number {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .service-story-fullwidth-content .service-story-title {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #ffffff;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .service-story-fullwidth-content .service-story-description {
-            font-size: 1.125rem;
-            color: rgba(255, 255, 255, 0.95);
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-        }
-        
-        .service-story-fullwidth-content .service-story-feature {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .service-story-split,
-            .service-story-grid {
-                grid-template-columns: 1fr;
-                min-height: 0;
-            }
-            
-            .service-story-img {
-            width: 100%;
-        }
-        
-            .service-story-split-reverse .service-story-img {
-            width: 100%;
-                margin-left: 0;
-            }
-            
-            .service-story-split-reverse {
-                direction: ltr;
-        }
-        
-            .service-story-text-side {
-                padding: 1.75rem 2rem 3rem;
-        }
-        
-            .service-story-grid-content {
-                padding: 1.75rem 2rem 3rem;
-            }
-            
-            .service-story-title {
-                font-size: 2.5rem;
-        }
-        
-            .service-story-text-side .service-story-title {
-                font-size: 2.25rem;
-        }
-        }
-        
-        @media (max-width: 768px) {
-            
-            .service-story-text-side .service-story-title {
-                font-size: 1.875rem;
-        }
-        
-            .service-story-grid-content .service-story-title {
-                font-size: 1.875rem;
-        }
-        
-            .service-story-description {
-                font-size: 1rem;
-            }
-            
-            .service-story-text-side .service-story-description {
-                font-size: 1rem;
-            }
-            
-            .service-story-grid-content .service-story-description {
-                font-size: 1rem;
-        }
-        
-            .service-story-text-side,
-            .service-story-grid-content {
-                padding: 1.5rem 1.5rem 2rem;
-        }
-        
-            .service-story-fullwidth-content {
-                padding: 3rem 1.5rem;
-        }
-        
-            .service-story-fullwidth-content .service-story-title {
-                font-size: 2rem;
-        }
-        
-            .service-story-brands-grid img {
-                width: 100px;
-                height: 50px;
-        }
-        
-            .service-story-brand-link {
-                display: block;
-            }
-        }
-        
-        @media (max-width: 1024px) {
-            .service-story-fullwidth-content {
-                padding: 3rem 2rem;
-        }
-        
-            .service-story-fullwidth-content .service-story-title {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 1024px) {
-            .services-section-new {
-                padding: 2.5rem 0;
-            }
-            
-            .services-container {
-                padding: 0 1.5rem;
-            }
-            
-            .services-header {
-                margin-bottom: 2rem;
-            }
-            
-            .services-main-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .services-cards-wrapper {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-            
-            .service-featured-card {
-                min-height: 420px;
-            }
-            
-            .service-featured-video-section {
-                height: 240px;
-            }
-            
-            .service-featured-content {
-                padding: 1.75rem;
-            }
-            
-            .service-featured-title {
-                font-size: 1.75rem;
-            }
-            
-            .service-featured-description {
-                font-size: 0.9375rem;
-                margin-bottom: 1.25rem;
-            }
-            
-            .service-featured-brands {
-                margin-bottom: 1.25rem;
-            }
-            
-            .featured-brand-logo {
-                width: 90px;
-                height: 45px;
-            }
-            
-            .service-card-new {
-                min-height: 200px;
-            }
-            
-            .service-card-image {
-                height: 120px;
-            }
-            
-            .service-card-content {
-                padding: 1.125rem;
-            }
-            
-            .service-card-icon-box {
-                width: 32px;
-                height: 32px;
-            }
-            
-            .service-card-icon-box i {
+
+            .offer-entry__text {
                 font-size: 0.875rem;
             }
-        }
-        
-        @media (max-width: 768px) {
-            .services-section-new {
-                padding: 2rem 0;
-            }
-            
-            .services-container {
-                padding: 0 1rem;
-            }
-            
-            .services-header {
-                margin-bottom: 1.5rem;
-            }
-            
-            .services-title {
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
-            }
-            
-            .services-subtitle {
-                font-size: 1rem;
-            }
-            
-            .services-main-grid {
-                gap: 1.25rem;
-            }
-            
-            .service-featured-card {
-                min-height: 380px;
-                border-radius: 20px;
-            }
-            
-            .service-featured-video-section {
-                height: 200px;
-            }
-            
-            .service-featured-content {
-                padding: 1.5rem;
-            }
-            
-            .service-featured-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.75rem;
-                margin-bottom: 0.875rem;
-            }
-            
-            .service-featured-icon-wrapper {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .service-featured-icon-wrapper i {
-                font-size: 1rem;
-            }
-            
-            .service-featured-title {
-                font-size: 1.25rem;
-            }
-            
-            .service-featured-description {
-                font-size: 0.875rem;
-                margin-bottom: 1rem;
-            }
-            
-            .service-featured-brands {
-                display: grid;
-                grid-template-columns: repeat(6, 1fr);
-                gap: 0.5rem;
-                margin-bottom: 1rem;
-                padding: 0.75rem;
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-                border-radius: 12px;
-                border: 1px solid rgba(255, 255, 255, 0.15);
-            }
-            
-            .featured-brand-link {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                min-height: 75px;
-            }
-            
-            .featured-brand-large {
-                grid-column: span 3;
-            }
-            
-            .featured-brand-small {
-                grid-column: span 2;
-            }
-            
-            .featured-brand-logo {
-                width: 100%;
-                height: 55px;
-                padding: 0.625rem;
-                object-fit: contain;
-                background: rgba(255, 255, 255, 0.95);
-                border-radius: 8px;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            }
-            
-            .service-featured-features {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-            }
-            
-            .featured-feature-badge {
-                padding: 0.5rem 0.875rem;
-                font-size: 0.75rem;
-            }
-            
-            .featured-feature-badge i {
-                font-size: 0.75rem;
-            }
-            
-            .services-cards-wrapper {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
-            }
-            
-            .service-card-new {
-                border-radius: 20px;
-            }
-            
-            .service-card-image {
-                height: 160px;
-            }
-            
-            .service-card-content {
-                padding: 1.5rem;
-            }
-            
-            .service-card-icon-wrapper {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 0.625rem;
-            }
-            
-            .service-card-icon-wrapper i {
-                font-size: 1rem;
-            }
-            
-            .service-card-title {
-                font-size: 1.125rem;
-                margin-bottom: 0.375rem;
-            }
-            
-            .service-card-description {
-                font-size: 0.875rem;
-                margin-bottom: 1rem;
-            }
-            
-            .service-card-benefits {
-                margin-bottom: 1rem;
-            }
-            
-            .service-card-benefit {
-                font-size: 0.75rem;
-                padding: 0.3125rem 0.625rem;
-            }
-            
-            .service-card-brands {
-                padding-top: 1rem;
-            }
-            
-            .service-card-brand-item {
-                height: 28px;
-                padding: 0.25rem 0.5rem;
+
+            .offer-entry__brand img {
+                width: 5.5rem;
+                height: 2.625rem;
             }
         }
-        
-        @media (max-width: 480px) {
-            .services-title {
-                font-size: 1.75rem;
-            }
-            
-            .service-featured-card {
-                min-height: 360px;
-            }
-            
-            .service-featured-title {
-                font-size: 1.375rem;
-            }
-            
-            .service-featured-brands {
-                gap: 0.4rem;
-                padding: 0.625rem;
-            }
-            
-            .featured-brand-link {
-                min-height: 70px;
-            }
-            
-            .featured-brand-logo {
-                height: 50px;
-                padding: 0.5rem;
-            }
-        }
+
         
         /* Eén uitklapbare “kaart” per vraag; antwoord alleen zichtbaar bij .active */
         #faq .faq-item {
@@ -3188,160 +2711,13 @@
         </div>
     </section>
 
-    <!-- Services Section - Storytelling Approach -->
-    <section id="services" class="services-storytelling">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6 pt-12 md:pt-16 pb-6 md:pb-8">
-            <div class="text-center mb-3 md:mb-4">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Ons Aanbod</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Alles voor fiets en tuin</p>
-            </div>
+    <!-- Ons aanbod — editorial lookbook -->
+    <section id="services" class="offer-section" aria-labelledby="services-heading">
+        <div class="offer-section__intro container mx-auto max-w-7xl px-4 md:px-6">
+            <p class="text-sm font-semibold uppercase tracking-widest text-dcq-red mb-2">Ons aanbod</p>
+            <h2 id="services-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900 font-heading">Alles voor fiets en tuin</h2>
         </div>
-        <!-- Electric Bikes - Reverse Split Screen -->
-        <div class="service-story-block service-story-electric">
-            <div class="service-story-split service-story-split-reverse">
-                <div class="service-story-image-side">
-                    <img src="assets/images/onsaanbod/IMG_7734.JPG" alt="Elektrische Fietsen" class="service-story-img">
-            </div>
-                <div class="service-story-text-side">
-                    <div class="service-story-text-inner">
-                        <span class="service-story-number">01</span>
-                        <h2 class="service-story-title">Elektrische Fietsen</h2>
-                        <p class="service-story-description">Elektrische fietsen combineren jouw trapkracht met een elektrische motor en accu, waardoor je makkelijker langere afstanden, hellingen en woon‑werktrajecten kunt doen. In onze winkel kijk je samen met een expert welk type e‑bike het best aansluit op jouw ritten. Of het nu gaat om compacte stadsmodellen, all‑round e-bikes of iets dat daar tussenin ligt.</p>
-                        <div class="service-story-brands">
-                            <span class="service-story-brands-label">Onze merken</span>
-                            <div class="service-story-brands-grid">
-                                <a href="https://www.victoria-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/large/victoria-groot.png" alt="Victoria">
-                            </a>
-                                <a href="https://norta.be/nl/home" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/large/norta.png" alt="Norta">
-                            </a>
-                                <a href="https://www.conway-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/large/conway.png" alt="Conway">
-                            </a>
-                                <a href="https://www.oxfordbikes.be/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/large/oxfordlogo.webp" alt="Oxford">
-                            </a>
-                                <a href="https://www.qio-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/large/qio.png" alt="Qio">
-                            </a>
-                        </div>
-                        </div>
-            </div>
-            </div>
-        </div>
-    </div>
-
-        <!-- Stadsfietsen - Split Screen -->
-        <div class="service-story-block service-story-city">
-            <div class="service-story-split">
-                <div class="service-story-image-side">
-                    <img src="assets/images/onsaanbod/IMG_8020.JPG" alt="Stadsfietsen" class="service-story-img">
-            </div>
-                <div class="service-story-text-side">
-                    <div class="service-story-text-inner">
-                        <span class="service-story-number">02</span>
-                        <h2 class="service-story-title">Stadsfietsen</h2>
-                        <p class="service-story-description">Onze selectie Victoria‑ en Oxford‑stadsfietsen draait om eenvoud, comfort en degelijkheid. Deze fietsen zijn ontworpen voor dagelijks gebruik — scherpe wendbaarheid, betrouwbare onderdelen en een zithouding die je helpt ontspannen door de stad of buurt te bewegen. Iedere fiets wordt door onze technici afgesteld, afgestemd op jouw maat en voorkeur.</p>
-                        <div class="service-story-brands">
-                            <span class="service-story-brands-label">Onze merken</span>
-                            <div class="service-story-brands-grid">
-                                <a href="https://www.victoria-bikes.com/nl/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/large/victoria-groot.png" alt="Victoria">
-                                </a>
-                                <a href="https://www.oxfordbikes.be/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/large/oxfordlogo.webp" alt="Oxford">
-                                </a>
-                    </div>
-                </div>
-                    </div>
-                </div>
-            </div>
-                    </div>
-
-        <!-- Onderhoud & Herstel - Reverse Split -->
-        <div class="service-story-block service-story-repair">
-            <div class="service-story-split service-story-split-reverse">
-                <div class="service-story-image-side">
-                    <img src="assets/images/onsaanbod/IMG_7875.JPG" alt="Onderhoud & Herstel" class="service-story-img">
-                        </div>
-                <div class="service-story-text-side">
-                    <div class="service-story-text-inner">
-                        <span class="service-story-number">03</span>
-                        <h2 class="service-story-title">Onderhoud & Herstel</h2>
-                        <p class="service-story-description">Fietsonderhoud is meer dan “even nalopen”. Wij voeren gecontroleerde beurten uit volgens fabrikantstandaarden, inspecteren remmen en versnellingen, stellen elektra en mechaniek precies af, en stellen je fiets in optimale staat. Of het nu om kabelspanning, trapas, velgen of software‑diagnose gaat: onze monteurs pakken het gestructureerd aan met het juiste gereedschap en ervaring.</p>
-                        <div class="service-story-brands">
-                            <span class="service-story-brands-label">Enkele van onze merken</span>
-                            <div class="service-story-brands-grid">
-                                <a href="https://www.shimano.com/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/small/shimano.png" alt="Shimano">
-                                </a>
-                                <a href="https://www.bosch-ebike.com/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/small/bosch.png" alt="Bosch">
-                                </a>
-                                <a href="https://www.michelin.com/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/small/michelin.png" alt="Michelin">
-                                </a>
-                    </div>
-                </div>
-                                </div>
-                            </div>
-                    </div>
-                    </div>
-
-        <!-- Onderdelen & Accessoires - Grid Layout -->
-        <div class="service-story-block service-story-parts">
-            <div class="service-story-grid">
-                <div class="service-story-grid-image">
-                    <img src="assets/images/onsaanbod/IMG_7736.jpg" alt="Onderdelen & Accessoires" class="service-story-img">
-                        </div>
-                <div class="service-story-grid-content">
-                    <div class="service-story-text-inner">
-                        <span class="service-story-number">04</span>
-                        <h2 class="service-story-title">Onderdelen & Accessoires</h2>
-                        <p class="service-story-description">Van specifieke onderdelen zoals remmen, kettingen en verlichting tot praktische accessoires zoals tassen, manden, sloten en kinderzitjes: we bieden een uitgebreid assortiment dat aansluit op echte functionele behoeften. Alle componenten zijn gericht op veiligheid, compatibiliteit en meer comfort onderweg, zodat je fiets precies doet wat je verwacht.</p>
-                        <div class="service-story-brands">
-                            <span class="service-story-brands-label">Enkele van onze merken</span>
-                            <div class="service-story-brands-grid">
-                                <a href="https://www.abus.com/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/medium/abus.webp" alt="Abus">
-                                </a>
-                                <a href="https://www.basil.nl/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/medium/basil.webp" alt="Basil">
-                                </a>
-                                <a href="https://www.axa-security.com/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/medium/axa.avif" alt="Axa">
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        </div>
-                </div>
-
-        <!-- Grasmaaiers & Tuin - Reverse Split -->
-        <div class="service-story-block service-story-garden">
-            <div class="service-story-split service-story-split-reverse">
-                <div class="service-story-image-side">
-                    <img src="assets/images/onsaanbod/IMG_7748.JPG" alt="Grasmaaiers & Tuin" class="service-story-img">
-                                </div>
-                <div class="service-story-text-side">
-                    <div class="service-story-text-inner">
-                        <span class="service-story-number">05</span>
-                        <h2 class="service-story-title">Grasmaaiers & Tuin</h2>
-                        <p class="service-story-description">Je tuin onderhouden zonder lawaai of uitstoot. EGO Power+ geeft je alles wat je nodig hebt: grasmaaiers, bladblazers, trimmers en nog veel meer. Allemaal stil, krachtig en volledig elektrisch. En het slimste? Eén batterij past in al je apparaten. Eén keer investeren, jarenlang genieten van een perfect onderhouden tuin.</p>
-                        <div class="service-story-brands">
-                            <span class="service-story-brands-label">Ons merk</span>
-                            <div class="service-story-brands-grid">
-                                <a href="https://egopowerplus.be/" target="_blank" rel="noopener noreferrer" class="service-story-brand-link">
-                                    <img src="assets/images/brands/large/ego-logo.png" alt="EGO">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="offerHub"></div>
     </section>
 
     <!-- Sfeerimpressie -->
@@ -4055,6 +3431,8 @@
 
     <!-- JavaScript -->
     <script src="js/store-config.js"></script>
+    <script src="data/services-offer.js"></script>
+    <script src="js/services-offer.js"></script>
     <script src="data/featured-bikes.js"></script>
     <script src="js/featured-bikes.js"></script>
     <script src="js/script.js"></script>

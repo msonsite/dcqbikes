@@ -971,49 +971,6 @@ function updateStoreStatus() {
     statusText.textContent = statusMessage;
 }
 
-// Load service block and service card background images
-async function loadServiceBackgroundImages() {
-    // Map service blocks to their corresponding images
-    const serviceImageMap = {
-        'service-block-1': 'assets/images/gallery/picture7.jpg', // Electric bikes hero section
-        'service-card-1': 'assets/images/onsaanbod/verkoop.avif', // Stadsfietsen
-        'service-card-2': 'assets/images/onsaanbod/herstellingen.jpg', // Onderhoud & Herstel
-        'service-card-3': 'assets/images/onsaanbod/onderdelen.jpg', // Onderdelen & Accessoires
-        'service-card-4': 'assets/images/onsaanbod/grasmaaiers.jpg' // Grasmaaiers & Tuin
-    };
-    
-    // Get all service blocks
-    const serviceBlocks = document.querySelectorAll('.service-block');
-    
-    // Get all service cards (new design)
-    const serviceCards = document.querySelectorAll('.service-card-new');
-    
-    // Load images for service blocks (hero sections)
-    serviceBlocks.forEach((block) => {
-        let imagePath = null;
-        for (const className of block.classList) {
-            if (serviceImageMap[className]) {
-                imagePath = serviceImageMap[className];
-                break;
-            }
-        }
-        
-        if (imagePath) {
-            const img = new Image();
-            img.onload = () => {
-                block.setAttribute('data-bg-image', imagePath);
-                block.style.setProperty('--bg-image', `url(${imagePath})`);
-            };
-            img.onerror = () => {
-                console.warn(`Failed to load service image: ${imagePath}`);
-            };
-            img.src = imagePath;
-        }
-    });
-    
-    // Service cards now use img tags directly in HTML, no need to set background images
-}
-
 // Initialize on DOM load
 // FAQ Accordion Functionality
 function initFAQ() {
@@ -1115,7 +1072,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 500);
     
     await loadGalleryImages();
-    await loadServiceBackgroundImages();
     
     // Load holidays from CSV file
     await loadHolidaysFromCSV();
