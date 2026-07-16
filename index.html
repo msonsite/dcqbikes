@@ -319,7 +319,7 @@
         /* Ons aanbod — lookbook licht, afwisselend L/R */
         .offer-section {
             background: #f9fafb;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .offer-section__intro {
@@ -337,15 +337,39 @@
             display: flex;
             flex-direction: column;
             gap: 0;
+            isolation: isolate;
         }
 
         .offer-entry {
             position: relative;
             color: #111827;
+            background: #f9fafb;
         }
 
         .offer-entry:nth-child(even) {
             background: #f3f4f6;
+        }
+
+        /* Mobiel: subsecties schuiven over elkaar tijdens scrollen */
+        @media (max-width: 767px) {
+            .offer-entry {
+                position: sticky;
+                top: 3.75rem; /* onder sticky nav */
+                z-index: 1;
+                border-radius: 0.75rem 0.75rem 0 0;
+                box-shadow: 0 -10px 28px rgba(17, 24, 39, 0.08);
+            }
+
+            .offer-entry:nth-child(1) { z-index: 1; }
+            .offer-entry:nth-child(2) { z-index: 2; }
+            .offer-entry:nth-child(3) { z-index: 3; }
+            .offer-entry:nth-child(4) { z-index: 4; }
+            .offer-entry:nth-child(5) { z-index: 5; }
+
+            .offer-entry:first-child {
+                box-shadow: none;
+                border-radius: 0;
+            }
         }
 
         .offer-entry__inner {
