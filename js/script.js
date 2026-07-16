@@ -77,45 +77,45 @@ document.querySelectorAll('#mobileMenu a').forEach(link => {
 });
 
 // Anker-navigatie: altijd directe scroll (geen smooth) — stabiel op mobiel en desktop
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#' || href === '#!') return;
-        
-        e.preventDefault();
-        
-        if (href === '#home') {
-            /* Bovenaan document = openingsuren-balk (#headerRibbon) + nav + hero zichtbaar */
-            window.scrollTo({
-                top: 0,
-                behavior: 'auto'
-            });
-            return;
+// Event delegation zodat ook dynamisch toegevoegde links (bv. uitgelichte fietsen) meedoen
+document.addEventListener('click', function (e) {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+
+    const href = anchor.getAttribute('href');
+    if (!href || href === '#' || href === '#!') return;
+
+    e.preventDefault();
+
+    if (href === '#home') {
+        /* Bovenaan document = openingsuren-balk (#headerRibbon) + nav + hero zichtbaar */
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto'
+        });
+        return;
+    }
+
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    const mainNav = document.getElementById('mainNav');
+    const navHeight = mainNav ? mainNav.offsetHeight : 0;
+    const rect = target.getBoundingClientRect();
+    const y = rect.top + (window.scrollY || document.documentElement.scrollTop);
+
+    let scrollOffset = navHeight;
+    const scrollMtClass = Array.from(target.classList).find(cls => cls.startsWith('scroll-mt-'));
+    if (scrollMtClass) {
+        const mtValue = parseInt(scrollMtClass.replace('scroll-mt-', ''), 10);
+        if (!isNaN(mtValue)) {
+            scrollOffset = navHeight + (mtValue * 4);
         }
-        
-        const target = document.querySelector(href);
-        if (target) {
-            const mainNav = document.getElementById('mainNav');
-            if (!mainNav) return;
-            
-            const navHeight = mainNav.offsetHeight;
-            const rect = target.getBoundingClientRect();
-            const y = rect.top + (window.scrollY || document.documentElement.scrollTop);
-            
-            let scrollOffset = navHeight;
-            const scrollMtClass = Array.from(target.classList).find(cls => cls.startsWith('scroll-mt-'));
-            if (scrollMtClass) {
-                const mtValue = parseInt(scrollMtClass.replace('scroll-mt-', ''), 10);
-                if (!isNaN(mtValue)) {
-                    scrollOffset = navHeight + (mtValue * 4);
-                }
-            }
-            
-            window.scrollTo({
-                top: Math.max(0, y - scrollOffset),
-                behavior: 'auto'
-            });
-        }
+    }
+
+    window.scrollTo({
+        top: Math.max(0, y - scrollOffset),
+        behavior: 'auto'
     });
 });
 

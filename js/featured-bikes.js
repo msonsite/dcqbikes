@@ -1,6 +1,6 @@
 /**
  * Uitgelichte fietsen — renderer
- * Rendert de sectie alleen wanneer FEATURED_BIKES geldige items bevat.
+ * Toont een greep uit het aanbod; sectie verdwijnt als FEATURED_BIKES leeg is.
  */
 (function () {
     const SECTION_ID = 'featured-bikes';
@@ -84,7 +84,9 @@
         if (typeof FEATURED_BIKES === 'undefined' || !Array.isArray(FEATURED_BIKES)) {
             return [];
         }
-        return FEATURED_BIKES.filter(isValidBike).sort((a, b) => getPriceValue(a) - getPriceValue(b));
+        return FEATURED_BIKES.filter(isValidBike).sort(function (a, b) {
+            return getPriceValue(a) - getPriceValue(b);
+        });
     }
 
     function el(tag, className, text) {
@@ -128,8 +130,12 @@
         price.setAttribute('itemtype', 'https://schema.org/Offer');
         const priceMeta = el('meta');
         priceMeta.setAttribute('itemprop', 'price');
-        priceMeta.setAttribute('content', formatPrice(bike));
+        priceMeta.setAttribute('content', String(getPriceValue(bike)));
+        const currencyMeta = el('meta');
+        currencyMeta.setAttribute('itemprop', 'priceCurrency');
+        currencyMeta.setAttribute('content', 'EUR');
         price.appendChild(priceMeta);
+        price.appendChild(currencyMeta);
         priceWrap.appendChild(price);
         body.appendChild(priceWrap);
 
@@ -146,18 +152,42 @@
         const container = el('div', 'container mx-auto max-w-7xl px-4 md:px-6');
 
         const header = el('div', 'featured-bikes__header text-center mb-8 md:mb-10');
-        header.appendChild(el('p', 'featured-bikes__eyebrow text-sm font-semibold uppercase tracking-widest text-dcq-red', 'Uitgelichte fietsen'));
-        const heading = el('h2', 'text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2', 'Uit ons aanbod');
+        header.appendChild(el(
+            'p',
+            'featured-bikes__eyebrow text-sm font-semibold uppercase tracking-widest text-dcq-red',
+            'Uitgelichte fietsen'
+        ));
+
+        const heading = el('h2', 'text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 font-heading', 'Een greep uit ons aanbod');
         heading.id = 'featured-bikes-heading';
         header.appendChild(heading);
+
+        header.appendChild(el(
+            'p',
+            'featured-bikes__lead',
+            'Dit zijn enkele voorbeelden in verschillende prijsklassen. In de winkel vind je tientallen modellen — van Victoria, Conway, Norta, QiO en meer.'
+        ));
         container.appendChild(header);
 
         const scroller = el('div', 'featured-bikes__scroller');
         const grid = el('div', 'featured-bikes__grid');
         grid.setAttribute('data-bike-count', String(Math.min(bikes.length, 9)));
-        bikes.forEach((bike) => grid.appendChild(createBikeCard(bike)));
+        bikes.forEach(function (bike) {
+            grid.appendChild(createBikeCard(bike));
+        });
         scroller.appendChild(grid);
         container.appendChild(scroller);
+
+        const footer = el('div', 'featured-bikes__footer');
+        footer.appendChild(el(
+            'p',
+            'featured-bikes__footerText',
+            'Op zoek naar iets anders? Kom langs — we tonen je graag het volledige gamma en helpen je de juiste fiets kiezen.'
+        ));
+        const cta = el('a', 'featured-bikes__cta', 'Contact & openingsuren');
+        cta.href = '#contact';
+        footer.appendChild(cta);
+        container.appendChild(footer);
 
         section.appendChild(container);
         return section;
@@ -174,6 +204,11 @@
 
         const section = buildSection(bikes);
         anchor.insertAdjacentElement('afterend', section);
+
+        const scroller = section.querySelector('.featured-bikes__scroller');
+        if (scroller) {
+            scroller.scrollLeft = 0;
+        }
     }
 
     if (document.readyState === 'loading') {

@@ -1,10 +1,10 @@
 /**
  * Uitgelichte fietsen — data/config
  *
- * Voeg een object toe aan FEATURED_BIKES om een fiets te tonen.
- * Laat de array leeg ([]) om de volledige sectie te verbergen.
- * Afbeeldingen horen in assets/images/uitgelicht/
- * Volgorde maakt niet uit — kaarten worden automatisch gesorteerd op prijs (laag → hoog).
+ * Een greep uit het aanbod (niet exhaustief).
+ * Laat FEATURED_BIKES leeg ([]) om de sectie te verbergen.
+ * Afbeeldingen: assets/images/uitgelicht/
+ * Gesorteerd op prijs (laag → hoog).
  */
 const FEATURED_BIKES = [
     {
@@ -12,41 +12,27 @@ const FEATURED_BIKES = [
         brand: 'Victoria',
         model: 'Tresalo 5 Wave',
         price: 2999,
-        description: 'Allrounder voor dagelijks gebruik in stad en platteland. Bosch Performance Line, 540 Wh accu, Nexus 5, kettingaandrijving en Purion 200 display.'
+        description: 'Allrounder voor stad en platteland. Bosch Performance Line, 540 Wh accu, Nexus 5, kettingaandrijving en Purion 200 display.'
     },
     {
         image: 'assets/images/uitgelicht/victoriatresalo7.avif',
         brand: 'Victoria',
         model: 'Tresalo 7 Wave',
         price: 3499,
-        description: 'Veelzijdige e-bike voor stad en ontspannen tochten. Bosch Performance Line, 540 Wh accu, Nexus 5, Gates riemaandrijving en Kiox 300 display.'
+        description: 'Veelzijdige e-bike voor stad en tochten. Bosch Performance Line, 540 Wh accu, Nexus 5, Gates riemaandrijving en Kiox 300 display.'
     },
     {
         image: 'assets/images/uitgelicht/victoriatresalo9.avif',
         brand: 'Victoria',
         model: 'Tresalo 9 Trapeze',
         price: 3999,
-        description: 'Comfortabele e-bike met trapeze-frame voor dagelijks gebruik en langere ritten. Bosch Performance Line, 800 Wh accu, Nexus 5, Gates riemaandrijving en Kiox 300 display.'
-    },
-    {
-        image: 'assets/images/uitgelicht/nortab3020my26.png',
-        brand: 'Norta',
-        model: 'B-3020 MY26',
-        price: 3799,
-        description: 'City&Tour e-bike voor dagelijks gebruik en langere ritten. Bosch Performance Line, 540 Wh PowerTube, Nexus 5, kettingaandrijving en Purion 200 display.'
-    },
-    {
-        image: 'assets/images/uitgelicht/qiocompactp5.avif',
-        brand: 'QiO',
-        model: 'Compact P5',
-        price: 3799,
-        description: 'Compacte e-bike voor stad en onderweg. Bosch Performance Line, 545 Wh accu, Nexus 5, Gates riemaandrijving, 20" wielen en Purion 200 display.'
+        description: 'Comfortabele e-bike met trapeze-frame. Bosch Performance Line, 800 Wh accu, Nexus 5, Gates riemaandrijving en Kiox 300 display.'
     },
     {
         image: 'assets/images/uitgelicht/conwaycaironcfs.avif',
         brand: 'Conway',
         model: 'Cairon C FS 2.0 800 SUV',
         price: 4199,
-        description: 'Volledig geveerde e-SUV voor dagelijks gebruik en tochten. Bosch Performance Line PX, 800 Wh PowerTube, Shimano Cues 9-speed en Purion 200 display.'
+        description: 'Volledig geveerde e-SUV. Bosch Performance Line PX, 800 Wh PowerTube, Shimano Cues 9-speed en Purion 200 display.'
     }
 ];
