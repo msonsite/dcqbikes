@@ -123,6 +123,54 @@
         return card;
     }
 
+    function getCardStep(scroller, cards) {
+        if (!cards.length) return 0;
+        if (cards.length < 2) return cards[0].offsetWidth;
+        return cards[1].offsetLeft - cards[0].offsetLeft;
+    }
+
+    function setupMobileScrollHint(section, scroller, cards) {
+        const dotsWrap = section.querySelector('.featured-bikes__dots');
+        if (!dotsWrap || cards.length < 2) {
+            if (dotsWrap) dotsWrap.hidden = true;
+            return;
+        }
+
+        dotsWrap.hidden = false;
+        dotsWrap.replaceChildren();
+
+        const dots = cards.map(function (_, index) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'featured-bikes__dot' + (index === 0 ? ' is-active' : '');
+            dot.setAttribute('aria-label', 'Fiets ' + (index + 1) + ' van ' + cards.length);
+            dot.addEventListener('click', function () {
+                const step = getCardStep(scroller, cards);
+                scroller.scrollTo({ left: step * index, behavior: 'smooth' });
+            });
+            dotsWrap.appendChild(dot);
+            return dot;
+        });
+
+        let activeIndex = 0;
+
+        function syncFromScroll() {
+            const step = getCardStep(scroller, cards);
+            if (step <= 0) return;
+
+            const nextIndex = Math.max(0, Math.min(cards.length - 1, Math.round(scroller.scrollLeft / step)));
+            if (nextIndex !== activeIndex) {
+                dots[activeIndex].classList.remove('is-active');
+                dots[nextIndex].classList.add('is-active');
+                activeIndex = nextIndex;
+            }
+        }
+
+        scroller.addEventListener('scroll', syncFromScroll, { passive: true });
+        window.addEventListener('resize', syncFromScroll, { passive: true });
+        syncFromScroll();
+    }
+
     function createSectionBridge() {
         const wrap = el('div', 'featured-bikes__bridge');
         wrap.setAttribute('aria-hidden', 'true');
@@ -165,7 +213,7 @@
 
         header.appendChild(el(
             'p',
-            'featured-bikes__lead',
+            'featured-bikes__lead text-base md:text-lg',
             'Dit zijn enkele voorbeelden in verschillende prijsklassen. In de winkel vind je tientallen modellen: Victoria, Conway, Norta, QiO en meer.'
         ));
         container.appendChild(header);
@@ -178,6 +226,11 @@
         });
         scroller.appendChild(grid);
         container.appendChild(scroller);
+
+        const dots = el('div', 'featured-bikes__dots');
+        dots.setAttribute('role', 'tablist');
+        dots.setAttribute('aria-label', 'Uitgelichte fietsen');
+        container.appendChild(dots);
 
         const footer = el('div', 'featured-bikes__footer');
         footer.appendChild(el(
@@ -207,8 +260,10 @@
         anchor.insertAdjacentElement('afterend', section);
 
         const scroller = section.querySelector('.featured-bikes__scroller');
+        const cards = scroller ? Array.prototype.slice.call(scroller.querySelectorAll('.featured-bike-card')) : [];
         if (scroller) {
             scroller.scrollLeft = 0;
+            setupMobileScrollHint(section, scroller, cards);
         }
     }
 

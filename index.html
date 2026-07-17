@@ -537,12 +537,18 @@
 
         .offer-entry__title {
             font-family: var(--font-heading);
-            font-size: clamp(1.25rem, 2vw, 1.625rem);
+            font-size: 1.25rem;
             font-weight: 700;
             letter-spacing: -0.02em;
             line-height: 1.2;
             margin: 0;
             color: #111827;
+        }
+
+        @media (min-width: 768px) {
+            .offer-entry__title {
+                font-size: 1.5rem;
+            }
         }
 
         .offer-entry__visualWrap {
@@ -602,16 +608,22 @@
         }
 
         .offer-entry__text {
-            font-size: 0.9375rem;
+            font-size: 1rem;
             line-height: 1.65;
             margin: 0 0 1rem;
             max-width: 36rem;
             color: #4b5563;
         }
 
+        @media (min-width: 768px) {
+            .offer-entry__text {
+                font-size: 1.125rem;
+            }
+        }
+
         .offer-entry__brandsLabel {
             display: block;
-            font-size: 0.625rem;
+            font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -665,10 +677,6 @@
 
             .offer-entry__visual {
                 height: 13rem;
-            }
-
-            .offer-entry__text {
-                font-size: 0.875rem;
             }
 
             .offer-entry__brand img {
@@ -1868,7 +1876,6 @@
         @media (min-width: 480px) {
             .contact-hours__row {
                 grid-template-columns: 7rem 1fr;
-                font-size: 0.9rem;
             }
         }
 
@@ -1995,24 +2002,155 @@
             transform: none !important;
         }
 
-        /* About: drie kaarten — vlak op #0a0a0a, geen witte wrapper / geen gradient */
-        #about .media-box {
+        /* About: tegels — vlak op #0a0a0a, geen witte wrapper / geen gradient / geen hover-motion */
+        #about .media-box,
+        #about .media-box:hover {
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
             border-radius: 0;
             overflow: visible;
+            transform: none !important;
+            transition: none !important;
         }
         #about .about-dark-tile {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 0.75rem;
-            transition: border-color 0.2s ease, background-color 0.2s ease;
         }
-        #about a.about-dark-tile:hover,
-        #about div.about-dark-tile:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.14);
+
+        /* Ons team — foto-gedreven, vult de dubbele breedte */
+        #about .about-team-tile {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            padding: 1.25rem !important;
+        }
+        @media (min-width: 768px) {
+            #about .about-team-tile {
+                gap: 1.5rem;
+                padding: 1.5rem !important;
+            }
+        }
+        @media (min-width: 1024px) {
+            #about .about-team-tile {
+                padding: 1.75rem !important;
+            }
+        }
+        #about .about-team-header {
+            min-width: 0;
+        }
+        #about .about-team-header-copy {
+            margin: 0.75rem 0 0;
+            max-width: 28rem;
+            font-size: 1rem;
+            line-height: 1.55;
+            color: rgba(255, 254, 252, 0.78);
+        }
+        @media (min-width: 768px) {
+            #about .about-team-header-copy {
+                margin-top: 0.875rem;
+                font-size: 1.125rem;
+            }
+        }
+        #about .about-team-roster {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 1.25rem;
+            min-width: 0;
+            flex: 1;
+        }
+        @media (min-width: 768px) {
+            #about .about-team-roster {
+                gap: 2.5rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            #about .about-team-roster {
+                gap: 3.5rem;
+            }
+        }
+        #about .about-team-person {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-width: 0;
+            min-height: 0;
+            width: 8.5rem;
+        }
+        @media (min-width: 640px) {
+            #about .about-team-person {
+                width: 10rem;
+            }
+        }
+        @media (min-width: 768px) {
+            #about .about-team-person {
+                width: 11rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            #about .about-team-person {
+                width: 12rem;
+            }
+        }
+        #about .about-team-photo {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.35);
+        }
+        @media (min-width: 768px) {
+            #about .about-team-photo {
+                border-radius: 1rem;
+            }
+        }
+        #about .about-team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+        #about .about-team-meta {
+            min-width: 0;
+            padding-top: 0.75rem;
+        }
+        @media (min-width: 768px) {
+            #about .about-team-meta {
+                padding-top: 0.875rem;
+            }
+        }
+        #about .about-team-name {
+            margin: 0;
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #fffefc;
+            line-height: 1.25;
+        }
+        @media (min-width: 1024px) {
+            #about .about-team-name {
+                font-size: 1.25rem;
+            }
+        }
+        #about .about-team-role {
+            margin: 0.2rem 0 0;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(255, 254, 252, 0.72);
+        }
+        @media (min-width: 640px) {
+            #about .about-team-role {
+                font-size: 0.875rem;
+                margin-top: 0.3rem;
+            }
         }
         #about .about-dark-tile-link {
             text-decoration: none;
@@ -2023,10 +2161,6 @@
         }
         #about .about-dark-tile-link .about-dark-external {
             color: rgba(255, 254, 252, 0.55);
-            transition: color 0.2s ease, opacity 0.2s ease;
-        }
-        #about .about-dark-tile-link:hover .about-dark-external {
-            color: rgba(255, 254, 252, 0.95);
         }
         
         /* Easter egg: klik op Kurts naam → foto met schudeffect */
@@ -2253,7 +2387,6 @@
         .featured-bikes__lead {
             margin: 0 auto;
             max-width: 38rem;
-            font-size: 1.05rem;
             line-height: 1.6;
             color: #4b5563;
         }
@@ -2322,7 +2455,7 @@
 
         .featured-bike-card__brandText {
             margin: 0;
-            font-size: 0.6875rem;
+            font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
@@ -2341,7 +2474,7 @@
         .featured-bike-card__model {
             margin: 0;
             font-family: var(--font-heading);
-            font-size: 1.0625rem;
+            font-size: 1.125rem;
             font-weight: 700;
             line-height: 1.25;
             color: #111827;
@@ -2350,7 +2483,7 @@
 
         .featured-bike-card__desc {
             margin: 0.1rem 0 0;
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             line-height: 1.45;
             color: #4b5563;
             overflow-wrap: anywhere;
@@ -2373,6 +2506,10 @@
             letter-spacing: -0.02em;
         }
 
+        .featured-bikes__dots {
+            display: none;
+        }
+
         .featured-bikes__footer {
             margin-top: 1.75rem;
             text-align: center;
@@ -2383,9 +2520,15 @@
 
         .featured-bikes__footerText {
             margin: 0 0 0.85rem;
-            font-size: 0.9375rem;
+            font-size: 1rem;
             line-height: 1.6;
             color: #4b5563;
+        }
+
+        @media (min-width: 768px) {
+            .featured-bikes__footerText {
+                font-size: 1.125rem;
+            }
         }
 
         .featured-bikes__cta {
@@ -2417,12 +2560,32 @@
                 margin-bottom: 1rem !important;
             }
 
-            .featured-bikes__header h2 {
-                font-size: 1.75rem !important;
+            .featured-bikes__dots[hidden] {
+                display: none !important;
             }
 
-            .featured-bikes__lead {
-                font-size: 0.95rem;
+            .featured-bikes__dots {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
+                margin-top: 0.85rem;
+            }
+
+            .featured-bikes__dot {
+                width: 0.4rem;
+                height: 0.4rem;
+                border-radius: 9999px;
+                border: 0;
+                padding: 0;
+                background: rgba(0, 0, 0, 0.15);
+                cursor: pointer;
+            }
+
+            .featured-bikes__dot.is-active {
+                background: #ee2726;
+                width: 1rem;
+                border-radius: 9999px;
             }
 
             .featured-bikes__scroller {
@@ -2521,7 +2684,7 @@
             }
 
             .featured-bike-card__price {
-                font-size: 1.3rem;
+                font-size: 1.25rem;
             }
         }
         
@@ -2655,7 +2818,7 @@
             }
             
             .award-content p {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
         }
         
@@ -2811,7 +2974,7 @@
             }
             
             .team-member-role {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
                 padding: 0.3rem 0.65rem;
             }
         }
@@ -2821,7 +2984,7 @@
             align-items: center;
             gap: 0.4rem;
             color: rgba(255, 255, 255, 0.55);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             letter-spacing: 0.02em;
         }
         /* Collapsible chevron rotation */
@@ -3041,7 +3204,7 @@
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="text-center mb-12 md:mb-16">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Merken</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-2">Geselecteerd met oog voor kwaliteit</p>
+                <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto mb-2">Geselecteerd met oog voor kwaliteit</p>
             </div>
 
             <!-- Mobile: Interactive carousel with native scroll -->
@@ -3157,14 +3320,14 @@
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- Award: flow layout zodat inhoud niet wordt afgesneden; op mobiel onderaan (order) -->
-                <div class="min-h-0 order-3 lg:order-none">
+                <div class="min-h-0 order-2 lg:order-none">
                     <div class="media-box h-full flex flex-col min-h-0">
                         <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="about-dark-tile-link relative flex flex-col flex-1 gap-3 p-4 md:gap-6 md:p-8 about-dark-tile group rounded-xl min-h-0 md:min-h-[240px]">
                             <i class="fas fa-external-link-alt about-dark-external absolute top-4 right-4 md:top-6 md:right-6 z-10 text-xs md:text-sm pointer-events-none" aria-hidden="true"></i>
                             <div class="pr-7 md:pr-8 min-w-0">
                                 <div class="flex items-start justify-between gap-2 md:gap-4">
                                     <div class="min-w-0">
-                                        <p class="text-xs font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Erkenning</p>
+                                        <p class="text-sm font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Erkenning</p>
                                         <h3 class="text-2xl font-bold mt-2" style="color: #fffefc;">Vriendelijkste Handelaar</h3>
                                         <p class="text-sm mt-1" style="color: rgba(255, 254, 252, 0.78);">Jabbeke</p>
                                     </div>
@@ -3186,51 +3349,36 @@
                     </div>
                 </div>
 
-                <!-- Team -->
-                <div class="min-h-0 order-1 lg:order-none">
+                <!-- Team: op desktop 2 kolommen breed -->
+                <div class="min-h-0 order-1 lg:order-none lg:col-span-2">
                     <div class="media-box h-full flex flex-col min-h-0">
-                        <div class="flex flex-col flex-1 gap-6 p-6 md:p-8 about-dark-tile rounded-xl min-h-[240px]">
-                            <div class="min-w-0">
-                                <p class="text-xs font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Mensen achter DCQ Bikes</p>
+                        <div class="about-dark-tile about-team-tile flex flex-col flex-1 rounded-xl h-full">
+                            <div class="about-team-header">
+                                <p class="text-sm font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Mensen achter DCQ Bikes</p>
                                 <h3 class="text-2xl font-bold mt-2" style="color: #fffefc;">Ons team</h3>
-                                <div class="mt-6 md:mt-7 flex flex-row flex-nowrap items-start justify-center gap-5 sm:gap-8">
-                                    <div class="text-center shrink-0 w-[104px] sm:w-[112px]">
-                                        <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-2.5 rounded-2xl overflow-hidden border border-white/15 bg-black/30">
-                                            <img src="assets/images/profilepictures/kurtdeclercq.png" alt="Kurt Declercq" class="w-full h-full object-cover" onerror="this.src='assets/images/profilepictures/kurt.jpg'; this.onerror=null;">
-                                        </div>
-                                        <p class="text-sm font-bold" style="color: #fffefc;">Kurt</p>
-                                        <p class="text-xs mt-0.5" style="color: rgba(255, 254, 252, 0.72);">Zaakvoerder</p>
-                                    </div>
-                                    <div class="text-center shrink-0 w-[104px] sm:w-[112px]">
-                                        <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-2.5 rounded-2xl overflow-hidden border border-white/15 bg-black/30">
-                                            <img src="assets/images/profilepictures/maximehoflack.png" alt="Maxime Hoflack" class="w-full h-full object-cover" onerror="this.src='assets/images/profilepictures/maxime.jpg'; this.onerror=null;">
-                                        </div>
-                                        <p class="text-sm font-bold" style="color: #fffefc;">Maxime</p>
-                                        <p class="text-xs mt-0.5" style="color: rgba(255, 254, 252, 0.72);">Fietstechnicus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Kurt / quote -->
-                <div class="min-h-0 order-2 lg:order-none">
-                    <div class="media-box h-full flex flex-col min-h-0">
-                        <div class="flex flex-col flex-1 gap-5 p-6 md:p-8 about-dark-tile rounded-xl min-h-[240px] md:min-h-[280px]">
-                            <div class="flex items-start justify-between gap-4 min-w-0 shrink-0">
-                                <div class="min-w-0">
-                                    <p class="text-xs font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Een woordje van Kurt</p>
-                                    <h3 class="text-2xl font-bold mt-2" style="color: #fffefc;">Kurt Declercq</h3>
-                                </div>
-                                <div class="flex-shrink-0 w-14 h-14 rounded-2xl overflow-hidden border border-white/10 bg-black/30">
-                                    <img src="assets/images/profilepictures/kurtdeclercq.png" alt="Kurt Declercq" class="w-full h-full object-cover" onerror="this.src='assets/images/profilepictures/kurt.jpg'; this.onerror=null;">
-                                </div>
-                            </div>
-                            <div class="mt-2 md:mt-0 md:flex-1 md:flex md:flex-col md:justify-center md:min-h-0">
-                                <p class="text-base md:text-lg lg:text-xl md:leading-relaxed leading-relaxed border-l-2 border-dcq-red/60 pl-4 md:border-l-0 md:pl-0 md:pt-6 md:border-t-2 md:border-dcq-red/60 md:text-center" style="color: rgba(255, 254, 252, 0.88);">
-                                    “Wat je over ons leest, moet in Jabbeke in de zaak ook zo aanvoelen. Daar nemen we met het team de tijd voor tot het voor jou klopt.”
+                                <p class="about-team-header-copy">
+                                    Advies en vakmanschap, rechtstreeks in de winkel in Jabbeke.
                                 </p>
+                            </div>
+                            <div class="about-team-roster" role="list">
+                                <article class="about-team-person" role="listitem">
+                                    <div class="about-team-photo">
+                                        <img src="assets/images/profilepictures/kurtdeclercq.png" alt="Kurt Declercq" onerror="this.src='assets/images/profilepictures/kurt.jpg'; this.onerror=null;">
+                                    </div>
+                                    <div class="about-team-meta">
+                                        <p class="about-team-name">Kurt Declercq</p>
+                                        <p class="about-team-role">Zaakvoerder</p>
+                                    </div>
+                                </article>
+                                <article class="about-team-person" role="listitem">
+                                    <div class="about-team-photo">
+                                        <img src="assets/images/profilepictures/maximehoflack.png" alt="Maxime Hoflack" onerror="this.src='assets/images/profilepictures/maxime.jpg'; this.onerror=null;">
+                                    </div>
+                                    <div class="about-team-meta">
+                                        <p class="about-team-name">Maxime Hoflack</p>
+                                        <p class="about-team-role">Fietstechnicus</p>
+                                    </div>
+                                </article>
                             </div>
                         </div>
                     </div>
@@ -3244,7 +3392,7 @@
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="mb-8 md:mb-10">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Contact</h2>
-                <p class="text-lg text-gray-600 max-w-2xl">
+                <p class="text-base md:text-lg text-gray-600 max-w-2xl">
                     Kom binnen. Wij helpen je verder.
                 </p>
             </div>
@@ -3252,7 +3400,7 @@
                 <!-- Contact Info -->
                 <div class="space-y-4 md:space-y-6">
                     <div class="contact-box p-6 rounded-2xl h-full flex flex-col" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); will-change: transform; transform: translateZ(0);">
-                        <h3 class="text-xl font-bold tracking-tight mb-5">Contactgegevens</h3>
+                        <h3 class="text-xl md:text-2xl font-bold tracking-tight mb-5">Contactgegevens</h3>
 
                         <div class="divide-y divide-gray-100">
                             <div class="py-4 flex items-start gap-4">
@@ -3345,7 +3493,7 @@
                 <!-- Contact Form -->
                 <div>
                     <div class="contact-box p-6 rounded-2xl contact-form-container h-full flex flex-col" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); will-change: transform; transform: translateZ(0);">
-                        <h3 class="text-xl font-bold tracking-tight mb-5">Heb je een vraag?</h3>
+                        <h3 class="text-xl md:text-2xl font-bold tracking-tight mb-5">Heb je een vraag?</h3>
                         <p class="text-gray-600 mb-6">Stel hier je vraag en we nemen zo snel mogelijk contact met je op.</p>
                         <form id="contactForm" class="space-y-4 flex-1 flex flex-col" action="#" data-formspree="https://formspree.io/f/xyzlrwdb" method="POST">
                             <div class="flex-1 space-y-4">
@@ -3381,8 +3529,8 @@
     <section id="aanbiedingen" class="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="text-center mb-10 md:mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Speciale Aanbiedingen</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Voor momenten die blijven hangen.</p>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">Speciale Aanbiedingen</h2>
+                <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">Voor momenten die blijven hangen.</p>
             </div>
             
             <div class="grid grid-cols-1 gap-6 md:gap-8 max-w-2xl mx-auto items-start">
@@ -3394,7 +3542,7 @@
                     </div>
                     <div class="p-6 md:p-8 flex flex-col">
                         <div class="mb-1">
-                            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">DCQ Bikes Cadeaubon</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-1">DCQ Bikes Cadeaubon</h3>
                             <p class="text-sm text-gray-600">Flexibel bedrag • Geldig voor alle producten</p>
                         </div>
                         <details class="offer-details mt-4 border-t border-gray-100 pt-4">
@@ -3443,7 +3591,7 @@
         <div class="container mx-auto max-w-2xl md:max-w-7xl px-4 md:px-6">
             <div class="mb-8 md:mb-10 text-center md:text-left">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Veelgestelde vragen</h2>
-                <p class="text-lg max-w-3xl mx-auto md:mx-0" style="color: rgba(255, 254, 252, 0.8);">
+                <p class="text-base md:text-lg max-w-3xl mx-auto md:mx-0" style="color: rgba(255, 254, 252, 0.8);">
                     Vind meteen antwoord op de meest voorkomende vragen.
                 </p>
             </div>
@@ -3457,7 +3605,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
                         <p class="mb-3 text-gray-800">De duur van een herstelling hangt af van het type probleem:</p>
                         <ul class="list-none space-y-2.5 ml-0">
                             <li class="flex items-start gap-2">
@@ -3484,7 +3632,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
                         <p class="text-gray-800 mb-3">Wij accepteren de volgende betalingsmethoden:</p>
                         <div class="faq-payment-methods">
                             <div class="faq-payment-method">
@@ -3538,7 +3686,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
                         <p class="text-gray-800 mb-3">Nee, voor de meeste reparaties en vragen kun je gewoon <strong>langs komen</strong> tijdens onze <a href="#contact" class="text-dcq-red font-semibold hover:underline">openingstijden</a>. Wij helpen je graag persoonlijk!</p>
                         <p class="text-gray-800 mb-3">Voor <strong>kleine reparaties</strong> kun je altijd binnenlopen. Voor <strong>grotere herstellingen</strong> of een volledige onderhoudsbeurt kun je ook gewoon langskomen. We bekijken dan ter plaatse wat er nodig is.</p>
                         <p class="text-gray-800 mb-3">Als je liever eerst contact opneemt, kun je een e-mail sturen naar <a href="mailto:info@dcqbikes.be" class="text-dcq-red font-semibold hover:underline">info@dcqbikes.be</a> of bellen op <a href="tel:+3250814220" class="text-dcq-red font-semibold hover:underline">+32 50 81 42 20</a> of <a href="tel:+32475822376" class="text-dcq-red font-semibold hover:underline">+32 475 82 23 76</a>.</p>
@@ -3553,7 +3701,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
                         <p class="text-gray-800 mb-3">Ja, wij zijn zelfs <strong>gespecialiseerd</strong> in het onderhouden en herstellen van elektrische fietsen van <strong>alle merken</strong>:</p>
                         <ul class="list-none space-y-2.5 ml-0">
                             <li class="flex items-start gap-2">
@@ -3588,7 +3736,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
                         <p class="text-gray-800 mb-3">De frequentie van onderhoud hangt af van <strong>gebruik</strong> en <strong>fiets type</strong>:</p>
                         <ul class="list-none space-y-2.5 ml-0">
                             <li class="flex items-start gap-2">
@@ -3615,7 +3763,7 @@
                             <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
                         </div>
                     </button>
-                    <div class="faq-answer px-5 text-gray-700 text-sm leading-relaxed">
+                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
                         <p class="text-gray-800 mb-3">Om het proces soepel te laten verlopen, raden we aan om het volgende mee te nemen:</p>
                         <ul class="list-none space-y-2.5 ml-0">
                             <li class="flex items-start gap-2">
