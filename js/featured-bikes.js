@@ -123,39 +123,17 @@
         return card;
     }
 
-    function getCenteredCardIndex(scroller, cards) {
-        const scrollerRect = scroller.getBoundingClientRect();
-        const centerX = scrollerRect.left + scrollerRect.width / 2;
-        let bestIndex = 0;
-        let bestDistance = Infinity;
-
-        cards.forEach(function (card, index) {
-            const rect = card.getBoundingClientRect();
-            const cardCenter = rect.left + rect.width / 2;
-            const distance = Math.abs(cardCenter - centerX);
-            if (distance < bestDistance) {
-                bestDistance = distance;
-                bestIndex = index;
-            }
-        });
-
-        return bestIndex;
+    function getCardStep(cards) {
+        if (cards.length < 2) return 0;
+        const first = cards[0].getBoundingClientRect();
+        const second = cards[1].getBoundingClientRect();
+        return Math.abs(second.left - first.left);
     }
 
-    function scrollCardIntoCenter(scroller, card) {
-        const scrollerRect = scroller.getBoundingClientRect();
-        const cardRect = card.getBoundingClientRect();
-        const targetLeft =
-            scroller.scrollLeft +
-            (cardRect.left - scrollerRect.left) +
-            cardRect.width / 2 -
-            scrollerRect.width / 2;
-
-        if (typeof scroller.scrollTo === 'function') {
-            scroller.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
-            return;
-        }
-        scroller.scrollLeft = Math.max(0, targetLeft);
+    function getActiveCardIndex(scroller, cards) {
+        const step = getCardStep(cards);
+        if (step <= 1) return 0;
+        return Math.max(0, Math.min(cards.length - 1, Math.round(scroller.scrollLeft / step)));
     }
 
     function setupMobileScrollHint(section, scroller, cards) {
@@ -166,16 +144,18 @@
         }
 
         const mobileQuery = window.matchMedia('(max-width: 1023px)');
-
-        function setDotsVisible(visible) {
-            dotsWrap.hidden = !visible;
-        }
-
-        setDotsVisible(mobileQuery.matches);
+        dotsWrap.hidden = !mobileQuery.matches;
         dotsWrap.replaceChildren();
 
         let activeIndex = 0;
         let syncRaf = null;
+
+        function setActive(nextIndex) {
+            if (nextIndex === activeIndex) return;
+            dots[activeIndex].classList.remove('is-active');
+            dots[nextIndex].classList.add('is-active');
+            activeIndex = nextIndex;
+        }
 
         const dots = cards.map(function (card, index) {
             const dot = document.createElement('button');
@@ -185,13 +165,13 @@
             dot.addEventListener('click', function (event) {
                 event.preventDefault();
                 if (!mobileQuery.matches) return;
-                scrollCardIntoCenter(scroller, card);
-                // Optimistic active state for snappier feedback on iOS
-                if (index !== activeIndex) {
-                    dots[activeIndex].classList.remove('is-active');
-                    dot.classList.add('is-active');
-                    activeIndex = index;
+                const step = getCardStep(cards);
+                if (step > 1 && typeof scroller.scrollTo === 'function') {
+                    scroller.scrollTo({ left: step * index, behavior: 'smooth' });
+                } else {
+                    card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 }
+                setActive(index);
             });
             dotsWrap.appendChild(dot);
             return dot;
@@ -199,12 +179,7 @@
 
         function syncFromScroll() {
             if (!mobileQuery.matches) return;
-            const nextIndex = getCenteredCardIndex(scroller, cards);
-            if (nextIndex !== activeIndex) {
-                dots[activeIndex].classList.remove('is-active');
-                dots[nextIndex].classList.add('is-active');
-                activeIndex = nextIndex;
-            }
+            setActive(getActiveCardIndex(scroller, cards));
         }
 
         function scheduleSync() {
@@ -218,18 +193,19 @@
         scroller.addEventListener('scroll', scheduleSync, { passive: true });
         scroller.addEventListener('scrollend', syncFromScroll);
         window.addEventListener('resize', function () {
-            setDotsVisible(mobileQuery.matches);
+            dotsWrap.hidden = !mobileQuery.matches;
             scheduleSync();
         }, { passive: true });
 
         if (typeof mobileQuery.addEventListener === 'function') {
-            mobileQuery.addEventListener('change', function () {
-                setDotsVisible(mobileQuery.matches);
+            mobileQuery.addEventListener('change', function (event) {
+                dotsWrap.hidden = !event.matches;
                 scheduleSync();
             });
         }
 
-        scheduleSync();
+        // Wait a frame so mobile layout/padding is applied before measuring
+        window.requestAnimationFrame(scheduleSync);
     }
 
     function createSectionBridge() {

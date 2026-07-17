@@ -2568,38 +2568,34 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 0.15rem;
+                gap: 0.4rem;
                 margin-top: 0.85rem;
             }
 
             .featured-bikes__dot {
                 position: relative;
-                flex: 0 0 auto;
-                width: 2.75rem;
-                height: 2.75rem;
+                width: 0.4rem;
+                height: 0.4rem;
+                border-radius: 9999px;
                 border: 0;
                 padding: 0;
-                background: transparent;
+                background: rgba(0, 0, 0, 0.15);
                 cursor: pointer;
                 -webkit-tap-highlight-color: transparent;
                 touch-action: manipulation;
             }
 
-            .featured-bikes__dot::after {
+            /* Grotere tikzone, zelfde kleine look */
+            .featured-bikes__dot::before {
                 content: '';
                 position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 0.45rem;
-                height: 0.45rem;
-                border-radius: 9999px;
-                background: rgba(0, 0, 0, 0.18);
-                transform: translate(-50%, -50%);
+                inset: -0.7rem;
             }
 
-            .featured-bikes__dot.is-active::after {
-                width: 1.05rem;
+            .featured-bikes__dot.is-active {
                 background: #ee2726;
+                width: 1rem;
+                border-radius: 9999px;
             }
 
             .featured-bikes__scroller {
