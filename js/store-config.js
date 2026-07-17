@@ -6,7 +6,7 @@ const VACATION_PERIODS = [
     },
     {
         start: [2026, 6, 21],  
-        end: [2026, 7, 06]     
+        end: [2026, 7, 6]     
     },
 ];
 
@@ -15,5 +15,9 @@ const HOLIDAY_DATES = [
     {
         date: [2025, 11, 19],
         message: 'Opleiding'
+    },
+    {
+        date: [2026, 7, 22],
+        message: 'Gesloten wegens event'
     },
 ];
