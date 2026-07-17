@@ -123,10 +123,39 @@
         return card;
     }
 
-    function getCardStep(scroller, cards) {
-        if (!cards.length) return 0;
-        if (cards.length < 2) return cards[0].offsetWidth;
-        return cards[1].offsetLeft - cards[0].offsetLeft;
+    function getCenteredCardIndex(scroller, cards) {
+        const scrollerRect = scroller.getBoundingClientRect();
+        const centerX = scrollerRect.left + scrollerRect.width / 2;
+        let bestIndex = 0;
+        let bestDistance = Infinity;
+
+        cards.forEach(function (card, index) {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.left + rect.width / 2;
+            const distance = Math.abs(cardCenter - centerX);
+            if (distance < bestDistance) {
+                bestDistance = distance;
+                bestIndex = index;
+            }
+        });
+
+        return bestIndex;
+    }
+
+    function scrollCardIntoCenter(scroller, card) {
+        const scrollerRect = scroller.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        const targetLeft =
+            scroller.scrollLeft +
+            (cardRect.left - scrollerRect.left) +
+            cardRect.width / 2 -
+            scrollerRect.width / 2;
+
+        if (typeof scroller.scrollTo === 'function') {
+            scroller.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+            return;
+        }
+        scroller.scrollLeft = Math.max(0, targetLeft);
     }
 
     function setupMobileScrollHint(section, scroller, cards) {
@@ -136,29 +165,41 @@
             return;
         }
 
-        dotsWrap.hidden = false;
+        const mobileQuery = window.matchMedia('(max-width: 1023px)');
+
+        function setDotsVisible(visible) {
+            dotsWrap.hidden = !visible;
+        }
+
+        setDotsVisible(mobileQuery.matches);
         dotsWrap.replaceChildren();
 
-        const dots = cards.map(function (_, index) {
+        let activeIndex = 0;
+        let syncRaf = null;
+
+        const dots = cards.map(function (card, index) {
             const dot = document.createElement('button');
             dot.type = 'button';
             dot.className = 'featured-bikes__dot' + (index === 0 ? ' is-active' : '');
             dot.setAttribute('aria-label', 'Fiets ' + (index + 1) + ' van ' + cards.length);
-            dot.addEventListener('click', function () {
-                const step = getCardStep(scroller, cards);
-                scroller.scrollTo({ left: step * index, behavior: 'smooth' });
+            dot.addEventListener('click', function (event) {
+                event.preventDefault();
+                if (!mobileQuery.matches) return;
+                scrollCardIntoCenter(scroller, card);
+                // Optimistic active state for snappier feedback on iOS
+                if (index !== activeIndex) {
+                    dots[activeIndex].classList.remove('is-active');
+                    dot.classList.add('is-active');
+                    activeIndex = index;
+                }
             });
             dotsWrap.appendChild(dot);
             return dot;
         });
 
-        let activeIndex = 0;
-
         function syncFromScroll() {
-            const step = getCardStep(scroller, cards);
-            if (step <= 0) return;
-
-            const nextIndex = Math.max(0, Math.min(cards.length - 1, Math.round(scroller.scrollLeft / step)));
+            if (!mobileQuery.matches) return;
+            const nextIndex = getCenteredCardIndex(scroller, cards);
             if (nextIndex !== activeIndex) {
                 dots[activeIndex].classList.remove('is-active');
                 dots[nextIndex].classList.add('is-active');
@@ -166,9 +207,29 @@
             }
         }
 
-        scroller.addEventListener('scroll', syncFromScroll, { passive: true });
-        window.addEventListener('resize', syncFromScroll, { passive: true });
-        syncFromScroll();
+        function scheduleSync() {
+            if (syncRaf != null) return;
+            syncRaf = window.requestAnimationFrame(function () {
+                syncRaf = null;
+                syncFromScroll();
+            });
+        }
+
+        scroller.addEventListener('scroll', scheduleSync, { passive: true });
+        scroller.addEventListener('scrollend', syncFromScroll);
+        window.addEventListener('resize', function () {
+            setDotsVisible(mobileQuery.matches);
+            scheduleSync();
+        }, { passive: true });
+
+        if (typeof mobileQuery.addEventListener === 'function') {
+            mobileQuery.addEventListener('change', function () {
+                setDotsVisible(mobileQuery.matches);
+                scheduleSync();
+            });
+        }
+
+        scheduleSync();
     }
 
     function createSectionBridge() {
