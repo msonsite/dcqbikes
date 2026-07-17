@@ -7,7 +7,7 @@ const SERVICES_OFFER = [
         id: 'electric',
         title: 'Elektrische fietsen',
         icon: 'fa-bolt',
-        image: 'assets/images/onsaanbod/IMG_7734.JPG',
+        image: 'assets/images/onsaanbod/IMG_7734.jpg',
         description: 'Elektrische fietsen combineren jouw trapkracht met een elektrische motor en accu, waardoor je makkelijker langere afstanden, hellingen en woon‑werktrajecten kunt doen. In onze winkel kijk je samen met een expert welk type e‑bike het best aansluit op jouw ritten. Of het nu gaat om compacte stadsmodellen, all‑round e-bikes of iets dat daar tussenin ligt.',
         brandsLabel: 'Onze merken',
         brands: [
@@ -22,7 +22,7 @@ const SERVICES_OFFER = [
         id: 'city',
         title: 'Stadsfietsen',
         icon: 'fa-bicycle',
-        image: 'assets/images/onsaanbod/IMG_8020.JPG',
+        image: 'assets/images/onsaanbod/IMG_8020.jpg',
         description: 'Onze selectie Victoria‑ en Oxford‑stadsfietsen draait om eenvoud, comfort en degelijkheid. Deze fietsen zijn ontworpen voor dagelijks gebruik — scherpe wendbaarheid, betrouwbare onderdelen en een zithouding die je helpt ontspannen door de stad of buurt te bewegen. Iedere fiets wordt door onze technici afgesteld, afgestemd op jouw maat en voorkeur.',
         brandsLabel: 'Onze merken',
         brands: [
@@ -34,7 +34,7 @@ const SERVICES_OFFER = [
         id: 'repair',
         title: 'Onderhoud & herstel',
         icon: 'fa-wrench',
-        image: 'assets/images/onsaanbod/IMG_7875.JPG',
+        image: 'assets/images/onsaanbod/IMG_7875.jpg',
         description: 'Fietsonderhoud is meer dan “even nalopen”. Wij voeren gecontroleerde beurten uit volgens fabrikantstandaarden, inspecteren remmen en versnellingen, stellen elektra en mechaniek precies af, en brengen je fiets in optimale staat. Of het nu om kabelspanning, trapas, velgen of software‑diagnose gaat: onze monteurs pakken het gestructureerd aan met het juiste gereedschap en ervaring.',
         brandsLabel: 'Enkele van onze partners',
         brands: [
@@ -60,7 +60,7 @@ const SERVICES_OFFER = [
         id: 'garden',
         title: 'Grasmaaiers & tuin',
         icon: 'fa-leaf',
-        image: 'assets/images/onsaanbod/IMG_7748.JPG',
+        image: 'assets/images/onsaanbod/IMG_7748.jpg',
         description: 'Je tuin onderhouden zonder lawaai of uitstoot. EGO Power+ geeft je alles wat je nodig hebt: grasmaaiers, bladblazers, trimmers en nog veel meer. Allemaal stil, krachtig en volledig elektrisch. En het slimste? Eén batterij past in al je apparaten. Eén keer investeren, jarenlang genieten van een perfect onderhouden tuin.',
         brandsLabel: 'Ons merk',
         brands: [
