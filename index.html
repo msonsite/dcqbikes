@@ -2531,6 +2531,10 @@
             }
         }
 
+        .featured-bikes__snap-spacer {
+            display: none;
+        }
+
         .featured-bikes__cta {
             display: inline-flex;
             align-items: center;
@@ -2599,8 +2603,9 @@
             }
 
             .featured-bikes__scroller {
+                --featured-bike-card-width: min(calc(100vw - 2.5rem), 22rem);
                 overflow-x: auto;
-                overflow-y: visible;
+                overflow-y: hidden;
                 -webkit-overflow-scrolling: touch;
                 scroll-snap-type: x mandatory;
                 scrollbar-width: none;
@@ -2619,7 +2624,6 @@
             }
 
             .featured-bikes__grid {
-                --featured-bike-card-width: min(calc(100vw - 2.5rem), 22rem);
                 display: flex;
                 flex-wrap: nowrap;
                 align-items: flex-start;
@@ -2627,7 +2631,7 @@
                 width: max-content;
                 max-width: none;
                 margin: 0;
-                padding: 0 calc(50vw - (var(--featured-bike-card-width) / 2)) 0.5rem;
+                padding: 0 0 0.5rem;
             }
 
             .featured-bikes__grid[data-bike-count="1"] {
@@ -2638,8 +2642,23 @@
                 padding: 0;
             }
 
+            /* Spacers i.p.v. padding: voorkomt iOS Safari scroll-snap start-op-einde bug */
+            .featured-bikes__snap-spacer {
+                display: block;
+                flex: 0 0 max(0px, calc((100vw - var(--featured-bike-card-width)) / 2));
+                width: max(0px, calc((100vw - var(--featured-bike-card-width)) / 2));
+                height: 1px;
+                pointer-events: none;
+                visibility: hidden;
+            }
+
+            .featured-bikes__grid[data-bike-count="1"] .featured-bikes__snap-spacer {
+                display: none;
+            }
+
             .featured-bike-card {
                 flex: 0 0 var(--featured-bike-card-width);
+                width: var(--featured-bike-card-width);
                 scroll-snap-align: center;
                 scroll-snap-stop: always;
             }

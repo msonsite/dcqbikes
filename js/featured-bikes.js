@@ -123,20 +123,32 @@
         return card;
     }
 
-    function getCardStep(cards) {
-        if (cards.length < 2) return 0;
-        const first = cards[0].getBoundingClientRect();
-        const second = cards[1].getBoundingClientRect();
-        return Math.abs(second.left - first.left);
+    function createSnapSpacer() {
+        const spacer = el('div', 'featured-bikes__snap-spacer');
+        spacer.setAttribute('aria-hidden', 'true');
+        return spacer;
     }
 
-    function getActiveCardIndex(scroller, cards) {
-        const step = getCardStep(cards);
-        if (step <= 1) return 0;
-        return Math.max(0, Math.min(cards.length - 1, Math.round(scroller.scrollLeft / step)));
+    function getVisuallyCenteredIndex(scroller, cards) {
+        const scrollerRect = scroller.getBoundingClientRect();
+        const midX = scrollerRect.left + scroller.clientWidth / 2;
+        let bestIndex = 0;
+        let bestDistance = Infinity;
+
+        for (let i = 0; i < cards.length; i += 1) {
+            const rect = cards[i].getBoundingClientRect();
+            if (rect.width < 8) continue;
+            const distance = Math.abs(rect.left + rect.width / 2 - midX);
+            if (distance < bestDistance) {
+                bestDistance = distance;
+                bestIndex = i;
+            }
+        }
+
+        return bestIndex;
     }
 
-    function setupMobileScrollHint(section, scroller, cards) {
+    function setupMobileScrollDots(section, scroller, cards) {
         const dotsWrap = section.querySelector('.featured-bikes__dots');
         if (!dotsWrap || cards.length < 2) {
             if (dotsWrap) dotsWrap.hidden = true;
@@ -151,9 +163,17 @@
         let syncRaf = null;
 
         function setActive(nextIndex) {
-            if (nextIndex === activeIndex) return;
+            if (nextIndex < 0 || nextIndex >= dots.length || nextIndex === activeIndex) return;
             dots[activeIndex].classList.remove('is-active');
             dots[nextIndex].classList.add('is-active');
+            activeIndex = nextIndex;
+        }
+
+        function forceActive(nextIndex) {
+            if (nextIndex < 0 || nextIndex >= dots.length) return;
+            dots.forEach(function (dot, index) {
+                dot.classList.toggle('is-active', index === nextIndex);
+            });
             activeIndex = nextIndex;
         }
 
@@ -165,47 +185,59 @@
             dot.addEventListener('click', function (event) {
                 event.preventDefault();
                 if (!mobileQuery.matches) return;
-                const step = getCardStep(cards);
-                if (step > 1 && typeof scroller.scrollTo === 'function') {
-                    scroller.scrollTo({ left: step * index, behavior: 'smooth' });
-                } else {
-                    card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                }
-                setActive(index);
+                card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             });
             dotsWrap.appendChild(dot);
             return dot;
         });
 
-        function syncFromScroll() {
+        function syncActiveDot() {
             if (!mobileQuery.matches) return;
-            setActive(getActiveCardIndex(scroller, cards));
+            setActive(getVisuallyCenteredIndex(scroller, cards));
         }
 
         function scheduleSync() {
             if (syncRaf != null) return;
             syncRaf = window.requestAnimationFrame(function () {
                 syncRaf = null;
-                syncFromScroll();
+                syncActiveDot();
             });
         }
 
+        function pinToFirstCard() {
+            if (!mobileQuery.matches || !cards[0]) return;
+            scroller.scrollLeft = 0;
+            cards[0].scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
+            scroller.scrollLeft = 0;
+            forceActive(0);
+        }
+
         scroller.addEventListener('scroll', scheduleSync, { passive: true });
-        scroller.addEventListener('scrollend', syncFromScroll);
+        scroller.addEventListener('scrollend', syncActiveDot);
         window.addEventListener('resize', function () {
             dotsWrap.hidden = !mobileQuery.matches;
-            scheduleSync();
+            if (mobileQuery.matches) scheduleSync();
         }, { passive: true });
+        window.addEventListener('pageshow', pinToFirstCard);
+        window.addEventListener('orientationchange', function () {
+            window.setTimeout(pinToFirstCard, 50);
+        });
 
         if (typeof mobileQuery.addEventListener === 'function') {
             mobileQuery.addEventListener('change', function (event) {
                 dotsWrap.hidden = !event.matches;
-                scheduleSync();
+                if (event.matches) pinToFirstCard();
             });
         }
 
-        // Wait a frame so mobile layout/padding is applied before measuring
-        window.requestAnimationFrame(scheduleSync);
+        // iOS kan na layout/snap nog opschuiven — opnieuw vastzetten
+        pinToFirstCard();
+        window.requestAnimationFrame(function () {
+            pinToFirstCard();
+            window.requestAnimationFrame(pinToFirstCard);
+        });
+        window.setTimeout(pinToFirstCard, 100);
+        window.setTimeout(syncActiveDot, 250);
     }
 
     function createSectionBridge() {
@@ -258,9 +290,11 @@
         const scroller = el('div', 'featured-bikes__scroller');
         const grid = el('div', 'featured-bikes__grid');
         grid.setAttribute('data-bike-count', String(Math.min(bikes.length, 9)));
+        grid.appendChild(createSnapSpacer());
         bikes.forEach(function (bike) {
             grid.appendChild(createBikeCard(bike));
         });
+        grid.appendChild(createSnapSpacer());
         scroller.appendChild(grid);
         container.appendChild(scroller);
 
@@ -299,8 +333,7 @@
         const scroller = section.querySelector('.featured-bikes__scroller');
         const cards = scroller ? Array.prototype.slice.call(scroller.querySelectorAll('.featured-bike-card')) : [];
         if (scroller) {
-            scroller.scrollLeft = 0;
-            setupMobileScrollHint(section, scroller, cards);
+            setupMobileScrollDots(section, scroller, cards);
         }
     }
 
