@@ -177,16 +177,10 @@
             activeIndex = nextIndex;
         }
 
-        const dots = cards.map(function (card, index) {
-            const dot = document.createElement('button');
-            dot.type = 'button';
+        const dots = cards.map(function (_card, index) {
+            const dot = document.createElement('span');
             dot.className = 'featured-bikes__dot' + (index === 0 ? ' is-active' : '');
-            dot.setAttribute('aria-label', 'Fiets ' + (index + 1) + ' van ' + cards.length);
-            dot.addEventListener('click', function (event) {
-                event.preventDefault();
-                if (!mobileQuery.matches) return;
-                card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            });
+            dot.setAttribute('aria-hidden', 'true');
             dotsWrap.appendChild(dot);
             return dot;
         });
@@ -206,8 +200,8 @@
 
         function pinToFirstCard() {
             if (!mobileQuery.matches || !cards[0]) return;
-            scroller.scrollLeft = 0;
-            cards[0].scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
+            // scrollLeft 0 + gelijke spacers = eerste kaart gecentreerd (geen scrollIntoView)
+            scroller.scrollTo({ left: 0, behavior: 'auto' });
             scroller.scrollLeft = 0;
             forceActive(0);
         }
@@ -299,8 +293,7 @@
         container.appendChild(scroller);
 
         const dots = el('div', 'featured-bikes__dots');
-        dots.setAttribute('role', 'tablist');
-        dots.setAttribute('aria-label', 'Uitgelichte fietsen');
+        dots.setAttribute('aria-hidden', 'true');
         container.appendChild(dots);
 
         const footer = el('div', 'featured-bikes__footer');
