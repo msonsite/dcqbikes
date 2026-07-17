@@ -1021,10 +1021,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!hero) return;
         const ribbon = document.getElementById('headerRibbon');
         const nav = document.getElementById('mainNav');
-        const ribbonH = ribbon ? ribbon.offsetHeight : 0;
-        const navH = nav ? nav.offsetHeight : 0;
-        const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
-        const target = Math.max(420, viewportH - ribbonH - navH);
+        const ribbonH = ribbon ? ribbon.getBoundingClientRect().height : 0;
+        const navH = nav ? nav.getBoundingClientRect().height : 0;
+        const chromeH = Math.ceil(ribbonH + navH);
+        const viewportH = Math.round(
+            window.innerHeight || document.documentElement.clientHeight || 0
+        );
+        // +1px kills subpixel white seams under the video
+        const target = Math.max(360, Math.ceil(viewportH - chromeH) + 1);
+        document.documentElement.style.setProperty('--chrome-h', `${chromeH}px`);
         document.documentElement.style.setProperty('--hero-h', `${target}px`);
         updateStickyOffset();
         lastHeroInnerW = window.innerWidth;
@@ -1056,6 +1061,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     applyHeroHeight();
+    // Re-measure after fonts/layout settle (nav height can change)
+    requestAnimationFrame(() => applyHeroHeight());
+    window.addEventListener('load', applyHeroHeight, { once: true });
     window.addEventListener('resize', scheduleHeroResize, { passive: true });
     window.addEventListener('orientationchange', () => {
         clearTimeout(heroResizeTimer);
