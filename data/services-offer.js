@@ -8,7 +8,7 @@ const SERVICES_OFFER = [
         title: 'Elektrische fietsen',
         icon: 'fa-bolt',
         image: 'assets/images/onsaanbod/IMG_7734.jpg',
-        description: 'Elektrische fietsen combineren jouw trapkracht met een elektrische motor en accu, waardoor je makkelijker langere afstanden, hellingen en woon‑werktrajecten kunt doen. In onze winkel kijk je samen met een expert welk type e‑bike het best aansluit op jouw ritten. Of het nu gaat om compacte stadsmodellen, all‑round e-bikes of iets dat daar tussenin ligt.',
+        description: 'Op zoek naar een e-bike? Kom gerust langs — we nemen de tijd om te kijken wat bij jou past. Geen druk, geen onnodige opties: wel eerlijk advies, proefrijden en afstellen op jouw lengte. Zo ga je naar huis met een fiets die écht bij je past.',
         brandsLabel: 'Onze merken',
         brands: [
             { name: 'Victoria', logo: 'assets/images/brands/large/victoria-groot.png', url: 'https://www.victoria-bikes.com/nl/' },
@@ -23,7 +23,7 @@ const SERVICES_OFFER = [
         title: 'Stadsfietsen',
         icon: 'fa-bicycle',
         image: 'assets/images/onsaanbod/IMG_8020.jpg',
-        description: 'Onze selectie Victoria‑ en Oxford‑stadsfietsen draait om eenvoud, comfort en degelijkheid. Deze fietsen zijn ontworpen voor dagelijks gebruik — scherpe wendbaarheid, betrouwbare onderdelen en een zithouding die je helpt ontspannen door de stad of buurt te bewegen. Iedere fiets wordt door onze technici afgesteld, afgestemd op jouw maat en voorkeur.',
+        description: 'Niet iedereen wil een motor erbij. Voor wie gewoon een degelijke stadsfiets zoekt, naar de bakker, school of station, hebben we Victoria en Oxford in huis. Eenvoudig, comfortabel en afgesteld op jouw lengte. Geen overbodige opties, wel een fiets die jarenlang meegaat.',
         brandsLabel: 'Onze merken',
         brands: [
             { name: 'Victoria', logo: 'assets/images/brands/large/victoria-groot.png', url: 'https://www.victoria-bikes.com/nl/' },
@@ -35,7 +35,7 @@ const SERVICES_OFFER = [
         title: 'Onderhoud & herstel',
         icon: 'fa-wrench',
         image: 'assets/images/onsaanbod/IMG_7875.jpg',
-        description: 'Fietsonderhoud is meer dan “even nalopen”. Wij voeren gecontroleerde beurten uit volgens fabrikantstandaarden, inspecteren remmen en versnellingen, stellen elektra en mechaniek precies af, en brengen je fiets in optimale staat. Of het nu om kabelspanning, trapas, velgen of software‑diagnose gaat: onze monteurs pakken het gestructureerd aan met het juiste gereedschap en ervaring.',
+        description: 'Het meeste werk zit vandaag bij e-bikes: regelmatig onderhoud houdt remmen, versnellingen, batterij en software in orde. We herstellen alle merken, ook als je de fiets elders kocht. Geen afspraak nodig voor de meeste jobs. Klaar? Dan krijg je een SMS.',
         brandsLabel: 'Enkele van onze partners',
         brands: [
             { name: 'Shimano', logo: 'assets/images/brands/small/shimano.png', url: 'https://www.shimano.com/' },
@@ -48,7 +48,7 @@ const SERVICES_OFFER = [
         title: 'Onderdelen & accessoires',
         icon: 'fa-puzzle-piece',
         image: 'assets/images/onsaanbod/IMG_7736.jpg',
-        description: 'Van specifieke onderdelen zoals remmen, kettingen en verlichting tot praktische accessoires zoals tassen, manden, sloten en kinderzitjes: we bieden een uitgebreid assortiment dat aansluit op echte functionele behoeften. Alle componenten zijn gericht op veiligheid, compatibiliteit en meer comfort onderweg, zodat je fiets precies doet wat je verwacht.',
+        description: 'Kom je voor een onderdeel of accessoire, dan weet je meestal al wat je zoekt — en dat hebben we vaak liggen. Remblokken, kettingen, banden, sloten, tassen, kinderzitjes: voor wie zelf herstelt of iets wil bijbestellen. Past het niet of weet je het niet zeker? Vraag het even, we denken mee.',
         brandsLabel: 'Enkele van onze merken',
         brands: [
             { name: 'Abus', logo: 'assets/images/brands/medium/abus.webp', url: 'https://www.abus.com/' },
@@ -61,7 +61,7 @@ const SERVICES_OFFER = [
         title: 'Grasmaaiers & tuin',
         icon: 'fa-leaf',
         image: 'assets/images/onsaanbod/IMG_7748.jpg',
-        description: 'Je tuin onderhouden zonder lawaai of uitstoot. EGO Power+ geeft je alles wat je nodig hebt: grasmaaiers, bladblazers, trimmers en nog veel meer. Allemaal stil, krachtig en volledig elektrisch. En het slimste? Eén batterij past in al je apparaten. Eén keer investeren, jarenlang genieten van een perfect onderhouden tuin.',
+        description: 'Met EGO Power+ start je toestel meteen — geen trekkoord, geen stank, geen lawaai. Veel klanten stappen over van benzine omdat elektrisch sneller en aangenamer is. Grasmaaier, bladblazer, trimmer: één batterij voor al je apparaten. Kom gerust eens kijken in de winkel.',
         brandsLabel: 'Ons merk',
         brands: [
             { name: 'EGO', logo: 'assets/images/brands/large/ego-logo.png', url: 'https://egopowerplus.be/' }
