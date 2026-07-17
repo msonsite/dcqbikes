@@ -31,8 +31,22 @@ const FEATURED_BIKES = [
     {
         image: 'assets/images/uitgelicht/conwaycaironcfs.avif',
         brand: 'Conway',
-        model: 'Cairon C FS 2.0 800 SUV',
+        model: 'Cairon C FS 2.0',
         price: 4199,
         description: 'Volledig geveerde e-SUV. Bosch Performance Line PX, 800 Wh PowerTube, Shimano Cues 9-speed en Purion 200 display.'
+    },
+    {
+        image: 'assets/images/uitgelicht/nortacitytourbgreen.png',
+        brand: 'Norta',
+        model: 'City&Tour B-4050 MY26',
+        price: 4999,
+        description: 'Comfortabele city- en toer-e-bike. Bosch Performance Line PX (90 Nm), PowerTube 600 Wh, Enviolo Automatiq, Gates riem en Purion 200 display.'
+    },
+    {
+        image: 'assets/images/uitgelicht/victoriafybron8diamant.avif',
+        brand: 'Victoria',
+        model: 'Fybron 8 Diamant',
+        price: 7999,
+        description: 'Lichte carbon allroad. Bosch Performance Line CX, PowerTube 750 Wh, SRAM Eagle AXS 12-speed, FOX AWL-vork en Magura MT7 remmen.'
     }
 ];
