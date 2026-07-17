@@ -76,8 +76,16 @@ document.querySelectorAll('#mobileMenu a').forEach(link => {
     });
 });
 
-// Anker-navigatie: altijd directe scroll (geen smooth) — stabiel op mobiel en desktop
-// Event delegation zodat ook dynamisch toegevoegde links (bv. uitgelichte fietsen) meedoen
+// Sticky header offset (nav) — gebruikt voor anker-scroll + CSS scroll-margin
+function updateStickyOffset() {
+    const mainNav = document.getElementById('mainNav');
+    const navH = mainNav ? Math.ceil(mainNav.getBoundingClientRect().height) : 0;
+    // Exact nav-hoogte: extra padding laat hero zichtbaar tussen nav en sectie
+    document.documentElement.style.setProperty('--sticky-offset', `${navH}px`);
+}
+
+// Anker-navigatie: standaard directe scroll (stabiel op mobiel).
+// Opt-in smooth via data-smooth-scroll (bv. hero-CTA).
 document.addEventListener('click', function (e) {
     const anchor = e.target.closest('a[href^="#"]');
     if (!anchor) return;
@@ -87,11 +95,12 @@ document.addEventListener('click', function (e) {
 
     e.preventDefault();
 
+    const behavior = anchor.hasAttribute('data-smooth-scroll') ? 'smooth' : 'auto';
+
     if (href === '#home') {
-        /* Bovenaan document = openingsuren-balk (#headerRibbon) + nav + hero zichtbaar */
         window.scrollTo({
             top: 0,
-            behavior: 'auto'
+            behavior: behavior
         });
         return;
     }
@@ -99,23 +108,12 @@ document.addEventListener('click', function (e) {
     const target = document.querySelector(href);
     if (!target) return;
 
-    const mainNav = document.getElementById('mainNav');
-    const navHeight = mainNav ? mainNav.offsetHeight : 0;
-    const rect = target.getBoundingClientRect();
-    const y = rect.top + (window.scrollY || document.documentElement.scrollTop);
+    updateStickyOffset();
 
-    let scrollOffset = navHeight;
-    const scrollMtClass = Array.from(target.classList).find(cls => cls.startsWith('scroll-mt-'));
-    if (scrollMtClass) {
-        const mtValue = parseInt(scrollMtClass.replace('scroll-mt-', ''), 10);
-        if (!isNaN(mtValue)) {
-            scrollOffset = navHeight + (mtValue * 4);
-        }
-    }
-
-    window.scrollTo({
-        top: Math.max(0, y - scrollOffset),
-        behavior: 'auto'
+    // scrollIntoView respecteert scroll-margin-top → landt strak onder de sticky nav
+    target.scrollIntoView({
+        behavior: behavior,
+        block: 'start'
     });
 });
 
@@ -1028,6 +1026,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
         const target = Math.max(420, viewportH - ribbonH - navH);
         document.documentElement.style.setProperty('--hero-h', `${target}px`);
+        updateStickyOffset();
         lastHeroInnerW = window.innerWidth;
         lastHeroInnerH = window.innerHeight;
     }
@@ -1094,12 +1093,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (isMobile()) {
                 const contactSection = document.getElementById('contact');
                 if (contactSection) {
-                    const navHeight = document.getElementById('mainNav')?.offsetHeight || 0;
-                    const rect = contactSection.getBoundingClientRect();
-                    const y = rect.top + (window.scrollY || document.documentElement.scrollTop);
-                    window.scrollTo({
-                        top: Math.max(0, y - navHeight),
-                        behavior: 'auto'
+                    updateStickyOffset();
+                    contactSection.scrollIntoView({
+                        behavior: 'auto',
+                        block: 'start'
                     });
                 }
             }

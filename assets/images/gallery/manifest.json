@@ -1,15 +1,14 @@
 {
   "images": [
     "IMG_7763.jpg",
+    "IMG_7790.jpg",
     "IMG_7844.jpg",
-    "IMG_7891.jpg",
-    "IMG_7908.jpg",
     "IMG_7916.jpg",
+    "IMG_7929.jpg",
     "IMG_7945.jpg",
     "IMG_7950.jpg",
     "IMG_7994.jpg",
-    "IMG_8025.jpg",
-    "IMG_8073.jpg"
+    "IMG_8025.jpg"
   ],
-  "note": "Alle IMG_* in deze map gebruiken de extensie .jpg (kleine letters). Linux/GitHub Pages is hoofdlettergevoelig. Sfeer #sfeer: vaste HTML. IMG_7945 niet in sfeer-raster (grote foto Over)."
+  "note": "Alle IMG_* in deze map gebruiken de extensie .jpg (kleine letters). Linux/GitHub Pages is hoofdlettergevoelig. Sfeer #sfeer: vaste HTML. IMG_7945 niet in sfeer-raster (grote foto Over). Aanbod-foto's staan in assets/images/onsaanbod/."
 }
