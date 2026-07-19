@@ -1,6 +1,5 @@
 /**
  * Ons aanbod — lookbook, licht, afwisselend links/rechts
- * Mobiel: sticky stack; merkenlogo’s staan onder de titel voor leesbaarheid
  */
 (function () {
     const HUB_ID = 'offerHub';
