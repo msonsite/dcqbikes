@@ -1985,15 +1985,76 @@
             color: #9ca3af;
         }
 
-        a[href^="tel:"]:hover {
-            background: rgba(255, 255, 255, 0.85) !important;
-            border-color: rgba(238, 39, 38, 0.2) !important;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
-            color: #ee2726 !important;
+        a[href^="tel:"].contact-phone-link {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            width: fit-content;
+            max-width: 100%;
+            color: #111827;
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.4;
+            text-decoration: none;
+            transition: color 160ms ease;
         }
 
-        a[href^="tel:"]:active {
-            transform: scale(0.98) !important;
+        a[href^="tel:"].contact-phone-link:hover {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            color: #ee2726 !important;
+            transform: none !important;
+        }
+
+        a[href^="tel:"].contact-phone-link:active {
+            transform: none !important;
+        }
+
+        a[href^="tel:"].contact-phone-link i {
+            color: #9ca3af;
+            font-size: 0.85rem;
+            width: 1rem;
+            text-align: center;
+        }
+
+        a[href^="tel:"].contact-phone-link:hover i {
+            color: #ee2726;
+        }
+
+        .contact-whatsapp {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.25rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            line-height: 1.2;
+            color: #fff;
+            background: #25d366;
+            text-decoration: none;
+            box-shadow: none;
+            border: none;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            transition: background 160ms ease, transform 120ms ease;
+            width: fit-content;
+        }
+
+        .contact-whatsapp:hover {
+            background: #1ebe57 !important;
+            color: #fff !important;
+            box-shadow: none !important;
+        }
+
+        .contact-whatsapp:active {
+            transform: scale(0.97) !important;
+        }
+
+        .contact-whatsapp i {
+            font-size: 0.95rem;
         }
 
         #contactSubmit:hover {
@@ -2007,13 +2068,24 @@
 
         #contactForm input:focus,
         #contactForm textarea:focus {
+            outline: none !important;
             background: rgba(255, 255, 255, 0.95) !important;
-            box-shadow: 0 4px 12px rgba(238, 39, 38, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
-            border-color: rgba(238, 39, 38, 0.3) !important;
+            border-color: #ee2726 !important;
+            box-shadow:
+                0 0 0 3px rgba(238, 39, 38, 0.22),
+                0 4px 12px rgba(238, 39, 38, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+        }
+
+        #contactForm input:focus-visible,
+        #contactForm textarea:focus-visible {
+            outline: none !important;
+            border-color: #ee2726 !important;
         }
 
         @media (hover: none) and (pointer: coarse) {
             a[href^="tel:"]:hover,
+            .contact-whatsapp:hover,
             #contactSubmit:hover,
             .award-box:hover,
             .media-box:hover,
@@ -2022,6 +2094,7 @@
             }
 
             a[href^="tel:"]:active,
+            .contact-whatsapp:active,
             #contactSubmit:active {
                 transform: scale(0.97) !important;
             }
@@ -3515,14 +3588,20 @@
                                 <div class="w-10 h-10 rounded-full bg-dcq-red/10 text-dcq-red flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-phone"></i>
                                 </div>
-                                <div class="min-w-0 w-full">
+                                <div class="min-w-0">
                                     <p class="text-sm text-gray-500">Telefoon</p>
-                                    <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                        <a href="tel:+3250814220" class="inline-flex w-full items-center justify-center gap-2 px-3 py-2 rounded-xl text-base font-medium transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); color: #1f2937; touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
-                                            <i class="fas fa-phone"></i> 050 81 42 20
+                                    <div class="mt-1.5 flex flex-col items-start gap-1.5">
+                                        <a href="tel:+3250814220" class="contact-phone-link">
+                                            <i class="fas fa-phone" aria-hidden="true"></i>
+                                            050 81 42 20
                                         </a>
-                                        <a href="tel:+32475822376" class="inline-flex w-full items-center justify-center gap-2 px-3 py-2 rounded-xl text-base font-medium transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); color: #1f2937; touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
-                                            <i class="fas fa-mobile-screen"></i> 0475 82 23 76
+                                        <a href="tel:+32475822376" class="contact-phone-link">
+                                            <i class="fas fa-mobile-screen" aria-hidden="true"></i>
+                                            0475 82 23 76
+                                        </a>
+                                        <a href="https://wa.me/32475822376" target="_blank" rel="noopener noreferrer" class="contact-whatsapp" aria-label="WhatsApp naar 0475 82 23 76">
+                                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                            WhatsApp
                                         </a>
                                     </div>
                                 </div>
