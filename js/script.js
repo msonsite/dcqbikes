@@ -1333,8 +1333,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Easter egg Kurt: klik of Enter/Spatie op Kurts naam in "Over DCQ Bikes"
 (function() {
+    const KURT_EGG_AUDIO_SRC = 'assets/audio/easteregg-kurt.mp3';
+    let kurtEggAudio = null;
+
+    function stopKurtEggAudio() {
+        if (!kurtEggAudio) return;
+        kurtEggAudio.pause();
+        kurtEggAudio.currentTime = 0;
+        kurtEggAudio = null;
+    }
+
+    function playKurtEggAudio() {
+        stopKurtEggAudio();
+        const audio = new Audio(KURT_EGG_AUDIO_SRC);
+        audio.preload = 'auto';
+        kurtEggAudio = audio;
+        const playPromise = audio.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(function() {
+                // Autoplay kan geblokkeerd zijn; geluid is optioneel.
+            });
+        }
+    }
+
     function closeKurtEgg(overlay, onKey) {
         if (!overlay || !overlay.parentNode) return;
+        stopKurtEggAudio();
         if (onKey) document.removeEventListener('keydown', onKey);
         document.body.style.overflow = '';
         overlay.parentNode.removeChild(overlay);
@@ -1364,6 +1388,7 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.appendChild(img);
         document.body.appendChild(overlay);
         document.body.style.overflow = 'hidden';
+        playKurtEggAudio();
 
         function onKey(e) {
             if (e.key === 'Escape') {
