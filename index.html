@@ -1919,13 +1919,54 @@
             scroll-margin-top: var(--sticky-offset, 5.5rem);
         }
 
+        .contact-storefront {
+            display: none;
+        }
+
         @media (min-width: 1024px) {
+            #contact .contact-layout {
+                align-items: stretch;
+            }
+
+            #contact .contact-aside {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                min-height: 100%;
+            }
+
+            .contact-storefront {
+                display: block;
+                flex: 0 0 auto;
+                margin: 0;
+                overflow: hidden;
+                border-radius: 1rem;
+                background: #e5e7eb;
+                border: 1px solid rgba(0, 0, 0, 0.08);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+                aspect-ratio: 2880 / 1610;
+            }
+
+            .contact-storefront a {
+                display: block;
+                height: 100%;
+            }
+
+            .contact-storefront img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+
             #contact .contact-form-container {
-                min-height: 400px;
+                flex: 1 1 auto;
+                min-height: 0;
             }
 
             #contact .contact-form-container textarea {
-                min-height: 140px;
+                min-height: 5.5rem;
             }
         }
 
@@ -1960,6 +2001,7 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             font-size: 0.875rem;
             line-height: 1.4;
+            align-items: start;
         }
 
         @media (min-width: 480px) {
@@ -1978,6 +2020,13 @@
             margin: 0;
             color: #111827;
             text-align: right;
+        }
+
+        .contact-hours__times {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.15rem;
         }
 
         .contact-hours__row--closed dt,
@@ -3561,13 +3610,13 @@
                     Kom binnen. Wij helpen je verder.
                 </p>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            <div class="contact-layout grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                 <!-- Contact Info -->
-                <div class="space-y-4 md:space-y-6">
+                <div class="contact-info">
                     <div class="contact-box p-6 rounded-2xl h-full flex flex-col" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); will-change: transform; transform: translateZ(0);">
                         <h3 class="text-xl md:text-2xl font-bold tracking-tight mb-5">Contactgegevens</h3>
 
-                        <div class="divide-y divide-gray-100">
+                        <div class="contact-info__body divide-y divide-gray-100">
                             <div class="py-4 flex items-start gap-4">
                                 <div class="w-10 h-10 rounded-full bg-dcq-red/10 text-dcq-red flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-map-marker-alt"></i>
@@ -3631,23 +3680,48 @@
                                             </div>
                                             <div class="contact-hours__row">
                                                 <dt>Dinsdag</dt>
-                                                <dd>09:00–12:00 / 13:30–18:00</dd>
+                                                <dd>
+                                                    <span class="contact-hours__times">
+                                                        <span>09:00–12:00</span>
+                                                        <span>13:30–18:00</span>
+                                                    </span>
+                                                </dd>
                                             </div>
                                             <div class="contact-hours__row">
                                                 <dt>Woensdag</dt>
-                                                <dd>09:00–12:00 / 13:30–18:00</dd>
+                                                <dd>
+                                                    <span class="contact-hours__times">
+                                                        <span>09:00–12:00</span>
+                                                        <span>13:30–18:00</span>
+                                                    </span>
+                                                </dd>
                                             </div>
                                             <div class="contact-hours__row">
                                                 <dt>Donderdag</dt>
-                                                <dd>09:00–12:00 / 13:30–18:00</dd>
+                                                <dd>
+                                                    <span class="contact-hours__times">
+                                                        <span>09:00–12:00</span>
+                                                        <span>13:30–18:00</span>
+                                                    </span>
+                                                </dd>
                                             </div>
                                             <div class="contact-hours__row">
                                                 <dt>Vrijdag</dt>
-                                                <dd>09:00–12:00 / 13:30–18:00</dd>
+                                                <dd>
+                                                    <span class="contact-hours__times">
+                                                        <span>09:00–12:00</span>
+                                                        <span>13:30–18:00</span>
+                                                    </span>
+                                                </dd>
                                             </div>
                                             <div class="contact-hours__row">
                                                 <dt>Zaterdag</dt>
-                                                <dd>09:00–12:00 / 13:30–17:00</dd>
+                                                <dd>
+                                                    <span class="contact-hours__times">
+                                                        <span>09:00–12:00</span>
+                                                        <span>13:30–17:00</span>
+                                                    </span>
+                                                </dd>
                                             </div>
                                             <div class="contact-hours__row contact-hours__row--closed">
                                                 <dt>Zondag</dt>
@@ -3661,8 +3735,19 @@
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div>
+                <!-- Storefront + Contact Form -->
+                <div class="contact-aside">
+                    <figure class="contact-storefront">
+                        <a href="https://maps.app.goo.gl/YdC69e1bK61BGsGW7" target="_blank" rel="noopener noreferrer" aria-label="DCQ Bikes op Google Maps — Gistelsteenweg 282, Jabbeke">
+                            <img
+                                src="assets/images/onsaanbod/picture5.webp"
+                                alt="Voorgevel van DCQ Bikes in Jabbeke"
+                                width="2880"
+                                height="1610"
+                                loading="lazy"
+                                decoding="async">
+                        </a>
+                    </figure>
                     <div class="contact-box p-6 rounded-2xl contact-form-container h-full flex flex-col" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); will-change: transform; transform: translateZ(0);">
                         <h3 class="text-xl md:text-2xl font-bold tracking-tight mb-5">Heb je een vraag?</h3>
                         <p class="text-gray-600 mb-6">Stel hier je vraag en we nemen zo snel mogelijk contact met je op.</p>
@@ -3678,7 +3763,7 @@
                                 </div>
                                 <div>
                                     <label for="message" class="block text-sm font-medium mb-2">Bericht *</label>
-                                    <textarea id="message" name="message" rows="7" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);"></textarea>
+                                    <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);"></textarea>
                                 </div>
                             </div>
                             <input type="hidden" name="_subject" value="Nieuw bericht via DCQ Bikes website">
