@@ -533,7 +533,81 @@
             }
         }
         
-        /* Ons aanbod — lookbook licht, afwisselend L/R */
+        #about {
+            scroll-margin-top: var(--sticky-offset, 5.5rem);
+            background: #0a0a0a;
+        }
+
+        .statement-rotate {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: flex-start;
+            gap: 0.25rem 0.45rem;
+            margin: 1.75rem 0 0;
+            font-family: var(--font-heading);
+            font-size: clamp(1.35rem, 3.4vw, 2.25rem);
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            line-height: 1;
+            color: rgba(255, 254, 252, 0.92);
+        }
+
+        .statement-rotate__fixed {
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .statement-rotate__slot {
+            position: relative;
+            display: block;
+            flex: 0 0 auto;
+            height: 1em;
+            overflow: hidden;
+            text-align: left;
+            color: #ee2726;
+        }
+
+        .statement-rotate__item {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: auto;
+            margin: 0;
+            white-space: nowrap;
+            line-height: 1;
+            font-weight: 700;
+            color: #ee2726;
+            opacity: 0;
+            transform: translate3d(0, 0.55em, 0);
+            transition:
+                opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
+                transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+
+        .statement-rotate__item.is-active {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .statement-rotate__item.is-exit {
+            opacity: 0;
+            transform: translate3d(0, -0.55em, 0);
+        }
+
+        @media (min-width: 768px) {
+            .statement-rotate {
+                gap: 0.3rem 0.55rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .statement-rotate__item {
+                transition: none;
+            }
+        }
+
         .offer-section {
             background: #f9fafb;
             overflow: visible;
@@ -1328,7 +1402,7 @@
             }
         }
 
-        /* Desktop: gecentreerde rijen (ongewijzigd t.o.v. voorheen) */
+        /* Desktop: gecentreerde rijen */
         @media (min-width: 1024px) {
             #brands-large,
             #brands-medium,
@@ -1353,8 +1427,7 @@
             }
         }
         
-        /* Click hint styling */
-        /* Subtle pulse animation for first few logos to draw attention (desktop only) */
+        /* Logo pulse (desktop) */
         @media (min-width: 769px) {
             .brand-item:nth-child(1),
             .brand-item:nth-child(2),
@@ -1388,7 +1461,6 @@
             position: relative;
         }
         
-        /* Add a subtle "click me" indicator on hover */
         .brand-item::after {
             display: none;
         }
@@ -1397,7 +1469,6 @@
             display: none;
         }
         
-        /* Disable ::before for marquee items */
         .brand-marquee .brand-item::before {
             display: none;
         }
@@ -1418,7 +1489,6 @@
             border: 2px solid rgba(0, 0, 0, 0.1);
             }
         
-        /* Override for marquee items - no red effects */
         .brand-marquee .brand-item:hover {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
             transform: scale(1.05);
@@ -1459,7 +1529,6 @@
             max-height: 55px;
         }
 
-        /* Revsite-style partner logo lines (desktop) */
         .glz_partner_group_block_img_wrapper{
             justify-content: center;
             display: flex;
@@ -3363,7 +3432,7 @@
         </div>
     </section>
 
-    <!-- Ons aanbod — editorial lookbook -->
+    <!-- Ons aanbod -->
     <section id="services" class="offer-section" aria-labelledby="services-heading">
         <div class="offer-section__intro container mx-auto max-w-7xl px-4 md:px-6">
             <p class="text-sm font-semibold uppercase tracking-widest text-dcq-red mb-2">Ons aanbod</p>
@@ -3399,7 +3468,7 @@
                 </button>
             </div>
 
-            <!-- Sfeerfoto's 2×3 (md: 3 kolommen); .sfeer-photo-cell = visueel gelijk aan vroeger -->
+            <!-- Sfeerfoto's -->
             <div class="w-full max-w-6xl mx-auto mt-10 md:mt-12 lg:mt-14">
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-6 md:gap-x-4 md:gap-y-8">
                     <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7916.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
@@ -3413,7 +3482,7 @@
         </div>
     </section>
 
-    <!-- Brands / Partners Section (revsite-style) -->
+    <!-- Merken -->
     <section id="brands" class="pt-16 md:pt-20 pb-10 md:pb-12" style="background: #ffffff;">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="text-center mb-12 md:mb-16">
@@ -3435,7 +3504,7 @@
                 </div>
             </div>
 
-            <!-- Desktop: revsite-style 3 logo lines -->
+            <!-- Desktop: 3 logo-rijen -->
             <div class="hidden md:block">
                 <div class="Logo-line-1">
                     <div class="glz_partner_group_block line-one-(1)">
@@ -3497,22 +3566,20 @@
         </div>
     </div>
 
-    <!-- About Section -->
-    <section id="about" class="py-12 md:py-16 relative overflow-hidden" style="background: #0a0a0a; scroll-margin-top: var(--sticky-offset, 5.5rem);">
+    <!-- Over ons -->
+    <section id="about" class="pt-12 pb-12 md:pt-16 md:pb-16 relative overflow-hidden" aria-labelledby="about-heading">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="mb-10 md:mb-14">
-                <div class="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-[auto_auto_auto_1fr] gap-y-4 gap-x-0 lg:gap-x-12 lg:gap-y-3 lg:items-stretch">
-                    <p class="text-sm font-semibold uppercase tracking-widest text-dcq-red lg:col-span-7 lg:col-start-1 lg:row-start-1 min-w-0">Over DCQ Bikes</p>
+                <div class="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-[auto_auto_1fr] gap-y-4 gap-x-0 lg:gap-x-12 lg:gap-y-3 lg:items-stretch">
+                    <h2 id="about-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 lg:mb-0 lg:col-span-7 lg:col-start-1 lg:row-start-1 min-w-0 font-heading" style="color: #fffefc;">Over DCQ Bikes</h2>
 
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 lg:mb-0 lg:col-span-7 lg:col-start-1 lg:row-start-2 min-w-0" style="color: #fffefc;">Fietsen, service en vakmanschap, lokaal in Jabbeke</h2>
-
-                    <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:row-span-4 flex flex-col min-h-0 lg:h-full">
+                    <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:row-span-3 flex flex-col min-h-0 lg:h-full">
                         <div class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl min-h-0 h-[168px] max-h-[32vh] sm:h-[200px] sm:max-h-none md:h-[240px] lg:min-h-0 lg:flex-1 lg:h-full lg:max-h-none">
                             <img src="assets/images/gallery/IMG_7945.jpg" alt="DCQ Bikes winkel" class="absolute inset-0 w-full h-full object-cover object-center">
                         </div>
                     </div>
 
-                    <div class="lg:col-span-7 lg:col-start-1 lg:row-start-3 lg:row-span-2 min-w-0">
+                    <div class="lg:col-span-7 lg:col-start-1 lg:row-start-2 lg:row-span-2 min-w-0">
                         <p class="text-lg md:text-xl font-semibold mb-2 lg:mb-5 text-dcq-white">Van eerste stappen als leergast tot een eigen winkel</p>
                         <div class="space-y-5 text-base md:text-lg leading-relaxed max-lg:space-y-4" style="color: rgba(255, 254, 252, 0.88);">
                             <p>
@@ -3524,16 +3591,23 @@
                             <p>
                                 Inmiddels kijkt Kurt met trots terug op dat traject. Minstens zo belangrijk blijft vooruitkijken: inspelen op wat de sector vraagt, met e-bikes en innovatie als vaste pijlers in de toekomst van de winkel.
                             </p>
-                            <p class="text-base md:text-lg border-l-2 border-dcq-red/60 pl-4" style="color: rgba(255, 254, 252, 0.82);">
-                                Dankbaar voor iedereen die deel uitmaakt van dit verhaal: klanten, partners en het team. Op naar de volgende kilometers.
-                            </p>
                         </div>
+                        <p class="statement-rotate" aria-live="polite">
+                            <span class="statement-rotate__fixed">Wij staan voor</span>
+                            <span class="statement-rotate__slot">
+                                <span class="statement-rotate__item is-active">vakmanschap.</span>
+                                <span class="statement-rotate__item">service.</span>
+                                <span class="statement-rotate__item">advies.</span>
+                                <span class="statement-rotate__item">kwaliteit.</span>
+                                <span class="statement-rotate__item">passie.</span>
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>
-            
+
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Award: flow layout zodat inhoud niet wordt afgesneden; op mobiel onderaan (order) -->
+                <!-- Erkenning -->
                 <div class="min-h-0 order-2 lg:order-none">
                     <div class="media-box h-full flex flex-col min-h-0">
                         <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="about-dark-tile-link relative flex flex-col flex-1 gap-3 p-4 md:gap-6 md:p-8 about-dark-tile group rounded-xl min-h-0 md:min-h-[240px]">
@@ -3563,7 +3637,7 @@
                     </div>
                 </div>
 
-                <!-- Team: op desktop 2 kolommen breed -->
+                <!-- Team -->
                 <div class="min-h-0 order-1 lg:order-none lg:col-span-2">
                     <div class="media-box h-full flex flex-col min-h-0">
                         <div class="about-dark-tile about-team-tile flex flex-col flex-1 rounded-xl h-full">
@@ -4048,7 +4122,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="text-dcq-white py-6 md:py-10" style="background: #0a0a0a; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    <footer class="site-footer text-dcq-white py-6 md:py-10" style="background: #0a0a0a; border-top: 1px solid rgba(255, 255, 255, 0.1);">
         <div class="container mx-auto max-w-7xl px-4 md:px-6">
             <div class="mb-6 md:mb-8">
                 <div class="text-center md:text-center">

@@ -1,5 +1,5 @@
 /**
- * Ons aanbod — lookbook, licht, afwisselend links/rechts
+ * Ons aanbod
  */
 (function () {
     const HUB_ID = 'offerHub';
