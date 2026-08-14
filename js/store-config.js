@@ -17,7 +17,7 @@ const HOLIDAY_DATES = [
         message: 'Opleiding'
     },
     {
-        date: [2026, 7, 22],
+        date: [2026, 7, 14],
         message: 'Gesloten wegens event'
     },
 ];

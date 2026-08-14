@@ -857,13 +857,22 @@ function getRegularHoursLabel(dayOfWeek) {
     return '';
 }
 
+// Desktop pill label for special closed days (avoid "Gesloten (Gesloten …)")
+function getDetailedClosedLabel(message) {
+    if (!message) return 'Gesloten (Uitzonderlijk)';
+    const trimmed = String(message).trim();
+    if (/^gesloten\b/i.test(trimmed)) return trimmed;
+    return `Gesloten (${trimmed})`;
+}
+
 function updateStoreStatus() {
     const statusNodes = document.querySelectorAll('.store-status');
     if (!statusNodes.length) return;
 
     const now = new Date();
     let statusClass = 'closed';
-    let statusMessage = 'Gesloten';
+    let statusShort = 'Gesloten';
+    let statusDetailed = 'Gesloten';
     let hoursMessage = '';
 
     // Check if currently on vacation
@@ -872,23 +881,24 @@ function updateStoreStatus() {
         const startDateStr = formatDate(vacationCheck.startDate);
         const endDateStr = formatDate(vacationCheck.endDate);
         statusClass = 'closed';
-        statusMessage = `In Verlof (${startDateStr} - ${endDateStr})`;
+        statusShort = `In Verlof (${startDateStr} - ${endDateStr})`;
+        statusDetailed = statusShort;
         hoursMessage = '';
     } else {
         // Check if today is in HOLIDAY_DATES from store-config.js (always override)
         const holidayEntry = getHolidayDateEntry(now);
         if (holidayEntry) {
             statusClass = 'closed';
-            statusMessage = holidayEntry.message
-                ? `Gesloten (${holidayEntry.message})`
-                : 'Gesloten (Uitzonderlijk)';
+            statusShort = 'Gesloten';
+            statusDetailed = getDetailedClosedLabel(holidayEntry.message);
             hoursMessage = holidayEntry.message
-                ? `Vandaag: ${holidayEntry.message}`
+                ? `Vandaag: ${String(holidayEntry.message).trim()}`
                 : 'Vandaag: uitzonderlijk gesloten';
         } else if (isHoliday(now)) {
             // Check if today is a holiday from CSV file
             statusClass = 'closed';
-            statusMessage = 'Gesloten (Feestdag)';
+            statusShort = 'Gesloten';
+            statusDetailed = 'Gesloten (Feestdag)';
             hoursMessage = 'Vandaag: feestdag';
         } else {
             // Opening hours:
@@ -904,7 +914,8 @@ function updateStoreStatus() {
 
             if (currentDay === 0 || currentDay === 1) {
                 statusClass = 'closed';
-                statusMessage = 'Gesloten';
+                statusShort = 'Gesloten';
+                statusDetailed = 'Gesloten';
             } else if (currentDay >= 2 && currentDay <= 5) {
                 const morningStart = 9 * 60;
                 const morningEnd = 12 * 60;
@@ -919,15 +930,16 @@ function updateStoreStatus() {
 
                     if (timeUntilClose <= 30) {
                         statusClass = 'warning';
-                        statusMessage = 'Sluit binnenkort';
+                        statusShort = 'Sluit binnenkort';
                     } else {
                         statusClass = 'open';
-                        statusMessage = 'Open';
+                        statusShort = 'Open';
                     }
                 } else {
                     statusClass = 'closed';
-                    statusMessage = 'Gesloten';
+                    statusShort = 'Gesloten';
                 }
+                statusDetailed = statusShort;
             } else if (currentDay === 6) {
                 const morningStart = 9 * 60;
                 const morningEnd = 12 * 60;
@@ -942,15 +954,16 @@ function updateStoreStatus() {
 
                     if (timeUntilClose <= 30) {
                         statusClass = 'warning';
-                        statusMessage = 'Sluit binnenkort';
+                        statusShort = 'Sluit binnenkort';
                     } else {
                         statusClass = 'open';
-                        statusMessage = 'Open';
+                        statusShort = 'Open';
                     }
                 } else {
                     statusClass = 'closed';
-                    statusMessage = 'Gesloten';
+                    statusShort = 'Gesloten';
                 }
+                statusDetailed = statusShort;
             }
         }
     }
@@ -959,10 +972,14 @@ function updateStoreStatus() {
         storeStatus.classList.remove('open', 'warning', 'closed', 'vacation');
         storeStatus.classList.add(statusClass);
         const statusText = storeStatus.querySelector('.store-status-text');
-        if (statusText) statusText.textContent = statusMessage;
+        if (!statusText) return;
+        // Mobiele ribbon: korte status (reden staat in de uren-regel)
+        // Desktop nav: gedetailleerde status (geen aparte uren-regel)
+        const useShort = storeStatus.classList.contains('store-status--ribbon');
+        statusText.textContent = useShort ? statusShort : statusDetailed;
     });
 
-    // Mobiele ribbon: openingsuren van vandaag (naast de status-pill)
+    // Mobiele ribbon: openingsuren / reden van vandaag (naast de status-pill)
     const ribbonHours = document.getElementById('ribbonHours');
     if (ribbonHours) {
         const hoursText = ribbonHours.querySelector('.ribbon-hours__text');
