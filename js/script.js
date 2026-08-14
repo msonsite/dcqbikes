@@ -52,27 +52,32 @@
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
+function setMobileMenuOpen(isOpen) {
+    if (!mobileMenuBtn || !mobileMenu) return;
+    mobileMenu.classList.toggle('hidden', !isOpen);
+    mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Menu sluiten' : 'Menu openen');
+    const icon = mobileMenuBtn.querySelector('i');
+    if (!icon) return;
+    if (isOpen) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+}
+
 if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        const icon = mobileMenuBtn.querySelector('i');
-        if (mobileMenu.classList.contains('hidden')) {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        } else {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        }
+        setMobileMenuOpen(mobileMenu.classList.contains('hidden'));
     });
 }
 
-// Close mobile menu when clicking a link
+// Close mobile menu when clicking a link (incl. status pill)
 document.querySelectorAll('#mobileMenu a').forEach(link => {
     link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        const icon = mobileMenuBtn.querySelector('i');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+        setMobileMenuOpen(false);
     });
 });
 
@@ -700,9 +705,9 @@ if (mainNav) {
             navScrollRaf = null;
             const y = window.scrollY || document.documentElement.scrollTop;
             if (y > 100) {
-                mainNav.classList.add('shadow-lg');
+                mainNav.classList.add('is-scrolled');
             } else {
-                mainNav.classList.remove('shadow-lg');
+                mainNav.classList.remove('is-scrolled');
             }
         });
     }, { passive: true });
@@ -843,130 +848,132 @@ function formatDate(date) {
     return `${day}/${month}/${year}`;
 }
 
+// Opening hours for a given weekday (0 = Sunday … 6 = Saturday)
+function getRegularHoursLabel(dayOfWeek) {
+    if (dayOfWeek === 0) return 'Zondag: gesloten';
+    if (dayOfWeek === 1) return 'Maandag: gesloten';
+    if (dayOfWeek >= 2 && dayOfWeek <= 5) return 'Vandaag: 09:00-12:00, 13:30-18:00';
+    if (dayOfWeek === 6) return 'Vandaag: 09:00-12:00, 13:30-17:00';
+    return '';
+}
+
 function updateStoreStatus() {
-    const storeStatus = document.getElementById('storeStatus');
-    const statusText = storeStatus.querySelector('.store-status-text');
-    if (!storeStatus || !statusText) return;
-    
+    const statusNodes = document.querySelectorAll('.store-status');
+    if (!statusNodes.length) return;
+
     const now = new Date();
-    
+    let statusClass = 'closed';
+    let statusMessage = 'Gesloten';
+    let hoursMessage = '';
+
     // Check if currently on vacation
     const vacationCheck = isOnVacation(now);
     if (vacationCheck.isOnVacation) {
-        // Remove all status classes and add vacation styling
-        storeStatus.classList.remove('open', 'warning', 'closed');
-        storeStatus.classList.add('closed'); // Use closed styling for vacation
         const startDateStr = formatDate(vacationCheck.startDate);
         const endDateStr = formatDate(vacationCheck.endDate);
-        statusText.textContent = `In Verlof (${startDateStr} - ${endDateStr})`;
-        return;
-    }
-    
-    // Check if today is in HOLIDAY_DATES from store-config.js (always override)
-    const holidayEntry = getHolidayDateEntry(now);
-    if (holidayEntry) {
-        storeStatus.classList.remove('open', 'warning', 'closed');
-        storeStatus.classList.add('closed');
-        statusText.textContent = holidayEntry.message
-            ? `Gesloten (${holidayEntry.message})`
-            : 'Gesloten (Uitzonderlijk)';
-        return;
-    }
-    
-    // Check if today is a holiday from CSV file (show "Gesloten (Feestdag)")
-    if (isHoliday(now)) {
-        storeStatus.classList.remove('open', 'warning', 'closed');
-        storeStatus.classList.add('closed');
-        statusText.textContent = 'Gesloten (Feestdag)';
-        return;
-    }
-    
-    // Continue with normal opening hours logic
-    const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
-    const currentTime = currentHour * 60 + currentMinute; // Time in minutes
-    
-    // Remove all status classes
-    storeStatus.classList.remove('open', 'warning', 'closed', 'vacation');
-    
-    // Opening hours:
-    // Monday (1): Closed
-    // Tuesday-Friday (2-5): 09:00-12:00, 13:30-18:00
-    // Saturday (6): 09:00-12:00, 13:30-17:00
-    // Sunday (0): Closed
-    
-    let isOpen = false;
-    let isClosingSoon = false;
-    let statusMessage = '';
-    
-    if (currentDay === 0 || currentDay === 1) {
-        // Sunday or Monday - Closed
-        storeStatus.classList.add('closed');
-        statusMessage = currentDay === 0 ? 'Gesloten' : 'Gesloten';
-    } else if (currentDay >= 2 && currentDay <= 5) {
-        // Tuesday to Friday
-        const morningStart = 9 * 60; // 09:00
-        const morningEnd = 12 * 60; // 12:00
-        const afternoonStart = 13 * 60 + 30; // 13:30
-        const afternoonEnd = 18 * 60; // 18:00
-        
-        if ((currentTime >= morningStart && currentTime < morningEnd) || 
-            (currentTime >= afternoonStart && currentTime < afternoonEnd)) {
-            isOpen = true;
-            // Check if closing within 30 minutes
-            const timeUntilClose = (currentTime >= morningStart && currentTime < morningEnd) 
-                ? morningEnd - currentTime 
-                : afternoonEnd - currentTime;
-            
-            if (timeUntilClose <= 30) {
-                isClosingSoon = true;
-            }
-            
-            if (isClosingSoon) {
-                storeStatus.classList.add('warning');
-                statusMessage = 'Sluit binnenkort';
-            } else {
-                storeStatus.classList.add('open');
-                statusMessage = 'Open';
-            }
+        statusClass = 'closed';
+        statusMessage = `In Verlof (${startDateStr} - ${endDateStr})`;
+        hoursMessage = '';
+    } else {
+        // Check if today is in HOLIDAY_DATES from store-config.js (always override)
+        const holidayEntry = getHolidayDateEntry(now);
+        if (holidayEntry) {
+            statusClass = 'closed';
+            statusMessage = holidayEntry.message
+                ? `Gesloten (${holidayEntry.message})`
+                : 'Gesloten (Uitzonderlijk)';
+            hoursMessage = holidayEntry.message
+                ? `Vandaag: ${holidayEntry.message}`
+                : 'Vandaag: uitzonderlijk gesloten';
+        } else if (isHoliday(now)) {
+            // Check if today is a holiday from CSV file
+            statusClass = 'closed';
+            statusMessage = 'Gesloten (Feestdag)';
+            hoursMessage = 'Vandaag: feestdag';
         } else {
-            storeStatus.classList.add('closed');
-            statusMessage = 'Gesloten';
-        }
-    } else if (currentDay === 6) {
-        // Saturday
-        const morningStart = 9 * 60; // 09:00
-        const morningEnd = 12 * 60; // 12:00
-        const afternoonStart = 13 * 60 + 30; // 13:30
-        const afternoonEnd = 17 * 60; // 17:00
-        
-        if ((currentTime >= morningStart && currentTime < morningEnd) || 
-            (currentTime >= afternoonStart && currentTime < afternoonEnd)) {
-            isOpen = true;
-            // Check if closing within 30 minutes
-            const timeUntilClose = (currentTime >= morningStart && currentTime < morningEnd) 
-                ? morningEnd - currentTime 
-                : afternoonEnd - currentTime;
-            
-            if (timeUntilClose <= 30) {
-                isClosingSoon = true;
+            // Opening hours:
+            // Monday (1): Closed
+            // Tuesday-Friday (2-5): 09:00-12:00, 13:30-18:00
+            // Saturday (6): 09:00-12:00, 13:30-17:00
+            // Sunday (0): Closed
+            const currentDay = now.getDay();
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+            const currentTime = currentHour * 60 + currentMinute;
+            hoursMessage = getRegularHoursLabel(currentDay);
+
+            if (currentDay === 0 || currentDay === 1) {
+                statusClass = 'closed';
+                statusMessage = 'Gesloten';
+            } else if (currentDay >= 2 && currentDay <= 5) {
+                const morningStart = 9 * 60;
+                const morningEnd = 12 * 60;
+                const afternoonStart = 13 * 60 + 30;
+                const afternoonEnd = 18 * 60;
+
+                if ((currentTime >= morningStart && currentTime < morningEnd) ||
+                    (currentTime >= afternoonStart && currentTime < afternoonEnd)) {
+                    const timeUntilClose = (currentTime >= morningStart && currentTime < morningEnd)
+                        ? morningEnd - currentTime
+                        : afternoonEnd - currentTime;
+
+                    if (timeUntilClose <= 30) {
+                        statusClass = 'warning';
+                        statusMessage = 'Sluit binnenkort';
+                    } else {
+                        statusClass = 'open';
+                        statusMessage = 'Open';
+                    }
+                } else {
+                    statusClass = 'closed';
+                    statusMessage = 'Gesloten';
+                }
+            } else if (currentDay === 6) {
+                const morningStart = 9 * 60;
+                const morningEnd = 12 * 60;
+                const afternoonStart = 13 * 60 + 30;
+                const afternoonEnd = 17 * 60;
+
+                if ((currentTime >= morningStart && currentTime < morningEnd) ||
+                    (currentTime >= afternoonStart && currentTime < afternoonEnd)) {
+                    const timeUntilClose = (currentTime >= morningStart && currentTime < morningEnd)
+                        ? morningEnd - currentTime
+                        : afternoonEnd - currentTime;
+
+                    if (timeUntilClose <= 30) {
+                        statusClass = 'warning';
+                        statusMessage = 'Sluit binnenkort';
+                    } else {
+                        statusClass = 'open';
+                        statusMessage = 'Open';
+                    }
+                } else {
+                    statusClass = 'closed';
+                    statusMessage = 'Gesloten';
+                }
             }
-            
-            if (isClosingSoon) {
-                storeStatus.classList.add('warning');
-                statusMessage = 'Sluit binnenkort';
-            } else {
-                storeStatus.classList.add('open');
-                statusMessage = 'Open';
-            }
-        } else {
-            storeStatus.classList.add('closed');
-            statusMessage = 'Gesloten';
         }
     }
-    
-    statusText.textContent = statusMessage;
+
+    statusNodes.forEach((storeStatus) => {
+        storeStatus.classList.remove('open', 'warning', 'closed', 'vacation');
+        storeStatus.classList.add(statusClass);
+        const statusText = storeStatus.querySelector('.store-status-text');
+        if (statusText) statusText.textContent = statusMessage;
+    });
+
+    // Mobiele ribbon: openingsuren van vandaag (naast de status-pill)
+    const ribbonHours = document.getElementById('ribbonHours');
+    if (ribbonHours) {
+        const hoursText = ribbonHours.querySelector('.ribbon-hours__text');
+        if (hoursMessage) {
+            if (hoursText) hoursText.textContent = hoursMessage;
+            ribbonHours.hidden = false;
+        } else {
+            if (hoursText) hoursText.textContent = '';
+            ribbonHours.hidden = true;
+        }
+    }
 }
 
 // Initialize on DOM load
@@ -1009,26 +1016,42 @@ function initFAQ() {
 document.addEventListener('DOMContentLoaded', async () => {
     loadBrandImages();
 
-    // Hero vult ruimte onder ribbon + nav. Op mobiel triggert scrollen vaak 'resize' door
-    // veranderende innerHeight (browser-UI) → elke herberekening van --hero-h verschuift het document.
-    // Debounce + negeer kleine hoogte-jitter zolang de breedte gelijk blijft (touch).
+    // Hero vult ruimte onder ribbon (mobiel) + sticky nav tot onderkant scherm.
+    // Op mobiel triggert scrollen vaak 'resize' door veranderende innerHeight (browser-UI)
+    // → debounce + negeer kleine hoogte-jitter zolang de breedte gelijk blijft (touch).
     let heroResizeTimer = null;
     let lastHeroInnerW = -1;
     let lastHeroInnerH = -1;
+
+    function getViewportHeight() {
+        if (window.visualViewport && window.visualViewport.height > 0) {
+            return window.visualViewport.height;
+        }
+        return window.innerHeight || document.documentElement.clientHeight || 0;
+    }
 
     function applyHeroHeight() {
         const hero = document.getElementById('home');
         if (!hero) return;
         const ribbon = document.getElementById('headerRibbon');
         const nav = document.getElementById('mainNav');
-        const ribbonH = ribbon ? ribbon.offsetHeight : 0;
-        const navH = nav ? nav.offsetHeight : 0;
-        const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
-        const target = Math.max(420, viewportH - ribbonH - navH);
+        const ribbonVisible = ribbon && getComputedStyle(ribbon).display !== 'none';
+        const ribbonH = ribbonVisible ? Math.ceil(ribbon.getBoundingClientRect().height) : 0;
+        const navH = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+        const viewportH = getViewportHeight();
+        const target = Math.max(280, Math.round(viewportH - ribbonH - navH));
         document.documentElement.style.setProperty('--hero-h', `${target}px`);
         updateStickyOffset();
         lastHeroInnerW = window.innerWidth;
-        lastHeroInnerH = window.innerHeight;
+        lastHeroInnerH = getViewportHeight();
+    }
+
+    function refreshStoreStatusAndHero() {
+        updateStoreStatus();
+        // Ribbon-hoogte kan wijzigen door uren/status-tekst → hero herberekenen na layout
+        requestAnimationFrame(() => {
+            applyHeroHeight();
+        });
     }
 
     function isCoarseTouch() {
@@ -1040,7 +1063,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!isCoarseTouch()) return false;
         if (lastHeroInnerW < 0) return false;
         const w = window.innerWidth;
-        const h = window.innerHeight;
+        const h = getViewportHeight();
         if (w !== lastHeroInnerW) return false;
         return Math.abs(h - lastHeroInnerH) < 100;
     }
@@ -1057,6 +1080,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     applyHeroHeight();
     window.addEventListener('resize', scheduleHeroResize, { passive: true });
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', scheduleHeroResize, { passive: true });
+    }
     window.addEventListener('orientationchange', () => {
         clearTimeout(heroResizeTimer);
         heroResizeTimer = null;
@@ -1076,47 +1102,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadHolidaysFromCSV();
     
     // Update store status (will show "Gesloten (Feestdag)" if today is a holiday from CSV)
-    updateStoreStatus();
+    refreshStoreStatusAndHero();
     
     initFAQ();
     
     // Update store status every minute
-    setInterval(updateStoreStatus, 60000);
-    
-    // Make store status button clickable on mobile to navigate to contact section
-    const storeStatus = document.getElementById('storeStatus');
-    if (storeStatus) {
-        const isMobile = () => window.innerWidth < 768;
-        
-        // Add click handler for mobile
-        storeStatus.addEventListener('click', () => {
-            if (isMobile()) {
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                    updateStickyOffset();
-                    contactSection.scrollIntoView({
-                        behavior: 'auto',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-        
-        // Handle keyboard navigation
-        storeStatus.addEventListener('keydown', (e) => {
-            if ((e.key === 'Enter' || e.key === ' ') && isMobile()) {
-                e.preventDefault();
-                storeStatus.click();
-            }
-        });
-        
-        // Update cursor based on screen size
-        const updateCursor = () => {
-            storeStatus.style.cursor = isMobile() ? 'pointer' : 'default';
-        };
-        updateCursor();
-        window.addEventListener('resize', updateCursor);
-    }
+    setInterval(refreshStoreStatusAndHero, 60000);
     
     // Merken-carrousel: alleen bij breedtewijziging (niet bij pure innerHeight-jitter)
     let lastBrandResizeW = window.innerWidth;
