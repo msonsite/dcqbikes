@@ -1430,49 +1430,47 @@ document.addEventListener('DOMContentLoaded', function() {
     const items = Array.prototype.slice.call(slot.querySelectorAll('.statement-rotate__item'));
     if (items.length < 2) return;
 
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return;
+    const motionQuery = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    function prefersReducedMotion() {
+        return !!(motionQuery && motionQuery.matches);
+    }
 
     let index = items.findIndex(function (item) {
         return item.classList.contains('is-active');
     });
     if (index < 0) index = 0;
-
-    function lockSlotWidth() {
-        let max = 0;
-        items.forEach(function (item) {
-            const probe = item.cloneNode(true);
-            probe.className = 'statement-rotate__item is-active';
-            probe.style.cssText = 'position:absolute;left:0;top:0;opacity:1;transform:none;visibility:hidden;pointer-events:none;';
-            slot.appendChild(probe);
-            max = Math.max(max, probe.offsetWidth);
-            slot.removeChild(probe);
-        });
-        if (max > 0) slot.style.width = Math.ceil(max) + 'px';
-    }
-
-    lockSlotWidth();
-    window.addEventListener('resize', lockSlotWidth, { passive: true });
+    items.forEach(function (item, i) {
+        item.classList.toggle('is-active', i === index);
+        item.classList.remove('is-exit');
+    });
 
     const HOLD_MS = 2600;
     const TRANSITION_MS = 480;
+    let holdTimer;
+    let exitTimer;
 
     function tick() {
         const current = items[index];
         const nextIndex = (index + 1) % items.length;
         const next = items[nextIndex];
 
-        current.classList.remove('is-active');
-        current.classList.add('is-exit');
-        next.classList.add('is-active');
-
-        window.setTimeout(function () {
-            current.classList.remove('is-exit');
-        }, TRANSITION_MS);
+        if (prefersReducedMotion()) {
+            current.classList.remove('is-active', 'is-exit');
+            next.classList.add('is-active');
+        } else {
+            current.classList.remove('is-active');
+            current.classList.add('is-exit');
+            next.classList.add('is-active');
+            window.clearTimeout(exitTimer);
+            exitTimer = window.setTimeout(function () {
+                current.classList.remove('is-exit');
+            }, TRANSITION_MS);
+        }
 
         index = nextIndex;
+        holdTimer = window.setTimeout(tick, HOLD_MS);
     }
 
-    window.setInterval(tick, HOLD_MS);
+    holdTimer = window.setTimeout(tick, HOLD_MS);
 })();
 

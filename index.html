@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#010101">
+    <meta name="theme-color" content="#0a0a0a">
     <meta name="description" content="DCQ Bikes - Fietsenwinkel in Jabbeke gespecialiseerd in elektrische fietsen, stadsfietsen en grasmaaiers.">
     <title>DCQ Bikes | Fietsenwinkel in Jabbeke</title>
     
@@ -136,7 +136,7 @@
         /* Geen smooth op document: voorkomt conflicten met momentum scroll en layout-herberekening */
         html {
             scroll-behavior: auto;
-            background-color: #010101;
+            background-color: #0a0a0a;
         }
         
         body { font-family: var(--font-body); background-color: #fffefc; }
@@ -562,19 +562,17 @@
 
         .statement-rotate__slot {
             position: relative;
-            display: block;
+            display: grid;
+            grid-template-columns: max-content;
             flex: 0 0 auto;
-            height: 1em;
             overflow: hidden;
             text-align: left;
             color: #ee2726;
+            line-height: 1;
         }
 
         .statement-rotate__item {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            top: auto;
+            grid-area: 1 / 1;
             margin: 0;
             white-space: nowrap;
             line-height: 1;
@@ -591,6 +589,7 @@
         .statement-rotate__item.is-active {
             opacity: 1;
             transform: translate3d(0, 0, 0);
+            z-index: 1;
         }
 
         .statement-rotate__item.is-exit {
