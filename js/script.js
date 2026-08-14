@@ -852,8 +852,8 @@ function formatDate(date) {
 function getRegularHoursLabel(dayOfWeek) {
     if (dayOfWeek === 0) return 'Zondag: gesloten';
     if (dayOfWeek === 1) return 'Maandag: gesloten';
-    if (dayOfWeek >= 2 && dayOfWeek <= 5) return 'Vandaag: 09:00-12:00, 13:30-18:00';
-    if (dayOfWeek === 6) return 'Vandaag: 09:00-12:00, 13:30-17:00';
+    if (dayOfWeek >= 2 && dayOfWeek <= 5) return '09:00-12:00, 13:30-18:00';
+    if (dayOfWeek === 6) return '09:00-12:00, 13:30-17:00';
     return '';
 }
 
@@ -892,14 +892,14 @@ function updateStoreStatus() {
             statusShort = 'Gesloten';
             statusDetailed = getDetailedClosedLabel(holidayEntry.message);
             hoursMessage = holidayEntry.message
-                ? `Vandaag: ${String(holidayEntry.message).trim()}`
-                : 'Vandaag: uitzonderlijk gesloten';
+                ? String(holidayEntry.message).trim()
+                : 'Uitzonderlijk gesloten';
         } else if (isHoliday(now)) {
             // Check if today is a holiday from CSV file
             statusClass = 'closed';
             statusShort = 'Gesloten';
             statusDetailed = 'Gesloten (Feestdag)';
-            hoursMessage = 'Vandaag: feestdag';
+            hoursMessage = 'Feestdag';
         } else {
             // Opening hours:
             // Monday (1): Closed
