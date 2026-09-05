@@ -960,8 +960,10 @@ ul {
   margin: 0;
   overflow: hidden;
   background: #111;
-  min-height: 0;
   position: relative;
+  height: 100%;
+  min-height: 20rem;
+  aspect-ratio: 4 / 3;
 }
 
 .about-media img {
@@ -1775,6 +1777,8 @@ ul {
 
   .about-media {
     aspect-ratio: 4 / 3;
+    min-height: 0;
+    height: auto;
     order: -1;
   }
 
