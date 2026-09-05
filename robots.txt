@@ -5,8 +5,3 @@ Allow: /favicon/
 
 # Sitemap location
 Sitemap: https://www.dcqbikes.be/sitemap.xml
-
-# Disallow crawling of admin or private directories (if any)
-# Disallow: /admin/
-# Disallow: /private/
-

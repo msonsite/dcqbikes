@@ -1,40 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-    
-    <!-- Homepage -->
-    <url>
-        <loc>https://www.dcqbikes.be/</loc>
-        <lastmod>2024-12-19</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    
-    <!-- Privacy Policy -->
-    <url>
-        <loc>https://www.dcqbikes.be/privacy-policy.html</loc>
-        <lastmod>2024-12-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    
-    <!-- Terms and Conditions -->
-    <url>
-        <loc>https://www.dcqbikes.be/terms-and-conditions.html</loc>
-        <lastmod>2024-12-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    
-    <!-- Cookie Policy -->
-    <url>
-        <loc>https://www.dcqbikes.be/cookie-policy.html</loc>
-        <lastmod>2024-12-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    
+
+  <url>
+    <loc>https://www.dcqbikes.be/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.dcqbikes.be/privacy.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.dcqbikes.be/voorwaarden.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.dcqbikes.be/cookies.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>

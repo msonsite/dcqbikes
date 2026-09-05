@@ -1,4253 +1,535 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0a0a0a">
-    <meta name="description" content="DCQ Bikes - Fietsenwinkel in Jabbeke gespecialiseerd in elektrische fietsen, stadsfietsen en grasmaaiers.">
-    <title>DCQ Bikes | Fietsenwinkel in Jabbeke</title>
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.dcqbikes.be/">
-    <meta property="og:title" content="DCQ Bikes | Fietsenwinkel in Jabbeke">
-    <meta property="og:description" content="Jouw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke.">
-    <meta property="og:image" content="https://www.dcqbikes.be/assets/images/onsaanbod/picture5.webp">
-    <meta property="og:image:secure_url" content="https://www.dcqbikes.be/assets/images/onsaanbod/picture5.webp">
-    <meta property="og:image:type" content="image/webp">
-    <meta property="og:locale" content="nl_BE">
-    <meta property="og:site_name" content="DCQ Bikes">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.dcqbikes.be/">
-    <meta name="twitter:title" content="DCQ Bikes | Fietsenwinkel in Jabbeke">
-    <meta name="twitter:description" content="Jouw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke.">
-    <meta name="twitter:image" content="https://www.dcqbikes.be/assets/images/onsaanbod/picture5.webp">
-    <meta name="twitter:image:alt" content="Gevel van DCQ Bikes in Jabbeke">
-    
-    <meta name="keywords" content="fietsenwinkel, elektrische fietsen, stadsfietsen, grasmaaiers, fietsonderhoud, fietsherstelling, Jabbeke, DCQ Bikes">
-    <meta name="author" content="DCQ Bikes">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.dcqbikes.be/">
-    <link rel="sitemap" type="application/xml" href="https://www.dcqbikes.be/sitemap.xml">
-
-    <!-- Favicon - Google Search compliant --> 
-    <link rel="icon" href="/favicon.ico"> 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico"> 
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"> 
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg"> 
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"> 
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/web-app-manifest-192x192.png"> 
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/web-app-manifest-512x512.png"> 
-    <link rel="manifest" href="/favicon/site.webmanifest">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
-     
-    <meta name="google-site-verification" content="-fN6aiVcN0ZngFVhg6B8IIovlvMJAr3DRpcfPJ63HdI" />
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KL3NB54KT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-1KL3NB54KT');
-    </script>
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BicycleStore",
-        "name": "DCQ Bikes",
-        "legalName": "DCQ Bikes BV",
-        "url": "https://www.dcqbikes.be/",
-        "image": "https://www.dcqbikes.be/assets/images/onsaanbod/picture5.webp",
-        "logo": "https://www.dcqbikes.be/assets/images/logo/dcqbikeslogotransparent.png",
-        "telephone": ["+3250814220", "+32475822376"],
-        "email": "info@dcqbikes.be",
-        "vatID": "BE0685615103",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Gistelsteenweg 282",
-            "addressLocality": "Jabbeke",
-            "postalCode": "8490",
-            "addressCountry": "BE"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 51.179659,
-            "longitude": 3.099603
-        },
-        "priceRange": "€€",
-        "sameAs": [
-            "https://www.facebook.com/DCQBikes",
-            "https://www.linkedin.com/company/dcqbikes/"
-        ],
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "09:00",
-                "closes": "12:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "13:30",
-                "closes": "18:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "09:00",
-                "closes": "12:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "13:30",
-                "closes": "17:00"
-            }
-        ]
-    }
-    </script>
-
-    <!-- Custom Tailwind config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'dcq-black': '#010101',
-                        'dcq-white': '#fffefc',
-                        'dcq-red': '#ee2726'
-                    },
-                    fontFamily: {
-                        'sans': ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-                        'heading': ['Sora', 'system-ui', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- Custom CSS -->
-    <style>
-        :root {
-            --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            --font-heading: "Sora", "Plus Jakarta Sans", system-ui, sans-serif;
-        }
-        /* Geen smooth op document: voorkomt conflicten met momentum scroll en layout-herberekening */
-        html {
-            scroll-behavior: auto;
-            background-color: #0a0a0a;
-        }
-        
-        body { font-family: var(--font-body); background-color: #fffefc; }
-        
-        #cookieBanner {
-            transform: translateY(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-        
-        #cookieBanner.show {
-            transform: translateY(0);
-        }
-        
-        .gallery-masonry-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-auto-rows: 250px;
-            grid-auto-flow: row dense;
-            gap: 0.5rem;
-            padding: 0;
-            width: 100%;
-        }
-        
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            background: #000;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.02);
-            z-index: 10;
-        }
-        
-        .gallery-item img,
-        .gallery-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            pointer-events: auto;
-            -webkit-user-drag: none;
-            -khtml-user-drag: none;
-            -moz-user-drag: none;
-            -o-user-drag: none;
-        }
-        
-        img {
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            -webkit-user-drag: none;
-            -khtml-user-drag: none;
-            -moz-user-drag: none;
-            -o-user-drag: none;
-        }
-        
-        .gallery-item:hover img,
-        .gallery-item:hover video {
-            transform: scale(1.1);
-        }
-        
-        .gallery-item.wide {
-            grid-column: span 2;
-        }
-        
-        .gallery-item.tall {
-            grid-row: span 2;
-        }
-        
-        .gallery-item.large {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-        
-        .gallery-item::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(238, 39, 38, 0);
-            transition: background 0.3s ease;
-            pointer-events: none;
-        }
-        
-        .gallery-item:hover::after {
-            background: rgba(238, 39, 38, 0);
-        }
-        
-        @media (max-width: 768px) {
-            .gallery-masonry-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                grid-auto-rows: 200px;
-                gap: 0.25rem;
-            }
-            
-            .gallery-item.wide,
-            .gallery-item.large {
-                grid-column: span 1;
-            }
-            
-            .gallery-item.tall,
-            .gallery-item.large {
-                grid-row: span 1;
-            }
-        }
-        
-        .masonry-grid {
-            column-gap: 1rem;
-        }
-
-        h1, h2, h3, .brand-row-title {
-            font-family: var(--font-heading);
-        }
-        
-        @media (min-width: 1024px) {
-            .masonry-grid {
-                column-count: 4;
-            }
-        }
-        
-        @media (min-width: 768px) and (max-width: 1023px) {
-            .masonry-grid {
-                column-count: 3;
-            }
-        }
-        
-        @media (min-width: 640px) and (max-width: 767px) {
-            .masonry-grid {
-                column-count: 2;
-            }
-        }
-        
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 1rem;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(1, 1, 1, 0.9);
-            animation: fadeIn 0.3s;
-        }
-        
-        .modal.show {
-            display: flex;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9998;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(1, 1, 1, 0.95);
-            animation: fadeIn 0.3s;
-        }
-        
-        .lightbox.show {
-            display: flex;
-        }
-        
-        .hero-overlay {
-            background: radial-gradient(
-                ellipse 80% 70% at 50% 50%,
-                rgba(0, 0, 0, 0.45) 0%,
-                rgba(0, 0, 0, 0.25) 55%,
-                rgba(0, 0, 0, 0.35) 100%
-            );
-        }
-        
-        #home .text-dcq-white {
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.6);
-        }
-        
-        #heroVideo {
-            object-fit: cover;
-            object-position: center;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Hero: fill remaining viewport below ribbon + nav */
-        #home {
-            height: var(--hero-h, 85dvh);
-            min-height: 520px;
-        }
-
-        @media (max-width: 768px) {
-            #home {
-                /* Op mobiel bepaalt JS de exacte resthoogte; geen vaste min-height */
-                min-height: 0;
-            }
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            box-sizing: border-box;
-            width: 100%;
-            max-width: min(44rem, 100%);
-            padding: 0 clamp(1rem, 4vw, 1.5rem);
-            margin: 0 auto;
-        }
-
-        .hero-eyebrow {
-            margin: 0 0 0.65rem;
-            font-size: clamp(0.8125rem, 2.4vw, 1.25rem);
-            font-weight: 600;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: rgba(255, 254, 252, 0.85);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .hero-brand {
-            display: block;
-            margin: 0 0 1rem;
-            height: clamp(3.75rem, 18vw, 9rem);
-            width: auto;
-            max-width: min(18rem, 72vw);
-            object-fit: contain;
-            filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.45));
-        }
-
-        /* Mobile-first: stacked categories stay inside the viewport */
-        .hero-lead {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            align-items: center;
-            justify-content: center;
-            gap: 0.35rem;
-            margin: 0 0 1.5rem;
-            padding: 0;
-            width: 100%;
-            max-width: 100%;
-            font-size: clamp(1rem, 3.8vw, 1.25rem);
-            font-weight: 500;
-            line-height: 1.35;
-            color: rgba(255, 254, 252, 0.92);
-            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
-            overflow-wrap: anywhere;
-        }
-
-        .hero-lead > span:not(.hero-lead__sep) {
-            display: block;
-        }
-
-        .hero-lead__sep {
-            display: none;
-            color: rgba(255, 254, 252, 0.45);
-            font-weight: 400;
-            flex-shrink: 0;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            max-width: 100%;
-            padding: 0.95rem 1.5rem;
-            font-size: clamp(1rem, 2.5vw, 1.125rem);
-            font-weight: 600;
-            color: #fff;
-            background: #ee2726;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: background 160ms ease, transform 120ms ease;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .hero-cta:hover {
-            background: #d41e1d;
-        }
-
-        .hero-cta:active {
-            transform: scale(0.98);
-        }
-
-        /* Tablet+: one elegant inline lead line */
-        @media (min-width: 640px) {
-            .hero-brand {
-                margin: 0 0 1.2rem;
-            }
-
-            .hero-lead {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 0.4rem 0.65rem;
-                margin: 0 0 2rem;
-                font-size: clamp(1.05rem, 2.4vw, 1.6rem);
-            }
-
-            .hero-lead > span:not(.hero-lead__sep) {
-                display: inline;
-                white-space: nowrap;
-            }
-
-            .hero-lead__sep {
-                display: inline;
-            }
-
-            .hero-cta {
-                padding: 1.1rem 2.1rem;
-            }
-        }
-
-        /* Wide enough for a single unbroken line */
-        @media (min-width: 900px) {
-            .hero-lead {
-                flex-wrap: nowrap;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            #heroVideo {
-                object-fit: cover;
-                object-position: center;
-            }
-        }
-        
-        @media (min-width: 1280px) {
-            #heroVideo {
-                object-fit: cover;
-                object-position: center;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            #heroVideo {
-                object-fit: cover;
-            }
-            
-            .hero-overlay {
-                background: radial-gradient(
-                    ellipse 90% 75% at 50% 48%,
-                    rgba(0, 0, 0, 0.5) 0%,
-                    rgba(0, 0, 0, 0.3) 60%,
-                    rgba(0, 0, 0, 0.4) 100%
-                );
-            }
-        }
-
-        /* Very short viewports: tighten vertical rhythm */
-        @media (max-height: 640px) {
-            #home {
-                min-height: 0;
-            }
-
-            .hero-eyebrow {
-                margin-bottom: 0.4rem;
-            }
-
-            .hero-brand {
-                height: clamp(3rem, 16vh, 5.5rem);
-                margin-bottom: 0.65rem;
-            }
-
-            .hero-lead {
-                margin-bottom: 1rem;
-                gap: 0.2rem;
-                font-size: clamp(0.9rem, 3.2vw, 1.1rem);
-            }
-
-            .hero-cta {
-                padding: 0.8rem 1.35rem;
-            }
-        }
-
-        @media (hover: none) and (pointer: coarse) {
-            .hero-cta:hover {
-                background: #ee2726;
-            }
-
-            .hero-cta:active {
-                background: #d41e1d;
-                transform: scale(0.97);
-            }
-        }
-        
-        #about {
-            scroll-margin-top: var(--sticky-offset, 5.5rem);
-            background: #0a0a0a;
-        }
-
-        .statement-rotate {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-end;
-            justify-content: flex-start;
-            gap: 0.25rem 0.45rem;
-            margin: 1.75rem 0 0;
-            font-family: var(--font-heading);
-            font-size: clamp(1.35rem, 3.4vw, 2.25rem);
-            font-weight: 600;
-            letter-spacing: -0.025em;
-            line-height: 1;
-            color: rgba(255, 254, 252, 0.92);
-        }
-
-        .statement-rotate__fixed {
-            flex-shrink: 0;
-            line-height: 1;
-        }
-
-        .statement-rotate__slot {
-            position: relative;
-            display: grid;
-            grid-template-columns: max-content;
-            flex: 0 0 auto;
-            overflow: hidden;
-            text-align: left;
-            color: #ee2726;
-            line-height: 1;
-        }
-
-        .statement-rotate__item {
-            grid-area: 1 / 1;
-            margin: 0;
-            white-space: nowrap;
-            line-height: 1;
-            font-weight: 700;
-            color: #ee2726;
-            opacity: 0;
-            transform: translate3d(0, 0.55em, 0);
-            transition:
-                opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
-                transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
-            pointer-events: none;
-        }
-
-        .statement-rotate__item.is-active {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
-            z-index: 1;
-        }
-
-        .statement-rotate__item.is-exit {
-            opacity: 0;
-            transform: translate3d(0, -0.55em, 0);
-        }
-
-        @media (min-width: 768px) {
-            .statement-rotate {
-                gap: 0.3rem 0.55rem;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .statement-rotate__item {
-                transition: none;
-            }
-        }
-
-        .offer-section {
-            background: #f9fafb;
-            overflow: visible;
-            scroll-margin-top: var(--sticky-offset, 5.5rem);
-        }
-
-        .offer-section__intro {
-            text-align: center;
-            padding: 2.5rem 1rem 0.35rem;
-        }
-
-        .offer-section__intro h2 {
-            margin-bottom: 0;
-        }
-
-        @media (min-width: 768px) {
-            .offer-section__intro {
-                padding: 3rem 1.5rem 1.75rem;
-            }
-
-            .offer-section__intro h2 {
-                margin-bottom: 0.5rem;
-            }
-        }
-
-        .offer-lookbook {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .offer-entry {
-            position: relative;
-            color: #111827;
-            background: #f9fafb;
-        }
-
-        .offer-entry:nth-child(even) {
-            background: #f3f4f6;
-        }
-
-        .offer-entry__inner {
-            max-width: 72rem;
-            margin: 0 auto;
-            padding: 1.35rem 1rem 2.25rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.25rem;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .offer-entry__inner {
-                padding: 2.75rem 1.5rem;
-                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-                gap: 2.5rem;
-                align-items: center;
-            }
-
-            .offer-entry--left .offer-entry__content {
-                order: 1;
-            }
-
-            .offer-entry--left .offer-entry__visualWrap {
-                order: 2;
-            }
-
-            .offer-entry--right .offer-entry__content {
-                order: 2;
-                text-align: right;
-            }
-
-            .offer-entry--right .offer-entry__visualWrap {
-                order: 1;
-            }
-
-            .offer-entry--right .offer-entry__head {
-                justify-content: flex-end;
-            }
-
-            .offer-entry--right .offer-entry__text {
-                margin-left: auto;
-            }
-
-            .offer-entry--right .offer-entry__brandsList {
-                justify-content: flex-end;
-            }
-
-            .offer-entry--right .offer-entry__brandsLabel {
-                text-align: right;
-            }
-        }
-
-        .offer-entry__content {
-            min-width: 0;
-        }
-
-        .offer-entry__head {
-            display: flex;
-            align-items: baseline;
-            gap: 0.65rem 0.85rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .offer-entry__index {
-            font-family: var(--font-heading);
-            font-size: 1.125rem;
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: 0.02em;
-            color: #ee2726;
-            flex-shrink: 0;
-        }
-
-        .offer-entry__title {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            margin: 0;
-            color: #111827;
-        }
-
-        @media (min-width: 768px) {
-            .offer-entry__title {
-                font-size: 1.5rem;
-            }
-        }
-
-        .offer-entry__visualWrap {
-            position: relative;
-            width: 100%;
-            justify-self: stretch;
-            z-index: 0;
-            margin-top: 0.65rem;
-            margin-bottom: 0.65rem;
-        }
-
-        .offer-entry__accent {
-            position: absolute;
-            width: 42%;
-            height: 48%;
-            max-width: 11rem;
-            max-height: 10rem;
-            background: #ee2726;
-            border-radius: 0.65rem;
-            opacity: 0.9;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .offer-entry--left .offer-entry__accent {
-            left: -0.55rem;
-            bottom: -0.55rem;
-        }
-
-        .offer-entry--right .offer-entry__accent {
-            right: -0.55rem;
-            bottom: -0.55rem;
-        }
-
-        .offer-entry__visual {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            height: 16rem;
-            background: #e5e7eb;
-            border-radius: 0.5rem;
-            z-index: 1;
-        }
-
-        @media (min-width: 768px) {
-            .offer-entry__visual {
-                height: 19rem;
-            }
-        }
-
-        .offer-entry__img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-        }
-
-        .offer-entry__text {
-            font-size: 1rem;
-            line-height: 1.65;
-            margin: 0 0 1rem;
-            max-width: 36rem;
-            color: #4b5563;
-        }
-
-        @media (min-width: 768px) {
-            .offer-entry__text {
-                font-size: 1.125rem;
-            }
-        }
-
-        .offer-entry__brandsLabel {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 0.65rem;
-            color: #9ca3af;
-        }
-
-        .offer-entry__brandsList {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.625rem;
-        }
-
-        .offer-entry__brand {
-            display: block;
-            line-height: 0;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .offer-entry__brand:hover {
-            transform: translateY(-2px);
-        }
-
-        .offer-entry__brand img {
-            width: 6.5rem;
-            height: 3rem;
-            object-fit: contain;
-            background: #ffffff;
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.5rem;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            display: block;
-        }
-
-        .offer-entry__brand:hover img {
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-        }
-
-        @media (max-width: 1023px) {
-            .offer-entry__accent {
-                display: none;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .offer-entry__visualWrap {
-                order: -1;
-            }
-
-            .offer-entry__visual {
-                height: 13rem;
-            }
-
-            .offer-entry__brand img {
-                width: 5.5rem;
-                height: 2.625rem;
-            }
-        }
-
-        
-        /* Eén uitklapbare “kaart” per vraag; antwoord alleen zichtbaar bij .active */
-        #faq .faq-item {
-            transition: box-shadow 0.2s ease, border-color 0.2s ease;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.04);
-            overflow: hidden;
-        }
-        
-        #faq .faq-item.active {
-            border-color: rgba(255, 255, 255, 0.22);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
-        }
-        
-        #faq .faq-item .faq-question {
-            border: none !important;
-            box-shadow: none !important;
-            border-radius: 0 !important;
-        }
-        
-        .faq-item.active .faq-question {
-            background-color: white;
-            border-color: #d1d5db;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-        
-        section[style*="background: #0a0a0a"] .faq-question {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-            border-color: rgba(255, 255, 255, 0.2) !important;
-            color: #fffefc !important;
-        }
-        
-        section[style*="background: #0a0a0a"] .faq-question:hover {
-            background-color: rgba(255, 255, 255, 0.15) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        
-        section[style*="background: #0a0a0a"] .faq-question span {
-            color: #fffefc !important;
-        }
-        
-        section[style*="background: #0a0a0a"] .faq-item.active .faq-question {
-            background-color: rgba(255, 255, 255, 0.2) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        
-        section[style*="background: #0a0a0a"] .faq-answer,
-        section[style*="background: #0a0a0a"] .faq-answer p,
-        section[style*="background: #0a0a0a"] .faq-answer span,
-        section[style*="background: #0a0a0a"] .faq-answer strong,
-        section[style*="background: #0a0a0a"] .faq-answer li {
-            color: rgba(255, 254, 252, 0.9) !important;
-        }
-        
-        section[style*="background: #0a0a0a"] .faq-answer strong {
-            color: #fffefc !important;
-        }
-        
-        .faq-question {
-            cursor: pointer;
-            outline: none;
-        }
-        
-        .faq-question:focus {
-            outline: none;
-        }
-        
-        .faq-question .fa-plus {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .faq-item.active .faq-question .fa-plus {
-            transform: rotate(45deg);
-        }
-        
-        .faq-item.active .faq-question > div {
-            background-color: #ee2726;
-        }
-        
-        .faq-item.active .faq-question > div .fa-plus {
-            color: white;
-        }
-        
-        #faq .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            padding-top: 0;
-            padding-bottom: 0;
-            border-top: 0;
-            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease, border-top-color 0.25s ease;
-        }
-        
-        #faq .faq-item.active .faq-answer {
-            max-height: min(2000px, 85vh);
-            padding-top: 1rem;
-            padding-bottom: 1.25rem;
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: rgba(255, 255, 255, 0.12);
-        }
-
-        .faq-payment-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            margin-top: 0.25rem;
-        }
-
-        .faq-payment-method {
-            display: grid;
-            grid-template-columns: 1.25rem 1fr;
-            gap: 0.65rem 0.75rem;
-            align-items: start;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-        }
-
-        .faq-payment-method:last-child {
-            border-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .faq-payment-method__icon {
-            width: 1.25rem;
-            text-align: center;
-            line-height: 1.35;
-            flex-shrink: 0;
-        }
-
-        .faq-payment-method__body {
-            min-width: 0;
-        }
-
-        .faq-payment-method__title {
-            font-weight: 600;
-            color: #111827;
-            line-height: 1.4;
-        }
-
-        .faq-payment-note {
-            margin-top: 1rem;
-            padding-top: 0.85rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .faq-payment-logos {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.6rem;
-        }
-
-        .faq-payment-logoBox {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 3.35rem;
-            height: 1.85rem;
-            padding: 0.2rem 0.3rem;
-            background: #ffffff;
-            border-radius: 0.35rem;
-            flex-shrink: 0;
-        }
-
-        .faq-payment-logo {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-        }
-
-        section[style*="background: #0a0a0a"] .faq-payment-method {
-            border-bottom-color: rgba(255, 255, 255, 0.1);
-        }
-
-        section[style*="background: #0a0a0a"] .faq-payment-method__title {
-            color: #fffefc !important;
-        }
-
-        section[style*="background: #0a0a0a"] .faq-payment-note {
-            border-top-color: rgba(255, 255, 255, 0.12);
-        }
-        
-        @media (min-width: 768px) {
-            #faqContent {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                align-items: start;
-            }
-            
-            .faq-item {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-            }
-        }
-        
-        #faqContent {
-            opacity: 1;
-        }
-        
-        @media (max-width: 1024px) {
-            #brands-large.brand-row {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 140px));
-            }
-            #brands-medium.brand-row {
-                grid-template-columns: repeat(auto-fit, minmax(105px, 105px));
-            }
-            #brands-small.brand-row {
-                grid-template-columns: repeat(auto-fit, minmax(75px, 75px));
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .brand-row {
-                display: grid;
-                grid-template-columns: repeat(6, minmax(0, 1fr));
-                gap: 0.35rem;
-                padding: 0;
-            }
-            .brand-item {
-                width: 100%;
-                height: 48px;
-                padding: 0.15rem;
-                border-radius: 8px;
-            }
-            .brand-item .brand-overlay { display: none; }
-        }
-
-        @media (max-width: 768px) {
-            .brand-marquee {
-                position: relative;
-                width: 100%;
-                overflow-x: auto;
-                overflow-y: hidden;
-                padding: 2rem 0;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none; /* Firefox */
-                -ms-overflow-style: none; /* IE and Edge */
-                scroll-snap-type: x mandatory;
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-                mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-            }
-            
-            .brand-marquee::-webkit-scrollbar {
-                display: none; /* Chrome, Safari, Opera */
-            }
-            
-            .brand-marquee-track {
-                display: flex;
-                align-items: center;
-                gap: 1.5rem;
-                width: max-content;
-                padding: 0 calc(50% - 70px); /* Center first item, 70px = half of 140px item width */
-            }
-            
-            .brand-marquee .brand-item {
-                flex: 0 0 auto;
-                width: 140px;
-                height: 80px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 1rem;
-                background: rgba(255, 255, 255, 0.95);
-                border-radius: 16px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-                transition: all 0.3s ease;
-                cursor: pointer;
-                position: relative;
-                scroll-snap-align: center;
-            }
-            
-            .brand-marquee .brand-item:hover {
-                transform: scale(1.05);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-            }
-            
-            .brand-marquee .brand-item:active,
-            .brand-marquee .brand-item:focus {
-                transform: scale(1);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-                outline: none;
-                border: none;
-            }
-            
-            .brand-marquee .brand-item img {
-                max-width: 100%;
-                max-height: 50px;
-                width: auto;
-                height: auto;
-                object-fit: contain;
-            }
-            
-            /* Subtle progress indicator */
-            .brand-carousel-progress {
-                width: 100%;
-                height: 3px;
-                background: rgba(0, 0, 0, 0.08);
-                border-radius: 3px;
-                margin-top: 1.5rem;
-                overflow: hidden;
-                position: relative;
-            }
-            
-            .brand-carousel-progress-bar {
-                height: 100%;
-                background: linear-gradient(90deg, #ee2726 0%, #d41e1d 100%);
-                border-radius: 3px;
-                transition: width 0.1s ease-out;
-                transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-                width: 0%;
-            }
-        }
-        
-        .store-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.375rem 0.875rem;
-            border-radius: 9999px;
-            font-size: 0.8125rem;
-            font-weight: 500;
-            line-height: 1.2;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            color: #fffefc;
-            cursor: pointer;
-            transition: background 0.2s ease, border-color 0.2s ease;
-            white-space: nowrap;
-            text-decoration: none;
-        }
-
-        .store-status:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.22);
-        }
-
-        .store-status:focus-visible {
-            outline: 2px solid rgba(238, 39, 38, 0.7);
-            outline-offset: 2px;
-        }
-
-        .store-status--nav {
-            margin-left: 0.5rem;
-        }
-
-        /* Mobiele statusbalk: scrollt weg; nav blijft sticky */
-        #headerRibbon {
-            background: #0a0a0a;
-            color: #fffefc;
-            font-size: 0.875rem;
-            padding-top: 0.5rem;
-            padding-bottom: calc(0.5rem + 1px);
-            margin-bottom: -1px; /* voorkomt haarfijne kloof met de nav */
-            border: 0;
-            box-shadow: none;
-            position: relative;
-            z-index: 41;
-        }
-
-        .header-ribbon__inner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            width: 100%;
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0.5rem 0.75rem;
-            gap: 0.5rem 0.75rem;
-        }
-
-        .ribbon-hours {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: rgba(255, 254, 252, 0.88);
-            font-size: 0.8125rem;
-            font-weight: 500;
-            letter-spacing: 0.01em;
-            text-align: center;
-            line-height: 1.3;
-        }
-
-        .ribbon-hours[hidden] {
-            display: none !important;
-        }
-
-        .ribbon-hours__icon {
-            font-size: 0.75rem;
-            opacity: 0.85;
-        }
-
-        .store-status--ribbon {
-            margin: 0;
-            padding: 0.375rem 0.875rem;
-            font-size: 0.8125rem;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            box-shadow: none;
-            color: #fffefc;
-            white-space: nowrap;
-        }
-
-        .store-status--ribbon:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.22);
-        }
-
-        #mainNav {
-            border: 0;
-            box-shadow: none;
-        }
-
-        #mainNav.is-scrolled {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -4px rgba(0, 0, 0, 0.15);
-        }
-        
-        .store-status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-        
-        .store-status.open .store-status-dot {
-            background-color: #10b981;
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-        }
-        
-        .store-status.warning .store-status-dot {
-            background-color: #f59e0b;
-            box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
-        }
-        
-        .store-status.closed .store-status-dot {
-            background-color: #ef4444;
-            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
-        }
-        
-        @keyframes pulse-dot {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-            }
-            50% {
-                transform: scale(1);
-                box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
-            }
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-            }
-        }
-        
-        .store-status.warning .store-status-dot {
-            animation: pulse-dot-warning 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-dot-warning {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
-            }
-            50% {
-                transform: scale(1);
-                box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
-            }
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
-            }
-        }
-        
-        .store-status.closed .store-status-dot {
-            animation: pulse-dot-closed 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-dot-closed {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
-            }
-            50% {
-                transform: scale(1);
-                box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
-            }
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
-            }
-        }
-        
-        #brands-large,
-        #brands-medium,
-        #brands-small {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Tablet: nette grid-uitlijning (768–1023px) */
-        @media (min-width: 768px) and (max-width: 1023px) {
-            #brands-large,
-            #brands-medium,
-            #brands-small {
-                display: grid;
-                justify-content: center;
-                justify-items: center;
-                align-items: center;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            #brands-large {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                max-width: 34rem;
-                gap: 1.25rem 1.75rem;
-            }
-
-            #brands-medium {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                max-width: 34rem;
-                gap: 1.1rem 1.5rem;
-            }
-
-            #brands-small {
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-                max-width: 38rem;
-                gap: 1rem 1.25rem;
-            }
-
-            #brands .brand-item {
-                width: 100% !important;
-                max-width: 8.5rem;
-                aspect-ratio: auto;
-                min-height: 0;
-                height: auto;
-                padding: 0.35rem 0.5rem;
-            }
-
-            #brands-large .brand-item {
-                max-width: 9.5rem;
-            }
-
-            #brands-medium .brand-item {
-                max-width: 8.25rem;
-            }
-
-            #brands-small .brand-item {
-                max-width: 6.5rem;
-            }
-        }
-
-        /* Desktop: gecentreerde rijen */
-        @media (min-width: 1024px) {
-            #brands-large,
-            #brands-medium,
-            #brands-small {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                max-width: 72rem;
-                gap: 1.5rem 2rem;
-            }
-
-            #brands .brand-item {
-                flex: 0 1 auto;
-                min-width: 0;
-                max-width: none;
-                width: auto !important;
-                aspect-ratio: auto;
-                min-height: 0;
-                height: auto;
-                padding: 0.25rem 0.75rem;
-            }
-        }
-        
-        /* Logo pulse (desktop) */
-        @media (min-width: 769px) {
-            .brand-item:nth-child(1),
-            .brand-item:nth-child(2),
-            .brand-item:nth-child(3) {
-                animation: subtlePulse 4s ease-in-out infinite, fadeInUp 0.6s ease forwards;
-                animation-delay: calc(var(--index, 0) * 0.5s), calc(var(--index, 0) * 0.1s);
-            }
-        }
-        
-        @keyframes subtlePulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.015);
-            }
-        }
-        
-        /* Mobile: hide hint text on very small screens */
-        @media (max-width: 640px) {
-            .brand-click-hint {
-                font-size: 0.75rem;
-            }
-        }
-        
-        .brand-item {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .brand-item::after {
-            display: none;
-        }
-        
-        .brand-item::before {
-            display: none;
-        }
-        
-        .brand-marquee .brand-item::before {
-            display: none;
-        }
-        
-        @media (min-width: 769px) {
-            .brand-item:hover {
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
-                transform: translateY(-2px);
-                border-color: rgba(0, 0, 0, 0.08);
-            }
-        }
-        
-        @media (max-width: 768px) {
-        .brand-item:hover {
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-            transform: translateY(-8px) scale(1.05);
-            background: linear-gradient(135deg, #fffefc 0%, #f8f8f8 100%);
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            }
-        
-        .brand-marquee .brand-item:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.95);
-            border: none;
-            }
-        }
-        
-        .brand-item-inner {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .brand-item img {
-            width: 100%;
-            height: 100%;
-            max-height: 100px;
-            object-fit: contain;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: none;
-            opacity: 1;
-            position: relative;
-            z-index: 1;
-        }
-        
-        #brands-large .brand-item img {
-            max-height: 110px;
-        }
-        
-        #brands-medium .brand-item img {
-            max-height: 80px;
-        }
-        
-        #brands-small .brand-item img {
-            max-height: 55px;
-        }
-
-        .glz_partner_group_block_img_wrapper{
-            justify-content: center;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .glz_partner_group_block_img_wrapper .brand-item{
-            padding: 10px 20px 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .Logo-line-1 .glz_partner_group_block_img_wrapper img {
-            max-height: 80px;
-            height: auto;
-        }
-        .Logo-line-1 .glz_partner_group_block_img_wrapper .brand-item {
-            width: 25%;
-        }
-        .Logo-line-2 .glz_partner_group_block_img_wrapper img {
-            max-height: 50px;
-            height: auto;
-        }
-        .Logo-line-2 .glz_partner_group_block_img_wrapper .brand-item {
-            width: 20%;
-        }
-        .Logo-line-3 .glz_partner_group_block_img_wrapper img {
-            max-height: 20px;
-            height: auto;
-        }
-        .Logo-line-3 .glz_partner_group_block_img_wrapper .brand-item {
-            width: 15%;
-        }
-        .glz_partner_group_block_img_wrapper img:hover {
-            opacity: 0.7;
-        }
-
-        /* Desktop logo lines: uniform spacing (tablet/desktop handled above) */
-        @media (min-width: 1024px) {
-            .glz_partner_group_block_img_wrapper {
-                gap: 1.5rem;
-            }
-            .glz_partner_group_block_img_wrapper .brand-item {
-                width: auto !important;
-                padding: 0.25rem 0.5rem !important;
-            }
-        }
-
-        /* Brands section:
-           - Mobile: keep original scroller "cards"
-           - Desktop: no cards/boxes for logo lines */
-        @media (min-width: 768px) {
-            #brands .brand-item,
-            #brands .brand-item:hover,
-            #brands .brand-item:active,
-            #brands .brand-item:focus {
-                background: transparent !important;
-                box-shadow: none !important;
-                border: none !important;
-                transform: none !important;
-            }
-            #brands .brand-item-inner {
-                background: transparent !important;
-            }
-            #brands .brand-item img {
-                background: transparent !important;
-            }
-        }
-        @media (max-width: 767px) {
-            #brands .brand-marquee .brand-item {
-                background: rgba(255, 255, 255, 0.95) !important;
-                border-radius: 16px !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-                padding: 1rem !important;
-                border: none !important;
-            }
-            #brands .brand-carousel-progress {
-                background: rgba(0, 0, 0, 0.08) !important;
-            }
-            #brands .brand-carousel-progress-bar {
-                background: linear-gradient(90deg, #ee2726 0%, #d41e1d 100%) !important;
-            }
-        }
-
-        /* Brands logos: full color */
-        #brands .brand-item img {
-            filter: none !important;
-            opacity: 1;
-        }
-        
-        @media (min-width: 769px) {
-            .brand-item:hover img {
-                transform: scale(1.05);
-                opacity: 1;
-            }
-        }
-        
-        @media (max-width: 768px) {
-        .brand-item:hover img {
-            transform: scale(1.15);
-                opacity: 1;
-            }
-        }
-        
-        .brand-item .brand-overlay {
-            display: none;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .quote-container {
-            position: relative;
-            padding: 0.5rem 0;
-        }
-        
-        .quote-text {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        
-        .quote-icon-left,
-        .quote-icon-right {
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-        
-        .quote-icon-left {
-            align-self: flex-start;
-            margin-top: -0.25rem;
-        }
-        
-        .quote-icon-right {
-            align-self: flex-end;
-            margin-bottom: -0.25rem;
-        }
-        
-        .quote-content {
-            flex: 0 1 auto;
-            max-width: calc(100% - 120px);
-        }
-        
-        @media (max-width: 768px) {
-            .quote-container {
-                padding: 0.5rem 1rem;
-            }
-            
-            .quote-text {
-                gap: 0.5rem;
-            }
-            
-            .quote-icon-left,
-            .quote-icon-right {
-                font-size: 1rem !important;
-                opacity: 0.7;
-                flex-shrink: 0;
-            }
-            
-            .quote-content {
-                font-size: 1.125rem !important; 
-                flex: 1 1 auto;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .quote-container {
-                padding: 0.75rem 0;
-            }
-            
-            .quote-text {
-                gap: 1rem;
-            }
-            
-            .quote-icon-left,
-            .quote-icon-right {
-                opacity: 0.8;
-            }
-            
-            .quote-icon-left {
-                margin-top: -0.5rem;
-            }
-            
-            .quote-icon-right {
-                margin-bottom: -0.5rem;
-            }
-        }
-        
-        /* iPad/Tablet: legacy brand-row rules — superseded by #brands-* grid above */
-        
-        @media (min-width: 1024px) {
-        .brand-row-container {
-                margin-bottom: 1rem;
-                padding: 0;
-                max-width: 1200px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .brand-row-container:last-child {
-                margin-bottom: 0;
-        }
-        
-        .brand-row-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            color: #333;
-            letter-spacing: -0.01em;
-            }
-            
-            .brand-row {
-                display: flex;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                align-items: center;
-                gap: 1rem;
-                padding: 0.75rem 0;
-                width: 100%;
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-            
-            #brands-large .brand-item {
-                flex: 1 1 0;
-                min-width: 0;
-            }
-            
-            #brands-medium .brand-item {
-                flex: 1 1 0;
-                min-width: 0;
-            }
-            
-            #brands-small .brand-item {
-                flex: 1 1 0;
-                min-width: 0;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .brand-row-container {
-                margin-bottom: 3rem;
-        }
-        
-        .brand-row {
-            display: grid;
-            gap: 1.5rem;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            #brands-large.brand-row,
-            #brands-medium.brand-row,
-            #brands-small.brand-row {
-                grid-template-columns: none;
-            }
-        }
-        
-        @media (max-width: 768px) {
-        #brands-large.brand-row {
-                grid-template-columns: repeat(auto-fit, minmax(145px, 145px));
-        }
-        
-        #brands-medium.brand-row {
-                grid-template-columns: repeat(auto-fit, minmax(110px, 110px));
-        }
-        
-        #brands-small.brand-row {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 80px));
-            }
-        }
-        
-        @media (min-width: 1024px) {
-        .brand-item {
-                width: 100%;
-                aspect-ratio: auto;
-                min-height: 0;
-            background: white;
-            border-radius: 12px;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-                border: 1px solid rgba(0, 0, 0, 0.04);
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-                padding: 0.75rem;
-                transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
-        }
-            
-        #brands-large .brand-item {
-                min-height: 110px;
-                padding: 1rem;
-        }
-        
-        #brands-medium .brand-item {
-                min-height: 85px;
-                padding: 0.6rem;
-        }
-        
-        #brands-small .brand-item {
-                min-height: 70px;
-            padding: 0.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .brand-item {
-                width: 145px;
-                height: 95px;
-                background: white;
-                border-radius: 12px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-                overflow: hidden;
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: default;
-                flex-shrink: 0;
-                padding: 0.75rem;
-            }
-        }
-        
-        .brand-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        @media (max-width: 768px) { .brand-item img { max-height: 24px; } }
-        
-        .brand-item .brand-overlay {
-            display: none;
-        }
-        
-        @media (max-width: 768px) {
-            .brand-row {
-                display: flex;
-                overflow-x: auto;
-                overflow-y: hidden;
-                -webkit-overflow-scrolling: touch;
-                scroll-snap-type: x mandatory;
-                scrollbar-width: none;
-                gap: 1rem;
-                padding: 0.5rem 0;
-            }
-            
-            .brand-row::-webkit-scrollbar {
-                display: none;
-            }
-            
-            .brand-item {
-                scroll-snap-align: start;
-                flex-shrink: 0;
-            }
-            
-            #brands-large.brand-row,
-            #brands-medium.brand-row,
-            #brands-small.brand-row {
-                grid-template-columns: none;
-            }
-        }
-        
-        .photo-strip-banner {
-            display: none;
-            width: 100%;
-            background: #0a0a0a;
-        }
-        
-        /* Mobiel: horizontaal scrollen; beeldhoogte volgt intrinsieke aspect ratio */
-        .photo-strip-banner__grid {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            gap: 2px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior-x: contain;
-            touch-action: pan-x;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
-            align-items: stretch;
-        }
-        
-        .photo-strip-banner__grid::-webkit-scrollbar {
-            height: 4px;
-        }
-        
-        .photo-strip-banner__grid::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 2px;
-        }
-        
-        .photo-strip-banner__figure {
-            margin: 0;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #0a0a0a;
-            overflow: hidden;
-            flex: 0 0 clamp(11.5rem, 74vw, 18rem);
-            scroll-snap-align: center;
-            scroll-snap-stop: always;
-        }
-        
-        @media (min-width: 768px) {
-            .photo-strip-banner {
-                display: block;
-            }
-            
-            .photo-strip-banner__grid {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                align-items: stretch;
-                overflow-x: visible;
-                overflow-y: visible;
-                scroll-snap-type: none;
-                touch-action: auto;
-            }
-            
-            .photo-strip-banner__figure {
-                flex: initial;
-                width: 100%;
-                min-width: 0;
-                align-self: stretch;
-                scroll-snap-align: unset;
-                scroll-snap-stop: normal;
-            }
-        }
-        
-        .photo-strip-banner__img {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Contact section */
-        #contact {
-            scroll-margin-top: var(--sticky-offset, 5.5rem);
-        }
-
-        .contact-storefront {
-            display: none;
-        }
-
-        @media (min-width: 1024px) {
-            #contact .contact-layout {
-                align-items: stretch;
-            }
-
-            #contact .contact-aside {
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem;
-                min-height: 100%;
-            }
-
-            .contact-storefront {
-                display: block;
-                flex: 0 0 auto;
-                margin: 0;
-                overflow: hidden;
-                border-radius: 1rem;
-                background: #e5e7eb;
-                border: 1px solid rgba(0, 0, 0, 0.08);
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-                aspect-ratio: 2880 / 1610;
-            }
-
-            .contact-storefront a {
-                display: block;
-                height: 100%;
-            }
-
-            .contact-storefront img {
-                display: block;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-            }
-
-            #contact .contact-form-container {
-                flex: 1 1 auto;
-                min-height: 0;
-            }
-
-            #contact .contact-form-container textarea {
-                min-height: 5.5rem;
-            }
-        }
-
-        .contact-box {
-            border-top: 3px solid #ee2726;
-            border-top-left-radius: 0.75rem;
-            border-top-right-radius: 0.75rem;
-        }
-
-        .contact-hours {
-            margin-top: 0.25rem;
-        }
-
-        .contact-hours__title {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #4b5563;
-            margin: 0 0 0.5rem;
-        }
-
-        .contact-hours__list {
-            margin: 0;
-            padding: 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .contact-hours__row {
-            display: grid;
-            grid-template-columns: 6.5rem 1fr;
-            gap: 0.5rem 0.75rem;
-            padding: 0.65rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            font-size: 0.875rem;
-            line-height: 1.4;
-            align-items: start;
-        }
-
-        @media (min-width: 480px) {
-            .contact-hours__row {
-                grid-template-columns: 7rem 1fr;
-            }
-        }
-
-        .contact-hours__row dt {
-            margin: 0;
-            font-weight: 600;
-            color: #374151;
-        }
-
-        .contact-hours__row dd {
-            margin: 0;
-            color: #111827;
-            text-align: right;
-        }
-
-        .contact-hours__times {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 0.15rem;
-        }
-
-        .contact-hours__time--highlight {
-            color: #ee2726;
-            font-weight: 600;
-        }
-
-        .contact-hours__hint {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #ee2726;
-            line-height: 1.25;
-        }
-
-        .contact-hours__row--closed dt,
-        .contact-hours__row--closed dd {
-            color: #9ca3af;
-        }
-
-        a[href^="tel:"].contact-phone-link {
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
-            width: fit-content;
-            max-width: 100%;
-            color: #111827;
-            font-weight: 500;
-            font-size: 1rem;
-            line-height: 1.4;
-            text-decoration: none;
-            transition: color 160ms ease;
-        }
-
-        a[href^="tel:"].contact-phone-link:hover {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            color: #ee2726 !important;
-            transform: none !important;
-        }
-
-        a[href^="tel:"].contact-phone-link:active {
-            transform: none !important;
-        }
-
-        a[href^="tel:"].contact-phone-link i {
-            color: #9ca3af;
-            font-size: 0.85rem;
-            width: 1rem;
-            text-align: center;
-        }
-
-        a[href^="tel:"].contact-phone-link:hover i {
-            color: #ee2726;
-        }
-
-        .contact-whatsapp {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-top: 0.25rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.8125rem;
-            font-weight: 600;
-            line-height: 1.2;
-            color: #fff;
-            background: #25d366;
-            text-decoration: none;
-            box-shadow: none;
-            border: none;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-            transition: background 160ms ease, transform 120ms ease;
-            width: fit-content;
-        }
-
-        .contact-whatsapp:hover {
-            background: #1ebe57 !important;
-            color: #fff !important;
-            box-shadow: none !important;
-        }
-
-        .contact-whatsapp:active {
-            transform: scale(0.97) !important;
-        }
-
-        .contact-whatsapp i {
-            font-size: 0.95rem;
-        }
-
-        #contactSubmit:hover {
-            background: rgba(212, 30, 29, 0.95) !important;
-            box-shadow: 0 8px 24px rgba(238, 39, 38, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
-        }
-
-        #contactSubmit:active {
-            transform: scale(0.98) !important;
-        }
-
-        #contactForm input:focus,
-        #contactForm textarea:focus {
-            outline: none !important;
-            background: rgba(255, 255, 255, 0.95) !important;
-            border-color: #ee2726 !important;
-            box-shadow:
-                0 0 0 3px rgba(238, 39, 38, 0.22),
-                0 4px 12px rgba(238, 39, 38, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 1) !important;
-        }
-
-        #contactForm input:focus-visible,
-        #contactForm textarea:focus-visible {
-            outline: none !important;
-            border-color: #ee2726 !important;
-        }
-
-        @media (hover: none) and (pointer: coarse) {
-            a[href^="tel:"]:hover,
-            .contact-whatsapp:hover,
-            #contactSubmit:hover,
-            .award-box:hover,
-            .media-box:hover,
-            .team-container:hover {
-                transform: none !important;
-            }
-
-            a[href^="tel:"]:active,
-            .contact-whatsapp:active,
-            #contactSubmit:active {
-                transform: scale(0.97) !important;
-            }
-
-            .award-box:active,
-            .media-box:active {
-                transform: scale(0.98) !important;
-            }
-        }
-        
-        .award-box {
-            border-radius: 16px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            min-height: 100%;
-            background: #ffffff !important;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        }
-        
-        .media-box {
-            border-radius: 16px;
-            overflow: hidden;
-            background: #ffffff !important;
-            border: 1px solid rgba(0, 0, 0, 0.08) !important;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .media-box .space-y-4::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .media-box .space-y-4::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        
-        .media-box .space-y-4::-webkit-scrollbar-thumb {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 3px;
-        }
-        
-        .media-box .space-y-4::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .team-container {
-            background: #ffffff !important;
-            border: 1px solid rgba(0, 0, 0, 0.08) !important;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-            border-radius: 16px !important;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        }
-        
-        .award-box:hover {
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1);
-            border-color: rgba(0, 0, 0, 0.12);
-        }
-        
-        .media-box:hover {
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
-            border-color: rgba(0, 0, 0, 0.12) !important;
-            transform: none !important;
-        }
-
-        /* About: tegels — vlak op #0a0a0a, geen witte wrapper / geen gradient / geen hover-motion */
-        #about .media-box,
-        #about .media-box:hover {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            border-radius: 0;
-            overflow: visible;
-            transform: none !important;
-            transition: none !important;
-        }
-        #about .about-dark-tile {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.75rem;
-        }
-
-        /* Ons team — foto-gedreven, vult de dubbele breedte */
-        #about .about-team-tile {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            padding: 1.25rem !important;
-        }
-        @media (min-width: 768px) {
-            #about .about-team-tile {
-                gap: 1.5rem;
-                padding: 1.5rem !important;
-            }
-        }
-        @media (min-width: 1024px) {
-            #about .about-team-tile {
-                padding: 1.75rem !important;
-            }
-        }
-        #about .about-team-header {
-            min-width: 0;
-        }
-        #about .about-team-header-copy {
-            margin: 0.75rem 0 0;
-            max-width: 28rem;
-            font-size: 1rem;
-            line-height: 1.55;
-            color: rgba(255, 254, 252, 0.78);
-        }
-        @media (min-width: 768px) {
-            #about .about-team-header-copy {
-                margin-top: 0.875rem;
-                font-size: 1.125rem;
-            }
-        }
-        #about .about-team-roster {
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 1.25rem;
-            min-width: 0;
-            flex: 1;
-        }
-        @media (min-width: 768px) {
-            #about .about-team-roster {
-                gap: 2.5rem;
-            }
-        }
-        @media (min-width: 1024px) {
-            #about .about-team-roster {
-                gap: 3.5rem;
-            }
-        }
-        #about .about-team-person {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            min-width: 0;
-            min-height: 0;
-            width: 8.5rem;
-        }
-        @media (min-width: 640px) {
-            #about .about-team-person {
-                width: 10rem;
-            }
-        }
-        @media (min-width: 768px) {
-            #about .about-team-person {
-                width: 11rem;
-            }
-        }
-        @media (min-width: 1024px) {
-            #about .about-team-person {
-                width: 12rem;
-            }
-        }
-        #about .about-team-photo {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            border-radius: 0.75rem;
-            overflow: hidden;
-
-        }
-        @media (min-width: 768px) {
-            #about .about-team-photo {
-                border-radius: 1rem;
-            }
-        }
-        #about .about-team-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
-        }
-        #about .about-team-meta {
-            min-width: 0;
-            padding-top: 0.75rem;
-        }
-        @media (min-width: 768px) {
-            #about .about-team-meta {
-                padding-top: 0.875rem;
-            }
-        }
-        #about .about-team-name {
-            margin: 0;
-            font-size: 1.125rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: #fffefc;
-            line-height: 1.25;
-        }
-        @media (min-width: 1024px) {
-            #about .about-team-name {
-                font-size: 1.25rem;
-            }
-        }
-        #about .about-team-role {
-            margin: 0.2rem 0 0;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            color: rgba(255, 254, 252, 0.72);
-        }
-        @media (min-width: 640px) {
-            #about .about-team-role {
-                font-size: 0.875rem;
-                margin-top: 0.3rem;
-            }
-        }
-        #about .about-dark-tile-link {
-            text-decoration: none;
-            color: inherit;
-        }
-        #about .about-dark-tile-link:hover {
-            text-decoration: none;
-        }
-        #about .about-dark-tile-link .about-dark-external {
-            color: rgba(255, 254, 252, 0.55);
-        }
-        
-        /* Easter egg: klik op Kurts naam → foto met schudeffect */
-        .dcq-kurt-egg-trigger {
-            cursor: pointer;
-            border-radius: 0.2em;
-            transition: background-color 0.15s ease, box-shadow 0.15s ease;
-        }
-        
-        .dcq-kurt-egg-trigger:hover {
-            background-color: rgba(255, 255, 255, 0.07);
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
-        }
-        
-        .dcq-kurt-egg-trigger:focus-visible {
-            outline: 2px solid rgba(238, 39, 38, 0.6);
-            outline-offset: 2px;
-        }
-        
-        @keyframes dcq-kurt-egg-wobble {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            6% { transform: translate(2px, 0) rotate(1deg) scale(1.03); }
-            12% { transform: translate(-2px, 0) rotate(-1deg) scale(1.05); }
-            18% { transform: translate(2px, 0) rotate(1deg) scale(1.07); }
-            24% { transform: translate(-2px, 1px) rotate(-1deg) scale(1.1); }
-            32% { transform: translate(2px, -1px) rotate(1deg) scale(1.14); }
-            42% { transform: translate(-2px, 0) rotate(-1deg) scale(1.18); }
-            52% { transform: translate(2px, 0) rotate(1deg) scale(1.22); }
-            62% { transform: translate(-2px, 0) rotate(-1deg) scale(1.24); }
-            74% { transform: translate(1px, -1px) rotate(1deg) scale(1.12); }
-            86% { transform: translate(-1px, 0) rotate(0deg) scale(1.04); }
-            100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-        }
-        
-        @keyframes dcq-kurt-egg-backdrop {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        #dcqKurtEggOverlay {
-            position: fixed;
-            inset: 0;
-            z-index: 99998;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.78);
-            animation: dcq-kurt-egg-backdrop 0.22s ease forwards;
-        }
-        
-        #dcqKurtEggOverlay .dcq-kurt-egg-img {
-            max-width: min(380px, 88vw);
-            width: auto;
-            height: auto;
-            display: block;
-            animation: dcq-kurt-egg-wobble 1.15s ease-in-out 2;
-            filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.55));
-        }
-        
-        #dcqKurtEggOverlay .dcq-kurt-egg-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 2.75rem;
-            height: 2.75rem;
-            border: none;
-            border-radius: 9999px;
-            background: rgba(255, 255, 255, 0.14);
-            color: #fffefc;
-            font-size: 1.5rem;
-            line-height: 1;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.15s ease;
-        }
-        
-        #dcqKurtEggOverlay .dcq-kurt-egg-close:hover {
-            background: rgba(238, 39, 38, 0.9);
-        }
-        
-        .about-showcase-media {
-            background: #0a0a0a;
-        }
-        
-        /* Mediakaart: hele videobeeld zichtbaar (letterbox/pillarbox), geen crop */
-        .about-showcase-media--card {
-            flex: 1 1 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 220px;
-        }
-        
-        @media (min-width: 1024px) {
-            .about-showcase-media--card {
-                min-height: 280px;
-            }
-        }
-        
-        .about-showcase-media--card .about-showcase-video {
-            z-index: 0;
-            display: block;
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: min(56vh, 520px);
-            margin: 0 auto;
-            object-fit: contain;
-            object-position: center center;
-        }
-        
-        @media (min-width: 1024px) {
-            .about-showcase-media--card .about-showcase-video {
-                max-height: min(68vh, 720px);
-            }
-        }
-        
-        /* Aparte sfeer-sectie: 16:9 kader, video vult het vlak */
-        .about-showcase-media--section {
-            aspect-ratio: 16 / 9;
-        }
-        
-        .about-showcase-media--section .about-showcase-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-        }
-
-        /* Sfeer-fotogrid: één klasse i.p.v. lange Tailwind-herhaling per cel */
-        #sfeer .sfeer-photo-cell {
-            position: relative;
-            overflow: hidden;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background-color: rgba(0, 0, 0, 0.2);
-            height: 8rem;
-        }
-        @media (min-width: 640px) {
-            #sfeer .sfeer-photo-cell { height: 10rem; }
-        }
-        @media (min-width: 768px) {
-            #sfeer .sfeer-photo-cell { height: 12rem; }
-        }
-        @media (min-width: 1024px) {
-            #sfeer .sfeer-photo-cell { height: 14rem; }
-        }
-        
-        .about-showcase-sound-btn {
-            position: absolute;
-            bottom: 0.75rem;
-            right: 0.75rem;
-            z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #fffefc;
-            background: rgba(1, 1, 1, 0.55);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            cursor: pointer;
-            transition: background 0.2s ease, transform 0.2s ease;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        .about-showcase-sound-btn:hover {
-            background: rgba(238, 39, 38, 0.85);
-            border-color: rgba(255, 255, 255, 0.25);
-        }
-        
-        .about-showcase-sound-btn:focus-visible {
-            outline: 2px solid #ee2726;
-            outline-offset: 2px;
-        }
-        
-        .about-showcase-sound-btn[aria-pressed="true"] {
-            background: rgba(238, 39, 38, 0.9);
-        }
-        
-        .offer-details-summary::-webkit-details-marker {
-            display: none;
-        }
-        
-        .offer-details[open] .offer-details-chevron {
-            transform: rotate(180deg);
-        }
-        
-        .offer-details-summary:focus-visible {
-            outline: 2px solid #ee2726;
-            outline-offset: 4px;
-            border-radius: 4px;
-        }
-
-        /* Featured bikes — greep uit het aanbod */
-        .featured-bikes {
-            background: #f9fafb;
-        }
-
-        .featured-bikes__bridge {
-            display: flex;
-            justify-content: center;
-            padding: 0.25rem 1rem 0.75rem;
-            color: #ee2726;
-            opacity: 0.35;
-            pointer-events: none;
-        }
-
-        .featured-bikes__bridge svg {
-            width: min(11rem, 42vw);
-            height: auto;
-            overflow: visible;
-        }
-
-        .featured-bikes__lead {
-            margin: 0 auto;
-            max-width: 38rem;
-            line-height: 1.6;
-            color: #4b5563;
-        }
-
-        .featured-bikes__scroller {
-            width: 100%;
-        }
-
-        .featured-bikes__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
-            gap: 1.25rem;
-            max-width: 72rem;
-            margin: 0 auto;
-            justify-content: center;
-        }
-
-        .featured-bikes__grid[data-bike-count="1"] {
-            max-width: 24rem;
-            grid-template-columns: 1fr;
-        }
-
-        .featured-bikes__grid[data-bike-count="2"] {
-            max-width: 48rem;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .featured-bike-card {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 0.875rem;
-            overflow: hidden;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-        }
-
-        .featured-bike-card__media {
-            position: relative;
-            aspect-ratio: 5 / 3;
-            background: #f3f4f6;
-            overflow: hidden;
-        }
-
-        .featured-bike-card__img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .featured-bike-card__body {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            padding: 0.85rem 1rem 0.95rem;
-            gap: 0.15rem;
-        }
-
-        .featured-bike-card__brand {
-            display: flex;
-            align-items: center;
-            min-height: 1.15rem;
-        }
-
-        .featured-bike-card__brandText {
-            margin: 0;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #6b7280;
-        }
-
-        .featured-bike-card__brandLogo {
-            display: block;
-            max-height: 1.15rem;
-            max-width: 6.75rem;
-            width: auto;
-            object-fit: contain;
-            object-position: left center;
-        }
-
-        .featured-bike-card__model {
-            margin: 0;
-            font-family: var(--font-heading);
-            font-size: 1.125rem;
-            font-weight: 700;
-            line-height: 1.25;
-            color: #111827;
-            overflow-wrap: anywhere;
-        }
-
-        .featured-bike-card__desc {
-            margin: 0.1rem 0 0;
-            font-size: 0.875rem;
-            line-height: 1.45;
-            color: #4b5563;
-            overflow-wrap: anywhere;
-        }
-
-        .featured-bike-card__priceRow {
-            display: flex;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 0.35rem 0.6rem;
-            margin-top: auto;
-            padding-top: 0.35rem;
-        }
-
-        .featured-bike-card__price {
-            margin: 0;
-            font-size: 1.125rem;
-            font-weight: 800;
-            color: #111827;
-            letter-spacing: -0.02em;
-        }
-
-        .featured-bikes__dots {
-            display: none;
-        }
-
-        .featured-bikes__footer {
-            margin-top: 1.75rem;
-            text-align: center;
-            max-width: 36rem;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .featured-bikes__footerText {
-            margin: 0 0 0.85rem;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #4b5563;
-        }
-
-        @media (min-width: 768px) {
-            .featured-bikes__footerText {
-                font-size: 1.125rem;
-            }
-        }
-
-        .featured-bikes__snap-spacer {
-            display: none;
-        }
-
-        .featured-bikes__cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.65rem 1.15rem;
-            border-radius: 0.5rem;
-            background: #ee2726;
-            color: #fffefc;
-            font-size: 0.875rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: background 0.2s ease;
-        }
-
-        .featured-bikes__cta:hover {
-            background: #d41f1e;
-            color: #fffefc;
-        }
-
-        @media (max-width: 1023px) {
-            .featured-bikes {
-                padding-top: 2.5rem !important;
-                padding-bottom: 2.5rem !important;
-            }
-
-            .featured-bikes__header {
-                margin-bottom: 1rem !important;
-            }
-
-            .featured-bikes__dots[hidden] {
-                display: none !important;
-            }
-
-            .featured-bikes__dots {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.4rem;
-                margin-top: 0.85rem;
-            }
-
-            .featured-bikes__dot {
-                position: relative;
-                width: 0.4rem;
-                height: 0.4rem;
-                border-radius: 9999px;
-                border: 0;
-                padding: 0;
-                background: rgba(0, 0, 0, 0.15);
-                pointer-events: none;
-            }
-
-            .featured-bikes__dot.is-active {
-                background: #ee2726;
-                width: 1rem;
-                border-radius: 9999px;
-            }
-
-            .featured-bikes__scroller {
-                --featured-bike-card-width: min(calc(100vw - 2.5rem), 22rem);
-                overflow-x: auto;
-                overflow-y: hidden;
-                -webkit-overflow-scrolling: touch;
-                scroll-snap-type: x mandatory;
-                scrollbar-width: none;
-                width: 100vw;
-                margin-left: calc(50% - 50vw);
-            }
-
-            .featured-bikes__scroller:has(.featured-bikes__grid[data-bike-count="1"]) {
-                overflow-x: hidden;
-                width: 100%;
-                margin-left: 0;
-            }
-
-            .featured-bikes__scroller::-webkit-scrollbar {
-                display: none;
-            }
-
-            .featured-bikes__grid {
-                display: flex;
-                flex-wrap: nowrap;
-                align-items: flex-start;
-                gap: 0;
-                width: max-content;
-                max-width: none;
-                margin: 0;
-                padding: 0 0 0.5rem;
-            }
-
-            .featured-bikes__grid[data-bike-count="1"] {
-                width: 100%;
-                max-width: var(--featured-bike-card-width);
-                margin: 0 auto;
-                justify-content: center;
-                padding: 0;
-            }
-
-            /* Spacers i.p.v. padding: voorkomt iOS Safari scroll-snap start-op-einde bug */
-            .featured-bikes__snap-spacer {
-                display: block;
-                flex: 0 0 max(0px, calc((100vw - var(--featured-bike-card-width)) / 2));
-                width: max(0px, calc((100vw - var(--featured-bike-card-width)) / 2));
-                height: 1px;
-                pointer-events: none;
-                visibility: hidden;
-            }
-
-            .featured-bikes__grid[data-bike-count="1"] .featured-bikes__snap-spacer {
-                display: none;
-            }
-
-            .featured-bike-card {
-                flex: 0 0 var(--featured-bike-card-width);
-                width: var(--featured-bike-card-width);
-                scroll-snap-align: center;
-                scroll-snap-stop: always;
-            }
-
-            .featured-bike-card + .featured-bike-card {
-                margin-left: 0.85rem;
-            }
-
-            .featured-bike-card__media {
-                aspect-ratio: 16 / 10;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .featured-bikes__grid {
-                gap: 1.5rem;
-            }
-
-            .featured-bikes__grid[data-bike-count="3"] {
-                max-width: 72rem;
-            }
-
-            .featured-bikes__grid[data-bike-count="4"] {
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-                max-width: 80rem;
-            }
-
-            .featured-bike-card__media {
-                aspect-ratio: 4 / 3;
-            }
-
-            .featured-bike-card__body {
-                padding: 1rem 1.25rem 1.15rem;
-                gap: 0.2rem;
-            }
-
-            .featured-bike-card__brand {
-                min-height: 1.35rem;
-            }
-
-            .featured-bike-card__brandText {
-                font-size: 0.75rem;
-            }
-
-            .featured-bike-card__brandLogo {
-                max-height: 1.35rem;
-                max-width: 7.5rem;
-            }
-
-            .featured-bike-card__model {
-                font-size: 1.25rem;
-            }
-
-            .featured-bike-card__desc {
-                font-size: 0.875rem;
-            }
-
-            .featured-bike-card__price {
-                font-size: 1.25rem;
-            }
-        }
-        
-        .award-box a {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            align-items: stretch;
-            min-height: 100%;
-            cursor: pointer;
-        }
-        
-        .award-box a:hover {
-            text-decoration: none;
-        }
-        
-        .award-box .external-link-icon {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            color: #ee2726;
-            font-size: 0.875rem;
-            opacity: 0.6;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .award-box:hover .external-link-icon {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        
-        .award-logo-side {
-            position: absolute;
-            left: 1rem;
-            top: 0;
-            bottom: 0;
-            width: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 0.5rem;
-        }
-        
-        @media (min-width: 1024px) {
-            .award-logo-side {
-                left: 1rem;
-                width: 60px;
-            }
-            
-            .award-box {
-                background: #ffffff;
-            }
-            
-            .award-box:hover {
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-                transform: translateY(-2px);
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-        }
-        
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        
-        .line-clamp-3 {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        
-        .award-logo-side img {
-            height: 100%;
-            max-height: 100px;
-            width: auto;
-            object-fit: contain;
-            filter: grayscale(20%);
-            transition: all 0.3s ease;
-            opacity: 0.9;
-        }
-        
-        .award-box:hover .award-logo-side img {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-        
-        .award-content {
-            margin-left: calc(60px + 1rem);
-            padding: 1rem;
-            min-height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        @media (min-width: 1024px) {
-            .award-content {
-                margin-left: calc(60px + 1rem);
-            }
-        }
-        
-        .award-box img:not(.award-logo-side img) {
-            filter: grayscale(20%);
-            transition: all 0.3s ease;
-        }
-        
-        .award-box:hover img:not(.award-logo-side img) {
-            filter: grayscale(0%);
-        }
-        
-        @media (max-width: 768px) {
-            .award-logo-side {
-                left: 1rem;
-                width: 60px;
-                padding: 0.75rem 0.5rem;
-            }
-            
-            .award-logo-side img {
-                max-height: 70px;
-            }
-            
-            .award-content {
-                margin-left: calc(60px + 1rem);
-                padding: 0.75rem;
-            }
-            
-            .award-content p {
-                font-size: 0.75rem;
-            }
-        }
-        
-        .team-showcase {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        @media (min-width: 640px) {
-            .team-showcase {
-                gap: 3rem;
-                flex-wrap: nowrap;
-            }
-        }
-        
-        .team-member {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .team-member-photo-wrapper {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        @media (min-width: 640px) and (max-width: 1100px) {
-            .team-showcase {
-                flex-wrap: wrap;
-                gap: 1.5rem;
-                justify-content: center;
-            }
-            
-            .team-member {
-                flex: 1 1 calc(50% - 1.5rem);
-            }
-            
-            .team-member-photo-wrapper {
-                width: 120px;
-                height: 120px;
-                aspect-ratio: 1 / 1;
-            }
-            
-            .team-member-photo {
-                width: 120px;
-                height: 120px;
-                border-radius: 50%;
-                aspect-ratio: 1 / 1;
-                object-fit: cover;
-            }
-        }
-        
-        @keyframes subtle-glow {
-            0%, 100% {
-                box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08), 
-                            0 8px 32px rgba(0, 0, 0, 0.04),
-                            inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            }
-            50% {
-                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10), 
-                            0 12px 48px rgba(0, 0, 0, 0.05),
-                            0 0 0 1px rgba(238, 39, 38, 0.06),
-                            inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            }
-        }
-        
-        .team-member-photo {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            position: relative;
-            z-index: 2;
-            transition: none;
-        }
-        
-        .team-member:hover .team-member-photo {
-            transform: none;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            border-color: rgba(0, 0, 0, 0.06);
-        }
-        
-        .team-member-name {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #111827;
-            margin: 0.75rem 0 0.5rem 0;
-            transition: none;
-            letter-spacing: -0.02em;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .team-member:hover .team-member-name {
-            color: #111827;
-            transform: none;
-        }
-        
-        .team-member-role {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #ffffff;
-            background-color: #ee2726;
-            padding: 0.375rem 0.75rem;
-            border-radius: 9999px;
-            margin-top: 0.5rem;
-            letter-spacing: 0.01em;
-            transition: none;
-            box-shadow: 0 1px 2px rgba(238, 39, 38, 0.2);
-        }
-        
-        .team-member:hover .team-member-role {
-            background-color: #ee2726;
-            transform: none;
-            box-shadow: 0 1px 2px rgba(238, 39, 38, 0.2);
-        }
-        
-        @media (max-width: 639px) {
-            .team-showcase {
-                gap: 1rem;
-            }
-            
-            .team-member {
-                flex: 0 1 auto;
-            }
-            
-            .team-member-photo-wrapper {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .team-member-photo {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .team-member-name {
-                font-size: 1rem;
-                margin: 0.5rem 0 0.375rem 0;
-            }
-            
-            .team-member-role {
-                font-size: 0.75rem;
-                padding: 0.3rem 0.65rem;
-            }
-        }
-        
-        .designer-credit {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: rgba(255, 255, 255, 0.55);
-            font-size: 0.75rem;
-            letter-spacing: 0.02em;
-        }
-        /* Collapsible chevron rotation */
-        .collapsible[open] .chevron {
-            transform: rotate(180deg);
-        }
-        .designer-credit a {
-            color: rgba(255, 255, 255, 0.8);
-            position: relative;
-            transition: color 250ms ease;
-        }
-        .designer-credit a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            width: 100%;
-            height: 2px;
-            background: currentColor;
-            transform: scaleX(0);
-            transform-origin: left;
-            opacity: 0.9;
-            transition: transform 220ms cubic-bezier(0.28, 0.11, 0.32, 1);
-        }
-        .designer-credit a:hover {
-            color: #ffffff;
-        }
-        .designer-credit a:hover::after {
-            transform: scaleX(1);
-        }
-
-        .team-member {
-            background: transparent;
-            border: 0;
-            border-radius: 16px;
-            padding: 0.5rem 0.75rem 0.75rem;
-            box-shadow: none;
-            transition: none;
-        }
-        .team-member:hover { transform: none; box-shadow: none; }
-        
-        /* Special Offers Section */
-        
-        @media (max-width: 1023px) {
-            .offer-card {
-                max-width: 100%;
-            }
-        }
-
-        /* Offers: (price moved to details) */
-        
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DCQ Bikes Jabbeke | Elektrische fietsen, stadsfietsen &amp; grasmaaiers</title>
+  <meta name="description" content="DCQ Bikes in Jabbeke: advies, onderhoud en herstel van elektrische fietsen, stadsfietsen en grasmaaiers. Gistelsteenweg 282." />
+  <link rel="canonical" href="https://www.dcqbikes.be/" />
+  <meta name="robots" content="index, follow" />
+  <link rel="sitemap" type="application/xml" href="https://www.dcqbikes.be/sitemap.xml" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.dcqbikes.be/" />
+  <meta property="og:title" content="DCQ Bikes | Fietsenwinkel in Jabbeke" />
+  <meta property="og:description" content="Jouw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke." />
+  <meta property="og:image" content="https://www.dcqbikes.be/assets/images/social/og-share.jpg" />
+  <meta property="og:image:secure_url" content="https://www.dcqbikes.be/assets/images/social/og-share.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="840" />
+  <meta property="og:image:alt" content="Gevel van DCQ Bikes in Jabbeke" />
+  <meta property="og:locale" content="nl_BE" />
+  <meta property="og:site_name" content="DCQ Bikes" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.dcqbikes.be/" />
+  <meta name="twitter:title" content="DCQ Bikes | Fietsenwinkel in Jabbeke" />
+  <meta name="twitter:description" content="Jouw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers. Professioneel onderhoud en herstellingen in Jabbeke." />
+  <meta name="twitter:image" content="https://www.dcqbikes.be/assets/images/social/og-share.jpg" />
+  <meta name="twitter:image:alt" content="Gevel van DCQ Bikes in Jabbeke" />
+
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="google-site-verification" content="-fN6aiVcN0ZngFVhg6B8IIovlvMJAr3DRpcfPJ63HdI" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KL3NB54KT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1KL3NB54KT');
+  </script>
 </head>
-<body class="bg-dcq-white text-dcq-black antialiased">
+<body>
+  <a class="skip-link" href="#main">Ga naar inhoud</a>
 
-    <!-- Cookie Banner -->
-    <div id="cookieBanner" class="fixed bottom-0 left-0 right-0 bg-dcq-black text-dcq-white p-4 md:p-6 z-50 shadow-lg">
-        <div class="container mx-auto max-w-6xl">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                <div class="flex-1">
-                    <p class="text-sm md:text-base">
-                        Deze website gebruikt cookies om je ervaring te verbeteren. Door verder te gaan, stem je in met ons gebruik van cookies. 
-                        <a href="cookie-policy.html" class="text-dcq-red hover:underline font-medium">Meer informatie</a>
-                    </p>
-                </div>
-                <div class="flex gap-3">
-                    <button id="acceptCookies" class="px-6 py-2 bg-dcq-red text-white rounded-lg hover:bg-opacity-90 transition-colors font-medium">
-                        Accepteren
-                    </button>
-                    <button id="declineCookies" class="px-6 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium">
-                        Weigeren
-                    </button>
-                </div>
-            </div>
+  <div id="cookie-banner" class="cookie-banner" hidden>
+    <div class="cookie-banner__inner">
+      <p>Deze website gebruikt cookies om je ervaring te verbeteren. Door verder te gaan, stem je in met ons gebruik van cookies. <a href="/cookies.html">Meer informatie</a></p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="btn btn--ghost" data-cookie="reject">Weigeren</button>
+        <button type="button" class="btn btn--primary" data-cookie="accept">Accepteren</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner">
+      <a class="site-logo" href="#top" aria-label="DCQ Bikes, naar boven">
+        <img src="/assets/images/logo/dcqbikeslogotransparent.png" alt="DCQ Bikes" width="160" height="64" />
+      </a>
+      <nav class="site-nav" aria-label="Hoofdnavigatie">
+        <div class="nav-panel" id="nav-panel">
+          <a href="#aanbod">Aanbod</a>
+          <a href="#over-ons">Over Ons</a>
+          <a href="#contact">Contact</a>
         </div>
+        <a href="#contact" class="store-status store-status--nav" role="status" aria-live="polite" title="Bekijk openingsuren">
+          <span class="store-status__dot" aria-hidden="true"></span>
+          <span class="store-status-text">…</span>
+        </a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Menu openen">
+          <span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-label="Welkom">
+      <div class="hero__media" aria-hidden="true">
+        <img
+          class="hero__image"
+          src="/assets/images/gallery/IMG_7790.jpg"
+          alt=""
+          width="1600"
+          height="900"
+          fetchpriority="high"
+        />
+        <div class="hero__veil"></div>
+      </div>
+
+      <div class="hero__content">
+        <img
+          class="hero__brand hero__brand--logo"
+          src="/assets/images/logo/dcqbikeslogotransparent.png"
+          alt="DCQ Bikes"
+          width="280"
+          height="112"
+        />
+        <p class="hero__brand hero__brand--text">DCQ Bikes</p>
+        <h1 class="hero__title">Jouw partner voor fiets en tuin in Jabbeke</h1>
+        <p class="hero__support">Elektrische fietsen, stadsfietsen en grasmaaiers, met advies, onderhoud en herstel in onze winkel.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#aanbod">Bekijk ons aanbod <span aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost btn--on-dark" href="#contact">Neem contact op</a>
+        </div>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span class="hero__scroll-line"></span>
+        Scroll
+      </div>
+    </section>
+
+    <section class="section section--light" id="aanbod">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Ons aanbod</p>
+          <h2>Alles voor fiets en tuin</h2>
+        </header>
+
+        <div class="offer-grid">
+          <article class="offer-tile offer-tile--hero reveal">
+            <img src="/assets/images/onsaanbod/IMG_7908.jpg" alt="Elektrische fiets Conway Cairon met Bosch-motor" loading="lazy" width="900" height="700" />
+            <div class="offer-tile__label">
+              <h3>Elektrische fietsen</h3>
+            </div>
+          </article>
+          <article class="offer-tile offer-tile--hero reveal">
+            <img src="/assets/images/onsaanbod/IMG_8020.jpg" alt="Oxford stadsfietsen in de showroom" loading="lazy" width="900" height="700" />
+            <div class="offer-tile__label">
+              <h3>Stadsfietsen</h3>
+            </div>
+          </article>
+          <article class="offer-tile reveal">
+            <img src="/assets/images/onsaanbod/IMG_7748.jpg" alt="EGO Power+ grasmaaiers" loading="lazy" width="900" height="700" />
+            <div class="offer-tile__label">
+              <h3>Grasmaaiers &amp; tuin</h3>
+            </div>
+          </article>
+          <article class="offer-tile reveal">
+            <img src="/assets/images/onsaanbod/IMG_7891.jpg" alt="Fietsherstelling in de werkplaats" loading="lazy" width="900" height="700" />
+            <div class="offer-tile__label">
+              <h3>Onderhoud &amp; herstel</h3>
+            </div>
+          </article>
+          <article class="offer-tile reveal">
+            <img src="/assets/images/onsaanbod/IMG_8073.jpg" alt="Onderdelen en accessoires in de winkel" loading="lazy" width="1200" height="700" />
+            <div class="offer-tile__label">
+              <h3>Onderdelen &amp; accessoires</h3>
+            </div>
+          </article>
+        </div>
+
+        <div class="featured" id="uitgelicht">
+          <div class="featured__head reveal">
+            <h3>Uitgelicht in de winkel</h3>
+            <p>Een greep uit ons aanbod. Kom langs om te proefrijden.</p>
+          </div>
+          <div class="featured__track" id="featured-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="sfeer">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Sfeerimpressie</p>
+          <h2>Even binnen kijken</h2>
+          <p class="lede">Een korte blik in onze winkel.</p>
+        </header>
+
+        <div class="atmosphere reveal">
+          <div class="atmosphere__video">
+            <video
+              id="shop-video"
+              playsinline
+              preload="metadata"
+              poster="/assets/images/gallery/IMG_7929.jpg"
+              controls
+              muted
+            >
+              <source src="/assets/videos/overons.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="atmosphere__grid">
+            <img src="/assets/images/gallery/IMG_7763.jpg" alt="Winkelinterieur DCQ Bikes" loading="lazy" width="600" height="750" />
+            <img src="/assets/images/gallery/IMG_7790.jpg" alt="Fietsen in de showroom" loading="lazy" width="600" height="750" />
+            <img src="/assets/images/gallery/IMG_7844.jpg" alt="Werkplaats" loading="lazy" width="600" height="750" />
+            <img src="/assets/images/gallery/IMG_7916.jpg" alt="Assortiment in de winkel" loading="lazy" width="600" height="750" />
+            <img src="/assets/images/gallery/IMG_7929.jpg" alt="Showroom DCQ Bikes" loading="lazy" width="600" height="750" />
+            <img src="/assets/images/gallery/IMG_7950.jpg" alt="Detail in de winkel" loading="lazy" width="600" height="750" />
+            <img src="/assets/images/gallery/IMG_7994.jpg" alt="Service en onderhoud" loading="lazy" width="600" height="750" />
+            <img src="/assets/images/gallery/IMG_8025.jpg" alt="DCQ Bikes Jabbeke" loading="lazy" width="600" height="750" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" id="merken">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Merken</p>
+          <h2>Geselecteerd met oog voor kwaliteit</h2>
+          <p class="lede">Fietsmerken en tuinmachines waar we mee werken.</p>
+        </header>
+
+        <div class="brands reveal">
+          <div class="brands__primary" aria-label="Hoofdmerken">
+            <a class="brand-logo" href="https://www.victoria-bikes.com/nl/" target="_blank" rel="noopener noreferrer"><img src="/assets/images/brands/large/victoriablack.png" alt="Victoria" loading="lazy" height="40" /></a>
+            <a class="brand-logo" href="https://www.conway-bikes.com/nl/" target="_blank" rel="noopener noreferrer"><img src="/assets/images/brands/large/Conway_Wortmarke.png" alt="Conway" loading="lazy" height="40" /></a>
+            <a class="brand-logo" href="https://norta.be/nl/home" target="_blank" rel="noopener noreferrer"><img src="/assets/images/brands/large/norta.png" alt="Norta" loading="lazy" height="40" /></a>
+            <a class="brand-logo" href="https://www.qio-bikes.com/nl/" target="_blank" rel="noopener noreferrer"><span class="brand-logo__text">QiO</span></a>
+            <a class="brand-logo" href="https://www.oxfordbikes.be/" target="_blank" rel="noopener noreferrer"><img src="/assets/images/brands/large/oxfordlogo.webp" alt="Oxford" loading="lazy" height="40" /></a>
+            <a class="brand-logo" href="https://aureusdrive.be/" target="_blank" rel="noopener noreferrer"><img src="/assets/images/brands/large/aureus.webp" alt="AureusDrive" loading="lazy" height="40" /></a>
+            <a class="brand-logo" href="https://egopowerplus.be/" target="_blank" rel="noopener noreferrer"><img src="/assets/images/brands/large/ego-logo.png" alt="EGO" loading="lazy" height="40" /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="visual-break" aria-hidden="true">
+      <img src="/assets/images/onsaanbod/IMG_7734.jpg" alt="" loading="lazy" />
     </div>
 
-    <!-- Mobile status ribbon: scrollt weg; zelfde zwart als de nav -->
-    <div id="headerRibbon" class="md:hidden">
-        <div class="header-ribbon__inner">
-            <span id="ribbonHours" class="ribbon-hours" hidden>
-                <i class="fas fa-clock ribbon-hours__icon" aria-hidden="true"></i>
-                <span class="ribbon-hours__text"></span>
-            </span>
-            <a href="#contact" class="store-status store-status--ribbon" role="status" aria-live="polite" title="Bekijk openingsuren">
-                <span class="store-status-dot" aria-hidden="true"></span>
-                <span class="store-status-text">Bezig met laden...</span>
-            </a>
+    <section class="section section--dark" id="over-ons">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Over DCQ Bikes</p>
+          <h2>Van eerste stappen als leergast tot een eigen winkel</h2>
+        </header>
+
+        <div class="about-layout">
+          <div class="about-copy reveal">
+            <p>Op achttienjarige leeftijd stapte <span class="dcq-kurt-egg-trigger" tabindex="0" role="button" aria-label="Kurt Declercq">Kurt Declercq</span> de fietswereld in als leergast. Wat toen een opleiding was, groeide al snel uit tot een echte passie voor het vak: techniek, mensen en de fiets zelf.</p>
+            <p>In 2006 zette hij de stap naar zelfstandigheid en richtte DCQ Bikes op. Met veel inzet, passie, en vooral respect voor klant en materiaal bouwde hij de zaak uit tot wat zij vandaag is: een adres waar je terecht kan voor advies, onderhoud, herstel en een brede keuze aan elektrische fietsen.</p>
+            <p>Inmiddels kijkt Kurt met trots terug op dat traject. Minstens zo belangrijk blijft vooruitkijken: inspelen op wat de sector vraagt, met e-bikes en innovatie als vaste pijlers in de toekomst van de winkel.</p>
+          </div>
+          <figure class="about-media reveal">
+            <img src="/assets/images/gallery/IMG_7945.jpg" alt="Kurt Declercq achter de toonbank bij DCQ Bikes" width="1200" height="700" loading="lazy" />
+          </figure>
         </div>
+
+        <div class="about-gallery reveal">
+          <img src="/assets/images/onsaanbod/IMG_7875.jpg" alt="Onderhoud in de werkplaats" loading="lazy" width="700" height="420" />
+          <img src="/assets/images/gallery/IMG_7929.jpg" alt="Reparatiekaart op een e-bike" loading="lazy" width="700" height="420" />
+          <img src="/assets/images/bannerstrip/IMG_8083.jpg" alt="Detail van aandrijving en ketting" loading="lazy" width="700" height="420" />
+        </div>
+
+        <p class="statement-rotate reveal" aria-live="polite">
+          <span class="statement-rotate__fixed">Wij staan voor</span>
+          <span class="statement-rotate__slot">
+            <span class="statement-rotate__item is-active">vakmanschap.</span>
+            <span class="statement-rotate__item">service.</span>
+            <span class="statement-rotate__item">advies.</span>
+            <span class="statement-rotate__item">kwaliteit.</span>
+            <span class="statement-rotate__item">passie.</span>
+          </span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--light" id="team">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Mensen achter DCQ Bikes</p>
+          <h2>Ons team</h2>
+          <p class="lede">Advies en vakmanschap, rechtstreeks in de winkel in Jabbeke.</p>
+        </header>
+        <div class="team-grid">
+          <article class="team-member reveal">
+            <div class="team-member__photo">
+              <img src="/assets/images/profilepictures/kurtdeclercq.png" alt="Kurt Declercq" width="320" height="400" loading="lazy" />
+            </div>
+            <div class="team-member__meta">
+              <h3>Kurt Declercq</h3>
+              <p>Zaakvoerder</p>
+            </div>
+          </article>
+          <article class="team-member reveal">
+            <div class="team-member__photo">
+              <img src="/assets/images/profilepictures/maximehoflack.png" alt="Maxime Hoflack" width="320" height="400" loading="lazy" />
+            </div>
+            <div class="team-member__meta">
+              <h3>Maxime Hoflack</h3>
+              <p>Fietstechnicus</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="contact">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Contact</p>
+          <h2>Kom binnen. Wij helpen je verder.</h2>
+        </header>
+
+        <div class="contact-media reveal">
+          <video
+            class="contact-media__video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="/assets/images/bannerstrip/IMG_8014.jpg"
+            aria-label="Sfeerbeelden van DCQ Bikes"
+          >
+            <source src="/assets/videos/herovideo.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-aside reveal">
+            <div class="contact-block">
+              <h3>Contactgegevens</h3>
+              <ul class="contact-list">
+                <li>
+                  <span class="contact-list__label">Adres</span>
+                  <a href="https://maps.google.com/?q=Gistelsteenweg+282,+8490+Jabbeke" target="_blank" rel="noopener noreferrer">
+                    Gistelsteenweg 282, 8490 Jabbeke
+                  </a>
+                  <span class="contact-list__note">Trajectcontrole op de Gistelsteenweg (50 km/u)</span>
+                </li>
+                <li>
+                  <span class="contact-list__label">Telefoon</span>
+                  <a href="tel:+3250814220">050 81 42 20</a>
+                  <a href="tel:+32475822376">0475 82 23 76</a>
+                </li>
+                <li>
+                  <span class="contact-list__label">E-mail</span>
+                  <a href="mailto:info@dcqbikes.be">info@dcqbikes.be</a>
+                </li>
+              </ul>
+
+              <a class="whatsapp-btn" href="https://wa.me/32475822376" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp naar 0475 82 23 76">
+                <svg class="whatsapp-btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.47-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                <span class="whatsapp-btn__text">
+                  <strong>WhatsApp</strong>
+                  <span>Bericht naar 0475 82 23 76</span>
+                </span>
+              </a>
+            </div>
+
+            <div class="hours-block">
+              <h3>Openingsuren</h3>
+              <table class="hours">
+                <tbody>
+                  <tr><th scope="row">Maandag</th><td>Gesloten</td></tr>
+                  <tr><th scope="row">Dinsdag</th><td>09:00 tot 12:00 en 13:30 tot 18:00</td></tr>
+                  <tr><th scope="row">Woensdag</th><td>09:00 tot 12:00 en 13:30 tot 18:00</td></tr>
+                  <tr><th scope="row">Donderdag</th><td>09:00 tot 12:00 en 13:30 tot 18:00</td></tr>
+                  <tr><th scope="row">Vrijdag</th><td>09:00 tot 12:00 en 13:30 tot 18:00</td></tr>
+                  <tr class="hours__saturday">
+                    <th scope="row">Zaterdag</th>
+                    <td>
+                      09:00 tot 12:00 en 13:30 tot <strong class="hours__close-early">17:00</strong>
+                      <span class="note-inline">Opgelet: op zaterdag sluiten we om 17u, niet om 18u</span>
+                    </td>
+                  </tr>
+                  <tr><th scope="row">Zondag</th><td>Gesloten</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <form class="contact-form reveal" id="contact-form" action="#" data-formspree="https://formspree.io/f/xyzlrwdb" method="POST">
+            <h3>Heb je een vraag?</h3>
+            <p>Stel hier je vraag en we nemen zo snel mogelijk contact met je op.</p>
+            <input type="hidden" name="_subject" value="Nieuw bericht via DCQ Bikes website" />
+            <input type="text" name="_gotcha" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <label>
+              <span>Naam *</span>
+              <input type="text" id="contact-name" name="name" required autocomplete="name" />
+            </label>
+            <label>
+              <span>E-mail *</span>
+              <input type="email" id="contact-email" name="email" required autocomplete="email" />
+            </label>
+            <label class="contact-form__message">
+              <span>Bericht *</span>
+              <textarea id="contact-message" name="message" rows="5" required></textarea>
+            </label>
+            <button type="submit" class="btn btn--primary btn--lg" id="contact-submit">Verzenden</button>
+            <p class="contact-form__status" id="contact-status" aria-live="polite" hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light section--compact" id="cadeaubon">
+      <div class="container">
+        <div class="gift-card reveal">
+          <div class="gift-card__media">
+            <img src="/assets/images/cadeaubon/cadeaubon.webp" alt="DCQ Bikes cadeaubon" width="480" height="360" loading="lazy" />
+          </div>
+          <div class="gift-card__body">
+            <p class="eyebrow">Cadeaubon</p>
+            <h2>DCQ Bikes Cadeaubon</h2>
+            <p>Flexibel bedrag, geldig voor alle producten en diensten. Te koop in de winkel.</p>
+            <a class="btn btn--primary" href="#contact">Info via contact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="faq">
+      <div class="container container--narrow">
+        <header class="section-head reveal">
+          <p class="eyebrow">Veelgestelde vragen</p>
+          <h2>Vind meteen antwoord op de meest voorkomende vragen.</h2>
+        </header>
+
+        <div class="faq reveal">
+          <details>
+            <summary>Hoe lang duurt een fietsherstelling gemiddeld?</summary>
+            <div class="faq__body">
+              <p>De duur van een herstelling hangt af van het type probleem:</p>
+              <ul>
+                <li>Kleine reparaties: meestal de volgende dag</li>
+                <li>Grotere onderhoudsbeurt: 3 tot 4 werkdagen</li>
+                <li>Complexe herstellingen: 5 tot 7 werkdagen (afhankelijk van beschikbaarheid van onderdelen)</li>
+              </ul>
+              <p>Bij het binnenbrengen geven we altijd een geschatte oplevertijd. Je ontvangt ook een SMS wanneer je fiets klaar is!</p>
+            </div>
+          </details>
+          <details>
+            <summary>Welke betalingsmethoden worden geaccepteerd?</summary>
+            <div class="faq__body">
+              <p>Wij accepteren de volgende betalingsmethoden:</p>
+              <ul>
+                <li>Contant geld</li>
+                <li>Bancontact &amp; mobiel betalen</li>
+                <li>Credit- en debetkaarten</li>
+              </ul>
+              <p>Voor aankopen kunnen we ook een factuur opstellen voor achteraf betaling.</p>
+              <div class="pay-logos" aria-label="Betaalmethoden">
+                <img src="/assets/images/payment/visa.svg" alt="Visa" height="24" loading="lazy" />
+                <img src="/assets/images/payment/mastercard.svg" alt="Mastercard" height="24" loading="lazy" />
+                <img src="/assets/images/payment/apple-pay.svg" alt="Apple Pay" height="24" loading="lazy" />
+                <img src="/assets/images/payment/google-pay.svg" alt="Google Pay" height="24" loading="lazy" />
+                <img src="/assets/images/payment/payconiq.svg" alt="Payconiq" height="24" loading="lazy" />
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary>Moet ik een afspraak maken?</summary>
+            <div class="faq__body">
+              <p>Nee, voor de meeste reparaties en vragen kun je gewoon langs komen tijdens onze openingstijden. Wij helpen je graag persoonlijk!</p>
+              <p>Voor kleine reparaties kun je altijd binnenlopen. Voor grotere herstellingen of een volledige onderhoudsbeurt kun je ook gewoon langskomen. We bekijken dan ter plaatse wat er nodig is.</p>
+              <p>Als je liever eerst contact opneemt, kun je een e-mail sturen naar <a href="mailto:info@dcqbikes.be">info@dcqbikes.be</a> of bellen op <a href="tel:+3250814220">+32 50 81 42 20</a> of <a href="tel:+32475822376">+32 475 82 23 76</a>.</p>
+              <p>Door langs te komen kunnen we je fiets direct bekijken en je meteen een geschatte oplevertijd geven.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Onderhoudt DCQ Bikes ook elektrische fietsen?</summary>
+            <div class="faq__body">
+              <p>Ja, wij zijn zelfs gespecialiseerd in het onderhouden en herstellen van elektrische fietsen van alle merken:</p>
+              <ul>
+                <li>Batterij controles en diagnostiek</li>
+                <li>Motoronderhoud</li>
+                <li>Rem- en versnelling afstelling</li>
+                <li>Software updates voor displays</li>
+                <li>Algemene onderhoudsbeurten</li>
+              </ul>
+              <p>Onze technici zijn gecertificeerd om te werken met verschillende e-bike systemen (Bosch, Shimano, Bafang, etc.).</p>
+            </div>
+          </details>
+          <details>
+            <summary>Hoe vaak moet ik mijn fiets laten onderhouden?</summary>
+            <div class="faq__body">
+              <p>De frequentie van onderhoud hangt af van gebruik en fiets type:</p>
+              <ul>
+                <li><strong>Elektrische fietsen:</strong> minimaal 1× per jaar of elke 2000 tot 3000 km</li>
+                <li><strong>Stadsfietsen:</strong> 1× per jaar of elke 1500 tot 2000 km</li>
+                <li><strong>Racefietsen / mountainbikes:</strong> 2 tot 3× per jaar of elke 1000 tot 1500 km</li>
+              </ul>
+              <p>Na een nat seizoen of zware ritten raden we ook extra onderhoud aan. Kom gerust langs voor advies op maat.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Wat moet ik meenemen wanneer ik mijn fiets binnenbreng?</summary>
+            <div class="faq__body">
+              <p>Om het proces soepel te laten verlopen, raden we aan om het volgende mee te nemen:</p>
+              <ul>
+                <li><strong>Je fiets:</strong> uiteraard de fiets zelf</li>
+                <li><strong>Batterij en oplader:</strong> voor elektrische fietsen, dit helpt bij diagnostiek</li>
+                <li><strong>Fietssleutel van de batterij:</strong> handig om de batterij te kunnen testen</li>
+                <li><strong>Een beschrijving van het probleem:</strong> dit helpt ons sneller de juiste diagnose te stellen</li>
+              </ul>
+              <p>Geen zorgen als je iets vergeet. Wij kunnen altijd later contact met je opnemen indien nodig.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <img src="/assets/images/logo/dcqbikeslogotransparent.png" alt="DCQ Bikes" width="140" height="56" />
+        <p>Jouw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers.</p>
+      </div>
+      <div class="site-footer__meta">
+        <p>© DCQ Bikes BV. Alle rechten voorbehouden.</p>
+        <p>BTW-nummer: BE 0685.615.103</p>
+        <p>Design by <a class="site-footer__credit" href="https://www.instagram.com/sanderdelobel/" target="_blank" rel="noopener noreferrer"><svg class="site-footer__ig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 7.2A4.8 4.8 0 1 0 12 16.8 4.8 4.8 0 0 0 12 7.2zm0 7.92A3.12 3.12 0 1 1 12 8.88a3.12 3.12 0 0 1 0 6.24zM17.52 6.9a1.12 1.12 0 1 1-2.24 0 1.12 1.12 0 0 1 2.24 0zM12 2.4c-2.6 0-2.93.01-3.96.06-1.02.05-1.72.21-2.33.45a4.7 4.7 0 0 0-1.7 1.1 4.7 4.7 0 0 0-1.1 1.7c-.24.61-.4 1.31-.45 2.33C2.41 9.07 2.4 9.4 2.4 12s.01 2.93.06 3.96c.05 1.02.21 1.72.45 2.33a4.7 4.7 0 0 0 1.1 1.7 4.7 4.7 0 0 0 1.7 1.1c.61.24 1.31.4 2.33.45 1.03.05 1.36.06 3.96.06s2.93-.01 3.96-.06c1.02-.05 1.72-.21 2.33-.45a4.7 4.7 0 0 0 1.7-1.1 4.7 4.7 0 0 0 1.1-1.7c.24-.61.4-1.31.45-2.33.05-1.03.06-1.36.06-3.96s-.01-2.93-.06-3.96c-.05-1.02-.21-1.72-.45-2.33a4.7 4.7 0 0 0-1.1-1.7 4.7 4.7 0 0 0-1.7-1.1c-.61-.24-1.31-.4-2.33-.45C14.93 2.41 14.6 2.4 12 2.4zm0 1.68c2.55 0 2.85.01 3.86.06.93.04 1.44.2 1.77.33.45.17.77.38 1.1.72.34.33.55.65.72 1.1.13.33.29.84.33 1.77.05 1 .06 1.31.06 3.86s-.01 2.85-.06 3.86c-.04.93-.2 1.44-.33 1.77-.17.45-.38.77-.72 1.1-.33.34-.65.55-1.1.72-.33.13-.84.29-1.77.33-1 .05-1.31.06-3.86.06s-2.85-.01-3.86-.06c-.93-.04-1.44-.2-1.77-.33a2.97 2.97 0 0 1-1.1-.72 2.97 2.97 0 0 1-.72-1.1c-.13-.33-.29-.84-.33-1.77-.05-1-.06-1.31-.06-3.86s.01-2.85.06-3.86c.04-.93.2-1.44.33-1.77.17-.45.38-.77.72-1.1.33-.34.65-.55 1.1-.72.33-.13.84-.29 1.77-.33 1-.05 1.31-.06 3.86-.06z"/></svg><span>Sander de Lobel</span></a></p>
+        <nav class="site-footer__links" aria-label="Juridisch">
+          <a href="/cookies.html">Cookiebeleid</a>
+          <a href="/privacy.html">Privacybeleid</a>
+          <a href="/voorwaarden.html">Algemene Voorwaarden</a>
+        </nav>
+      </div>
     </div>
+  </footer>
 
-    <!-- Sticky Navigation -->
-    <nav id="mainNav" class="sticky top-0 z-40 transition-shadow duration-200" style="background: #0a0a0a;">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="flex items-center justify-between py-4">
-                <a href="#home" class="flex items-center gap-2">
-                    <img src="assets/images/logo/dcqbikeslogotransparent.png" alt="DCQ Bikes logo" class="h-10 md:h-12 object-contain">
-                </a>
-                <div class="hidden md:flex items-center gap-8 text-dcq-white">
-                    <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Home</a>
-                    <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Aanbod</a>
-                    <a href="#about" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Over Ons</a>
-                    <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium">Contact</a>
-                    <a href="#contact" class="store-status store-status--nav ml-2" role="status" aria-live="polite" title="Bekijk openingsuren">
-                        <span class="store-status-dot" aria-hidden="true"></span>
-                        <span class="store-status-text">Bezig met laden...</span>
-                    </a>
-                </div>
-                <button id="mobileMenuBtn" class="md:hidden text-dcq-white" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-3" style="background: #0a0a0a;">
-                <div class="flex flex-col gap-1">
-                    <a href="#home" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Home</a>
-                    <a href="#services" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Aanbod</a>
-                    <a href="#about" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Over Ons</a>
-                    <a href="#contact" class="text-dcq-white hover:text-dcq-red transition-colors font-medium py-1.5 text-sm">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="relative overflow-hidden">
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" id="heroVideo">
-            <source src="assets/videos/herovideo.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay absolute inset-0 flex flex-col items-center justify-center">
-            <div class="hero-content z-10">
-                <p class="hero-eyebrow">Welkom bij</p>
-                <img
-                    src="assets/images/logo/dcqbikeslogotransparent.png"
-                    alt="DCQ Bikes"
-                    class="hero-brand"
-                >
-                <p class="hero-lead">
-                    <span>Elektrische fietsen</span>
-                    <span class="hero-lead__sep" aria-hidden="true">·</span>
-                    <span>Stadsfietsen</span>
-                    <span class="hero-lead__sep" aria-hidden="true">·</span>
-                    <span>Grasmaaiers</span>
-                </p>
-                <a href="#services" class="hero-cta" data-smooth-scroll>Bekijk ons aanbod</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ons aanbod -->
-    <section id="services" class="offer-section" aria-labelledby="services-heading">
-        <div class="offer-section__intro container mx-auto max-w-7xl px-4 md:px-6">
-            <p class="text-sm font-semibold uppercase tracking-widest text-dcq-red mb-2">Ons aanbod</p>
-            <h2 id="services-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900 font-heading">Alles voor fiets en tuin</h2>
-        </div>
-        <div id="offerHub"></div>
-    </section>
-
-    <!-- Sfeerimpressie -->
-    <section id="sfeer" class="py-12 md:py-16 relative overflow-hidden border-t border-white/5" style="background: #0a0a0a;" aria-labelledby="sfeer-heading">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="mb-4 md:mb-6 text-center px-2">
-                <p class="text-sm font-semibold uppercase tracking-widest text-dcq-red mb-2">Sfeerimpressie</p>
-                <h2 id="sfeer-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3" style="color: #fffefc;">Even binnen kijken</h2>
-                <p class="text-base md:text-lg max-w-2xl mx-auto" style="color: rgba(255, 254, 252, 0.8);">
-                    Een korte blik in onze winkel.
-                </p>
-            </div>
-            <div class="about-showcase-media about-showcase-media--section relative w-full max-w-4xl mx-auto mt-2 md:mt-4 overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-                <video
-                    id="aboutShowcaseVideo"
-                    class="about-showcase-video"
-                    playsinline
-                    muted
-                    loop
-                    preload="auto"
-                    aria-label="Video impressie DCQ Bikes">
-                    <source src="assets/videos/overons.mp4" type="video/mp4">
-                </video>
-                <button type="button" id="aboutShowcaseSoundBtn" class="about-showcase-sound-btn" aria-pressed="false" title="Geluid aan">
-                    <i class="fas fa-volume-mute" aria-hidden="true"></i>
-                    <span class="about-showcase-sound-label">Geluid aan</span>
-                </button>
-            </div>
-
-            <!-- Sfeerfoto's -->
-            <div class="w-full max-w-6xl mx-auto mt-10 md:mt-12 lg:mt-14">
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-6 md:gap-x-4 md:gap-y-8">
-                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7916.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
-                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_8025.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
-                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7763.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
-                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7844.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
-                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7950.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
-                    <div class="sfeer-photo-cell"><img src="assets/images/gallery/IMG_7994.jpg" alt="DCQ Bikes winkel — sfeerbeeld" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Merken -->
-    <section id="brands" class="pt-16 md:pt-20 pb-10 md:pb-12" style="background: #ffffff;">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900">Merken</h2>
-                <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto mb-2">Geselecteerd met oog voor kwaliteit</p>
-            </div>
-
-            <!-- Mobile: Interactive carousel with native scroll -->
-            <div class="md:hidden">
-                <p class="text-xs text-gray-400 text-center mb-4 flex items-center justify-center gap-1.5">
-                    <i class="fas fa-hand-pointer" aria-hidden="true"></i>
-                    <span>Swipe om te scrollen, tap voor meer info</span>
-                </p>
-                <div id="brands-mobile" class="brand-marquee">
-                    <div id="brandsMarqueeTrack" class="brand-marquee-track"></div>
-                </div>
-                <div id="brandCarouselProgress" class="brand-carousel-progress">
-                    <div id="brandCarouselProgressBar" class="brand-carousel-progress-bar"></div>
-                </div>
-            </div>
-
-            <!-- Desktop: 3 logo-rijen -->
-            <div class="hidden md:block">
-                <div class="Logo-line-1">
-                    <div class="glz_partner_group_block line-one-(1)">
-                        <div id="brands-large" class="glz_partner_group_block_img_wrapper">
-                            <!-- Brand logos will be loaded dynamically -->
-                        </div>
-                    </div>
-                </div>
-                <div class="Logo-line-2 mt-14 md:mt-20">
-                    <div class="glz_partner_group_block line-two-(2)">
-                        <div id="brands-medium" class="glz_partner_group_block_img_wrapper">
-                            <!-- Brand logos will be loaded dynamically -->
-                        </div>
-                    </div>
-                </div>
-                <div class="Logo-line-3 mt-14 md:mt-20 mb-6 md:mb-10">
-                    <div class="glz_partner_group_block line-three-(3)">
-                        <div id="brands-small" class="glz_partner_group_block_img_wrapper">
-                            <!-- Brand logos will be loaded dynamically -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Full-width impressiestrip (assets/images/bannerstrip) -->
-    <section id="over-ons" class="photo-strip-banner" aria-label="Impressiebeelden winkel">
-        <div class="photo-strip-banner__grid">
-            <figure class="photo-strip-banner__figure">
-                <img class="photo-strip-banner__img" src="assets/images/bannerstrip/IMG_8014.jpg" alt="DCQ Bikes winkel — impressie" loading="lazy" decoding="async">
-            </figure>
-            <figure class="photo-strip-banner__figure">
-                <img class="photo-strip-banner__img" src="assets/images/bannerstrip/IMG_7968.jpg" alt="DCQ Bikes winkel — impressie" loading="lazy" decoding="async">
-            </figure>
-            <figure class="photo-strip-banner__figure">
-                <img class="photo-strip-banner__img" src="assets/images/bannerstrip/IMG_8083.jpg" alt="DCQ Bikes winkel — impressie" loading="lazy" decoding="async">
-            </figure>
-            <figure class="photo-strip-banner__figure">
-                <img class="photo-strip-banner__img" src="assets/images/bannerstrip/IMG_7999.jpg" alt="DCQ Bikes winkel — impressie" loading="lazy" decoding="async">
-            </figure>
-        </div>
-    </section>
-
-    <!-- Brand Modal -->
-    <div id="brandModal" class="modal" role="dialog" aria-labelledby="brandModalTitle" aria-hidden="true">
-        <div class="m-auto bg-dcq-white rounded-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 id="brandModalTitle" class="text-2xl font-bold">Merk Informatie</h3>
-                    <button id="closeBrandModal" class="text-gray-500 hover:text-dcq-black text-2xl" aria-label="Sluiten">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div id="brandModalContent" class="space-y-4">
-                    <!-- Content loaded dynamically -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Over ons -->
-    <section id="about" class="pt-12 pb-12 md:pt-16 md:pb-16 relative overflow-hidden" aria-labelledby="about-heading">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="mb-10 md:mb-14">
-                <div class="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-[auto_auto_1fr] gap-y-4 gap-x-0 lg:gap-x-12 lg:gap-y-3 lg:items-stretch">
-                    <div class="lg:col-span-7 lg:col-start-1 lg:row-start-1 min-w-0">
-                        <h2 id="about-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 lg:mb-0 font-heading" style="color: #fffefc;">Over DCQ Bikes</h2>
-                    </div>
-
-                    <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:row-span-3 flex flex-col min-h-0 lg:h-full">
-                        <div class="relative overflow-hidden rounded-3xl shadow-2xl min-h-0 h-[168px] max-h-[32vh] sm:h-[200px] sm:max-h-none md:h-[240px] lg:min-h-0 lg:flex-1 lg:h-full lg:max-h-none">
-                            <img src="assets/images/gallery/IMG_7945.jpg" alt="DCQ Bikes winkel" class="absolute inset-0 w-full h-full object-cover object-center">
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-7 lg:col-start-1 lg:row-start-2 lg:row-span-2 min-w-0">
-                        <p class="text-lg md:text-xl font-semibold mb-2 lg:mb-5 text-dcq-white">Van eerste stappen als leergast tot een eigen winkel</p>
-                        <div class="space-y-5 text-base md:text-lg leading-relaxed max-lg:space-y-4" style="color: rgba(255, 254, 252, 0.88);">
-                            <p>
-                                Op achttienjarige leeftijd stapte <span class="font-semibold dcq-kurt-egg-trigger" style="color: #fffefc;" tabindex="0" role="button" aria-label="Kurt Declercq">Kurt Declercq</span> de fietswereld in als leergast. Wat toen een opleiding was, groeide al snel uit tot een echte passie voor het vak: techniek, mensen en de fiets zelf.
-                            </p>
-                            <p>
-                                In 2006 zette hij de stap naar zelfstandigheid en richtte DCQ Bikes op. Met veel inzet, passie, en vooral respect voor klant en materiaal bouwde hij de zaak uit tot wat zij vandaag is: een adres waar je terecht kan voor advies, onderhoud, herstel en een brede keuze aan elektrische fietsen.
-                            </p>
-                            <p>
-                                Inmiddels kijkt Kurt met trots terug op dat traject. Minstens zo belangrijk blijft vooruitkijken: inspelen op wat de sector vraagt, met e-bikes en innovatie als vaste pijlers in de toekomst van de winkel.
-                            </p>
-                        </div>
-                        <p class="statement-rotate" aria-live="polite">
-                            <span class="statement-rotate__fixed">Wij staan voor</span>
-                            <span class="statement-rotate__slot">
-                                <span class="statement-rotate__item is-active">vakmanschap.</span>
-                                <span class="statement-rotate__item">service.</span>
-                                <span class="statement-rotate__item">advies.</span>
-                                <span class="statement-rotate__item">kwaliteit.</span>
-                                <span class="statement-rotate__item">passie.</span>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Erkenning -->
-                <div class="min-h-0 order-2 lg:order-none">
-                    <div class="media-box h-full flex flex-col min-h-0">
-                        <a href="https://www.handelsgids.be/jabbeke/dcq-bikes/vh18/" target="_blank" rel="noopener" class="about-dark-tile-link relative flex flex-col flex-1 gap-3 p-4 md:gap-6 md:p-8 about-dark-tile group rounded-xl min-h-0 md:min-h-[240px]">
-                            <i class="fas fa-external-link-alt about-dark-external absolute top-4 right-4 md:top-6 md:right-6 z-10 text-xs md:text-sm pointer-events-none" aria-hidden="true"></i>
-                            <div class="pr-7 md:pr-8 min-w-0">
-                                <div class="flex items-start justify-between gap-2 md:gap-4">
-                                    <div class="min-w-0">
-                                        <p class="text-sm font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Erkenning</p>
-                                        <h3 class="text-2xl font-bold mt-2" style="color: #fffefc;">Vriendelijkste Handelaar</h3>
-                                        <p class="text-sm mt-1" style="color: rgba(255, 254, 252, 0.78);">Jabbeke</p>
-                                    </div>
-                                    <div class="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-xl md:rounded-2xl border border-white/10 bg-black/20 p-1.5 md:p-2">
-                                        <img src="assets/images/vriendelijkstehandelaar/vriendelijkstehandelaarlogo.png" alt="Vriendelijkste Handelaar" class="max-h-9 md:max-h-12 w-auto object-contain">
-                                    </div>
-                                </div>
-                                <p class="mt-4 text-base md:mt-5 md:text-lg leading-relaxed" style="color: rgba(255, 254, 252, 0.92);">
-                                    DCQ Bikes werd door de Handelsgids bekroond als Vriendelijkste Handelaar in Jabbeke.
-                                </p>
-                            </div>
-                            <div class="pt-3 md:pt-5 border-t border-white/10 mt-auto">
-                                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 md:gap-3">
-                                    <p class="text-xs font-medium uppercase tracking-wider" style="color: rgba(255, 254, 252, 0.70);">Uitgereikt door</p>
-                                    <img src="assets/images/vriendelijkstehandelaar/handelsgidslogo.png" alt="Handelsgids" class="h-6 md:h-7 w-auto object-contain opacity-90 brightness-0 invert sm:ml-auto">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Team -->
-                <div class="min-h-0 order-1 lg:order-none lg:col-span-2">
-                    <div class="media-box h-full flex flex-col min-h-0">
-                        <div class="about-dark-tile about-team-tile flex flex-col flex-1 rounded-xl h-full">
-                            <div class="about-team-header">
-                                <p class="text-sm font-semibold uppercase tracking-widest" style="color: rgba(255, 254, 252, 0.75);">Mensen achter DCQ Bikes</p>
-                                <h3 class="text-2xl font-bold mt-2" style="color: #fffefc;">Ons team</h3>
-                                <p class="about-team-header-copy">
-                                    Advies en vakmanschap, rechtstreeks in de winkel in Jabbeke.
-                                </p>
-                            </div>
-                            <div class="about-team-roster" role="list">
-                                <article class="about-team-person" role="listitem">
-                                    <div class="about-team-photo">
-                                        <img src="assets/images/profilepictures/kurtdeclercq.png" alt="Kurt Declercq" onerror="this.src='assets/images/profilepictures/kurt.jpg'; this.onerror=null;">
-                                    </div>
-                                    <div class="about-team-meta">
-                                        <p class="about-team-name">Kurt Declercq</p>
-                                        <p class="about-team-role">Zaakvoerder</p>
-                                    </div>
-                                </article>
-                                <article class="about-team-person" role="listitem">
-                                    <div class="about-team-photo">
-                                        <img src="assets/images/profilepictures/maximehoflack.png" alt="Maxime Hoflack" onerror="this.src='assets/images/profilepictures/maxime.jpg'; this.onerror=null;">
-                                    </div>
-                                    <div class="about-team-meta">
-                                        <p class="about-team-name">Maxime Hoflack</p>
-                                        <p class="about-team-role">Fietstechnicus</p>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-12 md:py-16 bg-gray-50">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="mb-8 md:mb-10">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Contact</h2>
-                <p class="text-base md:text-lg text-gray-600 max-w-2xl">
-                    Kom binnen. Wij helpen je verder.
-                </p>
-            </div>
-            <div class="contact-layout grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-                <!-- Contact Info -->
-                <div class="contact-info">
-                    <div class="contact-box p-6 rounded-2xl h-full flex flex-col" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); will-change: transform; transform: translateZ(0);">
-                        <h3 class="text-xl md:text-2xl font-bold tracking-tight mb-5">Contactgegevens</h3>
-
-                        <div class="contact-info__body divide-y divide-gray-100">
-                            <div class="py-4 flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-full bg-dcq-red/10 text-dcq-red flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="min-w-0">
-                                    <p class="text-sm text-gray-500">Adres</p>
-                                    <a href="https://maps.app.goo.gl/YdC69e1bK61BGsGW7" target="_blank" rel="noopener" class="block font-medium text-gray-900 hover:text-dcq-red">
-                                        Gistelsteenweg 282, 8490 Jabbeke
-                                    </a>
-                                    <p class="text-xs text-gray-500 mt-2 flex items-center gap-1.5">
-                                        <i class="fas fa-exclamation-triangle text-amber-500"></i>
-                                        Let op: trajectcontrole op de Gistelsteenweg (50 km/u)
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="py-4 flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-full bg-dcq-red/10 text-dcq-red flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="min-w-0">
-                                    <p class="text-sm text-gray-500">Telefoon</p>
-                                    <div class="mt-1.5 flex flex-col items-start gap-1.5">
-                                        <a href="tel:+3250814220" class="contact-phone-link">
-                                            <i class="fas fa-phone" aria-hidden="true"></i>
-                                            050 81 42 20
-                                        </a>
-                                        <a href="tel:+32475822376" class="contact-phone-link">
-                                            <i class="fas fa-mobile-screen" aria-hidden="true"></i>
-                                            0475 82 23 76
-                                        </a>
-                                        <a href="https://wa.me/32475822376" target="_blank" rel="noopener noreferrer" class="contact-whatsapp" aria-label="WhatsApp naar 0475 82 23 76">
-                                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                                            WhatsApp
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="py-4 flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-full bg-dcq-red/10 text-dcq-red flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="min-w-0">
-                                    <p class="text-sm text-gray-500">E-mail</p>
-                                    <a href="mailto:info@dcqbikes.be" class="font-medium text-gray-900 hover:text-dcq-red">info@dcqbikes.be</a>
-                                </div>
-                            </div>
-
-                            <div class="py-4 flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-full bg-dcq-red/10 text-dcq-red flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div class="min-w-0 w-full">
-                                    <div class="contact-hours">
-                                        <p class="contact-hours__title">Openingsuren</p>
-                                        <dl class="contact-hours__list">
-                                            <div class="contact-hours__row contact-hours__row--closed">
-                                                <dt>Maandag</dt>
-                                                <dd>Gesloten</dd>
-                                            </div>
-                                            <div class="contact-hours__row">
-                                                <dt>Dinsdag</dt>
-                                                <dd>
-                                                    <span class="contact-hours__times">
-                                                        <span>09:00–12:00</span>
-                                                        <span>13:30–18:00</span>
-                                                    </span>
-                                                </dd>
-                                            </div>
-                                            <div class="contact-hours__row">
-                                                <dt>Woensdag</dt>
-                                                <dd>
-                                                    <span class="contact-hours__times">
-                                                        <span>09:00–12:00</span>
-                                                        <span>13:30–18:00</span>
-                                                    </span>
-                                                </dd>
-                                            </div>
-                                            <div class="contact-hours__row">
-                                                <dt>Donderdag</dt>
-                                                <dd>
-                                                    <span class="contact-hours__times">
-                                                        <span>09:00–12:00</span>
-                                                        <span>13:30–18:00</span>
-                                                    </span>
-                                                </dd>
-                                            </div>
-                                            <div class="contact-hours__row">
-                                                <dt>Vrijdag</dt>
-                                                <dd>
-                                                    <span class="contact-hours__times">
-                                                        <span>09:00–12:00</span>
-                                                        <span>13:30–18:00</span>
-                                                    </span>
-                                                </dd>
-                                            </div>
-                                            <div class="contact-hours__row">
-                                                <dt>Zaterdag</dt>
-                                                <dd>
-                                                    <span class="contact-hours__times">
-                                                        <span>09:00–12:00</span>
-                                                        <span class="contact-hours__time--highlight">13:30–17:00</span>
-                                                        <span class="contact-hours__hint">Sluit om 17u</span>
-                                                    </span>
-                                                </dd>
-                                            </div>
-                                            <div class="contact-hours__row contact-hours__row--closed">
-                                                <dt>Zondag</dt>
-                                                <dd>Gesloten</dd>
-                                            </div>
-                                        </dl>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Storefront + Contact Form -->
-                <div class="contact-aside">
-                    <figure class="contact-storefront">
-                        <a href="https://maps.app.goo.gl/YdC69e1bK61BGsGW7" target="_blank" rel="noopener noreferrer" aria-label="DCQ Bikes op Google Maps — Gistelsteenweg 282, Jabbeke">
-                            <img
-                                src="assets/images/onsaanbod/picture5.webp"
-                                alt="Voorgevel van DCQ Bikes in Jabbeke"
-                                width="2880"
-                                height="1610"
-                                loading="lazy"
-                                decoding="async">
-                        </a>
-                    </figure>
-                    <div class="contact-box p-6 rounded-2xl contact-form-container h-full flex flex-col" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9); will-change: transform; transform: translateZ(0);">
-                        <h3 class="text-xl md:text-2xl font-bold tracking-tight mb-5">Heb je een vraag?</h3>
-                        <p class="text-gray-600 mb-6">Stel hier je vraag en we nemen zo snel mogelijk contact met je op.</p>
-                        <form id="contactForm" class="space-y-4 flex-1 flex flex-col" action="#" data-formspree="https://formspree.io/f/xyzlrwdb" method="POST">
-                            <div class="flex-1 space-y-4">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium mb-2">Naam *</label>
-                                    <input type="text" id="name" name="name" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium mb-2">E-mail *</label>
-                                    <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);">
-                                </div>
-                                <div>
-                                    <label for="message" class="block text-sm font-medium mb-2">Bericht *</label>
-                                    <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 rounded-xl focus:ring-2 focus:ring-dcq-red focus:border-transparent transition-all" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);"></textarea>
-                                </div>
-                            </div>
-                            <input type="hidden" name="_subject" value="Nieuw bericht via DCQ Bikes website">
-                            <input type="text" name="_gotcha" style="display:none">
-                            <div class="mt-auto">
-                                <button id="contactSubmit" type="submit" class="w-full py-3 rounded-xl font-semibold text-white transition-all" style="background: #ee2726; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 16px rgba(238, 39, 38, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2); touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
-                                    Verzenden
-                                </button>
-                                <p id="contactStatus" class="mt-2 text-sm text-gray-600 hidden" aria-live="polite"></p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Special Offers Section: kaarten naast elkaar; uitgebreide tekst per kaart inklapbaar -->
-    <section id="aanbiedingen" class="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="text-center mb-10 md:mb-12">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">Speciale Aanbiedingen</h2>
-                <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">Voor momenten die blijven hangen.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 gap-6 md:gap-8 max-w-2xl mx-auto items-start">
-                <!-- Cadeaubon Card -->
-                <div class="offer-card bg-white rounded-2xl overflow-hidden shadow-lg flex flex-col w-full">
-                    <div class="relative h-64 md:h-80 overflow-hidden flex-shrink-0">
-                        <img src="assets/images/cadeaubon/cadeaubon.webp" alt="DCQ Bikes Cadeaubon" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    </div>
-                    <div class="p-6 md:p-8 flex flex-col">
-                        <div class="mb-1">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-1">DCQ Bikes Cadeaubon</h3>
-                            <p class="text-sm text-gray-600">Flexibel bedrag • Geldig voor alle producten</p>
-                        </div>
-                        <details class="offer-details mt-4 border-t border-gray-100 pt-4">
-                            <summary class="offer-details-summary flex items-center justify-between gap-2 text-dcq-red font-semibold text-base cursor-pointer list-none select-none">
-                                <span>Meer informatie &amp; details</span>
-                                <i class="fas fa-chevron-down offer-details-chevron text-sm transition-transform duration-200 flex-shrink-0"></i>
-                            </summary>
-                            <div class="mt-4 space-y-4 text-gray-700 leading-relaxed">
-                                <p>
-                                    Geef het perfecte cadeau voor elke fietsliefhebber. Onze cadeaubonnen zijn beschikbaar in verschillende bedragen en kunnen gebruikt worden voor <strong>alle producten en diensten</strong> in onze winkel.
-                                </p>
-                                <p>
-                                    Of het nu gaat om een nieuwe elektrische fiets, een stadsfiets, onderdelen, accessoires of onderhoud, met een DCQ Bikes cadeaubon geef je de ontvanger de vrijheid om zelf te kiezen wat hij of zij het meest nodig heeft.
-                                </p>
-                                <p>
-                                    Perfect voor verjaardagen, feestdagen of gewoon om iemand te verrassen. De cadeaubon heeft een <strong>lange geldigheidsduur</strong> en kan op elk moment ingewisseld worden.
-                                </p>
-                                <div class="space-y-2 pt-2">
-                                    <div class="flex items-start gap-2">
-                                        <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
-                                        <span class="text-sm md:text-base">Beschikbaar in verschillende bedragen</span>
-                                    </div>
-                                    <div class="flex items-start gap-2">
-                                        <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
-                                        <span class="text-sm md:text-base">Geldig voor alle producten en diensten</span>
-                                    </div>
-                                    <div class="flex items-start gap-2">
-                                        <i class="fas fa-check-circle text-dcq-red mt-1 flex-shrink-0"></i>
-                                        <span class="text-sm md:text-base">Lange geldigheidsduur</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600 pt-2">
-                                    <i class="fas fa-store text-dcq-red text-lg"></i>
-                                    <span class="text-base">Beschikbaar in de winkel</span>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-12 md:py-16" style="background: #0a0a0a;">
-        <div class="container mx-auto max-w-2xl md:max-w-7xl px-4 md:px-6">
-            <div class="mb-8 md:mb-10 text-center md:text-left">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style="color: #fffefc;">Veelgestelde vragen</h2>
-                <p class="text-base md:text-lg max-w-3xl mx-auto md:mx-0" style="color: rgba(255, 254, 252, 0.8);">
-                    Vind meteen antwoord op de meest voorkomende vragen.
-                </p>
-            </div>
-
-            <div id="faqContent" class="mt-6 md:grid md:grid-cols-2 md:gap-4 md:items-start md:space-y-0 space-y-3">
-
-                <div class="faq-item group">
-                    <button class="faq-question w-full text-left flex items-start justify-between gap-4 p-5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200" aria-expanded="false">
-                        <span class="font-semibold text-base text-gray-900 flex-1 leading-snug">Hoe lang duurt een fietsherstelling gemiddeld?</span>
-                        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-dcq-red/10 flex items-center justify-center group-hover:bg-dcq-red/20 transition-colors">
-                            <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
-                        <p class="mb-3 text-gray-800">De duur van een herstelling hangt af van het type probleem:</p>
-                        <ul class="list-none space-y-2.5 ml-0">
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Kleine reparaties</strong>: <span class="text-gray-900 font-medium">meestal de volgende dag</span></span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Grotere onderhoudsbeurt:</strong> <span class="text-gray-900 font-medium">3-4 werkdagen</span></span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Complexe herstellingen:</strong> <span class="text-gray-900 font-medium">5-7 werkdagen</span> (afhankelijk van beschikbaarheid van onderdelen)</span>
-                            </li>
-                        </ul>
-                        <p class="mt-4 text-gray-800">Bij het binnenbrengen geven we altijd een <strong>geschatte oplevertijd</strong>. Je ontvangt ook een <strong>SMS</strong> wanneer je fiets klaar is!</p>
-                    </div>
-                </div>
-
-                <div class="faq-item group">
-                    <button class="faq-question w-full text-left flex items-start justify-between gap-4 p-5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200" aria-expanded="false">
-                        <span class="font-semibold text-base text-gray-900 flex-1 leading-snug">Welke betalingsmethoden worden geaccepteerd?</span>
-                        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-dcq-red/10 flex items-center justify-center group-hover:bg-dcq-red/20 transition-colors">
-                            <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
-                        <p class="text-gray-800 mb-3">Wij accepteren de volgende betalingsmethoden:</p>
-                        <div class="faq-payment-methods">
-                            <div class="faq-payment-method">
-                                <i class="fas fa-money-bill-wave text-dcq-red faq-payment-method__icon" aria-hidden="true"></i>
-                                <div class="faq-payment-method__body">
-                                    <p class="faq-payment-method__title">Contant geld</p>
-                                </div>
-                            </div>
-
-                            <div class="faq-payment-method">
-                                <i class="fas fa-mobile-alt text-dcq-red faq-payment-method__icon" aria-hidden="true"></i>
-                                <div class="faq-payment-method__body">
-                                    <p class="faq-payment-method__title">Bancontact &amp; mobiel betalen</p>
-                                    <div class="faq-payment-logos" aria-label="Bancontact Pay, Apple Pay en Google Pay">
-                                        <span class="faq-payment-logoBox">
-                                            <img src="assets/images/payment/payconiq.svg" alt="Bancontact Pay" class="faq-payment-logo" loading="lazy" decoding="async">
-                                        </span>
-                                        <span class="faq-payment-logoBox">
-                                            <img src="assets/images/payment/apple-pay.svg" alt="Apple Pay" class="faq-payment-logo" loading="lazy" decoding="async">
-                                        </span>
-                                        <span class="faq-payment-logoBox">
-                                            <img src="assets/images/payment/google-pay.svg" alt="Google Pay" class="faq-payment-logo" loading="lazy" decoding="async">
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="faq-payment-method">
-                                <i class="fas fa-credit-card text-dcq-red faq-payment-method__icon" aria-hidden="true"></i>
-                                <div class="faq-payment-method__body">
-                                    <p class="faq-payment-method__title">Credit- en debetkaarten</p>
-                                    <div class="faq-payment-logos" aria-label="Visa en Mastercard">
-                                        <span class="faq-payment-logoBox">
-                                            <img src="assets/images/payment/visa.svg" alt="Visa" class="faq-payment-logo" loading="lazy" decoding="async">
-                                        </span>
-                                        <span class="faq-payment-logoBox">
-                                            <img src="assets/images/payment/mastercard.svg" alt="Mastercard" class="faq-payment-logo" loading="lazy" decoding="async">
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="faq-payment-note text-gray-800">Voor <strong>aankopen</strong> kunnen we ook een factuur opstellen voor achteraf betaling.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item group">
-                    <button class="faq-question w-full text-left flex items-start justify-between gap-4 p-5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200" aria-expanded="false">
-                        <span class="font-semibold text-base text-gray-900 flex-1 leading-snug">Moet ik een afspraak maken?</span>
-                        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-dcq-red/10 flex items-center justify-center group-hover:bg-dcq-red/20 transition-colors">
-                            <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
-                        <p class="text-gray-800 mb-3">Nee, voor de meeste reparaties en vragen kun je gewoon <strong>langs komen</strong> tijdens onze <a href="#contact" class="text-dcq-red font-semibold hover:underline">openingstijden</a>. Wij helpen je graag persoonlijk!</p>
-                        <p class="text-gray-800 mb-3">Voor <strong>kleine reparaties</strong> kun je altijd binnenlopen. Voor <strong>grotere herstellingen</strong> of een volledige onderhoudsbeurt kun je ook gewoon langskomen. We bekijken dan ter plaatse wat er nodig is.</p>
-                        <p class="text-gray-800 mb-3">Als je liever eerst contact opneemt, kun je een e-mail sturen naar <a href="mailto:info@dcqbikes.be" class="text-dcq-red font-semibold hover:underline">info@dcqbikes.be</a> of bellen op <a href="tel:+3250814220" class="text-dcq-red font-semibold hover:underline">+32 50 81 42 20</a> of <a href="tel:+32475822376" class="text-dcq-red font-semibold hover:underline">+32 475 82 23 76</a>.</p>
-                        <p class="mt-4 text-gray-800">Door langs te komen kunnen we je fiets <strong>direct bekijken</strong> en je meteen een <strong>geschatte oplevertijd</strong> geven.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item group">
-                    <button class="faq-question w-full text-left flex items-start justify-between gap-4 p-5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200" aria-expanded="false">
-                        <span class="font-semibold text-base text-gray-900 flex-1 leading-snug">Onderhoudt DCQ Bikes ook elektrische fietsen?</span>
-                        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-dcq-red/10 flex items-center justify-center group-hover:bg-dcq-red/20 transition-colors">
-                            <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
-                        <p class="text-gray-800 mb-3">Ja, wij zijn zelfs <strong>gespecialiseerd</strong> in het onderhouden en herstellen van elektrische fietsen van <strong>alle merken</strong>:</p>
-                        <ul class="list-none space-y-2.5 ml-0">
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Batterij controles</strong> en diagnostiek</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Motoronderhoud</strong></span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Rem- en versnelling</strong> afstelling</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Software updates</strong> voor displays</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Algemene onderhoudsbeurten</strong></span>
-                            </li>
-                        </ul>
-                        <p class="mt-4 text-gray-800">Onze technici zijn <strong>gecertificeerd</strong> om te werken met verschillende e-bike systemen (<span class="text-dcq-red font-medium">Bosch, Shimano, Bafang</span>, etc.).</p>
-                    </div>
-                </div>
-
-                <div class="faq-item group">
-                    <button class="faq-question w-full text-left flex items-start justify-between gap-4 p-5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200" aria-expanded="false">
-                        <span class="font-semibold text-base text-gray-900 flex-1 leading-snug">Hoe vaak moet ik mijn fiets laten onderhouden?</span>
-                        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-dcq-red/10 flex items-center justify-center group-hover:bg-dcq-red/20 transition-colors">
-                            <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
-                        <p class="text-gray-800 mb-3">De frequentie van onderhoud hangt af van <strong>gebruik</strong> en <strong>fiets type</strong>:</p>
-                        <ul class="list-none space-y-2.5 ml-0">
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Elektrische fietsen:</strong> <span class="text-gray-900 font-medium">Minimaal 1x per jaar</span> of elke <span class="text-gray-900 font-medium">2000-3000 km</span></span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Stadsfietsen:</strong> <span class="text-gray-900 font-medium">1x per jaar</span> of elke <span class="text-gray-900 font-medium">1500-2000 km</span></span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Racefietsen / Mountainbikes:</strong> <span class="text-gray-900 font-medium">2-3x per jaar</span> of elke <span class="text-gray-900 font-medium">1000-1500 km</span></span>
-                            </li>
-                        </ul>
-                        <p class="mt-4 text-gray-800">Na een <strong>nat seizoen</strong> of <strong>zware ritten</strong> raden we ook extra onderhoud aan. Kom gerust langs voor <span class="text-dcq-red font-medium">advies op maat</span>.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item group">
-                    <button class="faq-question w-full text-left flex items-start justify-between gap-4 p-5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300 hover:shadow-sm transition-all duration-200" aria-expanded="false">
-                        <span class="font-semibold text-base text-gray-900 flex-1 leading-snug">Wat moet ik meenemen wanneer ik mijn fiets binnenbreng?</span>
-                        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-dcq-red/10 flex items-center justify-center group-hover:bg-dcq-red/20 transition-colors">
-                            <i class="fas fa-plus text-dcq-red text-xs transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div class="faq-answer px-5 text-gray-700 text-base leading-relaxed">
-                        <p class="text-gray-800 mb-3">Om het proces soepel te laten verlopen, raden we aan om het volgende mee te nemen:</p>
-                        <ul class="list-none space-y-2.5 ml-0">
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Je fiets:</strong> <span class="text-gray-700">Uiteraard de fiets zelf</span></span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Batterij en oplader:</strong> <span class="text-gray-700">Voor elektrische fietsen - dit helpt bij diagnostiek</span></span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Fietssleutel van de batterij:</strong> <span class="text-gray-700">Handig om de batterij te kunnen testen</span></span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-dcq-red font-semibold mt-0.5">•</span>
-                                <span><strong class="text-gray-900">Een beschrijving van het probleem:</strong> <span class="text-gray-700">Dit helpt ons sneller de juiste diagnose te stellen</span></span>
-                            </li>
-                        </ul>
-                        <p class="mt-4 text-gray-800">Geen zorgen als je iets vergeet - wij kunnen altijd later <strong>contact met je opnemen</strong> indien nodig.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="site-footer text-dcq-white py-6 md:py-10" style="background: #0a0a0a; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <div class="container mx-auto max-w-7xl px-4 md:px-6">
-            <div class="mb-6 md:mb-8">
-                <div class="text-center md:text-center">
-                    <img src="assets/images/logo/dcqbikeslogotransparent.png" alt="DCQ Bikes logo" class="h-10 md:h-16 lg:h-20 w-auto mb-3 md:mb-4 object-contain mx-auto">
-                    <p class="text-sm md:text-base text-gray-400 leading-relaxed mb-3 md:mb-4 max-w-2xl mx-auto">
-                        Jouw betrouwbare partner voor elektrische fietsen, stadsfietsen en grasmaaiers.
-                    </p>
-                    <div class="flex items-center justify-center gap-3">
-                        <a href="https://www.linkedin.com/company/dcqbikes/?originalSubdomain=be" aria-label="LinkedIn" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#151515] hover:bg-dcq-red text-white/90 hover:text-white flex items-center justify-center transition-colors border border-white/10" target="_blank" rel="noopener">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://www.facebook.com/DCQBikes" aria-label="Facebook" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#151515] hover:bg-dcq-red text-white/90 hover:text-white flex items-center justify-center transition-colors border border-white/10" target="_blank" rel="noopener">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                    </div>
-                </div>
-                </div>
-            <div class="pt-4 md:pt-6 text-gray-500" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                <div class="flex flex-col gap-3 text-xs">
-                    <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-2">
-                        <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 text-gray-400">
-                    <p class="text-center sm:text-left">&copy; <span id="currentYear"></span> DCQ Bikes BV. Alle rechten voorbehouden.</p>
-                            <span class="hidden sm:inline text-gray-600">•</span>
-                        <p class="text-center sm:text-left">BTW-nummer: BE 0685.615.103</p>
-                    </div>
-                    <span class="designer-credit text-center sm:text-right text-gray-500">
-                        <i class="fas fa-sparkles" aria-hidden="true"></i>
-                        Design by
-                        <a href="https://www.instagram.com/sanderdelobel/" target="_blank" rel="noopener"
-                           class="hover:text-gray-400 transition-colors">
-                            <i class="fab fa-instagram" aria-hidden="true"></i>
-                            Sander de Lobel
-                        </a>
-                    </span>    
-                    </div>
-                    <div class="flex items-center justify-center gap-2 text-gray-600">
-                        <a href="cookie-policy.html" class="hover:text-gray-400 transition-colors">Cookiebeleid</a>
-                        <span>•</span>
-                        <a href="privacy-policy.html" class="hover:text-gray-400 transition-colors">Privacybeleid</a>
-                        <span>•</span>
-                        <a href="terms-and-conditions.html" class="hover:text-gray-400 transition-colors">Algemene Voorwaarden</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="js/store-config.js"></script>
-    <script src="data/services-offer.js"></script>
-    <script src="js/services-offer.js"></script>
-    <script src="data/featured-bikes.js"></script>
-    <script src="js/featured-bikes.js"></script>
-    <script src="js/script.js"></script>
+  <script src="/js/store-config.js" defer></script>
+  <script src="/data/featured-bikes.js" defer></script>
+  <script src="/js/featured-bikes.js" defer></script>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>
