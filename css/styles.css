@@ -960,20 +960,15 @@ ul {
   margin: 0;
   overflow: hidden;
   background: #111;
-  position: relative;
-  height: 100%;
-  min-height: 20rem;
-  aspect-ratio: 4 / 3;
 }
 
 .about-media img {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center 28%;
-  display: block;
 }
 
 .about-copy {
@@ -1777,8 +1772,6 @@ ul {
 
   .about-media {
     aspect-ratio: 4 / 3;
-    min-height: 0;
-    height: auto;
     order: -1;
   }
 
