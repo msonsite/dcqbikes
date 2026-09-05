@@ -255,7 +255,7 @@ ul {
   position: fixed;
   inset: auto 0 0 0;
   z-index: 90;
-  padding: 1rem;
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
   background: rgba(10, 10, 10, 0.92);
   backdrop-filter: blur(12px);
   border-top: 1px solid var(--line);
@@ -270,16 +270,17 @@ ul {
   margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem 1rem;
   align-items: center;
   justify-content: space-between;
 }
 
 .cookie-banner p {
   margin: 0;
-  flex: 1 1 18rem;
+  flex: 1 1 14rem;
   color: var(--text-muted);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
 }
 
 .cookie-banner a {
@@ -288,7 +289,8 @@ ul {
 
 .cookie-banner__actions {
   display: flex;
-  gap: 0.65rem;
+  flex-shrink: 0;
+  gap: 0.5rem;
 }
 
 /* Header */
@@ -2091,17 +2093,34 @@ ul {
     height: 1.65rem;
   }
 
+  .cookie-banner {
+    padding: 0.55rem 0.75rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
+  }
+
   .cookie-banner__inner {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .cookie-banner p {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.75rem;
+    line-height: 1.35;
   }
 
   .cookie-banner__actions {
-    width: 100%;
+    width: auto;
+    flex-shrink: 0;
   }
 
   .cookie-banner__actions .btn {
-    flex: 1;
+    flex: 0 0 auto;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
   }
 
   .site-footer {
