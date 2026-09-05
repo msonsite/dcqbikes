@@ -407,15 +407,13 @@ ul {
 
 .dcq-kurt-egg-trigger {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: rgba(227, 6, 19, 0.55);
-  text-underline-offset: 0.18em;
-  color: #fff;
+  text-decoration: none;
+  color: inherit;
 }
 
 .dcq-kurt-egg-trigger:hover,
 .dcq-kurt-egg-trigger:focus-visible {
-  color: var(--accent);
+  color: inherit;
   outline: none;
 }
 
