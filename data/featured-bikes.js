@@ -1,15 +1,15 @@
 /**
  * ============================================================
- * UITGELICHTE FIETSEN — hier beheer je wat er op de site staat
+ * UITGELICHTE FIETSEN: hier beheer je wat er op de site staat
  * ============================================================
  *
  * Hoe toevoegen?
  * 1. Zet de foto in:  assets/images/uitgelicht/
  * 2. Kopieer hieronder een blok { ... },
  * 3. Vul image / brand / model / price in
- * 4. (Optioneel) brandLogo — override logo-pad als de merkmapping niet klopt
- * 5. (Optioneel) description — wordt momenteel niet getoond,
- *    handig als je later details wilt tonen
+ * 4. (Optioneel) brandLogo: override logo-pad als de merkmapping niet klopt
+ * 5. (Optioneel) description: korte tekst, zichtbaar op mobile onder model/prijs
+ *    handig voor highlights; op desktop blijft die verborgen
  *
  * Hoe verwijderen?
  * - Verwijder het hele { ... }-blok (inclusief de komma)

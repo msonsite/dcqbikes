@@ -255,7 +255,7 @@
     );
   }
 
-  /* —— Store open/closed status —— */
+  /* Store open/closed status */
   let BELGIAN_HOLIDAYS = [];
 
   function isOnVacation(currentDate) {
@@ -439,7 +439,7 @@
     setInterval(updateStoreStatus, 60 * 1000);
   });
 
-  /* —— Easter egg Kurt —— */
+  /* Easter egg Kurt */
   (function initKurtEgg() {
     const AUDIO_SRC = "/assets/audio/easteregg-kurt.mp3";
     let kurtEggAudio = null;

@@ -1,6 +1,6 @@
 /**
  * Rendert uitgelichte fietsen vanuit data/featured-bikes.js
- * Pas FEATURED_BIKES aan — deze file hoef je normaal niet te wijzigen.
+ * Pas FEATURED_BIKES aan: deze file hoef je normaal niet te wijzigen.
  */
 (function () {
   const section = document.getElementById("uitgelicht");
@@ -96,9 +96,14 @@
       "</div>" +
       '<div class="bike-card__body">' +
       brandHtml +
+      '<div class="bike-card__meta">' +
       (model ? "<h4>" + escapeHtml(model) + "</h4>" : "") +
       (priceLabel
         ? '<p class="bike-card__price">' + escapeHtml(priceLabel) + "</p>"
+        : "") +
+      "</div>" +
+      (bike.description
+        ? '<p class="bike-card__desc">' + escapeHtml(bike.description) + "</p>"
         : "") +
       "</div>";
 
