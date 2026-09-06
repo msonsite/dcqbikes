@@ -23,7 +23,7 @@
  */
 const FEATURED_BIKES = [
   {
-    image: "victoriatresalo5.png",
+    image: "victoriatresalo5.webp",
     brand: "Victoria",
     model: "Tresalo 5 Wave",
     price: 2999,
@@ -55,7 +55,7 @@ const FEATURED_BIKES = [
       "Volledig geveerde e-SUV. Bosch Performance Line PX, 800 Wh PowerTube, Shimano Cues 9-speed en Purion 200 display.",
   },
   {
-    image: "nortacitytourbgreen.png",
+    image: "nortacitytourbgreen.webp",
     brand: "Norta",
     model: "City&Tour B-4050",
     price: 4999,
