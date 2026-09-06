@@ -400,13 +400,12 @@
             </form>
 
             <div class="contact-map reveal" aria-label="Locatie DCQ Bikes">
-              <iframe
-                title="Kaart: DCQ Bikes, Gistelsteenweg 282, Jabbeke"
-                src="https://maps.google.com/maps?q=Gistelsteenweg%20282%2C%208490%20Jabbeke&z=15&hl=nl&output=embed"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                allowfullscreen
-              ></iframe>
+              <div
+                id="contact-map-canvas"
+                class="contact-map__canvas"
+                role="img"
+                aria-label="Kaart: DCQ Bikes, Gistelsteenweg 282, Jabbeke"
+              ></div>
             </div>
           </div>
         </div>
@@ -544,6 +543,7 @@
   <script src="/data/featured-bikes.js" defer></script>
   <script src="/js/featured-bikes.js" defer></script>
   <script src="/js/main.js" defer></script>
+  <script src="/js/contact-map.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -566,8 +566,8 @@
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 51.1806,
-      "longitude": 3.0939
+      "latitude": 51.1799715,
+      "longitude": 3.0999836
     },
     "hasMap": "https://maps.google.com/?q=Gistelsteenweg+282,+8490+Jabbeke",
     "openingHoursSpecification": [
