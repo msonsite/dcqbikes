@@ -354,6 +354,12 @@
     return `${day}/${month}/${date.getFullYear()}`;
   }
 
+  function formatDateShort(date) {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    return `${day}/${month}`;
+  }
+
   function getDetailedClosedLabel(message) {
     if (!message) return "Gesloten (Uitzonderlijk)";
     const trimmed = String(message).trim();
@@ -373,17 +379,20 @@
     const vacationCheck = isOnVacation(now);
     if (vacationCheck.isOnVacation) {
       statusClass = "closed";
-      statusShort = "In verlof";
-      statusDetailed = `In Verlof (${formatDate(vacationCheck.startDate)} tot ${formatDate(vacationCheck.endDate)})`;
+      statusShort = `Verlof tot ${formatDateShort(vacationCheck.endDate)}`;
+      statusDetailed = `Verlof ${formatDateShort(vacationCheck.startDate)} tot ${formatDateShort(vacationCheck.endDate)}`;
     } else {
       const holidayEntry = getHolidayDateEntry(now);
       if (holidayEntry) {
         statusClass = "closed";
-        statusShort = "Gesloten";
         statusDetailed = getDetailedClosedLabel(holidayEntry.message);
+        statusShort =
+          statusDetailed.length > 18
+            ? "Gesloten"
+            : statusDetailed;
       } else if (isHoliday(now)) {
         statusClass = "closed";
-        statusShort = "Gesloten";
+        statusShort = "Feestdag";
         statusDetailed = "Gesloten (Feestdag)";
       } else {
         const currentDay = now.getDay();
@@ -424,11 +433,14 @@
       }
     }
 
-    const useShort = window.matchMedia("(max-width: 720px)").matches;
+    const useShort = window.matchMedia("(max-width: 900px)").matches;
+    const tooltip = vacationCheck.isOnVacation
+      ? `In verlof van ${formatDate(vacationCheck.startDate)} tot ${formatDate(vacationCheck.endDate)}`
+      : statusDetailed;
     statusNodes.forEach((storeStatus) => {
       storeStatus.classList.remove("open", "warning", "closed", "vacation");
       storeStatus.classList.add(statusClass);
-      storeStatus.title = statusDetailed;
+      storeStatus.title = tooltip;
       const statusText = storeStatus.querySelector(".store-status-text");
       if (statusText) statusText.textContent = useShort ? statusShort : statusDetailed;
     });
@@ -437,6 +449,12 @@
   loadHolidaysFromCSV().then(() => {
     updateStoreStatus();
     setInterval(updateStoreStatus, 60 * 1000);
+    const statusMq = window.matchMedia("(max-width: 900px)");
+    if (typeof statusMq.addEventListener === "function") {
+      statusMq.addEventListener("change", updateStoreStatus);
+    } else if (typeof statusMq.addListener === "function") {
+      statusMq.addListener(updateStoreStatus);
+    }
   });
 
   /* Easter egg Kurt */

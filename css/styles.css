@@ -407,6 +407,7 @@ ul {
   align-items: center;
   gap: 0.5rem;
   height: 2.25rem;
+  max-width: min(100%, 22rem);
   padding: 0 0.85rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -415,10 +416,12 @@ ul {
   text-decoration: none;
   font-family: var(--font-display);
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   white-space: nowrap;
   line-height: 1;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .store-status:hover {
@@ -471,8 +474,8 @@ ul {
 }
 
 .store-status-text {
-  display: inline-block;
-  max-width: 14rem;
+  display: block;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -2201,15 +2204,12 @@ ul {
 
   .store-status {
     height: 2rem;
+    max-width: min(58vw, 12.5rem);
     padding: 0 0.65rem;
     font-size: 0.68rem;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     order: -1;
     margin-left: 0;
-  }
-
-  .store-status-text {
-    max-width: 7.5rem;
   }
 
   .nav-toggle {
@@ -2580,8 +2580,11 @@ ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .store-status-text {
-    max-width: 5.5rem;
+  .store-status {
+    max-width: min(52vw, 11rem);
+    font-size: 0.64rem;
+    letter-spacing: 0.03em;
+    padding: 0 0.55rem;
   }
 
   .offer-tile--hero {
