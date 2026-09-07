@@ -75,6 +75,7 @@ video {
 
 a {
   color: inherit;
+  text-decoration: none;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
 }
@@ -252,6 +253,14 @@ ul {
   transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
 }
 
+.btn:link,
+.btn:visited,
+.btn:hover,
+.btn:active,
+.btn:focus {
+  text-decoration: none;
+}
+
 .btn:hover {
   color: #fff;
   transform: translateY(-1px);
@@ -268,23 +277,30 @@ ul {
 
 .btn--ghost {
   background: transparent;
-  border-color: var(--line);
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--line);
   color: var(--text);
 }
 
 .btn--ghost:hover {
-  border-color: #fff;
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px #fff;
   background: rgba(255, 255, 255, 0.06);
 }
 
 .btn--on-dark {
-  border-color: rgba(255, 255, 255, 0.45);
+  border-color: transparent;
+  background: rgba(10, 10, 10, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
   color: #fff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .btn--on-dark:hover {
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.1);
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px #fff;
+  background: rgba(10, 10, 10, 0.62);
   color: #fff;
 }
 
@@ -2046,6 +2062,12 @@ ul {
     grid-template-columns: 1fr 1fr;
   }
 
+  .hero__scroll {
+    display: none !important;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   .offer-tile,
   .offer-tile--hero {
     grid-column: span 1;
@@ -2260,10 +2282,11 @@ ul {
     width: 100%;
     min-height: 3rem;
     justify-content: center;
+    text-decoration: none;
   }
 
   .hero__scroll {
-    display: none;
+    display: none !important;
   }
 
   .offer-grid,
