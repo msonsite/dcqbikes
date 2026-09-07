@@ -1,6 +1,6 @@
 /**
- * Clean contact map (MapLibre + OpenFreeMap Positron).
- * Loads only on desktop when the map enters the viewport.
+ * Contact map (MapLibre + OpenFreeMap Positron).
+ * Loads on desktop when the map container is ready/visible.
  */
 (function () {
   const container = document.querySelector(".contact-map");
@@ -17,7 +17,7 @@
 
   let map = null;
   let loading = false;
-  let observed = false;
+  let watching = false;
 
   function desktopMapVisible() {
     return window.matchMedia("(min-width: 901px)").matches;
@@ -25,7 +25,7 @@
 
   function loadAssets(done) {
     if (window.maplibregl) {
-      done();
+      done(null);
       return;
     }
 
@@ -39,17 +39,26 @@
 
     const existing = document.querySelector("script[data-dcq-maplibre]");
     if (existing) {
-      existing.addEventListener("load", done);
+      if (existing.dataset.loaded === "1") {
+        done(window.maplibregl ? null : new Error("MapLibre ontbreekt"));
+        return;
+      }
+      existing.addEventListener("load", () => done(null));
+      existing.addEventListener("error", () => done(new Error("MapLibre laden mislukt")));
       return;
     }
 
     const script = document.createElement("script");
     script.src = ML_JS;
-    script.defer = true;
+    script.async = true;
     script.setAttribute("data-dcq-maplibre", "1");
-    script.addEventListener("load", done);
+    script.addEventListener("load", () => {
+      script.dataset.loaded = "1";
+      done(null);
+    });
     script.addEventListener("error", () => {
       loading = false;
+      done(new Error("MapLibre laden mislukt"));
     });
     document.head.appendChild(script);
   }
@@ -57,8 +66,7 @@
   function createMarkerElement() {
     const el = document.createElement("a");
     el.className = "contact-map-marker";
-    el.href =
-      "https://maps.google.com/?q=Gistelsteenweg+282,+8490+Jabbeke";
+    el.href = "https://maps.google.com/?q=Gistelsteenweg+282,+8490+Jabbeke";
     el.target = "_blank";
     el.rel = "noopener noreferrer";
     el.setAttribute("aria-label", "Open route naar DCQ Bikes in Google Maps");
@@ -84,26 +92,37 @@
     return el;
   }
 
+  function scheduleResize() {
+    if (!map) return;
+    requestAnimationFrame(() => {
+      map.resize();
+      requestAnimationFrame(() => map && map.resize());
+    });
+  }
+
   function initMap() {
     if (map || loading || !desktopMapVisible()) return;
     loading = true;
 
-    loadAssets(() => {
-      if (map || !window.maplibregl || !desktopMapVisible()) {
+    loadAssets((err) => {
+      if (err || map || !window.maplibregl || !desktopMapVisible()) {
         loading = false;
         return;
       }
 
-      map = new maplibregl.Map({
-        container: canvas,
-        style: STYLE,
-        center: [LNG, LAT],
-        zoom: 14.4,
-        cooperativeGestures: true,
-        attributionControl: {
-          compact: true,
-        },
-      });
+      try {
+        map = new maplibregl.Map({
+          container: canvas,
+          style: STYLE,
+          center: [LNG, LAT],
+          zoom: 14.4,
+          cooperativeGestures: true,
+          attributionControl: { compact: true },
+        });
+      } catch (e) {
+        loading = false;
+        return;
+      }
 
       map.addControl(
         new maplibregl.NavigationControl({
@@ -120,21 +139,33 @@
         .setLngLat([LNG, LAT])
         .addTo(map);
 
-      map.on("load", () => {
-        map.resize();
-      });
+      map.on("load", scheduleResize);
+      map.on("idle", scheduleResize);
+
+      if (typeof ResizeObserver !== "undefined") {
+        const ro = new ResizeObserver(() => scheduleResize());
+        ro.observe(container);
+      }
 
       loading = false;
+      scheduleResize();
     });
   }
 
   function watch() {
     if (!desktopMapVisible()) return;
-    if (observed) {
-      initMap();
-      return;
-    }
-    observed = true;
+
+    // Already visible (or about to be): start immediately as fallback
+    const rect = container.getBoundingClientRect();
+    const inView =
+      rect.height > 0 &&
+      rect.bottom > 0 &&
+      rect.top < (window.innerHeight || document.documentElement.clientHeight) + 200;
+
+    if (inView) initMap();
+
+    if (watching) return;
+    watching = true;
 
     if (!("IntersectionObserver" in window)) {
       initMap();
@@ -143,25 +174,28 @@
 
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
+        if (entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0)) {
           initMap();
           io.disconnect();
         }
       },
-      { rootMargin: "160px 0px" }
+      { rootMargin: "240px 0px", threshold: [0, 0.01] }
     );
     io.observe(container);
   }
 
-  watch();
+  // Wait a tick so desktop display:block layout is applied
+  requestAnimationFrame(() => {
+    watch();
+    setTimeout(watch, 250);
+  });
 
   const mq = window.matchMedia("(min-width: 901px)");
   const onMq = () => {
     if (mq.matches) {
+      watching = false;
       watch();
-      if (map) {
-        requestAnimationFrame(() => map.resize());
-      }
+      scheduleResize();
     }
   };
   if (typeof mq.addEventListener === "function") {
@@ -173,7 +207,7 @@
   window.addEventListener(
     "resize",
     () => {
-      if (map) map.resize();
+      scheduleResize();
     },
     { passive: true }
   );
