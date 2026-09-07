@@ -66,7 +66,7 @@
   function createMarkerElement() {
     const el = document.createElement("a");
     el.className = "contact-map-marker";
-    el.href = "https://maps.google.com/?q=Gistelsteenweg+282,+8490+Jabbeke";
+    el.href = "https://maps.app.goo.gl/nAxuLevDPbgM84sK7";
     el.target = "_blank";
     el.rel = "noopener noreferrer";
     el.setAttribute("aria-label", "Open route naar DCQ Bikes in Google Maps");
