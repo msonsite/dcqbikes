@@ -63,16 +63,19 @@
       navToggle.setAttribute("aria-label", "Menu openen");
     }
     const go = () => {
-      if (scrollToHash(href, "smooth")) {
-        history.pushState(null, "", href);
-      }
+      scrollToHash(href, "smooth");
     };
     window.requestAnimationFrame(() => window.requestAnimationFrame(go));
   });
 
   if (window.location.hash) {
+    const landingHash = window.location.hash;
     window.requestAnimationFrame(() => {
-      scrollToHash(window.location.hash, "auto");
+      scrollToHash(landingHash, "auto");
+      /* Keep the address bar clean after landing on a section link. */
+      if (window.history.replaceState) {
+        window.history.replaceState(null, "", window.location.pathname + window.location.search);
+      }
     });
   }
 
