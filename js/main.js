@@ -81,20 +81,36 @@
 
   /* Mobile nav */
   if (navToggle && header && navPanel) {
-    navToggle.addEventListener("click", () => {
-      const open = !header.classList.contains("is-open");
+    const setNavOpen = (open) => {
       header.classList.toggle("is-open", open);
       navToggle.setAttribute("aria-expanded", String(open));
       navToggle.setAttribute("aria-label", open ? "Menu sluiten" : "Menu openen");
+      document.body.style.overflow = open ? "hidden" : "";
+    };
+
+    navToggle.addEventListener("click", () => {
+      setNavOpen(!header.classList.contains("is-open"));
     });
 
     navPanel.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        header.classList.remove("is-open");
-        navToggle.setAttribute("aria-expanded", "false");
-        navToggle.setAttribute("aria-label", "Menu openen");
-      });
+      link.addEventListener("click", () => setNavOpen(false));
     });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && header.classList.contains("is-open")) {
+        setNavOpen(false);
+      }
+    });
+
+    window.addEventListener(
+      "resize",
+      () => {
+        if (window.matchMedia("(min-width: 721px)").matches) {
+          setNavOpen(false);
+        }
+      },
+      { passive: true }
+    );
   }
 
   /* Cookie banner + analytics consent */
@@ -445,7 +461,11 @@
       storeStatus.classList.add(statusClass);
       storeStatus.title = tooltip;
       const statusText = storeStatus.querySelector(".store-status-text");
-      if (statusText) statusText.textContent = useShort ? statusShort : statusDetailed;
+      const preferDetailed = storeStatus.classList.contains("store-status--hours");
+      if (statusText) {
+        statusText.textContent =
+          preferDetailed || !useShort ? statusDetailed : statusShort;
+      }
     });
   }
 
@@ -459,6 +479,17 @@
       statusMq.addListener(updateStoreStatus);
     }
   });
+
+  /* Footer social links from store-config */
+  (function applyStoreLinks() {
+    if (typeof STORE_LINKS === "undefined" || !STORE_LINKS) return;
+    const fb = document.getElementById("footer-facebook");
+    const li = document.getElementById("footer-linkedin");
+    if (fb && STORE_LINKS.facebook) fb.href = STORE_LINKS.facebook;
+    if (li && STORE_LINKS.linkedin) li.href = STORE_LINKS.linkedin;
+    if (fb && !STORE_LINKS.facebook) fb.hidden = true;
+    if (li && !STORE_LINKS.linkedin) li.hidden = true;
+  })();
 
   /* Easter egg Kurt */
   (function initKurtEgg() {

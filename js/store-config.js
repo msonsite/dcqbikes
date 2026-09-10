@@ -5,8 +5,8 @@ const VACATION_PERIODS = [
         end: [2026, 1, 1]        
     },
     {
-        start: [2026, 8, 21],  
-        end: [2026, 8, 22]     
+        start: [2026, 8, 10],  
+        end: [2026, 8, 19]     
     },
 ];
 
@@ -21,3 +21,9 @@ const HOLIDAY_DATES = [
         message: 'Gesloten wegens event'
     },
 ];
+
+// Social links (pas aan als URL's wijzigen)
+const STORE_LINKS = {
+    facebook: "https://www.facebook.com/DCQBikes",
+    linkedin: "https://www.linkedin.com/company/dcqbikes",
+};
