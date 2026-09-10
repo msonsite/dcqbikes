@@ -87,13 +87,15 @@
     const article = document.createElement("article");
     article.className = "bike-card reveal";
     article.innerHTML =
-      '<div class="bike-card__media">' +
+      '<button type="button" class="bike-card__media" aria-label="Vergroot foto van ' +
+      escapeHtml(title || "uitgelichte fiets") +
+      '">' +
       '<img src="' +
       escapeHtml(src) +
       '" alt="' +
       escapeHtml(title || "Uitgelichte fiets") +
       '" loading="lazy" width="640" height="400" />' +
-      "</div>" +
+      "</button>" +
       '<div class="bike-card__body">' +
       brandHtml +
       '<div class="bike-card__meta">' +
@@ -111,6 +113,103 @@
   });
 
   grid.replaceChildren(fragment);
+
+  /* Lightbox for featured bike photos */
+  (function initFeaturedLightbox() {
+    let activeOverlay = null;
+    let lastFocus = null;
+    let onKey = null;
+
+    function closeLightbox() {
+      if (!activeOverlay) return;
+      const overlay = activeOverlay;
+      activeOverlay = null;
+      if (onKey) {
+        document.removeEventListener("keydown", onKey);
+        onKey = null;
+      }
+      document.body.style.overflow = "";
+      overlay.remove();
+      if (lastFocus && typeof lastFocus.focus === "function") {
+        lastFocus.focus();
+      }
+      lastFocus = null;
+    }
+
+    function openLightbox(src, alt, caption) {
+      if (!src) return;
+      closeLightbox();
+      lastFocus = document.activeElement;
+
+      const overlay = document.createElement("div");
+      overlay.className = "bike-lightbox";
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute("aria-label", caption || alt || "Vergrote fietsfoto");
+
+      const closeBtn = document.createElement("button");
+      closeBtn.type = "button";
+      closeBtn.className = "bike-lightbox__close";
+      closeBtn.setAttribute("aria-label", "Sluiten");
+      closeBtn.textContent = "\u00D7";
+
+      const figure = document.createElement("figure");
+      figure.className = "bike-lightbox__figure";
+
+      const img = document.createElement("img");
+      img.className = "bike-lightbox__img";
+      img.src = src;
+      img.alt = alt || "";
+
+      figure.appendChild(img);
+      if (caption) {
+        const figcaption = document.createElement("figcaption");
+        figcaption.className = "bike-lightbox__caption";
+        figcaption.textContent = caption;
+        figure.appendChild(figcaption);
+      }
+
+      overlay.appendChild(closeBtn);
+      overlay.appendChild(figure);
+      document.body.appendChild(overlay);
+      document.body.style.overflow = "hidden";
+      activeOverlay = overlay;
+      closeBtn.focus();
+
+      onKey = (e) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          closeLightbox();
+        }
+      };
+      document.addEventListener("keydown", onKey);
+
+      closeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeLightbox();
+      });
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeLightbox();
+      });
+    }
+
+    grid.addEventListener("click", (e) => {
+      const trigger = e.target.closest(".bike-card__media");
+      if (!trigger || !grid.contains(trigger)) return;
+      const img = trigger.querySelector("img");
+      if (!img) return;
+      const card = trigger.closest(".bike-card");
+      const modelEl = card && card.querySelector("h4");
+      const brandEl =
+        card && card.querySelector(".bike-card__brand img, .bike-card__brand--text");
+      const brand =
+        (brandEl && (brandEl.getAttribute("alt") || brandEl.textContent || "").trim()) ||
+        "";
+      const model = (modelEl && modelEl.textContent.trim()) || "";
+      const caption = [brand, model].filter(Boolean).join(" ");
+      openLightbox(img.currentSrc || img.src, img.alt, caption);
+    });
+  })();
 
   /* Re-observe new cards for reveal animation if IO exists */
   if ("IntersectionObserver" in window) {

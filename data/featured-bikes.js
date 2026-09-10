@@ -23,7 +23,7 @@
  */
 const FEATURED_BIKES = [
   {
-    image: "victoriatresalo5.webp",
+    image: "victoriatresalo5.avif",
     brand: "Victoria",
     model: "Tresalo 5 Wave",
     price: 2999,
