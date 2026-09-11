@@ -7,9 +7,20 @@
   const grid = document.getElementById("featured-grid");
   if (!section || !grid) return;
 
-  const bikes = typeof FEATURED_BIKES !== "undefined" && Array.isArray(FEATURED_BIKES)
-    ? FEATURED_BIKES
-    : [];
+  const bikes = (
+    typeof FEATURED_BIKES !== "undefined" && Array.isArray(FEATURED_BIKES)
+      ? FEATURED_BIKES.slice()
+      : []
+  ).sort((a, b) => {
+    const priceA = Number(a && a.price);
+    const priceB = Number(b && b.price);
+    const hasA = Number.isFinite(priceA);
+    const hasB = Number.isFinite(priceB);
+    if (hasA && hasB) return priceA - priceB;
+    if (hasA) return -1;
+    if (hasB) return 1;
+    return 0;
+  });
 
   if (!bikes.length) {
     section.hidden = true;
@@ -50,7 +61,8 @@
     Conway: "/assets/images/brands/large/Conway_Wortmarke.png",
     Norta: "/assets/images/brands/large/norta.png",
     Oxford: "/assets/images/brands/large/oxfordlogo.webp",
-    Qio: null,
+    Qio: "/assets/images/brands/large/qio.png",
+    Trenergy: "/assets/images/brands/large/trenergylogo.webp",
     Aureus: "/assets/images/brands/large/aureus.webp",
   };
 

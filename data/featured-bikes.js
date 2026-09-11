@@ -16,12 +16,20 @@
  *
  * Tips:
  * - Laat FEATURED_BIKES leeg ([]) om de hele sectie te verbergen
- * - Volgorde = weergavevolgorde (bovenste eerst)
+ * - Weergavevolgorde is automatisch van laagste naar hoogste prijs
  * - Prijs is een getal zonder € of puntjes: 2999 → wordt € 2.999
  * - image-pad: relatief vanaf de site-root, of alleen bestandsnaam
  *   (dan zoekt hij in assets/images/uitgelicht/)
  */
 const FEATURED_BIKES = [
+  {
+    image: "trenergysilvesn7.webp",
+    brand: "Trenergy",
+    model: "Silves FHM N7",
+    price: 1799,
+    description:
+      "Prijsvriendelijke alleskunner in meteorite black. Voorwielmotor, Shimano Nexus 7, hydraulische schijfremmen, 540 Wh accu en LCD kleurendisplay.",
+  },
   {
     image: "victoriatresalo5.avif",
     brand: "Victoria",
@@ -61,13 +69,5 @@ const FEATURED_BIKES = [
     price: 4999,
     description:
       "Comfortabele city- en toer-e-bike. Bosch Performance Line PX (90 Nm), PowerTube 600 Wh, Enviolo Automatiq, Gates riem en Purion 200 display.",
-  },
-  {
-    image: "victoriafybron8diamant.avif",
-    brand: "Victoria",
-    model: "Fybron 8 Diamant",
-    price: 7999,
-    description:
-      "Lichte carbon allroad. Bosch Performance Line CX, PowerTube 750 Wh, SRAM Eagle AXS 12-speed, FOX AWL-vork en Magura MT7 remmen.",
   },
 ];
