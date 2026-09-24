@@ -1908,6 +1908,34 @@ ul {
   align-self: flex-start;
 }
 
+/* Google reviews */
+.section--reviews {
+  padding: clamp(4rem, 9vw, 6.5rem) 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.section--reviews .section-head {
+  text-align: left;
+}
+
+.reviews-widget {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 22rem;
+}
+
+.reviews-widget [id^="featurable-"] {
+  min-height: 0;
+}
+
+@media (max-width: 720px) {
+  .reviews-widget {
+    max-height: 26rem;
+  }
+}
+
 /* FAQ */
 .faq details {
   border-bottom: 1px solid var(--line);
@@ -2341,6 +2369,18 @@ ul {
     --space-head: clamp(2rem, 6vw, 2.75rem);
     --space-block: clamp(2.25rem, 7vw, 3.25rem);
     --space-stack: clamp(1rem, 3vw, 1.35rem);
+  }
+
+  #over-ons.section {
+    padding-bottom: 1.75rem;
+  }
+
+  .section.section--reviews {
+    padding: 1.75rem 0 clamp(3.25rem, 10vw, 4.5rem);
+  }
+
+  .section--reviews .section-head {
+    margin-bottom: 1.35rem;
   }
 
   .section-head {
