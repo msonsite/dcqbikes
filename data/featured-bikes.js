@@ -8,6 +8,7 @@
  * 2. Kopieer hieronder een blok { ... },
  * 3. Vul image / brand / model / price in
  * 4. (Optioneel) brandLogo: override logo-pad als de merkmapping niet klopt
+ * 4b. (Optioneel) highlight: true, tag: "…", gallery: ["pad", …] voor een extra uitgelichte kaart
  * 5. (Optioneel) description: korte tekst, zichtbaar op mobile onder model/prijs
  *    handig voor highlights; op desktop blijft die verborgen
  *
@@ -22,6 +23,26 @@
  *   (dan zoekt hij in assets/images/uitgelicht/)
  */
 const FEATURED_BIKES = [
+  {
+    // Tweedehands: jong tweedehands, te koop in naam van een klant.
+    // highlight: true → rode tag + extra foto's (gallery) onder de hoofdfoto
+    highlight: true,
+    tag: "Jong tweedehands",
+    image: "/assets/images/tweedehands/IMG_1021.jpg",
+    gallery: [
+      "/assets/images/tweedehands/IMG_1022.jpg",
+      "/assets/images/tweedehands/IMG_1025.jpg",
+      "/assets/images/tweedehands/IMG_1026.jpg",
+      "/assets/images/tweedehands/IMG_1020.jpg",
+      "/assets/images/tweedehands/IMG_1027.jpg",
+      "/assets/images/tweedehands/IMG_1023.jpg",
+    ],
+    brand: "Bizobike",
+    model: "ONE",
+    price: 1099,
+    description:
+      "Sportieve elektrische stadsfiets op dunne banden, afgewerkt in cream met bruin leder. Te bekijken in Jabbeke.",
+  },
   {
     image: "trenergysilvesn7.webp",
     brand: "Trenergy",

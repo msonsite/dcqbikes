@@ -853,6 +853,204 @@ ul {
   overflow: visible;
 }
 
+/* Occasion: aparte rij onder de showroomselectie, vaste hoogte */
+.occasion {
+  margin-top: var(--space-block);
+  padding-top: var(--space-block);
+  border-top: 1px solid var(--line-dark);
+  min-width: 0;
+}
+
+.occasion[hidden] {
+  display: none;
+}
+
+.bike-card--highlight {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: clamp(1rem, 2.4vw, 2rem);
+  width: 100%;
+  height: 22rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.bike-card--highlight .bike-card__media {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  flex: none;
+  padding: 0;
+  border: 2px solid var(--line-dark);
+  border-radius: var(--radius);
+  background: var(--light);
+  overflow: hidden;
+}
+
+.bike-card--highlight .bike-card__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+}
+
+.bike-card--highlight .bike-card__body {
+  justify-content: flex-start;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+.bike-card--highlight .bike-card__tag {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+}
+
+/* Thumbnails onderaan: onderkant op één lijn met de grote foto */
+.bike-card--highlight .bike-card__thumbs {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  margin-top: 0;
+  padding-top: 1rem;
+}
+
+.bike-card--highlight .bike-card__thumb {
+  height: 100%;
+}
+
+.bike-card--highlight .bike-card__meta {
+  flex: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.bike-card--highlight .bike-card__body h4 {
+  min-height: 0;
+  font-size: 1.75rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.bike-card--highlight .bike-card__price {
+  margin: 0.35rem 0 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-dark);
+}
+
+.bike-card--highlight .bike-card__desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0.85rem 0 0;
+  max-width: 34rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 1000px) {
+  .bike-card--highlight {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+  }
+
+  .bike-card--highlight .bike-card__media {
+    height: 20rem;
+  }
+
+  .bike-card--highlight .bike-card__body {
+    grid-column: 1 / -1;
+    overflow: visible;
+  }
+
+  .bike-card--highlight .bike-card__thumbs {
+    flex: none;
+    grid-template-rows: none;
+    margin-top: 0;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .bike-card--highlight .bike-card__thumb {
+    height: 4.25rem;
+  }
+}
+
+.bike-card__specs {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+}
+
+.bike-card__specs li {
+  padding: 0.22rem 0.6rem;
+  border: 1px solid var(--line-dark);
+  border-radius: 999px;
+  font-size: 0.74rem;
+  line-height: 1.2;
+  color: var(--text-dark);
+}
+
+.bike-card__thumbs {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+}
+
+.bike-card__thumb {
+  width: 100%;
+  height: 3.1rem;
+  padding: 0;
+  border: 2px solid var(--line-dark);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.bike-card__thumb:hover,
+.bike-card__thumb:focus-visible,
+.bike-card__thumb.is-active {
+  opacity: 1;
+  border-color: var(--accent);
+  outline: none;
+}
+
+.bike-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bike-card__tag {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
 .bike-card__media {
   background: #fff;
   height: 17.5rem;
@@ -2691,6 +2889,60 @@ ul {
 
   .bike-card__desc {
     display: none;
+  }
+
+  .bike-card__tag {
+    font-size: 0.6rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .bike-card--highlight {
+    gap: 0.5rem;
+  }
+
+  .bike-card--highlight .bike-card__media {
+    height: 14rem;
+    flex: none;
+  }
+
+  .bike-card--highlight .bike-card__body {
+    padding: 0.5rem 0 0;
+    overflow: visible;
+  }
+
+  .bike-card--highlight .bike-card__body h4 {
+    font-size: 1.35rem;
+  }
+
+  .bike-card--highlight .bike-card__price {
+    font-size: 1.05rem;
+  }
+
+  .bike-card--highlight .bike-card__desc {
+    font-size: 0.86rem;
+  }
+
+  .bike-card__specs {
+    margin-top: 0.65rem;
+  }
+
+  .bike-card__specs li {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .bike-card--highlight .bike-card__thumbs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .bike-card--highlight .bike-card__thumbs {
+    margin-top: 0;
+    padding-top: 0.85rem;
+  }
+
+  .bike-card--highlight .bike-card__thumb {
+    height: 3.5rem;
   }
 
   .atmosphere__grid {

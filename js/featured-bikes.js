@@ -75,6 +75,9 @@
   }
 
   const fragment = document.createDocumentFragment();
+  const occasionFragment = document.createDocumentFragment();
+  const occasionWrap = document.getElementById("occasion");
+  const occasionGrid = document.getElementById("occasion-grid");
 
   bikes.forEach((bike) => {
     const brand = (bike.brand || "").trim();
@@ -97,21 +100,66 @@
         : "";
 
     const article = document.createElement("article");
-    article.className = "bike-card reveal";
+    article.className = "bike-card reveal" + (bike.highlight ? " bike-card--highlight" : "");
+
+    function mediaButton(photo, alt, extraClass) {
+      return (
+        '<button type="button" class="bike-card__media' +
+        (extraClass ? " " + extraClass : "") +
+        '" aria-label="Vergroot foto van ' +
+        escapeHtml(title || "uitgelichte fiets") +
+        '">' +
+        '<img src="' +
+        escapeHtml(imageSrc(photo)) +
+        '" alt="' +
+        escapeHtml(alt) +
+        '" loading="lazy" width="640" height="400" />' +
+        "</button>"
+      );
+    }
+
+    const gallery = Array.isArray(bike.gallery) ? bike.gallery : [];
+    const smallPhotos = bike.highlight ? gallery : [];
+
+    const mediaHtml = mediaButton(bike.image, title || "Uitgelichte fiets");
+
+    const thumbsHtml = smallPhotos.length
+      ? '<div class="bike-card__thumbs" role="group" aria-label="Meer foto\'s">' +
+        smallPhotos
+          .map(
+            (g, i) =>
+              '<button type="button" class="bike-card__thumb" data-src="' +
+              escapeHtml(imageSrc(g)) +
+              '" aria-label="Vergroot extra foto ' +
+              (i + 1) +
+              '"><img src="' +
+              escapeHtml(imageSrc(g)) +
+              '" alt="" loading="lazy" width="120" height="80" /></button>'
+          )
+          .join("") +
+        "</div>"
+      : "";
+
+    const specs = Array.isArray(bike.specs) ? bike.specs : [];
+    const specsHtml = specs.length
+      ? '<ul class="bike-card__specs">' +
+        specs.map((s) => "<li>" + escapeHtml(s) + "</li>").join("") +
+        "</ul>"
+      : "";
+
+    const tagHtml = bike.tag
+      ? '<p class="bike-card__tag">' + escapeHtml(bike.tag) + "</p>"
+      : "";
+
     article.innerHTML =
-      '<button type="button" class="bike-card__media" aria-label="Vergroot foto van ' +
-      escapeHtml(title || "uitgelichte fiets") +
-      '">' +
-      '<img src="' +
-      escapeHtml(src) +
-      '" alt="' +
-      escapeHtml(title || "Uitgelichte fiets") +
-      '" loading="lazy" width="640" height="400" />' +
-      "</button>" +
+      mediaHtml +
       '<div class="bike-card__body">' +
-      brandHtml +
+      tagHtml +
+      (bike.highlight ? "" : brandHtml) +
       '<div class="bike-card__meta">' +
-      (model ? "<h4>" + escapeHtml(model) + "</h4>" : "") +
+      (model || bike.highlight
+        ? "<h4>" + escapeHtml(bike.highlight ? title : model) + "</h4>"
+        : "") +
       (priceLabel
         ? '<p class="bike-card__price">' + escapeHtml(priceLabel) + "</p>"
         : "") +
@@ -119,12 +167,19 @@
       (bike.description
         ? '<p class="bike-card__desc">' + escapeHtml(bike.description) + "</p>"
         : "") +
+      specsHtml +
+      thumbsHtml +
       "</div>";
 
-    fragment.appendChild(article);
+    (bike.highlight && occasionGrid ? occasionFragment : fragment).appendChild(article);
   });
 
   grid.replaceChildren(fragment);
+  if (occasionGrid) {
+    occasionGrid.replaceChildren(occasionFragment);
+    if (occasionWrap) occasionWrap.hidden = !occasionGrid.children.length;
+  }
+  if (!grid.children.length) grid.hidden = true;
 
   /* Lightbox for featured bike photos */
   (function initFeaturedLightbox() {
@@ -205,9 +260,17 @@
       });
     }
 
-    grid.addEventListener("click", (e) => {
+    section.addEventListener("click", (e) => {
+      const thumb = e.target.closest(".bike-card__thumb");
+      if (thumb && section.contains(thumb)) {
+        const card = thumb.closest(".bike-card");
+        const h4 = card && card.querySelector("h4");
+        const name = (h4 && h4.textContent.trim()) || "";
+        openLightbox(thumb.getAttribute("data-src"), name, name);
+        return;
+      }
       const trigger = e.target.closest(".bike-card__media");
-      if (!trigger || !grid.contains(trigger)) return;
+      if (!trigger || !section.contains(trigger)) return;
       const img = trigger.querySelector("img");
       if (!img) return;
       const card = trigger.closest(".bike-card");
@@ -225,7 +288,7 @@
 
   /* Re-observe new cards for reveal animation if IO exists */
   if ("IntersectionObserver" in window) {
-    const cards = grid.querySelectorAll(".reveal");
+    const cards = section.querySelectorAll(".bike-card.reveal");
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -239,6 +302,6 @@
     );
     cards.forEach((el) => io.observe(el));
   } else {
-    grid.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-in"));
+    section.querySelectorAll(".bike-card.reveal").forEach((el) => el.classList.add("is-in"));
   }
 })();
