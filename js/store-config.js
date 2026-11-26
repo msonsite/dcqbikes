@@ -8,6 +8,10 @@ const VACATION_PERIODS = [
         start: [2026, 8, 10],  
         end: [2026, 8, 19]     
     },
+    {
+        start: [2026, 12, 22],
+        end: [2026, 12, 26]
+    },
 ];
 
 // To add specific holiday dates that don't fall in vacation periods
@@ -19,6 +23,10 @@ const HOLIDAY_DATES = [
     {
         date: [2026, 7, 14],
         message: 'Gesloten wegens event'
+    },
+    {
+        date: [2026, 12, 2],
+        message: 'Opleiding'
     },
 ];
 
